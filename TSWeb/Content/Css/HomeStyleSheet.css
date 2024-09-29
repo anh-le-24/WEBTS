@@ -3,9 +3,12 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+body{
+    background:#212121;
+}
 header {
-    position: fixed;
+    position: sticky;
+    top:0px;
     z-index: 3;
     background-color: rgba(249, 249, 249, 0.073);
     width: 100%;
@@ -29,7 +32,7 @@ header {
     text-align: center;
     width: 113px;
     height: 60px;
-    left: 0%;
+    right: 5%;
 }
 
     .down span {
@@ -54,15 +57,69 @@ header {
     width: 80px;
 }
 
-#menu {
+#menu,#menu1 {
+    cursor:pointer;
     position: absolute;
-    right: 0;
+    left: 3%;
     top: 50%;
     margin-right: 10px;
     transform: translateY(-50%);
     max-width: 50px;
 }
+#menu1{
+    top:42px;
+    left:30px;
+}
+.side-bar {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s linear;
+    z-index: 2;
+    background-color: #212121;
+    left: 0px;
+    width: 40%;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+}
+    .side-bar.active {
+        opacity: 1;
+        transform: translateX(0);
+        max-width: 300px;
+    }
 
+.side-bar .menu-items{
+    padding: 20px;
+    list-style:none;
+    margin-top:80px;
+}
+
+.menu-items li a{
+    
+    color:white;
+    display:block;
+    padding:10px 0px;
+    font-size:16px;
+    text-decoration:none;
+}
+.overlay-sidebar {
+    transition: all 0.5s linear;
+    visibility: hidden;
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    opacity: 0;
+}
+.overlay-sidebar.active{
+    opacity:0.5;
+    visibility:visible;
+
+}
+.cart{
+    right:1%;
+    position:absolute;
+    
+}
 /**/
 main {
     background-color: white;

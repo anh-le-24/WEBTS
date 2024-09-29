@@ -1,0 +1,91 @@
+﻿body {
+    background-color: #212121;
+}
+main {
+    padding-top: 32px;
+}
+.cart-list{
+    display:flex;
+    gap:6px;
+    flex-direction:column;
+}
+.cart-container {
+    border: 1px solid #3C3D37;
+    width: 80%;
+    margin: 0px auto;
+    padding: 20px 20px;
+    border-radius:8px;
+}
+.cart-items {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.1);
+    padding: 15px;
+}
+.img-product{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    flex-shrink:0;
+}
+.cart-item-info{
+    flex:1;
+}
+.cart-item-info h2{
+    font-size:30px;
+}
+.cart-item-info p{
+    margin-bottom:5px;
+}
+.btn-check {
+    width: 20px;
+    height: 20px;
+}
+/*Bao 2 button*/
+.item-quanlity {
+    margin-top:11px;
+    justify-content: center;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #3C3D37;
+    width: 130px;
+    border-radius: 8px;
+    height: 50px;
+}
+.item-plus-btn,.item-minus-btn{
+    background-color:transparent;
+    outline:none;
+    border:none;
+}
+/*Hình plus - minus*/
+.item-img-minus, .item-img-plus{
+    width:24px;
+    height:24px;
+
+}
+/*Vourcher*/
+
+.vourcher-pay{
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   gap:7px;
+}
+
+/*Thanh Toán*/
+.btn-pay { /*thanh toán all*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+}
+.btnthanhtoan { /*nút thanh toán*/
+    background-color: #FF9874;
+    color:black;
+    border:none;
+    outline:none;
+    border-radius:3px;
+    padding:19px;
+}

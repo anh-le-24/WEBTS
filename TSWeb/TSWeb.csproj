@@ -120,7 +120,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DangNhapDKController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,13 +145,44 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Css\CartStyleSheet.css" />
+    <Content Include="Content\Css\DetailCartStyleSheet.css" />
+    <Content Include="Content\Css\HomeNVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
+    <Content Include="Content\Css\LoginStyleSheet.css" />
+    <Content Include="Content\Css\Picture\1.png" />
+    <Content Include="Content\Css\Picture\bgg.jpg" />
+    <Content Include="Content\Css\Picture\cart.png" />
+    <Content Include="Content\Css\Picture\down.png" />
+    <Content Include="Content\Css\Picture\img2.png" />
+    <Content Include="Content\Css\Picture\logo.png" />
+    <Content Include="Content\Css\Picture\menu1.png" />
+    <Content Include="Content\Css\Picture\minus.png" />
+    <Content Include="Content\Css\Picture\plus.png" />
+    <Content Include="Content\Css\Picture\straw.png" />
+    <Content Include="Content\Css\Picture\tea1.jpg" />
+    <Content Include="Content\Css\Picture\tea11.jpg" />
+    <Content Include="Content\Css\Picture\tea12.jpg" />
+    <Content Include="Content\Css\Picture\tea13.jpg" />
+    <Content Include="Content\Css\Picture\tea14.jpg" />
+    <Content Include="Content\Css\Picture\tea15.png" />
+    <Content Include="Content\Css\Picture\tea16.png" />
+    <Content Include="Content\Css\Picture\tea2.jpg" />
+    <Content Include="Content\Css\Picture\tea3.jpg" />
+    <Content Include="Content\Css\Picture\tea4.jpg" />
+    <Content Include="Content\Css\Picture\tea5.jpg" />
+    <Content Include="Content\Css\Picture\tea6.jpg" />
+    <Content Include="Content\Css\Picture\tea7.jpg" />
+    <Content Include="Content\Css\Picture\tea8.jpg" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\bgg.jpg" />
+    <Content Include="Content\Picture\cart.png" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\img2.png" />
     <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\menu1.png" />
+    <Content Include="Content\Picture\minus.png" />
+    <Content Include="Content\Picture\plus.png" />
     <Content Include="Content\Picture\straw.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\tea11.jpg" />
@@ -185,6 +218,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LoginJavaScript.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -197,7 +231,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\NhanVien\TrangDangNhapNhanVien.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\DetailCart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
