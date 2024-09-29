@@ -12,18 +12,12 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Cart()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult Chitiet()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

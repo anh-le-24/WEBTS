@@ -233,9 +233,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NhanVien\TrangDangNhapNhanVien.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
-    <Content Include="Views\Home\DetailCart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
+    <Content Include="Views\Home\Chitiet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
