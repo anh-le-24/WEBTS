@@ -13,5 +13,9 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        public ActionResult HomeNV()
+        {
+            return View(); 
+        }
     }
 }

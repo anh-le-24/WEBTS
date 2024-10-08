@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-image: url(../Picture/bg_dn.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,14 +16,14 @@ body {
 
 .container {
     background-image: url('../Picture/bgg.jpg');
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.4); /* Bóng phát sáng màu vàng */
     width: 350px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8); 
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
     .container h2 {
@@ -40,12 +41,12 @@ body {
     width: 100%;
 }
 
-    .card-login span {
+    .card-login label {
         display: block;
         text-align: left;
         margin-bottom: 8px;
-        font-size: 14px;
-        color: #555;
+        font-size: 16px;
+        color: #000000;
     }
 
     .card-login input[type="email"],
