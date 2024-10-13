@@ -30,20 +30,44 @@ function autoSlide() {
 
 // Hàm khởi tạo slider và bắt đầu auto-slide
 function initSlider() {
-    showSlides(); 
+    showSlides();
     autoSlide();
 }
 
 function stopAutoSlide() {
-    clearInterval(autoSlideInterval); 
+    clearInterval(autoSlideInterval);
 }
 
 function resumeAutoSlide() {
-    autoSlide(); 
+    autoSlide();
 }
 
 initSlider();
 
 const slider = document.querySelector('.slider');
-slider.addEventListener('mouseenter', stopAutoSlide); 
-slider.addEventListener('mouseleave', resumeAutoSlide); 
+slider.addEventListener('mouseenter', stopAutoSlide);
+slider.addEventListener('mouseleave', resumeAutoSlide);
+
+
+
+
+/*Side-bar */
+const overlaySidebar = document.querySelector('.overlay-sidebar');
+const navBarBtn = document.querySelector('#menu');
+const sideBar = document.querySelector('.side-bar');
+navBarBtn.addEventListener('click', function () {
+    sideBar.classList.toggle('active')
+    overlaySidebar.classList.toggle('active')
+});
+console.log(navBarBtn);
+
+const navBarBtn1 = document.querySelector('#menu1');
+navBarBtn1.addEventListener('click', function () {
+    sideBar.classList.toggle('active')
+    overlaySidebar.classList.toggle('active')
+});
+
+overlaySidebar.addEventListener('click', function () {
+    sideBar.classList.remove('active')
+    overlaySidebar.classList.remove('active')
+});

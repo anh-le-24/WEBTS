@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="~/Content/Css/HomeStyleSheet.css" rel="stylesheet">
+    @{
+        Layout = null;
+    }
 </head>
 <body>
     <!--thanh điều hướng-->
@@ -14,7 +17,20 @@
                 <span id="word">LANGUAGES</span>
                 <img src="~/Content/Picture/down.png" alt="Doswn">
             </div>
+            <div class="cart" ><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
             <img src="~/Content/Picture/logo.png" alt="Green Tea" id="logo">
+            <div class="side-bar">
+                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
+                <ul class="menu-items">
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Thông báo</a></li>
+                    <li><a href="#">Tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="overlay-sidebar">
+            </div>
             <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
         </div>
     </header>
