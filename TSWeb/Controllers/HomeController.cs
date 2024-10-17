@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TSWeb.Models;
 
 namespace TSWeb.Controllers
 {
@@ -20,5 +21,11 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        public ActionResult vd()
+        {
+            Model db = new Model();
+            ViewBag.list = db.GetData("select * from SANPHAM");
+            return View();
+        } 
     }
 }

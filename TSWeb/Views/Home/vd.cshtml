@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+@if (ViewBag.list != null && ViewBag.list.Count > 0)
+{
+    <table border="1">
+        <tr>
+            @foreach (var key in ((Dictionary<string, object>)ViewBag.list[0]).Keys)
+            {
+                <th>@key</th>
+            }
+        </tr>
+
+        @foreach (var row in ViewBag.list)
+        {
+            <tr>
+                @foreach (var kvp in row)
+                {
+                    <td>@kvp.Value</td>
+                }
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Không có dữ liệu.</p>
+}

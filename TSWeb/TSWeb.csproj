@@ -117,7 +117,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Models.cs" />
+    <Compile Include="Models\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,12 +203,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\NhanVien\TrangDangNhapNhanVien.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
     <Content Include="Views\Home\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
+    <Content Include="Views\NhanVien\DNNV.cshtml" />
+    <Content Include="Views\Home\vd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
