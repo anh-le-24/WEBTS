@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/admincss.css" rel="stylesheet" />
+    <link href="~/css/SanPham.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header và navigation ở đây -->
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="~/Content/anh/Screenshot 2024-09-19 155433.png" alt="Tea Leaf Logo" width="90" height="90">
+            </div>
+            <div class="menu-top">
+                <a href="~/Home/TongQuan">Tổng Quan</a>
+                <a href="SanPham">Sản Phẩm</a>
+                <a href="UuDai">Ưu Đãi</a>
+                <a href="KhachHang">Khách Hàng</a>
+                <a href="NhanVien">Nhân Viên</a>
+                <a href="ThanhToan">Thanh Toán</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content">
+        @RenderBody()
+    </main>
+</body>
+</html>

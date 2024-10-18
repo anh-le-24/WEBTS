@@ -24,5 +24,30 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        public ActionResult TongQuan()
+        {
+            return View();
+        }
+        public ActionResult KhachHang()
+        {
+            return View();
+        }
+        public ActionResult NhanVien()
+        {
+            return View();
+        }
+        public ActionResult SanPham()
+        {
+            return View();
+        }
+        public ActionResult ThanhToan()
+        {
+            return View();
+        }
+        public ActionResult UuDai()
+        {
+            return View();
+        }
+       
     }
 }

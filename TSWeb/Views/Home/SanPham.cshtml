@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>SanPham</h2>
+<div class="menu">
+    <ul>
+        <li>@Html.ActionLink("Thêm sản phẩm", "ThemSanPham", "SanPham")</li>
+        <li>@Html.ActionLink("Chỉnh sửa sản phẩm", "ChinhSuaSanPham", "SanPham")</li>
+        <li>@Html.ActionLink("Xóa sản phẩm", "XoaSanPham", "SanPham")</li>
+    </ul>
+</div>
