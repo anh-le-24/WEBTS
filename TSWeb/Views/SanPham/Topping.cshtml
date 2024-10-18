@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Topping";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2></h2>
+
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Tổng số Topping</h3>
+                <p>24</p>
+            </div>
+            <div class="stat-card">
+                <h3>Topping đang bán</h3>
+                <p>20</p>
+            </div>
+            <div class="stat-card">
+                <h3>Topping hết hàng</h3>
+                <p>4</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" placeholder="Tìm kiếm topping...">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Thêm Topping Mới
+            </button>
+        </div>
+
+        <div class="topping-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Topping</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                        <th>Số lượng</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Trân châu đen</td>
+                        <td>10.000đ</td>
+                        <td><span class="status-active">Còn hàng</span></td>
+                        <td>500</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trân châu trắng</td>
+                        <td>10.000đ</td>
+                        <td><span class="status-active">Còn hàng</span></td>
+                        <td>450</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Thạch rau câu</td>
+                        <td>8.000đ</td>
+                        <td><span class="status-inactive">Hết hàng</span></td>
+                        <td>0</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button><i class="fas fa-angle-double-left"></i></button>
+            <button><i class="fas fa-angle-left"></i></button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button><i class="fas fa-angle-right"></i></button>
+            <button><i class="fas fa-angle-double-right"></i></button>
+        </div>
+    </div>
+</body>
+</html>

@@ -187,6 +187,8 @@
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\SanPham.css" />
+    <Content Include="Content\Css\Topping.css" />
+    <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\account.png" />
     <Content Include="Content\Picture\bell.png" />
@@ -264,10 +266,10 @@
     <Content Include="Views\SanPham\UuDai.cshtml" />
     <Content Include="Views\SanPham\ThemSanPham.cshtml" />
     <Content Include="Views\SanPham\ChinhSuaSP.cshtml" />
+    <Content Include="Views\SanPham\Topping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ChinhSuaSP\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\TSWebContext\" />
   </ItemGroup>
