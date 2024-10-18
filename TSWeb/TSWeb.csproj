@@ -247,23 +247,24 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NhanVien\TrangDangNhapNhanVien.cshtml" />
-    <Content Include="Views\Home\Cart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\SanPham\Cart.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
     <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
-    <Content Include="Views\Home\Chitiet.cshtml" />
+    <Content Include="Views\SanPham\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
-    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\SanPham\Payment.cshtml" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
-    <Content Include="Views\Home\TongQuan.cshtml" />
-    <Content Include="Views\Home\KhachHang.cshtml" />
-    <Content Include="Views\Home\NhanVien.cshtml" />
-    <Content Include="Views\Home\SanPham.cshtml" />
-    <Content Include="Views\Home\ThanhToan.cshtml" />
-    <Content Include="Views\Home\UuDai.cshtml" />
+    <Content Include="Views\SanPham\TongQuan.cshtml" />
+    <Content Include="Views\SanPham\KhachHang.cshtml" />
+    <Content Include="Views\SanPham\NhanVien.cshtml" />
+    <Content Include="Views\SanPham\QLSanPham.cshtml" />
+    <Content Include="Views\SanPham\ThanhToan.cshtml" />
+    <Content Include="Views\SanPham\UuDai.cshtml" />
     <Content Include="Views\SanPham\ThemSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\" />
     <Folder Include="Views\TSWebContext\" />
   </ItemGroup>
   <ItemGroup>

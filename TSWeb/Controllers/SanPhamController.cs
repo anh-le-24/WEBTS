@@ -27,5 +27,41 @@ namespace TSWeb.Controllers
         {
             return View("XoaSanPham");
         }
+        public ActionResult Cart()
+        {
+            return View();
+        }
+        public ActionResult Chitiet()
+        {
+            return View();
+        }
+        public ActionResult Payment()
+        {
+            return View();
+        }
+        public ActionResult TongQuan()
+        {
+            return View();
+        }
+        public ActionResult KhachHang()
+        {
+            return View();
+        }
+        public ActionResult NhanVien()
+        {
+            return View();
+        }
+        public ActionResult QLSanPham()
+        {
+            return View();
+        }
+        public ActionResult ThanhToan()
+        {
+            return View();
+        }
+        public ActionResult UuDai()
+        {
+            return View();
+        }
     }
 }

@@ -10,12 +10,12 @@
         <form method="post" enctype="multipart/form-data" class="product-form">
             <div class="form-group">
                 <label for="TenSP">Tên Sản Phẩm</label>
-                <input type="text" id="TenSP" name="TenSP" class="form-control" required />
+                <input type="text" id="TenSP" name="TenSP" class="form-control" required placeholder=" trà sữa truyền thống" />
             </div>
 
             <div class="form-group">
                 <label for="Gia">Giá</label>
-                <input type="number" id="Gia" name="Gia" class="form-control" required />
+                <input type="text" id="Gia" name="Gia" class="form-control" required />
             </div>
 
             <div class="form-group">
@@ -33,17 +33,28 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="HinhAnh">Hình Ảnh</label>
-                <input type="file" id="HinhAnh" name="HinhAnh" class="form-control file-input" accept="image/*" />
-                <div id="image-preview" class="image-preview"></div>
+            <div class="center">
+                <div class="form-group form">
+                    <span class="form-title">Hình Ảnh</span>
+
+                    <label for="file-input" class="drop-container">
+                        <span class="drop-title">Drop files here</span>
+                        or
+                        <input type="file" id="HinhAnh" name="HinhAnh" accept="image/*" required="" id="file-input">
+
+                    </label>
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
             </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
-                <a href="/SanPham" class="btn btn-secondary">Quay lại</a>
-            </div>
-        </form>
+
+                
+                <div class="form-actions center">
+                    <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+                    <a href="/SanPham" class="btn btn-secondary">Quay lại</a>
+
+                </div>
+</form>
     </div>
 </div>
 
@@ -61,13 +72,13 @@
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        width : 60%;
     }
 
     .form-title {
         color: #333;
-        margin-bottom: 30px;
         text-align: center;
-        font-size: 24px;
+        font-size: 30px;
         font-weight: 600;
     }
 
@@ -83,8 +94,10 @@
     }
 
         .form-group label {
-            font-weight: 500;
+            font-weight: bold;
             color: #555;
+            font-size:20px;
+
         }
 
     .form-control {
@@ -142,6 +155,7 @@
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-size:21px;
     }
 
     .btn-primary {
@@ -162,6 +176,96 @@
         .btn-secondary:hover {
             background-color: #5a6268;
         }
+
+    /* From Uiverse.io by Yaya12085 */
+    .center{
+        display:flex;
+        justify-content:center;
+
+    }
+    .form {
+        background-color: #fff;
+        box-shadow: 0 10px 60px rgb(218, 229, 255);
+        border: 1px solid rgb(159, 159, 160);
+        border-radius: 20px;
+        padding: 2rem .7rem .7rem .7rem;
+        text-align: center;
+        font-size: 1.125rem;
+        max-width: 320px;
+        
+    }
+
+    .form-title {
+        color: #000000;
+        font-size: 1.8rem;
+    
+    }
+
+    .form-paragraph {
+        margin-top: 10px;
+        font-size: 0.9375rem;
+        color: rgb(105, 105, 105);
+    }
+
+    .drop-container {
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin-top: 2.1875rem;
+        border-radius: 10px;
+        border: 2px dashed rgb(171, 202, 255);
+        color: #444;
+        cursor: pointer;
+        transition: background .2s ease-in-out, border .2s ease-in-out;
+    }
+
+        .drop-container:hover {
+            background: rgba(0, 140, 255, 0.164);
+            border-color: rgba(17, 17, 17, 0.616);
+        }
+
+            .drop-container:hover .drop-title {
+                color: #222;
+            }
+
+    .drop-title {
+        color: #444;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        transition: color .2s ease-in-out;
+    }
+
+    #HinhAnh {
+        width: 350px;
+        max-width: 100%;
+        color: #444;
+        padding: 2px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(8, 8, 8, 0.288);
+        font-weight:bold;
+    }
+
+        #HinhAnh::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #084cdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+            #HinhAnh::file-selector-button:hover {
+                background: #0d45a5;
+            }
 </style>
 
 <style media="screen and (max-width: 768px)">
@@ -178,5 +282,10 @@
         width: 100%;
         text-align: center;
     }
+
+
+
+    /*gcdhjgwjhcd*/
+
 </style>
 
