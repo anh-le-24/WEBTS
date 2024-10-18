@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="center">
+    <div class="edit-product-container">
+        <div class="page-header">
+            <div class="header-content">
+                <h2>Chỉnh sửa sản phẩm</h2>
+            </div>
+        </div>
+
+        <div class="product-form-container">
+            @using (Html.BeginForm("ChinhSuaSP", "SanPham", FormMethod.Post, new { enctype = "multipart/form-data", @class = "modern-form" }))
+            {
+                <div class="form-sections">
+                    <!-- Phần thông tin cơ bản -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Thông tin cơ bản</h3>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="productName">Tên sản phẩm</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-mug-hot"></i>
+                                    <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productPrice">Giá bán</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-tags"></i>
+                                    <input type="text" id="productPrice" name="productPrice" placeholder="Nhập giá sản phẩm" required>
+                                    <span class="currency">VNĐ</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productCategory">Danh mục</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-folder"></i>
+                                    <select id="productCategory" name="productCategory">
+                                        <option value="">Chọn danh mục</option>
+                                        <option value="tra-sua">Trà sữa</option>
+                                        <option value="tra-trai-cay">Trà trái cây</option>
+                                        <option value="topping">Topping</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productStatus">Trạng thái</label>
+                                <div class="status-toggle">
+                                    <input type="checkbox" id="productStatus" name="productStatus" class="toggle-input">
+                                    <label for="productStatus" class="toggle-label">
+                                        <span class="toggle-text-on">Đang bán</span>
+                                        <span class="toggle-text-off">Ngừng bán</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="form-group form">
+                            <span class="form-title">Hình Ảnh</span>
+
+                            <label for="file-input" class="drop-container">
+                                <span class="drop-title">Drop files here</span>
+                                or
+                                <input type="file" id="HinhAnh" name="HinhAnh" accept="image/*" required="" id="file-input">
+
+                            </label>
+                            <div id="image-preview" class="image-preview"></div>
+                        </div>
+                    </div>
+
+
+
+                    
+                     @*Các nút thao tác*@ 
+                    <div class="form-actions center">
+                        <button type="button" class="btn btn-secondary" onclick="history.back()">
+                            <i class="fas fa-times"></i> Hủy
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Lưu thay đổi
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add this script to your page
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('productImage');
+        const previewContainer = document.getElementById('imagePreview');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', '
+</script>

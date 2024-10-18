@@ -179,11 +179,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Css\Admincss.css" />
     <Content Include="Content\Css\CartStyleSheet.css" />
+    <Content Include="Content\Css\chinhsuasanpham.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
+    <Content Include="Content\Css\SanPham.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\account.png" />
     <Content Include="Content\Picture\bell.png" />
@@ -215,7 +217,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\SanPham.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -261,9 +262,11 @@
     <Content Include="Views\SanPham\ThanhToan.cshtml" />
     <Content Include="Views\SanPham\UuDai.cshtml" />
     <Content Include="Views\SanPham\ThemSanPham.cshtml" />
+    <Content Include="Views\SanPham\ChinhSuaSP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ChinhSuaSP\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\TSWebContext\" />
   </ItemGroup>

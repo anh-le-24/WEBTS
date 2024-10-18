@@ -63,5 +63,9 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        public ActionResult ChinhSuaSP()
+        {
+            return View();
+        }
     }
 }
