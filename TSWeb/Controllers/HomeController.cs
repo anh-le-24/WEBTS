@@ -23,7 +23,7 @@ namespace TSWeb.Controllers
         }
         public ActionResult vd()
         {
-            Model db = new Model();
+            DatabaseModels db = new DatabaseModels();
             ViewBag.list = db.GetData("select * from SANPHAM");
             return View();
         } 

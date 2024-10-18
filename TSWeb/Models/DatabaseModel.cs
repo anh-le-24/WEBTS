@@ -5,7 +5,7 @@ using System.Configuration;
 
 namespace TSWeb.Models
 {
-    public class Model
+    public class DatabaseModels
     {
         private string connectionString = "workstation id=TSWebDaTa.mssql.somee.com;packet size=4096;user id=Vanh_SQLLogin_1;pwd=123456789;data source=TSWebDaTa.mssql.somee.com;persist security info=False;initial catalog=TSWebDaTa;TrustServerCertificate=True"; 
 

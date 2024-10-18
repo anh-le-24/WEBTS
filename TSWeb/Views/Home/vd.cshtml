@@ -5,20 +5,18 @@
 @if (ViewBag.list != null && ViewBag.list.Count > 0)
 {
     <table border="1">
-        <tr>
-            @foreach (var key in ((Dictionary<string, object>)ViewBag.list[0]).Keys)
-            {
-                <th>@key</th>
-            }
-        </tr>
-
         @foreach (var row in ViewBag.list)
         {
             <tr>
-                @foreach (var kvp in row)
-                {
-                    <td>@kvp.Value</td>
+                @{
+                    var rowList = ((Dictionary<string, object>)row).ToList(); // Chuyển thành danh sách các cặp khóa-giá trị
                 }
+
+                <td>@rowList[1].Value</td> 
+                <td>@rowList[2].Value</td> 
+                <td>@rowList[3].Value</td> 
+                <td>@rowList[5].Value</td> 
+                <td>@rowList[6].Value</td> 
             </tr>
         }
     </table>
