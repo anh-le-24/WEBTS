@@ -13,10 +13,11 @@ namespace TSWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Định tuyến mặc định mới trỏ tới SanPhamController
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "SanPham", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

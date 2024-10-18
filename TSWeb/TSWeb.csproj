@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=4.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.4.11.0\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
@@ -145,6 +152,7 @@
     <Compile Include="Controllers\DangNhapDKController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,12 +177,18 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Css\Admincss.css" />
     <Content Include="Content\Css\CartStyleSheet.css" />
+    <Content Include="Content\Css\chinhsuasanpham.css" />
+    <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
+    <Content Include="Content\Css\SanPham.css" />
+    <Content Include="Content\Css\Topping.css" />
+    <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\account.png" />
     <Content Include="Content\Picture\bell.png" />
@@ -237,14 +251,27 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NhanVien\TrangDangNhapNhanVien.cshtml" />
-    <Content Include="Views\Home\Cart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\SanPham\Cart.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
     <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
-    <Content Include="Views\Home\Chitiet.cshtml" />
+    <Content Include="Views\SanPham\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
+    <Content Include="Views\SanPham\Payment.cshtml" />
+    <Content Include="Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Views\SanPham\TongQuan.cshtml" />
+    <Content Include="Views\SanPham\KhachHang.cshtml" />
+    <Content Include="Views\SanPham\NhanVien.cshtml" />
+    <Content Include="Views\SanPham\QLSanPham.cshtml" />
+    <Content Include="Views\SanPham\ThanhToan.cshtml" />
+    <Content Include="Views\SanPham\UuDai.cshtml" />
+    <Content Include="Views\SanPham\ThemSanPham.cshtml" />
+    <Content Include="Views\SanPham\ChinhSuaSP.cshtml" />
+    <Content Include="Views\SanPham\Topping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\TSWebContext\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -311,7 +338,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
