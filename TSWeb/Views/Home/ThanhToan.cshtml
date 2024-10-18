@@ -1,11 +1,12 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="~/Content/Css/DetailCartStyleSheet.css" rel="stylesheet">
+    <link href="~/Content/Css/PaymentStyleSheet.css" rel="stylesheet">
+
     @{
         Layout = null;
     }
@@ -36,58 +37,70 @@
         </div>
     </header>
     <!--Phần thân-->
-    <main class="container">
-        <div class="detail-product">
-            <img src="~/Content/Picture/tea1.jpg" class="detail-product__img" />
-            <div class="detail-product__info">
-                <h2 class="detail-product__title">Trà Latte Cực ngon</h2>
-                <p class="detail-product__price">Giá : 1,000đ</p>
-                <p class="detail-product__label">Còn hàng</p>
-                <div class="sizes">
-                    <div class="size" data-size="M">M</div>
-                    <div class="size" data-size="L">L</div>
-                </div>
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Topic</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Trân Châu</button>
-                        <button class="detail-taste__option">Thạch</button>
-                    </div>
-                </div>
+    <main>
+        <div class="checkout-container">
+            <h3>Thông tin đơn hàng</h3>
 
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Ngọt</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Ít</button>
-                        <button class="detail-taste__option">Bình thường</button>
-                    </div>
-                </div>
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Đá</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Ít</button>
-                        <button class="detail-taste__option">Bình thường</button>
-                    </div>
-                </div>
-                <div class="plus-minus-product">
-                    <div class="item-quanlity">
-                        <button class="item-minus-btn">
-                            <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                        </button>
-                        <span>2</span>
-                        <button class="item-plus-btn">
-                            <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                        </button>
-                    </div>
-                    <button class="btnthemsanpham">Thêm Sản Phẩm</button>
+            <!-- Store Selection -->
+            <div class="store-selection">
+                <div class="store-icon">
+                    <img src="~/Content/Picture/shop.png" alt="Alternate Text" />
                 </div>
             </div>
-        </div>
-        <div class="product-description">
-            <h3>Mô tả sản phẩm</h3>
-            <p>Được chiết suất từ những lá trà tươi xanh nhất trên vùng cao <br />Chúng tôi mang đến những hương vị đầy mới mẻ</p>
-        </div>
 
+            <!-- Product Details -->
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="~/Content/Picture/tea8.jpg" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <p><strong>Kem Vani Trà Sữa Trân Châu Hoàng Kim (M)</strong></p>
+                    <p>Thêm Thạch Konjac, Thêm Thạch quế hoa, Topping Thạch Dứa, Thêm trân châu sương mai, 100% đường, 100% đá</p>
+                    <p>46,000đ x 1 = 46,000đ</p>
+                </div>
+            </div>
+
+            <!-- Promo Code Section -->
+            <div class="promo-code">
+                <input type="text" placeholder="Mã khuyến mại">
+                <button>Thêm khuyến mại</button>
+            </div>
+
+            <!-- Price Details -->
+            <div class="price-details">
+                <div class="row">
+                    <span>Số lượng cốc:</span>
+                    <span>1 cốc</span>
+                </div>
+                <div class="row">
+                    <span>Tổng:</span>
+                    <span>46,000đ</span>
+                </div>
+                <div class="row">
+                    <span>Phí vận chuyển:</span>
+                    <span>0đ</span>
+                </div>
+                <div class="row">
+                    <span>Khuyến mại:</span>
+                    <span>0đ</span>
+                </div>
+                <div class="row">
+                    <span><strong>Tổng cộng:</strong></span>
+                    <span><strong>46,000đ</strong></span>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="notes">
+                <textarea placeholder="Thêm ghi chú..."></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="order-button">ĐẶT HÀNG</button>
+                <button class="continue-shopping">TIẾP TỤC MUA HÀNG</button>
+            </div>
+        </div>
     </main>
     <footer class="bottom">
         <div class="footer-left">
@@ -125,6 +138,6 @@
             </div>
         </div>
     </footer>
-
+    <script src="~/Scripts/HomeJavaScript.js"></script>
 </body>
 </html>

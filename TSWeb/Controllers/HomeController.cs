@@ -23,9 +23,14 @@ namespace TSWeb.Controllers
         }
         public ActionResult vd()
         {
-            DatabaseModels db = new DatabaseModels();
-            ViewBag.list = db.GetData("select * from SANPHAM");
+            DatabaseModel db = new DatabaseModel();
+            ViewBag.list = db.get("select * from SANPHAM");
             return View();
-        } 
+        }
+        public ActionResult ThanhToan()
+        {
+            return View();
+        }
+
     }
 }

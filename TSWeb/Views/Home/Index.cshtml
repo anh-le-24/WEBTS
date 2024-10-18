@@ -10,14 +10,18 @@
     }
 </head>
 <body>
-    <!--thanh điều hướng-->
     <header>
         <div class="nav">
             <div class="down">
                 <span id="word">LANGUAGES</span>
                 <img src="~/Content/Picture/down.png" alt="Doswn">
             </div>
-            <div class="cart" ><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
+            <div class="cart">
+                <a href="@Url.Action("Cart", "Home")">
+                    <img src="~/Content/Picture/cart.png" />
+                </a>
+
+            </div>
             <img src="~/Content/Picture/logo.png" alt="Green Tea" id="logo">
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
@@ -41,13 +45,13 @@
                 <div class="slides">
                     <!-- Ảnh quảng cáo -->
                     <div class="slide">
-                        <img src="~/Content/Picture/tea16.png" alt="Image 1">
+                        <img src="~/Content/Picture/ct1.jpg" alt="Image 1">
                     </div>
                     <div class="slide">
-                        <img src="~/Content/Picture/tea15.png" alt="Image 2">
+                        <img src="~/Content/Picture/ct2.jpg" alt="Image 2">
                     </div>
                     <div class="slide">
-                        <img src="~/Content/Picture/tea14.jpg" alt="Image 3">
+                        <img src="~/Content/Picture/ct3.jpg" alt="Image 3">
                     </div>
                 </div>
                 <!-- chuyển trái phải -->

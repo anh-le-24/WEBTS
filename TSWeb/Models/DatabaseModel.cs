@@ -2,37 +2,34 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Collections;
 
 namespace TSWeb.Models
 {
-    public class DatabaseModels
+    public class DatabaseModel
     {
-        private string connectionString = "workstation id=TSWebDaTa.mssql.somee.com;packet size=4096;user id=Vanh_SQLLogin_1;pwd=123456789;data source=TSWebDaTa.mssql.somee.com;persist security info=False;initial catalog=TSWebDaTa;TrustServerCertificate=True"; 
-
-        // Phương thức lấy dữ liệu
-        public List<Dictionary<string, object>> GetData(string sql)
+        private string connecttionStrings = "workstation id=TSWebDaTa.mssql.somee.com;packet size=4096;user id=Vanh_SQLLogin_1;pwd=123456789;data source=TSWebDaTa.mssql.somee.com;persist security info=False;initial catalog=TSWebDaTa;TrustServerCertificate=True";
+        public ArrayList get(String sql)
         {
-            var dataList = new List<Dictionary<string, object>>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            ArrayList datalist = new ArrayList();
+            SqlConnection connection = new SqlConnection(connecttionStrings);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            using (SqlDataReader r = command.ExecuteReader())
             {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                while (r.Read())
                 {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    ArrayList row = new ArrayList();
+                    for (int i = 0; i < r.FieldCount; i++)
                     {
-                        while (reader.Read())
-                        {
-                            var row = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                row[reader.GetName(i)] = reader.GetValue(i);
-                            }
-                            dataList.Add(row);
-                        }
+                        row.Add(r.GetValue(i).ToString());
                     }
+                    datalist.Add(row);
+
                 }
             }
-            return dataList;
+            connection.Close();
+            return datalist;
         }
     }
 }

@@ -117,7 +117,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\DangNhapDKModels.cs" />
+    <Compile Include="Models\DatabaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +141,11 @@
     <Content Include="Content\Css\CartStyleSheet.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
+    <Content Include="Content\Css\HomeNVStyleSheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
+    <Content Include="Content\Css\PaymentStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\bell.png" />
     <Content Include="Content\Picture\bgg.jpg" />
@@ -210,6 +213,7 @@
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
     <Content Include="Views\NhanVien\DNNV.cshtml" />
     <Content Include="Views\Home\vd.cshtml" />
+    <Content Include="Views\Home\ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

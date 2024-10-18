@@ -8,15 +8,11 @@
         @foreach (var row in ViewBag.list)
         {
             <tr>
-                @{
-                    var rowList = ((Dictionary<string, object>)row).ToList(); // Chuyển thành danh sách các cặp khóa-giá trị
-                }
-
-                <td>@rowList[1].Value</td> 
-                <td>@rowList[2].Value</td> 
-                <td>@rowList[3].Value</td> 
-                <td>@rowList[5].Value</td> 
-                <td>@rowList[6].Value</td> 
+                <td>@row[1]</td> 
+                <td>@row[2]</td> 
+                <td>@row[3]</td> 
+                <td>@row[5]</td> 
+                <td>@row[6]</td> 
             </tr>
         }
     </table>
