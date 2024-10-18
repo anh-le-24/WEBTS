@@ -3,11 +3,89 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>SanPham</h2>
-<div class="menu">
-    <ul>
-        <li>@Html.ActionLink("Thêm sản phẩm", "ThemSanPham", "SanPham")</li>
-        <li>@Html.ActionLink("Chỉnh sửa sản phẩm", "ChinhSuaSP", "SanPham")</li>
-        <li>@Html.ActionLink("Xóa sản phẩm", "XoaSanPham", "SanPham")</li>
-    </ul>
+<div class="container">
+    <a href="~/SanPham/ThemSanPham" type="button" class="button ">
+        <span class="button__text">Thêm </span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+    </a>
 </div>
+@*hihi*@
+<table>
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Danh Mục</th>
+            <th>Tình trạng</th>
+            @*<th>Hành động</th>*@ <!-- Thêm tiêu đề cột cho các nút hành động -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><img src="https://th.bing.com/th/id/OIP.1lBBHW54l0Cblxz3pusUMwHaHc?w=183&h=185&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Trà Sữa trân châu đường đen" width="50" height="50" /></td>
+            <td>Trà Sữa trân châu đường đen</td>
+            <td>0</td>
+            <td>0</td>
+            <td><span class="status-available">Còn hàng</span></td>
+            <td>
+                <!-- Chỉnh phần này để chứa các nút sửa, xóa -->
+                <button class="btn-edit">Sửa</button>
+                <button class="btn-delete">Xóa</button>
+            </td>
+        </tr>
+        <!-- Add more rows as needed -->
+        <tr>
+            <td>2</td>
+            <td><img src="https://th.bing.com/th/id/OIP.1lBBHW54l0Cblxz3pusUMwHaHc?w=183&h=185&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Trà Sữa trân châu đường đen" width="50" height="50" /></td>
+            <td>Trà Sữa trân châu đường đen</td>
+            <td>0</td>
+            <td>0</td>
+            <td><span class="status-available">Còn hàng</span></td>
+            <td>
+                <!-- Chỉnh phần này để chứa các nút sửa, xóa -->
+                <button class="btn-edit">Sửa</button>
+                <button class="btn-delete">Xóa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    // Sự kiện khi nhấn nút "Xóa"
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
+                // Gửi yêu cầu xóa đến server (cần route tương ứng phía backend)
+                fetch(`/SanPham/XoaSanPham/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Sản phẩm đã được xóa thành công.');
+                            location.reload(); // Tải lại trang sau khi xóa thành công
+                        } else {
+                            alert('Xóa sản phẩm thất bại.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Lỗi:', error);
+                    });
+            }
+        });
+    });
+
+    // Sự kiện khi nhấn nút "Sửa"
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            // Điều hướng tới trang sửa sản phẩm
+            window.location.href = `/SanPham/ChinhSuaSP/${productId}`;
+        });
+    });
+</script>

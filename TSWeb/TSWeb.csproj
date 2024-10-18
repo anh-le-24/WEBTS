@@ -180,6 +180,7 @@
     <Content Include="Content\Css\Admincss.css" />
     <Content Include="Content\Css\CartStyleSheet.css" />
     <Content Include="Content\Css\chinhsuasanpham.css" />
+    <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />

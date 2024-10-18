@@ -67,5 +67,9 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        public ActionResult DanhSachSP()
+        {
+            return View();
+        }
     }
 }
