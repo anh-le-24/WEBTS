@@ -151,13 +151,16 @@
     <Content Include="Content\Picture\bgg.jpg" />
     <Content Include="Content\Picture\bg_dn.jpg" />
     <Content Include="Content\Picture\cart.png" />
+    <Content Include="Content\Picture\diachi.jpg" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\icons8-avatar-50.png" />
     <Content Include="Content\Picture\img2.png" />
-    <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\menu1.png" />
     <Content Include="Content\Picture\minus.png" />
+    <Content Include="Content\Picture\phone.jpg" />
     <Content Include="Content\Picture\plus.png" />
+    <Content Include="Content\Picture\profile.jpg" />
+    <Content Include="Content\Picture\shop.jpg" />
     <Content Include="Content\Picture\straw.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\tea11.jpg" />
@@ -173,6 +176,7 @@
     <Content Include="Content\Picture\tea6.jpg" />
     <Content Include="Content\Picture\tea7.jpg" />
     <Content Include="Content\Picture\tea8.jpg" />
+    <Content Include="Content\Picture\logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
