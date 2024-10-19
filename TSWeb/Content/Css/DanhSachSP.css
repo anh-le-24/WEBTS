@@ -8,9 +8,14 @@ table {
 }
 
 th, td {
+    max-width: 400px;
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+}
+td{
+    font-size:20px;
+    font-weight:400;
 }
 
 th {

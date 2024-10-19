@@ -180,6 +180,7 @@
     <Content Include="Content\Css\Admincss.css" />
     <Content Include="Content\Css\CartStyleSheet.css" />
     <Content Include="Content\Css\chinhsuasanpham.css" />
+    <Content Include="Content\Css\ChinhSuaTopping.css" />
     <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
@@ -187,6 +188,7 @@
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\SanPham.css" />
+    <Content Include="Content\Css\ThemTopping.css" />
     <Content Include="Content\Css\Topping.css" />
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Picture\1.png" />
@@ -267,10 +269,13 @@
     <Content Include="Views\SanPham\ThemSanPham.cshtml" />
     <Content Include="Views\SanPham\ChinhSuaSP.cshtml" />
     <Content Include="Views\SanPham\Topping.cshtml" />
+    <Content Include="Views\SanPham\ThemTopping.cshtml" />
+    <Content Include="Views\SanPham\ChinhSuaTopping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\QLTopping\" />
     <Folder Include="Views\TSWebContext\" />
   </ItemGroup>
   <ItemGroup>

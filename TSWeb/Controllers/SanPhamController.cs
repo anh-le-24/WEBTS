@@ -75,5 +75,14 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+       
+        public ActionResult ThemTopping()
+        {
+            return View();
+        }
+        public ActionResult ChinhSuaTopping()
+        {
+            return View();
+        }
     }
 }
