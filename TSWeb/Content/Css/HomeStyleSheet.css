@@ -182,7 +182,7 @@ main {
     padding: 16px;
     font-size: 18px;
     color: black;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     user-select: none;
     transform: translateY(-50%);
@@ -232,6 +232,7 @@ main {
     justify-content: center;
     align-items: center;
     display: flex;
+    padding:10px;
 }
 
 .content-mid h3 {
@@ -244,20 +245,18 @@ main {
 }
 
 .card {
+    margin: 10px; /* Tạo khoảng cách giữa các thẻ */
     color: black;
-    height: 380px;
     width: 250px;
-    background: #a29588;
-    border: 1px solid blanchedalmond;
+    background: white;
+    border: 1px solid black;
     padding: 20px 10px 15px 10px;
     border-radius: 15px;
     position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho thẻ (tùy chọn) */
 }
 
-.card-top {
-    position: relative;
-    height: 25px;
-}
+
 
     .card-top i {
         font-size: 25px;
@@ -280,12 +279,12 @@ main {
 .card-img {
     display: flex;
     justify-content: center;
-    height: 171px;
+    height: 190px;
     text-align: center;
 }
 
     .card-img img {
-        width: auto;
+        width: 100%;
         height: 100%;
         max-width: 100%;
         object-fit: contain;
@@ -295,7 +294,7 @@ main {
     margin-top: 4px;
     display: flex;
     width: 100%;
-    height: 200px;
+    height: 150px;
     flex-direction: column;
 }
 
@@ -379,8 +378,8 @@ main {
 }
 
 .bibot-left {
-    background-color: white;
-    color: #c8bfb1;
+    background-color: black;
+    color: #FEF9F2;
     width: 510px;
     height: 100%;
     justify-content: space-around;
@@ -403,7 +402,7 @@ main {
     }
 
 .bibot-right .card {
-    background-color: rgba(213, 206, 206, 0.8);
+    background-color: white;
 }
 
 .bibot-right {
@@ -413,6 +412,14 @@ main {
     height: 960px;
     display: flex;
     flex-direction: column;
+}
+/* Đường kẻ dọc phân chia */
+.bibot-divider {
+    width: 1px; /* Độ rộng của đường kẻ */
+    background-color: #ccc; /* Màu sắc của đường kẻ */
+    height: 100%; /* Chiều cao bằng 100% của container cha */
+    left: 510px; /* Đặt vị trí dọc theo chiều ngang của phần bên trái */
+    top: 0; /* Bắt đầu từ trên cùng */
 }
 
 .title-list {
@@ -456,14 +463,14 @@ main {
         font-weight: 500;
         font-family: "Oswald", sans-serif;
         line-height: 1.1;
-        color: #c8bfb1;
+        color: white;
     }
 
     .gg-map-left h3 {
         font-size: 16px;
         font-weight: 500;
         font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
-        color: #c8bfb1;
+        color: white;
     }
 
 .gg-map-right {
@@ -508,7 +515,6 @@ footer {
 .footer-right {
     padding: 15px;
 }
-
 /* Đường kẻ cho footer-left */
 .footer-left::after {
     content: '';

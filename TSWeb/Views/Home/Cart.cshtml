@@ -127,9 +127,9 @@
         <div class="info-pay">
             <form action="/" method="post" class="info-pay__form">
                 <h4>Thông tin vận chuyển</h4>
-                <div><img src="~/Content/Picture/profile.png" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
-                <div><img src="~/Content/Picture/phone.png" alt="" /><input type="number" name="name" value="" placeholder="Số điện thoại" /></div>
-                <div><img src="~/Content/Picture/diachi.png" alt="" /><input type="text" name="name" value="" placeholder="Địa chỉ" /></div>
+                <div><img src="~/Content/Picture/profile.jpg" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
+                <div><img src="~/Content/Picture/phone.jpg" alt="" /><input type="number" name="name" value="" placeholder="Số điện thoại" /></div>
+                <div><img src="~/Content/Picture/diachi.jpg" alt="" /><input type="text" name="name" value="" placeholder="Địa chỉ" /></div>
             </form>
 
             <div class="info-pay__method-pay">
@@ -141,7 +141,10 @@
                     <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-vi" />
                     Thanh toán bằng Ví MeMe
                 </label>
-                <button class="btnthanhtoan">Thanh Toán</button>
+                <button class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home")'">
+                    Thanh toán
+                </button>
+
             </div>
         </div>
     </main>

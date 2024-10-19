@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #212121;
+    background-color: white;
 }
 
 header {
@@ -125,23 +125,24 @@ header {
     right: 1%;
     position: absolute;
 }
-
+/*thanh toán*/
 .info-pay {
+    flex: 1; /* Chiếm 30% không gian */
     display: flex;
+    flex-direction: column; 
     gap: 10px;
     border: 1px solid #3C3D37;
     width: 80%;
-    margin: 0px auto;
-    padding: 20px 20px;
+    margin: 0 auto; 
+    padding: 20px;
     border-radius: 8px;
-    margin-top: 10px
+    height:100%;
 }
 
 .info-pay__form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex: 2;
 }
 
     .info-pay__form div {
@@ -149,7 +150,7 @@ header {
         align-items: center;
         border: 1px solid #a49f9f;
         padding: 10px 20px;
-        gap: 4px
+        gap: 4px;
     }
 
     .info-pay__form img {
@@ -164,17 +165,18 @@ header {
     }
 
 .info-pay__method-pay {
-    flex: 1;
     display: flex;
     justify-content: center;
-    flex-direction: column
+    flex-direction: column;
 }
+
 /**/
 main {
-    background-color: white;
+    display: flex; /* Sử dụng flexbox cho phần tử cha */
+    gap: 20px; /* Khoảng cách giữa hai phần */
     max-width: 1520px;
     min-width: 320px;
-    height: 100%;
+    padding: 20px;
 }
 
 .cart-list {
@@ -184,9 +186,8 @@ main {
 }
 
 .cart-container {
+    flex: 2; /* Chiếm 70% không gian */
     border: 1px solid #3C3D37;
-    width: 80%;
-    margin: 0px auto;
     padding: 20px 20px;
     border-radius: 8px;
 }
@@ -226,6 +227,19 @@ main {
 .card-btn-all {
     margin-bottom: 10px;
 }
+
+/* Media query cho chiều rộng màn hình dưới 500px */
+@media screen and (max-width: 500px) {
+    main {
+        flex-direction: column; /* Đẩy thành cột khi chiều rộng dưới 500px */
+        padding: 10px; /* Giảm padding cho phù hợp */
+    }
+
+    .cart-container {
+        width: 100%;
+    }
+}
+
 /*size*/
 .card-size {
     display: flex;
