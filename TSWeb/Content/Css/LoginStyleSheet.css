@@ -126,8 +126,7 @@ body {
 
     .formBx .form form input {
         width: 100%;
-        margin-bottom: 15px;
-        padding: 10px;
+        padding:10px;
         outline: none;
         font-size: 0.8em;
         border: 1px solid #333;

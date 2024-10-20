@@ -10,6 +10,9 @@ namespace TSWeb.Models
     public class DatabaseModel
     {
         private string connecttionStrings = "workstation id=TSWebDaTa.mssql.somee.com;packet size=4096;user id=Vanh_SQLLogin_1;pwd=123456789;data source=TSWebDaTa.mssql.somee.com;persist security info=False;initial catalog=TSWebDaTa;TrustServerCertificate=True";
+
+        
+
         public ArrayList get(String sql)
         {
             ArrayList datalist = new ArrayList();

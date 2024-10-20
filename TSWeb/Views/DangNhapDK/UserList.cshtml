@@ -1,0 +1,44 @@
+﻿@model TSWeb.Models.DangNhapDKModels
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserList</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Họ và Tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chủ</th>
+                <th>Ngày đăng ký</th>
+            </tr>
+            
+            @foreach (var a in ViewBag.list)
+            {
+                <tr>
+
+                    <td> @a[0] </td>
+                    <td> @a[1] </td>
+                    <td> @a[2] </td>
+                    <td> @a[4] </td>
+                    <td> @a[5] </td>
+                    <td> @a[6] </td>
+                </tr>
+            }    
+        </table>
+        
+
+
+    </div>
+</body>
+</html>

@@ -223,6 +223,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JS\LoginJavaScript.js" />
     <Content Include="Scripts\LoginJavaScript.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
@@ -242,6 +243,8 @@
     <Content Include="Views\DangNhapDK\DangNhap.cshtml" />
     <Content Include="Views\Home\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
+    <Content Include="Views\DangNhapDK\UserList.cshtml" />
+    <Content Include="Views\DangNhapDK\DangKyTC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

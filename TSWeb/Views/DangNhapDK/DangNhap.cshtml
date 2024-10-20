@@ -18,7 +18,7 @@
     </div>
     <div class="formBx">
         <div class="form signinform">
-            @using (Html.BeginForm("DangNhap", "DangNhapDK", FormMethod.Post))
+            @*@using (Html.BeginForm("UserList", "DangNhapDK", FormMethod.Post))
             {
                 <div>
                     @Html.LabelFor(m => m.Email)
@@ -31,47 +31,22 @@
                     @Html.ValidationMessageFor(m => m.MatKhau)
                 </div>
                 <button type="submit">Đăng nhập</button>
-            }
+            }*@
 
 
         </div>
         <div class="form signupform">
-            @using (Html.BeginForm("DangNhap", "DangNhapDK", FormMethod.Post))
-            {
-                <div>
-                    @Html.LabelFor(m => m.TenND,"Họ và tên")
-                    @Html.TextBoxFor(m => m.TenND)
-                    @Html.ValidationMessageFor(m => m.TenND)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau,"Mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau,"Nhập lại mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Sdt,"Số điện thoại")
-                    @Html.TextBoxFor(m => m.Sdt)
-                    @Html.ValidationMessageFor(m => m.Sdt)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Diachi,"Địa chỉ")
-                    @Html.TextBoxFor(m => m.Diachi)
-                    @Html.ValidationMessageFor(m => m.Diachi)
-                </div>
+            <form action="~/DangNhapDK/DangKy" method="post" >
+                <input type="text" name="hoten" placeholder="Họ và tên" required/> <br />
+                <input type="email" name="email" placeholder="Email" required/> <br />
+                <input type="password" name="matkhau" placeholder="Mật khẩu" required/> <br />
+                <input type="password" name="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" required/> <br />
+                <input type="text" name="sdt" placeholder="Số điện thoại" required/> <br />
+                <input type="text" name="diachi" placeholder="Địa chỉ" required />
                 <button type="submit">Đăng ký</button>
-            }
+            </form>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/LoginJavaScript.js"></script>
+<script src="~/Scripts/JS/LoginJavaScript.js"></script>

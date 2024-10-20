@@ -1,90 +1,98 @@
-﻿using System;
+﻿    using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using TSWeb.Models;
+
 
 namespace TSWeb.Controllers
 {
     public class DangNhapDKController : Controller
     {
+         DatabaseModel db =new DatabaseModel();
 
-
-        // GET: DangNhapDK
         [HttpGet]
         public ActionResult DangNhap()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Register(DangNhapDKModels model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Check if the username already exists
-                DatabaseModel db = new DatabaseModel();
-                string sqlCheck = $"SELECT * FROM NGUOIDUNG WHERE Email = '{model.Email}'";
-                ArrayList existingUser = db.get(sqlCheck);
-
-                if (existingUser.Count > 0)
-                {
-                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại.");
-                    return View(model);
-                }
-
-                // Add new user to the database
-                string sqlInsert = $"INSERT INTO NGUOIDUNG (TenND, Email, MatKhau, Sdt, DiaChi) VALUES ('{model.TenND}', '{model.Email}', '{model.MatKhau}', '{model.Sdt}'),'{model.Diachi}'";
-                db.get(sqlInsert);
-
-                // Redirect to login page after successful registration
-                return RedirectToAction("Login");
-            }
-
-            return View(model);
-        }
 
         [HttpPost]
-        public ActionResult Login(DangNhapDKModels model)
+        public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi)
         {
-            if (ModelState.IsValid)
-            {
-                DatabaseModel db = new DatabaseModel();
-                string sql = $"SELECT * FROM NGUOIDUNG WHERE Email = '{model.Email}' AND Password = '{model.MatKhau}'";
-                ArrayList userData = db.get(sql);
+            ViewBag.list = db.get("EXEC ThemNguoiDung N'" + hoten + "','" + email + "','" + matkhau + "'," +sdt + ",'" + diachi + "';");
 
-                if (userData.Count > 0)
-                {
-                    Session["Email"] = model.Email;
-                    return RedirectToAction("UserList");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
-                }
-            }
-
-            return View(model);
+            return RedirectToAction("DangKyTC","DangNhapDK");
         }
-        // Logout action
-        public ActionResult Logout()
+        //public ActionResult DangKy(FormCollection collection, NGUOIDUNG nd)
+        //{
+        //    var hoten = collection["Hoten"];
+        //    var email = collection["Email"];
+        //    var matkhau = collection["Matkhau"];
+        //    var nhaplaimatkhau = collection["Nhaplaimk"];
+        //    var sdt = collection["Sdt"];
+        //    var diachi = collection["Diachi"];
+        //    if (String.IsNullOrEmpty(hoten)) {
+        //        ViewData["Error1"] = "Họ và tên khách hàng không được trống";
+        //    }
+        //    if (String.IsNullOrEmpty(email))
+        //    {
+        //        ViewData["Error2"] = "Email không được bỏ trống";
+        //    }
+        //    if (String.IsNullOrEmpty(matkhau))
+        //    {
+        //        ViewData["Error3"] = "Phải nhập mật khẩu";
+        //    }
+        //    if (String.IsNullOrEmpty(nhaplaimatkhau))
+        //    {
+        //        ViewData["Error4"] = "Phải nhập lại mật khẩu";
+        //    }
+        //    if (String.IsNullOrEmpty(sdt))
+        //    {
+        //        ViewData["Error5"] = "Phải nhập số điện thoại";
+        //    }
+        //    if (String.IsNullOrEmpty(diachi))
+        //    {
+        //       ViewData["Error6"] = "Phải nhập địa chỉ";
+        //    }
+        //    else
+        //    {
+        //        nd.Hoten = hoten;
+        //        nd.Email = email;
+        //        nd.Matkhau = matkhau;
+        //        nd.Sdt = sdt;
+        //        nd.Diachi = diachi;
+
+        //        return RedirectToAction("Index");
+
+        //    }
+        //    ViewBag.list = db.get("INSERT INTO NGUOIDUNG (IDND, TenND, Email, MatKhau, Sdt, Diachi, NgayTaoTK, IDVT)");
+        //    return View();
+        //}
+        public ActionResult DangKyTC()
         {
-            Session.Clear();
-            return RedirectToAction("Login");
+            return View(); 
         }
+        
         public ActionResult UserList()
         {
-            if (Session["Email"] == null)
-            {
-                return RedirectToAction("Login");
-            }
+            //DatabaseModel db = new DatabaseModel() ;
+            ViewBag.list = db.get("SELECT * FROM NGUOIDUNG");
+            return View();
+            //if (Session["Email"] == null)
+            //{
+            //    return RedirectToAction("Login");
+            //}
 
-            DatabaseModel db = new DatabaseModel();
-            string sql = "SELECT UserName, Email FROM NGUOIDUNG";
-            ArrayList userList = db.get(sql);
+            //DatabaseModel db = new DatabaseModel();
+            //string sql = "SELECT UserName, Email FROM NGUOIDUNG";
+            //ArrayList userList = db.get(sql);
 
-            return View(userList);
+            //return View(userList);
         }
         
     }
