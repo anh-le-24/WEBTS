@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="~/Content/Css/DetailCartStyleSheet.css" rel="stylesheet">
+    <link href="~/Content/Css/PaymentStyleSheet.css" rel="stylesheet">
+
+    @{
+        Layout = null;
+    }
+</head>
+<body>
+    <!--thanh điều hướng-->
+    <header>
+        <div class="nav">
+            <div class="down">
+                <span id="word">LANGUAGES</span>
+                <img src="~/Content/Picture/down.png" alt="Doswn">
+            </div>
+            <div class="cart"><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
+            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+            <div class="side-bar">
+                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
+                <ul class="menu-items">
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Thông báo</a></li>
+                    <li><a href="#">Tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="overlay-sidebar">
+            </div>
+            <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
+        </div>
+    </header>
+    <!--Phần thân-->
+    <main>
+        <div class="checkout-container">
+            <h3>Thông tin đơn hàng</h3>
+
+            <!-- Store Selection -->
+            <div class="store-selection">
+                <div class="store-icon">
+                    <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="~/Content/Picture/img7.jpg" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <p><strong>Kem Vani Trà Sữa Trân Châu Hoàng Kim (M)</strong></p>
+                    <p>Thêm Thạch Konjac, Thêm Thạch quế hoa, Topping Thạch Dứa, Thêm trân châu sương mai, 100% đường, 100% đá</p>
+                    <p>46,000đ x 1 = 46,000đ</p>
+                </div>
+            </div>
+
+            <!-- Promo Code Section -->
+            <div class="promo-code">
+                <input type="text" placeholder="Mã khuyến mại">
+                <button>Thêm khuyến mại</button>
+            </div>
+
+            <!-- Price Details -->
+            <div class="price-details">
+                <div class="row">
+                    <span>Số lượng cốc:</span>
+                    <span>1 cốc</span>
+                </div>
+                <div class="row">
+                    <span>Tổng:</span>
+                    <span>46,000đ</span>
+                </div>
+                <div class="row">
+                    <span>Phí vận chuyển:</span>
+                    <span>0đ</span>
+                </div>
+                <div class="row">
+                    <span>Khuyến mại:</span>
+                    <span>0đ</span>
+                </div>
+                <div class="row">
+                    <span><strong>Tổng cộng:</strong></span>
+                    <span><strong>46,000đ</strong></span>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="notes">
+                <textarea placeholder="Thêm ghi chú..."></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="order-button">ĐẶT HÀNG</button>
+                <button class="continue-shopping">TIẾP TỤC MUA HÀNG</button>
+            </div>
+        </div>
+    </main>
+    <footer class="bottom">
+        <div class="footer-left">
+            <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                <!-- Logo hoặc tên thương hiệu -->
+                <div class="brand" style="flex: 1;">
+                    <h2 style="margin: 0; font-size: 24px;">LEAF TEA</h2>
+                    <p>VỀ CHÚNG TÔI</p>
+                    <p>Một thương hiệu mới với những trãi nghiệm mới giúp cho những hương vị cuộc sống được bùng nổ hơn.</p>
+                </div>
+
+            </div>
+            <div class="footer-bottom" style="margin-top: 20px;">
+                <p>&copy; 2024 LEAF TEA - All rights reserved.</p>
+            </div>
+
+        </div>
+        <div class="footer-mid">
+            <!-- Thông tin liên hệ -->
+            <div class="contact-info" style="flex: 1;">
+                <p style="margin: 0;">Email: leaftea@gmail.com</p>
+                <p style="margin: 0;">Hotline: 0123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <!-- Liên kết mạng xã hội -->
+            <div class="social-icons" style="flex: 1; display: flex; justify-content: center;">
+                <a href="https://www.instagram.com" target="_blank" style="margin-right: 15px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 32px;">
+                </a>
+                <a href="https://www.facebook.com" target="_blank" style="margin-right: 15px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width: 32px;">
+                </a>
+
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/HomeJavaScript.js"></script>
+</body>
+</html>

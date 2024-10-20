@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using TSWeb.Models;
 
 namespace TSWeb.Controllers
 {
     public class NhanVienController : Controller
     {
-        // GET: NhanVien
-        public ActionResult TrangDangNhapNhanVien()
+        public ActionResult DNNV()
         {
+            return View(); 
+        }
+        public ActionResult HomeNV() 
+        { 
             return View();
         }
+
     }
 }
