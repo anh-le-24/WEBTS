@@ -18,31 +18,21 @@
     </div>
     <div class="formBx">
         <div class="form signinform">
-            @*@using (Html.BeginForm("UserList", "DangNhapDK", FormMethod.Post))
-            {
-                <div>
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau,"Mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
+            <form action="~/DangNhapDK/XuLyDangNhap" method="post">
+                <input type="text" name="email" placeholder="Email" /><br />
+                <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
                 <button type="submit">Đăng nhập</button>
-            }*@
-
-
+            </form>
         </div>
         <div class="form signupform">
             <form action="~/DangNhapDK/DangKy" method="post" >
                 <input type="text" name="hoten" placeholder="Họ và tên" required/> <br />
                 <input type="email" name="email" placeholder="Email" required/> <br />
+                <input type="email" name="email" placeholder="Email" required/> <br />
                 <input type="password" name="matkhau" placeholder="Mật khẩu" required/> <br />
                 <input type="password" name="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" required/> <br />
                 <input type="text" name="sdt" placeholder="Số điện thoại" required/> <br />
-                <input type="text" name="diachi" placeholder="Địa chỉ" required />
+                <input type="text" name="diachi" placeholder="Địa chỉ" required /><br />
                 <button type="submit">Đăng ký</button>
             </form>
         </div>
