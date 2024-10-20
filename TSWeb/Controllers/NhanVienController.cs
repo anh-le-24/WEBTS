@@ -12,7 +12,10 @@ namespace TSWeb.Controllers
             return View(); 
         }
         public ActionResult HomeNV() 
-        { 
+        {
+
+            DatabaseModel db = new DatabaseModel();
+            ViewBag.list = db.get("select * from DONHANG");
             return View();
         }
 
