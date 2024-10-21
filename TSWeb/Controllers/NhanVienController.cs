@@ -17,6 +17,5 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("select * from DONHANG");
             return View();
         }
-
     }
 }
