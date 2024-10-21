@@ -203,6 +203,7 @@
     <Content Include="Content\Picture\tea6.jpg" />
     <Content Include="Content\Picture\tea7.jpg" />
     <Content Include="Content\Picture\tea8.jpg" />
+    <Content Include="Content\Picture\logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
