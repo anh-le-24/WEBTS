@@ -1,0 +1,18 @@
+﻿.menu {
+    float: left;
+    width: 20%;
+}
+
+    .menu ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+.content {
+    margin-left: 25%;
+    padding: 20px;
+}

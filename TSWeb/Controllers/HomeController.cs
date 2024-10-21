@@ -12,13 +12,7 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-        public ActionResult Cart()
-        {
-            return View();
-        }
-        public ActionResult Chitiet()
-        {
-            return View();
-        }
+      
+       
     }
 }

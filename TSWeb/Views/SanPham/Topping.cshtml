@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "Topping";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2></h2>
+
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>Tổng số Topping</h3>
+        <p>24</p>
+    </div>
+    <div class="stat-card">
+        <h3>Topping đang bán</h3>
+        <p>20</p>
+    </div>
+    <div class="stat-card">
+        <h3>Topping hết hàng</h3>
+        <p>4</p>
+    </div>
+</div>
+
+<div class="controls">
+    <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm topping...">
+        <i class="fas fa-search"></i>
+        <div class="container">
+            <a href="~/SanPham/ThemTopping" type="button" class="button ">
+                <span class="button__text">Thêm </span>
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </a>
+        </div>
+
+        <div class="topping-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Topping</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                        <th>Số lượng</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Trân châu đen</td>
+                        <td>10.000đ</td>
+                        <td><span class="status-active">Còn hàng</span></td>
+                        <td>500</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trân châu trắng</td>
+                        <td>10.000đ</td>
+                        <td><span class="status-active">Còn hàng</span></td>
+                        <td>450</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Thạch rau câu</td>
+                        <td>8.000đ</td>
+                        <td><span class="status-inactive">Hết hàng</span></td>
+                        <td>0</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button><i class="fas fa-angle-double-left"></i></button>
+            <button><i class="fas fa-angle-left"></i></button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button><i class="fas fa-angle-right"></i></button>
+            <button><i class="fas fa-angle-double-right"></i></button>
+        </div>
+    </div>
+    </body>
+    </html>
+    <script>
+    // Sự kiện khi nhấn nút "Xóa"
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
+                // Gửi yêu cầu xóa đến server (cần route tương ứng phía backend)
+                fetch(`/SanPham/ChinhSuaTopping/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Sản phẩm đã được xóa thành công.');
+                            location.reload(); // Tải lại trang sau khi xóa thành công
+                        } else {
+                            alert('Xóa sản phẩm thất bại.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Lỗi:', error);
+                    });
+            }
+        });
+    });
+
+    // Sự kiện khi nhấn nút "Sửa"
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            // Điều hướng tới trang sửa sản phẩm
+            window.location.href = `/SanPham/ChinhSuaTopping/${productId}`;
+        });
+    });
+    </script>

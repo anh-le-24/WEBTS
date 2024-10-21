@@ -31,7 +31,11 @@ body {
 
 .menu-top {
     text-align: center;
+<<<<<<< HEAD
     padding-left: 50px;
+=======
+    padding-left: 70px;
+>>>>>>> Thien
     justify-content: center;
     align-items: center;
     display: flex;
@@ -45,10 +49,18 @@ body {
         margin-top: 15px;
     }
 
+<<<<<<< HEAD
 .main-content{
     display: flex;
 }
 
+=======
+.main-content {
+    display: flex;
+}
+
+
+>>>>>>> Thien
 .sidebar {
     width: 250px;
     background-color: #f8f8f8;
@@ -59,7 +71,11 @@ body {
     .sidebar .menu-item {
         display: flex;
         align-items: center;
+<<<<<<< HEAD
         /*padding: 10px 0;*/
+=======
+        padding: 10px 0;
+>>>>>>> Thien
         border-bottom: 1px solid #ddd;
     }
 
@@ -73,6 +89,34 @@ body {
             text-decoration: none;
         }
 
+<<<<<<< HEAD
+=======
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+    .content .banner {
+        position: relative;
+    }
+
+        .content .banner img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .content .banner .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FF9800;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+>>>>>>> Thien
 .form-container {
     max-width: 800px;
     margin: 20px auto;

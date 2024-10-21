@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Sửa Topping";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Sửa Topping</h2>
+
+    <div class="container">
+        <div class="controls">
+            <button class="btn btn-primary">
+                <a class="fas fa-arrow-left" style="color:white; text-decoration:none" href="~/SanPham/Topping">  Quay lại danh sách Topping</a>
+            </button>
+        </div>
+
+        <form id="edit-topping-form">
+            <div class="form-group">
+                <label for="topping-id">ID Topping</label>
+                <input type="text" id="topping-id" name="topping-id" readonly value="1">
+            </div>
+            <div class="form-group">
+                <label for="topping-name">Tên Topping</label>
+                <input type="text" id="topping-name" name="topping-name" required value="Trân châu đen">
+            </div>
+            <div class="form-group">
+                <label for="topping-price">Giá</label>
+                <input type="number" id="topping-price" name="topping-price" required value="10000">
+            </div>
+            <div class="form-group">
+                <label for="topping-status">Trạng thái</label>
+                <select id="topping-status" name="topping-status" required>
+                    <option value="Còn hàng" selected>Còn hàng</option>
+                    <option value="Hết hàng">Hết hàng</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="topping-quantity">Số lượng</label>
+                <input type="number" id="topping-quantity" name="topping-quantity" required value="500">
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        </form>
+    </div>
+

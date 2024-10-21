@@ -1,0 +1,249 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    font-size: 3.5em;
+    font-weight: 800;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    letter-spacing: 2px;
+}
+
+    h1::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 4px;
+        background: linear-gradient(to right, #ffffff, rgba(255,255,255,0.5));
+        border-radius: 2px;
+    }
+
+.offer-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.offer {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+}
+
+    .offer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: translateX(-100%);
+        transition: 0.5s;
+    }
+
+    .offer:hover::before {
+        transform: translateX(100%);
+    }
+
+    .offer:hover {
+        transform: translateY(-15px) rotateX(5deg);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+.offer-title {
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+    .offer-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+
+.offer:hover .offer-title::after {
+    width: 100%;
+}
+
+.offer-description {
+    font-size: 1.1em;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.offer-percentage {
+    font-size: 2.2em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.offer:hover .offer-percentage {
+    transform: scale(1.1);
+}
+
+.offer-condition {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1em;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border-left: 3px solid #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.offer-voucher {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+    .offer-voucher strong {
+        display: block;
+        font-size: 1.3em;
+        margin-top: 5px;
+        letter-spacing: 2px;
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .offer {
+        padding: 25px;
+    }
+
+    .offer-title {
+        font-size: 1.8em;
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.offer {
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+    .offer:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .offer:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .offer:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+/* Thêm hiệu ứng shine cho mã voucher */
+@keyframes shine {
+    0% {
+        background-position: -100px;
+    }
+
+    100% {
+        background-position: 300px;
+    }
+}
+
+.offer-voucher strong {
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    background-position: -100px;
+    animation: shine 3s infinite linear;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
