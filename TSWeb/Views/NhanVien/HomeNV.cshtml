@@ -37,13 +37,22 @@
 
     <!-- Main Content -->
     <main>
-        <section class="dashboard">
-            <div class="card">
-                <h3>Tiếp nhận bệnh</h3>
-                <p>Tiếp nhận thông tin</p>
-            </div>
-            <!-- Các card khác... -->
-        </section>
+        <button class="btn-them-dh">
+            Thêm đơn hàng
+        </button>
+        @foreach (var a in ViewBag.list)
+        {
+            <section class="dashboard">
+                <div class="card">
+                    <span>Đơn hàng số: @a[0]</span>
+                    <span>Ngày thanh toán : @a[1]</span>
+                    <span>Trạng thái: @a[2]</span>
+                    <span>Tổng tiền :@a[3]</span>
+                    <span>@a[4]</span>
+                </div>
+            </section>
+        }
+
     </main>
 
 </body>
