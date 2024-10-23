@@ -4,10 +4,6 @@
     <link href="~/Content/Css/LoginStyleSheet.css" rel="stylesheet" />
     Layout = null;
 }
-<<<<<<< HEAD
-@model TSWeb.Models.DangNhapDKModels
-=======
->>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
 
 <div class="container">
     <div class="box signin">
@@ -20,10 +16,6 @@
     </div>
     <div class="formBx">
         <div class="form signinform">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
             <form action="~/DangNhapDK/XuLyDangNhap" method="post">
                 <input type="text" name="email" placeholder="Email" /><br />
                 <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
@@ -41,60 +33,6 @@
                 <input type="text" name="diachi" placeholder="Địa chỉ" required /><br />
                 <button type="submit">Đăng ký</button>
             </form>
-=======
-            @using (Html.BeginForm())
-            {
-                <div>
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau, "Mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
-                <button type="submit">Login</button>
-            }
-
-
-        </div>
-        <div class="form signupform">
-            @using (Html.BeginForm("DangNhap", "DangNhapDK", FormMethod.Post))
-            {
-                <div>
-                    @Html.LabelFor(m => m.TenND, "Họ và tên")
-                    @Html.TextBoxFor(m => m.TenND)
-                    @Html.ValidationMessageFor(m => m.TenND)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau, "Mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.MatKhau, "Nhập lại mật khẩu")
-                    @Html.PasswordFor(m => m.MatKhau)
-                    @Html.ValidationMessageFor(m => m.MatKhau)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Sdt, "Số điện thoại")
-                    @Html.TextBoxFor(m => m.Sdt)
-                    @Html.ValidationMessageFor(m => m.Sdt)
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Diachi, "Địa chỉ")
-                    @Html.TextBoxFor(m => m.Diachi)
-                    @Html.ValidationMessageFor(m => m.Diachi)
-                </div>
-                <button type="submit">Register</button>
-            }
->>>>>>> vanh
         </div>
     </div>
 </div>
