@@ -12,7 +12,7 @@ namespace TSWeb.Controllers
         DatabaseModel db = new DatabaseModel();
         public ActionResult Index()
         {
-            
+            ViewBag.list = db.get("SELECT * FROM SANPHAM");
             return View();
         }
         public ActionResult Cart()
