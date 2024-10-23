@@ -19,8 +19,9 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-        public ActionResult Chitiet()
+        public ActionResult Chitiet(string idsp)
         {
+            ViewBag.list = db.get("EXEC HienThiSanPhamTheoID " + idsp+";");
             return View();
         }
 
