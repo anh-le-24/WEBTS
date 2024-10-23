@@ -23,17 +23,12 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
         public ActionResult TimkiemSp(string tensp)
         {
             ViewBag.list = db.get("EXEC TIMKIEMSACHTHEOTEN '" + tensp + "'");
             return View();
         }
-<<<<<<< HEAD
-=======
+
         public ActionResult vd()
         {
             DatabaseModel db = new DatabaseModel();
@@ -44,9 +39,5 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-
->>>>>>> vanh
-=======
->>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
     }
 }
