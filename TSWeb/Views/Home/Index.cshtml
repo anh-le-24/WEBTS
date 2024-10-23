@@ -8,6 +8,11 @@
     @{
         Layout = null;
     }
+    @{
+        System.Collections.ArrayList a = ((System.Collections.ArrayList)Session["taikhoan"]);
+    }
+    <h1>Xin chao @a[1]</h1>
+
 </head>
 <body>
     <header>
@@ -16,6 +21,15 @@
                 <span id="word">LANGUAGES</span>
                 <img src="~/Content/Picture/down.png" alt="Doswn">
             </div>
+<<<<<<< HEAD
+            <div class="cart"><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
+            <div class="account">
+                <a href="@Url.Action("DangNhap", "DangNhapDK")">
+                    <img src="~/Content/Picture/account.png" alt="Account" />
+                </a>
+            </div>
+            <img src="~/Content/Picture/logo.png" alt="Green Tea" id="logo">
+=======
             <div class="cart">
                 <a href="@Url.Action("Cart", "Home")">
                     <img src="~/Content/Picture/cart.png" />
@@ -23,6 +37,7 @@
 
             </div>
             <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+>>>>>>> vanh
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
                 <ul class="menu-items">

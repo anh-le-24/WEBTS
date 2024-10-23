@@ -1,11 +1,10 @@
-﻿
+﻿@model TSWeb.Models.DangNhapDKModels
 @{
     ViewBag.Title = "DangNhap";
     <link href="~/Content/Css/LoginStyleSheet.css" rel="stylesheet" />
     Layout = null;
 }
 @model TSWeb.Models.DangNhapDKModels
-
 
 <div class="container">
     <div class="box signin">
@@ -18,6 +17,25 @@
     </div>
     <div class="formBx">
         <div class="form signinform">
+<<<<<<< HEAD
+            <form action="~/DangNhapDK/XuLyDangNhap" method="post">
+                <input type="text" name="email" placeholder="Email" /><br />
+                <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
+                <button type="submit">Đăng nhập</button>
+            </form>
+        </div>
+        <div class="form signupform">
+            <form action="~/DangNhapDK/DangKy" method="post">
+                <input type="text" name="hoten" placeholder="Họ và tên" required /> <br />
+                <input type="email" name="email" placeholder="Email" required /> <br />
+                <input type="email" name="email" placeholder="Email" required /> <br />
+                <input type="password" name="matkhau" placeholder="Mật khẩu" required /> <br />
+                <input type="password" name="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" required /> <br />
+                <input type="text" name="sdt" placeholder="Số điện thoại" required /> <br />
+                <input type="text" name="diachi" placeholder="Địa chỉ" required /><br />
+                <button type="submit">Đăng ký</button>
+            </form>
+=======
             @using (Html.BeginForm())
             {
                 <div>
@@ -70,8 +88,9 @@
                 </div>
                 <button type="submit">Register</button>
             }
+>>>>>>> vanh
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/LoginJavaScript.js"></script>
+<script src="~/Scripts/JS/LoginJavaScript.js"></script>

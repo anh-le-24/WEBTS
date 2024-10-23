@@ -63,8 +63,8 @@ body {
 .formBx {
     position: absolute;
     left: 50px;
-    width: 350px;
-    height: 480px;
+    width: 400px;
+    height: 600px;
     background: #fff;
     z-index: 1000;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
@@ -126,11 +126,9 @@ body {
 
     .formBx .form form input {
         width: 100%;
-        margin-bottom: 15px;
-        padding: 10px;
+        padding:10px;
         outline: none;
         font-size: 0.8em;
-        text-transform: uppercase;
         border: 1px solid #333;
         letter-spacing: 0.1em;
     }

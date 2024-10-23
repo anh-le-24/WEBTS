@@ -9,8 +9,10 @@ namespace TSWeb.Controllers
 {
     public class HomeController : Controller
     {
+        DatabaseModel db = new DatabaseModel();
         public ActionResult Index()
         {
+            
             return View();
         }
         public ActionResult Cart()
@@ -21,6 +23,13 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
+        public ActionResult TimkiemSp(string tensp)
+        {
+            ViewBag.list = db.get("EXEC TIMKIEMSACHTHEOTEN '" + tensp + "'");
+            return View();
+        }
+=======
         public ActionResult vd()
         {
             DatabaseModel db = new DatabaseModel();
@@ -32,5 +41,6 @@ namespace TSWeb.Controllers
             return View();
         }
 
+>>>>>>> vanh
     }
 }

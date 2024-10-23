@@ -2,19 +2,15 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    overscroll-behavior: contain;
 }
-
-body {
-    background: #212121;
+body{
+    background:#212121;
 }
-
 header {
-    color: white;
     position: sticky;
-    top: 0px;
+    top:0px;
     z-index: 3;
-    background-color: black;
+    background-color: rgba(249, 249, 249, 0.073);
     width: 100%;
     max-width: 1520px;
     min-width: 320px;
@@ -61,8 +57,8 @@ header {
     width: 80px;
 }
 
-#menu, #menu1 {
-    cursor: pointer;
+#menu,#menu1 {
+    cursor:pointer;
     position: absolute;
     left: 3%;
     top: 50%;
@@ -70,12 +66,10 @@ header {
     transform: translateY(-50%);
     max-width: 50px;
 }
-
-#menu1 {
-    top: 42px;
-    left: 30px;
+#menu1{
+    top:42px;
+    left:30px;
 }
-
 .side-bar {
     opacity: 0;
     transform: translateX(-100%);
@@ -88,26 +82,26 @@ header {
     top: 0px;
     bottom: 0px;
 }
-
     .side-bar.active {
         opacity: 1;
         transform: translateX(0);
+        max-width: 300px;
     }
 
-    .side-bar .menu-items {
-        padding: 20px;
-        list-style: none;
-        margin-top: 80px;
-    }
-
-.menu-items li a {
-    color: white;
-    display: block;
-    padding: 10px 0px;
-    font-size: 16px;
-    text-decoration: none;
+.side-bar .menu-items{
+    padding: 20px;
+    list-style:none;
+    margin-top:80px;
 }
 
+.menu-items li a{
+    
+    color:white;
+    display:block;
+    padding:10px 0px;
+    font-size:16px;
+    text-decoration:none;
+}
 .overlay-sidebar {
     transition: all 0.5s linear;
     visibility: hidden;
@@ -116,15 +110,15 @@ header {
     background-color: black;
     opacity: 0;
 }
+.overlay-sidebar.active{
+    opacity:0.5;
+    visibility:visible;
 
-    .overlay-sidebar.active {
-        opacity: 0.5;
-        visibility: visible;
-    }
-
-.cart {
-    right: 1%;
-    position: absolute;
+}
+.cart{
+    right:1%;
+    position:absolute;
+    
 }
 /**/
 main {
@@ -148,13 +142,13 @@ main {
 
 /* Phần slider quảng cáo */
 .slider {
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; 
     overflow: hidden;
-    opacity: 0.8;
+    opacity:0.8;
 }
 
 .slides {
@@ -167,13 +161,13 @@ main {
 .slide {
     min-width: 100%;
     box-sizing: border-box;
-    height: 100%;
+    height: 100%; 
 }
 
     .slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain; 
     }
 
 .prev, .next {
@@ -182,11 +176,11 @@ main {
     padding: 16px;
     font-size: 18px;
     color: black;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     user-select: none;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 1; 
 }
 
 .prev {
@@ -203,8 +197,7 @@ main {
     padding: 10px;
     position: absolute;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
 }
 
 .dot {
@@ -232,7 +225,6 @@ main {
     justify-content: center;
     align-items: center;
     display: flex;
-    padding:10px;
 }
 
 .content-mid h3 {
@@ -245,18 +237,20 @@ main {
 }
 
 .card {
-    margin: 10px; /* Tạo khoảng cách giữa các thẻ */
     color: black;
+    height: 380px;
     width: 250px;
-    background: white;
-    border: 1px solid black;
+    background: #a29588;
+    border: 1px solid blanchedalmond;
     padding: 20px 10px 15px 10px;
     border-radius: 15px;
     position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho thẻ (tùy chọn) */
 }
 
-
+.card-top {
+    position: relative;
+    height: 25px;
+}
 
     .card-top i {
         font-size: 25px;
@@ -279,12 +273,12 @@ main {
 .card-img {
     display: flex;
     justify-content: center;
-    height: 190px;
+    height: 171px;
     text-align: center;
 }
 
     .card-img img {
-        width: 100%;
+        width: auto;
         height: 100%;
         max-width: 100%;
         object-fit: contain;
@@ -294,7 +288,7 @@ main {
     margin-top: 4px;
     display: flex;
     width: 100%;
-    height: 150px;
+    height: 200px;
     flex-direction: column;
 }
 
@@ -378,8 +372,8 @@ main {
 }
 
 .bibot-left {
-    background-color: black;
-    color: #FEF9F2;
+    background-color: #A29588;
+    color: #c8bfb1;
     width: 510px;
     height: 100%;
     justify-content: space-around;
@@ -402,45 +396,38 @@ main {
     }
 
 .bibot-right .card {
-    background-color: white;
+    background-color: rgba(213, 206, 206, 0.8);
 }
 
 .bibot-right {
-    background-color: white;
-    width: 100%;
+    width:100%;
     max-width: 1000px;
     height: 960px;
     display: flex;
-    flex-direction: column;
-}
-/* Đường kẻ dọc phân chia */
-.bibot-divider {
-    width: 1px; /* Độ rộng của đường kẻ */
-    background-color: #ccc; /* Màu sắc của đường kẻ */
-    height: 100%; /* Chiều cao bằng 100% của container cha */
-    left: 510px; /* Đặt vị trí dọc theo chiều ngang của phần bên trái */
-    top: 0; /* Bắt đầu từ trên cùng */
+    flex-direction: column; 
 }
 
 .title-list {
+    width: 100%;
     height: 20px;
-    margin-bottom: 10px;
-    padding-left: 20px;
-    font-size: 18px;
+    margin-bottom: 10px; 
+    text-align: left; 
+    font-size: 18px; 
     font-weight: bold;
-    color: black;
+    color: white; 
+    text-align:center;
 }
 
 .list-card {
     background-color: white;
-    width: 100%;
+    width: 100%; 
     height: 940px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
     gap: 10px;
     padding: 20px;
     box-sizing: border-box;
-    overflow: auto;
+    overflow: auto; 
 }
 
 
@@ -451,35 +438,34 @@ main {
     display: flex;
     height: 630px;
 }
+.gg-map-left{
+    width:50%;
+    height:100%;
+    background-color:#212121;
 
-.gg-map-left {
-    width: 50%;
-    height: 100%;
-    background-color: #212121;
 }
-
-    .gg-map-left h2 {
-        font-size: 50px;
-        font-weight: 500;
-        font-family: "Oswald", sans-serif;
-        line-height: 1.1;
-        color: white;
-    }
+.gg-map-left h2{
+    font-size: 50px;
+    font-weight: 500;
+    font-family: "Oswald", sans-serif;
+    line-height: 1.1;
+    color: #c8bfb1;
+}
 
     .gg-map-left h3 {
         font-size: 16px;
         font-weight: 500;
         font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
-        color: white;
+        color: #c8bfb1;
     }
-
-.gg-map-right {
-    height: 100%;
-    width: 50%;
-    right: 0%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+.gg-map-right{
+    height:100%;
+    width:50%;
+    right:0%;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    
 }
 /*cách xa ra đê*/
 footer {
@@ -491,6 +477,7 @@ footer {
     color: white;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .footer-left,
@@ -515,6 +502,7 @@ footer {
 .footer-right {
     padding: 15px;
 }
+
 /* Đường kẻ cho footer-left */
 .footer-left::after {
     content: '';
