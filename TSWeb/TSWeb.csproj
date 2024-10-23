@@ -214,6 +214,7 @@
     <Content Include="Views\NhanVien\DNNV.cshtml" />
     <Content Include="Views\Home\vd.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
+    <Content Include="Views\NhanVien\ThemDH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
