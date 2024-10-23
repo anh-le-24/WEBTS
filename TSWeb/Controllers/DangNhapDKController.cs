@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿    using System;
 =======
 ﻿using System;
 >>>>>>> vanh
+=======
+﻿    using System;
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +16,19 @@ using System.Web.DynamicData;
 using System.Web.Mvc;
 using TSWeb.Models;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> vanh
+=======
+
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
 
 namespace TSWeb.Controllers
 {
     public class DangNhapDKController : Controller
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
          DatabaseModel db =new DatabaseModel();
 
@@ -28,6 +37,11 @@ namespace TSWeb.Controllers
         [HttpGet]
         // GET: DangNhapDK
 >>>>>>> vanh
+=======
+         DatabaseModel db =new DatabaseModel();
+
+        [HttpGet]
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
         public ActionResult DangNhap()
         {
             return View();
@@ -62,6 +76,9 @@ namespace TSWeb.Controllers
 
         [HttpPost]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
         public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi)
         {
             ViewBag.list = db.get("EXEC ThemNguoiDung N'" + hoten + "','" + email + "','" + matkhau + "'," +sdt + ",'" + diachi + "';");
@@ -92,6 +109,7 @@ namespace TSWeb.Controllers
             
         }
         
+<<<<<<< HEAD
 =======
         public ActionResult Login(DangNhapDKModels model)
         {
@@ -135,5 +153,7 @@ namespace TSWeb.Controllers
         }
 
 >>>>>>> vanh
+=======
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
     }
 }

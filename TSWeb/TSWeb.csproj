@@ -150,6 +150,9 @@
     </Compile>
     <Compile Include="Models\DangNhapDKModels.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
     <Compile Include="Models\Models.cs" />
 =======
     <Compile Include="Models\DatabaseModel.cs" />
@@ -249,6 +252,7 @@
     <Content Include="Views\Home\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Views\DangNhapDK\UserList.cshtml" />
     <Content Include="Views\DangNhapDK\DangKyTC.cshtml" />
 =======
@@ -256,6 +260,10 @@
     <Content Include="Views\Home\vd.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
 >>>>>>> vanh
+=======
+    <Content Include="Views\DangNhapDK\UserList.cshtml" />
+    <Content Include="Views\DangNhapDK\DangKyTC.cshtml" />
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

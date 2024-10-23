@@ -9,6 +9,9 @@ namespace TSWeb.Models
     public class DangNhapDKModels
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
 
         [Key]
         public int IDND { get; set; }
@@ -26,6 +29,7 @@ namespace TSWeb.Models
         public long Sdt { get; set; }
 
         [Required]
+<<<<<<< HEAD
 =======
         [Key]
         public int IDND { get; set; }
@@ -51,6 +55,8 @@ namespace TSWeb.Models
 
         [Required(ErrorMessage = "Địa chỉ là bắt buộc")]
 >>>>>>> vanh
+=======
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
         public string Diachi { get; set; }
 
         [Required]
@@ -60,7 +66,11 @@ namespace TSWeb.Models
         public int IDVT { get; set; }  // Foreign Key to VAITRO
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> vanh
+=======
+}
+>>>>>>> cb87498d6ffd9f14de97eb1cd048fe1ef0593e1d
