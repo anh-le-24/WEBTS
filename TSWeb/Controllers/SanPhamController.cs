@@ -43,10 +43,6 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-        public ActionResult KhachHang()
-        {
-            return View();
-        }
         public ActionResult NhanVien()
         {
             return View();
@@ -83,6 +79,25 @@ namespace TSWeb.Controllers
         public ActionResult ChinhSuaTopping()
         {
             return View();
+        }
+        // Các phương thức quản lý khách hàng
+        public ActionResult QLKhachHang()
+        {
+            return View();
+        }
+        public ActionResult ThemKhachHang()
+        {
+            return View("ThemKhachHang"); // Trả về view để thêm khách hàng
+        }
+
+        public ActionResult ChinhSuaKhachHang()
+        {
+            return View("ChinhSuaKhachHang"); // Trả về view để chỉnh sửa khách hàng
+        }
+
+        public ActionResult XoaKhachHang()
+        {
+            return View("XoaKhachHang"); // Trả về view để xóa khách hàng
         }
     }
 }

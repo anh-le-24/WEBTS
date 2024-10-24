@@ -262,7 +262,6 @@
     <Content Include="Views\SanPham\Payment.cshtml" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\SanPham\TongQuan.cshtml" />
-    <Content Include="Views\SanPham\KhachHang.cshtml" />
     <Content Include="Views\SanPham\NhanVien.cshtml" />
     <Content Include="Views\SanPham\QLSanPham.cshtml" />
     <Content Include="Views\SanPham\ThanhToan.cshtml" />
@@ -272,6 +271,9 @@
     <Content Include="Views\SanPham\Topping.cshtml" />
     <Content Include="Views\SanPham\ThemTopping.cshtml" />
     <Content Include="Views\SanPham\ChinhSuaTopping.cshtml" />
+    <Content Include="Views\SanPham\QLKhachHang.cshtml" />
+    <Content Include="Views\SanPham\ThemKhachHang.cshtml" />
+    <Content Include="Views\SanPham\ChinhSuaKhachHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
