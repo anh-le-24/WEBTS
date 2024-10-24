@@ -129,14 +129,14 @@ header {
 .info-pay {
     flex: 1; /* Chiếm 30% không gian */
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 10px;
     border: 1px solid #3C3D37;
     width: 80%;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 20px;
     border-radius: 8px;
-    height:100%;
+    height: 100%;
 }
 
 .info-pay__form {

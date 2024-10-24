@@ -1,4 +1,4 @@
-﻿* {
+﻿﻿﻿* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -232,7 +232,7 @@ main {
     justify-content: center;
     align-items: center;
     display: flex;
-    padding:10px;
+    padding: 10px;
 }
 
 .content-mid h3 {
@@ -258,22 +258,22 @@ main {
 
 
 
-    .card-top i {
-        font-size: 25px;
-        position: absolute;
+.card-top i {
+    font-size: 25px;
+    position: absolute;
+}
+
+    .card-top i:first-child {
+        left: 0;
     }
 
-        .card-top i:first-child {
-            left: 0;
-        }
+    .card-top i:last-child {
+        right: 0;
+    }
 
-        .card-top i:last-child {
-            right: 0;
-        }
-
-        .card-top i:last-child {
-            right: 0;
-        }
+    .card-top i:last-child {
+        right: 0;
+    }
 /* chỉnh ảnh*/
 
 .card-img {

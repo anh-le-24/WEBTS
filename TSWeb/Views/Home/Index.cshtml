@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,10 @@
     @{
         Layout = null;
     }
+    @{
+        System.Collections.ArrayList a = ((System.Collections.ArrayList)Session["taikhoan"]);
+    }
+
 </head>
 <body>
     <header>
@@ -30,7 +35,7 @@
                     <li><a href="#">Về chúng tôi</a></li>
                     <li><a href="#">Menu</a></li>
                     <li><a href="#">Thông báo</a></li>
-                    <li><a href="#">Tài khoản</a></li>
+                    <li><a href="@Url.Action("DangNhap", "DangNhapDK")">Tài khoản</a></li>
                 </ul>
             </div>
             <div class="overlay-sidebar">
@@ -140,161 +145,173 @@
                 <div class="title-list">
                     <h3>Menu</h3>
                 </div>
+
                 <div class="list-card">
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img7.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
-                            <div class="card-size">
+                    @foreach (var sanpham in ViewBag.list) {
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
                             </div>
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img7.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: @sanpham[1]</Span>
+                                <Span>Giá: @sanpham[2]</Span>
+                                <span id="sale">Giảm giá: @sanpham[6]</span>
+                                <div class="card-size">
+                                </div>
+                                <div class="btn-buy-order">
+                                    <button onclick="location.href='@Url.Action("Chitiet", "Home", new { idsp = sanpham[0] })'">Xem Chi Tiết</button>
+                                    <form action="~/Home/Cart" method="post">
+                                        <input type="hidden" name="idsp" value="@sanpham[0]" />
+                                        <input type="hidden" name="soluong" value="1" />
+                                        <input type="hidden" name="size" value="M" />
+                                        <input type="hidden" name="idcttp" value="idcttp" />
+                                        <input type="hidden" name="idctgh" value="idctgh" />
+                                        <button type="submit">Thêm</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img4.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                    }
+                    @*<div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img4.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img7.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img7.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img8.png">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img8.png">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img9.png">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img9.png">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img6.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img6.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img4.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img4.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            <i class='bx bx-heart'></i>
-                            <i class='bx bx-cart'></i>
-                        </div>
-                        <div class="card-img">
-                            <img src="~/Content/Picture/img7.jpg">
-                        </div>
-                        <div class="card-bot">
-                            <Span>Tên: </Span>
-                            <Span>Giá: </Span>
-                            <span id="sale">Giảm giá: </span>
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/img7.jpg">
+                            </div>
+                            <div class="card-bot">
+                                <Span>Tên: </Span>
+                                <Span>Giá: </Span>
+                                <span id="sale">Giảm giá: </span>
 
-                            <div class="btn-buy-order">
-                                <button>Mua Ngay</button>
-                                <button>Thêm</button>
+                                <div class="btn-buy-order">
+                                    <button>Mua Ngay</button>
+                                    <button>Thêm</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>*@
+
                 </div>
+
             </div>
         </div>
         <div class="content-bot">
