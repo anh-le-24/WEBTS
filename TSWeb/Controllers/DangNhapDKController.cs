@@ -33,7 +33,7 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult XuLuDangNhap(string email, string matkhau)
         {
-            ViewBag.list = db.get("EXEC KiemTraDangNhap '" + email + "','" + matkhau+"';");
+            ViewBag.list = db.get("EXEC DangNhapNG '" + email + "','" + matkhau+"';");
             if (ViewBag.list.Count > 0)
             {
                 Session["taikhoan"] = ViewBag.list[0];

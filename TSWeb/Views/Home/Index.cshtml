@@ -29,6 +29,14 @@
             <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
+                @if (Session["taikhoan"] != null)
+                {
+                    <h3>Xin chào </h3>
+                }
+                else
+                {
+                    <a href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
+                }
                 <ul class="menu-items">
                     <li><a href="#">Trang chủ</a></li>
                     <li><a href="#">Về chúng tôi</a></li>

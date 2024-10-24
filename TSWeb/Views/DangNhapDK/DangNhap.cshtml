@@ -7,16 +7,16 @@
 
 <div class="container">
     <div class="box signin">
-        <h2>Already Have an Account ?</h2>
-        <button class="signinBtn">Sign in</button>
+        <h2>Bạn đã có tài khoản rồi !</h2>
+        <button class="signinBtn">Đăng nhập</button>
     </div>
     <div class="box signup">
-        <h2>Don't Have an Account ?</h2>
-        <button class="signupBtn">Sign up</button>
+        <h2>Bạn chưa có tài khoản ?</h2>
+        <button class="signupBtn">Đăng ký</button>
     </div>
     <div class="formBx">
         <div class="form signinform">
-            <form action="~/DangNhapDK/XuLyDangNhap" method="post">
+            <form action="~/DangNhapDK/XuLuDangNhap" method="post">
                 <input type="text" name="email" placeholder="Email" /><br />
                 <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
                 <button type="submit">Đăng nhập</button>
@@ -25,7 +25,6 @@
         <div class="form signupform">
             <form action="~/DangNhapDK/DangKy" method="post">
                 <input type="text" name="hoten" placeholder="Họ và tên" required /> <br />
-                <input type="email" name="email" placeholder="Email" required /> <br />
                 <input type="email" name="email" placeholder="Email" required /> <br />
                 <input type="password" name="matkhau" placeholder="Mật khẩu" required /> <br />
                 <input type="password" name="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" required /> <br />
