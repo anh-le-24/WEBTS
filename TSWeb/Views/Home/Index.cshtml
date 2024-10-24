@@ -1,4 +1,4 @@
-﻿﻿
+﻿﻿﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,12 @@
             <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
+                @if (Session["taikhoan"] != null) {
+                    <h3>Xin chào </h3>
+                }
+                else {
+                    <a href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
+                }
                 <ul class="menu-items">
                     <li><a href="#">Trang chủ</a></li>
                     <li><a href="#">Về chúng tôi</a></li>
@@ -148,7 +154,7 @@
 
                 <div class="list-card">
                     @foreach (var sanpham in ViewBag.list) {
-                        <div class="card">
+                        <div class="card" onclick="location.href='@Url.Action("Chitiet", "Home", new { idsp = sanpham[0] })'">
                             <div class="card-top">
                                 <i class='bx bx-heart'></i>
                                 <i class='bx bx-cart'></i>
@@ -164,152 +170,19 @@
                                 </div>
                                 <div class="btn-buy-order">
                                     <button onclick="location.href='@Url.Action("Chitiet", "Home", new { idsp = sanpham[0] })'">Xem Chi Tiết</button>
-                                    <form action="~/Home/Cart" method="post">
+                                    <form action="@Url.Action("Themsp", "Home")" method="post">
+                                        <input type="hidden" name="idkh" value="1" /> <!-- Thay bằng ID khách hàng thực tế -->
                                         <input type="hidden" name="idsp" value="@sanpham[0]" />
                                         <input type="hidden" name="soluong" value="1" />
                                         <input type="hidden" name="size" value="M" />
-                                        <input type="hidden" name="idcttp" value="idcttp" />
-                                        <input type="hidden" name="idctgh" value="idctgh" />
+                                        <input type="hidden" name="idcttp" value="1" />
+                                        <input type="hidden" name="idctgh" value="1" /><!-- Thay bằng ID topping thực tế -->
                                         <button type="submit">Thêm</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     }
-                    @*<div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img4.jpg">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img7.jpg">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img8.png">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img9.png">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img6.jpg">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img4.jpg">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
-                                <img src="~/Content/Picture/img7.jpg">
-                            </div>
-                            <div class="card-bot">
-                                <Span>Tên: </Span>
-                                <Span>Giá: </Span>
-                                <span id="sale">Giảm giá: </span>
-
-                                <div class="btn-buy-order">
-                                    <button>Mua Ngay</button>
-                                    <button>Thêm</button>
-                                </div>
-                            </div>
-                        </div>*@
-
                 </div>
 
             </div>
