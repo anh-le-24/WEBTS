@@ -1,14 +1,36 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "TongQuan";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>TongQuan</h2>
-<div class="main-content">
-    <aside class="sidebar">
-        <div class="menu-item"><i class="fas fa-utensils"></i><a href="#">Thống kê theo ngày</a></div>
-        <div class="menu-item"><i class="fas fa-leaf"></i><a href="#">Thống kê theo tháng</a></div>
-        <div class="menu-item"><i class="fas fa-seedling"></i><a href="#">Thống kê theo tuần</a></div>
-    </aside>
+<!-- Kết nối với thư viện Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Kết nối với file JavaScript -->
+<script src="~/Content/js/TongQuan.js"></script>
+
+<h1>Thống Kê Tổng Quan</h1>
+<div class="stats">
+    <div class="stat-card">
+        <h3>Tổng số đơn hàng</h3>
+        <p><span id="total-orders">0</span></p>
+    </div>
+    <div class="stat-card">
+        <h3>Tổng doanh thu:</h3>
+        <p><span id="total-revenue">0</span></p>
+    </div>
+    <div class="stat-card">
+        <h3>Tổng số khách hàng</h3>
+        <p><span id="total-customers">0</span></p>
+    </div>
+</div>
+
+<!-- Nơi bạn có thể thêm các biểu đồ hoặc thông tin khác -->
+<div class="charts">
+    <h2>Biểu đồ Thống kê</h2>
+    <div class="chart-container">
+        <canvas id="revenueChart" class="chart"></canvas>
+        <canvas id="customerChart" class="chart"></canvas>
+        <canvas id="orderChart" class="chart"></canvas>
+    </div>
 </div>

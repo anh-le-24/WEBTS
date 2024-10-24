@@ -189,6 +189,7 @@
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\SanPham.css" />
     <Content Include="Content\Css\ThemTopping.css" />
+    <Content Include="Content\Css\TongQuan.css" />
     <Content Include="Content\Css\Topping.css" />
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Picture\1.png" />
@@ -220,6 +221,7 @@
     <Content Include="Content\Picture\tea7.jpg" />
     <Content Include="Content\Picture\tea8.jpg" />
     <Content Include="Content\Picture\logo.jpg" />
+    <Content Include="Content\js\TongQuan.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
