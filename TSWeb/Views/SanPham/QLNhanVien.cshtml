@@ -1,9 +1,10 @@
-﻿@{
-    ViewBag.Title = "QLKhachHang";
+﻿
+@{
+    ViewBag.Title = "QLNhanVien";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<a href="~/SanPham/ThemKhachHang" type="button" class="button ">
+<a href="~/SanPham/ThemNV" type="button" class="button ">
     <span class="button__text">Thêm </span>
     <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
 </a>
@@ -16,25 +17,27 @@
             <th>Giới tính</th>
             <th>Ngày sinh nhật</th>
             <th>Số điện thoại</th>
-            <th>Email</th>
             <th>Địa chỉ</th>
+            <th>Tài khoản</th>
+            <th>Mật khẩu</th>
             <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
         <!-- Dữ liệu mẫu, bạn có thể thay đổi sau khi có model -->
         <tr>
-            <td>2567891</td>
-            <td>Nguyễn Văn A</td>
+            <td>0091036</td>
+            <td>Lê Văn Anh</td>
             <td>Nam</td>
-            <td>01/01/1990</td>
+            <td>01/01/2004</td>
             <td>0123456789</td>
-            <td>example@gmail.com</td>
             <td>Hà Nội</td>
+            <td>0091036</td>
+            <td>********</td>
             <td>
                 <button class="btn-edit">Sửa</button>
                 <button class="btn-delete">Xóa</button>
-                <form id="delete-form-1" action="@Url.Action("XoaKhachHang")" method="post" style="display:none;">
+                <form id="delete-form-1" action="@Url.Action("XoaNV")" method="post" style="display:none;">
                     <input type="hidden" name="Id" value="1" /> <!-- Thay đổi giá trị Id khi có dữ liệu -->
                 </form>
             </td>
@@ -47,9 +50,9 @@
     document.querySelectorAll('.btn-delete').forEach(button => {
         button.addEventListener('click', function () {
             const productId = this.getAttribute('data-id');
-            if (confirm('Bạn có chắc chắn muốn xóa khách hàng này không?')) {
+            if (confirm('Bạn có chắc chắn muốn xóa nhân viên này không?')) {
                 // Gửi yêu cầu xóa đến server (cần route tương ứng phía backend)
-                fetch(`/SanPham/XoaKhachHang/${productId}`, {
+                fetch(`/SanPham/XoaNV/${productId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
@@ -57,10 +60,10 @@
                 })
                     .then(response => {
                         if (response.ok) {
-                            alert('Khách hàng đã được xóa thành công.');
+                            alert('Nhân Viên đã được xóa thành công.');
                             location.reload(); // Tải lại trang sau khi xóa thành công
                         } else {
-                            alert('Xóa khách hàng thất bại.');
+                            alert('Xóa nhân viên thất bại.');
                         }
                     })
                     .catch(error => {
@@ -75,7 +78,7 @@
         button.addEventListener('click', function () {
             const productId = this.getAttribute('data-id');
             // Điều hướng tới trang sửa khách hàng
-            window.location.href = `/SanPham/ChinhSuaKhachHang/${productId}`;
+            window.location.href = `/SanPham/ChinhSuaNV/${productId}`;
         });
     });
 </script>

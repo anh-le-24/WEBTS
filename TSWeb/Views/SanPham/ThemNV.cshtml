@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "ThemKhachHang";
+    ViewBag.Title = "ThemNV";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <div class="main-content">
     <div class="form-container">
-        <h2 class="form-title">Thêm Khách Hàng Mới</h2>
+        <h2 class="form-title">Thêm Nhân Viên Mới</h2>
 
         <form method="post" class="customer-form">
             <div class="form-group">
@@ -33,19 +33,23 @@
                 <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" required placeholder="0123456789" />
             </div>
             <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" class="form-control" required placeholder="example@gmail.com" />
-            </div>
-
-            <div class="form-group">
                 <label for="Address">Địa Chỉ</label>
                 <input type="text" id="Address" name="Address" class="form-control" required placeholder="Hà Nội" />
             </div>
+            <div class="form-group">
+                <label for="ID">ID</label>
+                <input type="text" id="ID" name="ID" class="form-control" required placeholder="0091036" />
+            </div>
+            <div class="form-group">
+                <label for="Password">Mật Khẩu</label>
+                <input type="password" id="Password" name="Password" class="form-control" required placeholder="*******" />
+            </div>
 
             <div class="form-actions center">
-                <button type="submit" class="btn btn-primary">Thêm Khách Hàng</button>
-                <a href="~/SanPham/QLKhachHang" class="btn btn-secondary">Quay lại</a>
+                <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                <a href="~/SanPham/QLNhanVien" class="btn btn-secondary">Quay lại</a>
             </div>
         </form>
     </div>
 </div>
+

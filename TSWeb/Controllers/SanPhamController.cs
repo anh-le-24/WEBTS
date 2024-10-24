@@ -43,10 +43,6 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-        public ActionResult NhanVien()
-        {
-            return View();
-        }
         public ActionResult QLSanPham()
         {
             return View();
@@ -98,6 +94,19 @@ namespace TSWeb.Controllers
         public ActionResult XoaKhachHang()
         {
             return View("XoaKhachHang"); // Trả về view để xóa khách hàng
+        }
+        // Các phương thức quản lý nhân viên
+        public ActionResult QLNhanVien()
+        {
+            return View();
+        }
+        public ActionResult ThemNV()
+        {
+            return View("ThemNV");
+        }
+        public ActionResult ChinhSuaNV()
+        {
+            return View("ChinhSuaNV");
         }
     }
 }
