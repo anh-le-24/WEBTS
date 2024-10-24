@@ -274,6 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Hinh\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\QLTopping\" />
     <Folder Include="Views\TSWebContext\" />
