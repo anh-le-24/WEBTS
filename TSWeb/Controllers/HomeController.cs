@@ -9,21 +9,24 @@ namespace TSWeb.Controllers
 {
     public class HomeController : Controller
     {
+        DatabaseModel db = new DatabaseModel();
+
         public ActionResult Index()
         {
+            ViewBag.list = db.get("SELECT * FROM SANPHAM");
             return View();
         }
         public ActionResult Cart()
         {
             return View();
         }
-        public ActionResult Chitiet()
+        public ActionResult Chitiet(string idsp)
         {
+            ViewBag.list = db.get("EXEC HienThiSanPhamTheoID " + idsp + ";");
             return View();
         }
         public ActionResult vd()
         {
-            DatabaseModel db = new DatabaseModel();
             ViewBag.list = db.get("select * from SANPHAM");
             return View();
         }

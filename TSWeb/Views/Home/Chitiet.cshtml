@@ -1,4 +1,4 @@
-﻿
+﻿﻿﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,57 +37,62 @@
     </header>
     <!--Phần thân-->
     <main class="container">
-        <div class="detail-product">
-            <img src="~/Content/Picture/tea1.jpg" class="detail-product__img" />
-            <div class="detail-product__info">
-                <h2 class="detail-product__title">Trà Latte Cực ngon</h2>
-                <p class="detail-product__price">Giá : 1,000đ</p>
-                <p class="detail-product__label">Còn hàng</p>
-                <div class="sizes">
-                    <div class="size" data-size="M">M</div>
-                    <div class="size" data-size="L">L</div>
-                </div>
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Topic</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Trân Châu</button>
-                        <button class="detail-taste__option">Thạch</button>
-                    </div>
-                </div>
+        @foreach (var a in ViewBag.list)
+        {
+            <div class="detail-product">
+                <img src="~/Content/Picture/tea1.jpg" class="detail-product__img" />
+                <div class="detail-product__info">
+                    <h2 class="detail-product__title">@a[1]</h2>
+                    <p class="detail-product__price">Giá : @a[2]</p>
+                    <p class="detail-product__label">Còn hàng</p>
 
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Ngọt</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Ít</button>
-                        <button class="detail-taste__option">Bình thường</button>
+                    <div class="sizes">
+                        <div class="size" data-size="M">M</div>
+                        <div class="size" data-size="L">L</div>
                     </div>
-                </div>
-                <div class="detail-taste">
-                    <p class="detail-taste__title">Đá</p>
-                    <div class="detail-taste__list-option">
-                        <button class="detail-taste__option">Ít</button>
-                        <button class="detail-taste__option">Bình thường</button>
+                    <div class="detail-taste">
+                        <p class="detail-taste__title">Topping</p>
+                        <div class="detail-taste__list-option">
+                            <button class="detail-taste__option">Trân Châu</button>
+                            <button class="detail-taste__option">Thạch</button>
+                        </div>
                     </div>
-                </div>
-                <div class="plus-minus-product">
-                    <div class="item-quanlity">
-                        <button class="item-minus-btn">
-                            <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                        </button>
-                        <span>2</span>
-                        <button class="item-plus-btn">
-                            <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                        </button>
+
+                    <div class="detail-taste">
+                        <p class="detail-taste__title">Ngọt</p>
+                        <div class="detail-taste__list-option">
+                            <button class="detail-taste__option">Ít</button>
+                            <button class="detail-taste__option">Bình thường</button>
+                        </div>
                     </div>
-                    <button class="btnthemsanpham">Thêm Sản Phẩm</button>
-                </div>
+                    <div class="detail-taste">
+                        <p class="detail-taste__title">Đá</p>
+                        <div class="detail-taste__list-option">
+                            <button class="detail-taste__option">Ít</button>
+                            <button class="detail-taste__option">Bình thường</button>
+                        </div>
+                    </div>
+                    <div class="plus-minus-product">
+                        <div class="item-quanlity">
+                            <button class="item-minus-btn">
+                                <img src="~/Content/Picture/minus.png" class="item-img-minus" />
+                            </button>
+                            <span>2</span>
+                            <button class="item-plus-btn">
+                                <img src="~/Content/Picture/plus.png" class="item-img-plus" />
+                            </button>
+                        </div>
+                        <button class="btnthemsanpham">Thêm Sản Phẩm</button>
+                    </div>
+                </div>                
             </div>
-        </div>
-        <div class="product-description">
-            <h3>Mô tả sản phẩm</h3>
-            <p>Được chiết suất từ những lá trà tươi xanh nhất trên vùng cao <br />Chúng tôi mang đến những hương vị đầy mới mẻ</p>
-        </div>
-
+            <div class="product-description">
+                <h3>Mô tả sản phẩm</h3>
+                <p>
+                    @a[4]
+                </p>
+            </div>
+        }
     </main>
     <footer class="bottom">
         <div class="footer-left">
