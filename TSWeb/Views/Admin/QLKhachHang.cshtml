@@ -1,0 +1,81 @@
+﻿﻿@{
+    ViewBag.Title = "QLKhachHang";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<a href="~/SanPham/ThemKhachHang" type="button" class="button ">
+    <span class="button__text">Thêm </span>
+    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh nhật</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dữ liệu mẫu, bạn có thể thay đổi sau khi có model -->
+        <tr>
+            <td>2567891</td>
+            <td>Nguyễn Văn A</td>
+            <td>Nam</td>
+            <td>01/01/1990</td>
+            <td>0123456789</td>
+            <td>example@gmail.com</td>
+            <td>Hà Nội</td>
+            <td>
+                <button class="btn-edit">Sửa</button>
+                <button class="btn-delete">Xóa</button>
+                <form id="delete-form-1" action="@Url.Action("XoaKhachHang")" method="post" style="display:none;">
+                    <input type="hidden" name="Id" value="1" /> <!-- Thay đổi giá trị Id khi có dữ liệu -->
+                </form>
+            </td>
+        </tr>
+        <!-- Thêm nhiều dòng dữ liệu mẫu nếu cần -->
+    </tbody>
+</table>
+<script>
+    // Sự kiện khi nhấn nút "Xóa"
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            if (confirm('Bạn có chắc chắn muốn xóa khách hàng này không?')) {
+                // Gửi yêu cầu xóa đến server (cần route tương ứng phía backend)
+                fetch(`/SanPham/XoaKhachHang/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Khách hàng đã được xóa thành công.');
+                            location.reload(); // Tải lại trang sau khi xóa thành công
+                        } else {
+                            alert('Xóa khách hàng thất bại.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Lỗi:', error);
+                    });
+            }
+        });
+    });
+
+    // Sự kiện khi nhấn nút "Sửa"
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            // Điều hướng tới trang sửa khách hàng
+            window.location.href = `/SanPham/ChinhSuaKhachHang/${productId}`;
+        });
+    });
+</script>
