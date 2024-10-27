@@ -19,12 +19,58 @@
         <div class="nav">
             <div class="down">
                 <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
+                <img src="~/Content/Picture/down.png" alt="Down">
             </div>
             <div class="cart">
                 <a href="@Url.Action("Cart", "Home")">
                     <img src="~/Content/Picture/cart.png" />
                 </a>
+                <div class="thongbao">
+                    <img src="~/Content/Picture/icthongbao.png" />
+                </div>
+
+
+                <div class="notification-panel" id="notificationPanel">
+                    <div class="notification-header">
+                        <h3>Thông báo</h3>
+                        <div class="tabs">
+                            <span class="tab active" onclick="switchTab('all')">Tất cả</span>
+                            <span class="tab" onclick="switchTab('unread')">Chưa đọc</span>
+                        </div>
+                    </div>
+                    <div class="notification-content" id="notificationContent">
+                        <div class="notification-item">
+                            <img src="~/Content/Picture/icons8-avatar-50.png" alt="Avatar" class="avatar">
+                            <div class="notification-text">
+                                <p><strong>Lê Văn Anh</strong> đã nhắc đến bạn trong một bình luận.</p>
+                                <span class="time">18 phút</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <img src="~/Content/Picture/icons8-avatar-50.png" alt="Avatar" class="avatar">
+                            <div class="notification-text">
+                                <p><strong>Phú Quý Giàu Nhất Trà Vinh</strong> đã nhắc đến bạn trong một bình luận.</p>
+                                <span class="time">18 phút</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <img src="~/Content/Picture/icons8-avatar-50.png" alt="Avatar" class="avatar">
+                            <div class="notification-text">
+                                <p><strong>An Bình Zũ</strong> đã nhắc đến bạn trong một bình luận.</p>
+                                <span class="time">20 phút</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <img src="~/Content/Picture/icons8-avatar-50.png" alt="Avatar" class="avatar">
+                            <div class="notification-text">
+                                <p><strong>Thiện Lee</strong> đã nhắc đến bạn trong một bình luận.</p>
+                                <span class="time">18 phút</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
             </div>
             <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
@@ -51,6 +97,18 @@
             <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
         </div>
     </header>
+    <script>
+        let isActive = false;
+        document.querySelector(".thongbao").addEventListener("click", function () {
+            if (isActive) {
+                document.querySelector("#notificationPanel").style.display = "none";
+                isActive = false;
+            } else {
+                document.querySelector("#notificationPanel").style.display = "block";
+                isActive = true;
+            }
+        })
+    </script>
     <!--Phần thân-->
     <main class="container">
         <div class="content-top">
