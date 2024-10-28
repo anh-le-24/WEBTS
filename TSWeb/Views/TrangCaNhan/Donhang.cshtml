@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Donhang";
+    Layout = null;
+    <link href="~/Content/Css/TrangDonhangStyleSheet.css" rel="stylesheet" />
+}
+
+<body>
+    <div class="container-info">
+        <nav class="sidebar">
+            <div class="profile">
+                <div class="profile-img">
+                    <img src="/images/canhan.png">
+                </div>
+                <p th:text="'SDT: ' + ${nguoiDung.sdt}"></p>
+            </div>
+            <ul class="menu" style="align-items: start;">
+                <li><a>Thông tin tài khoản</a></li>
+                <li><a>Đơn hàng</a></li>
+                <li><a>Lịch sử đơn hàng</a></li>
+                <li><a>Voucher</a></li>
+                <li><a>Điểm tích luỹ</a></li>
+
+                <a style="margin-left: 20px;" class="button" href="#" onclick="confirmLogout()">Đăng xuất</a>
+            </ul>
+        </nav>
+        <div class="status-container">
+            <div class="status-item">
+                <img src="~/Content/Picture/cholayhang.png" alt="Icon" class="status-icon" />
+                <p>Chờ xác nhận</p>
+            </div>
+            <div class="status-item">
+                <img src="~/Content/Picture/choxacnhan.png" alt="Icon" class="status-icon" />
+                <p>Chờ lấy hàng</p>
+            </div>
+            <div class="status-item">
+                <img src="~/Content/Picture/danggiao.png" alt="Icon" class="status-icon" />
+                <p>Đang giao</p>
+            </div>
+            <div class="status-item">
+                <img src="~/Content/Picture/danhgia.png" alt="Icon" class="status-icon" />
+                <p>Đánh giá</p>
+            </div>
+        </div>
+</body>
+

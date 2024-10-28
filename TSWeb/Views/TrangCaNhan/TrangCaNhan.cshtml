@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "TrangCaNhan";
+    Layout = null;
+<link href="~/Content/Css/TrangCaNhanStyleSheet.css" rel="stylesheet" />
+}
+
+<body>
+
+    <div class="container-info">
+        <nav class="sidebar">
+            <div class="profile">
+                <div class="profile-img">
+                    <img src="/images/canhan.png">
+                </div>
+                <p>số điện thoại: </p>
+            </div>
+            <ul class="menu" style="align-items: start;">
+                <li><a>Thông tin tài khoản</a></li>
+                <li><a>Đơn hàng</a></li>
+                <li><a>Lịch sử đơn hàng</a></li>
+                <li><a>Voucher</a></li>
+                <li><a>Điểm tích luỹ</a></li>
+                <a href="#">Đăng xuất</a>
+            </ul>
+        </nav>
+        <div class="content">
+            <h1>Thông Tin Tài Khoản</h1>
+            <form method="post">
+                <div class="form-group">
+                    <label for="hoten">Tên:</label>
+                    <input type="text" id="hoten" name="hoten" value="@ViewBag.list[0][1]" required>
+                </div>
+                <div class="form-group">
+                    <label for="sdt">Số điện thoại:</label>
+                    <input type="text" id="sdt" name="sdt" value="@ViewBag.list[0][4]" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="@ViewBag.list[0][2]" required>
+                </div>
+                <div class="update-diachi">
+                    <div class="form-group">
+                        <label for="sonha">Mật khẩu:</label>
+                        <input type="password" id="matkhau" name="matkhau" value="@ViewBag.list[0][3]" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="diachi">Địa chỉ:</label>
+                    <input type="text" id="diachi" name="diachi" value="@ViewBag.list[0][5]" readonly style="color: #959595;">
+                </div>
+                <div class="form-group">
+                    <label>Điểm tích luỹ:</label>
+                    <input type="number" id="diemlichluy" name="diemtichluy" value="@ViewBag.list[0][9]" readonly style="color: #959595;">
+                </div>
+                <div class="form-group">
+                    <label>Đăng ký nhận thông báo:</label>
+
+                    <!-- Radio Button Nhận Thông Báo -->
+                    <input type="radio" id="nhanthongbao" name="thongbao" value="1"
+                           @if (ViewBag.list[0][10] == "1") { <text> checked</text> }
+                           style="color: #959595;">
+                    <label for="nhanthongbao" style="font-size: 15px;">Nhận thông báo</label>
+
+                    <!-- Radio Button Không Nhận Thông Báo -->
+                    <input type="radio" id="khongnhanthongbao" name="thongbao" value="0"
+                           @if (ViewBag.list[0][10] == "0") { <text> checked</text> }
+                           style="color: #959595;">
+                    <label for="khongnhanthongbao" style="font-size: 15px;"> Không nhận thông báo</label>
+                </div>
+
+
+                <button type="submit">Cập nhật</button>
+                <button type="submit">Đăng xuất</button>
+
+            </form>
+           
+        </div>
+    </div>
+    <script>
+        function confirmLogout() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất không?')) {
+                window.location.href = '/logout';
+            }
+        }
+    </script>
+</body>

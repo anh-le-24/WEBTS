@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LEAFTEA</title>
     <link href="~/Content/Css/HomeStyleSheet.css" rel="stylesheet">
     @{
         Layout = null;
@@ -32,7 +32,7 @@
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
                 @if (Session["taikhoan"] != null)
                 {
-                    <h3>Xin chào </h3>
+                    <h3>@Session["taikhoan"] </h3>
                 }
                 else
                 {
@@ -43,7 +43,7 @@
                     <li><a href="#">Về chúng tôi</a></li>
                     <li><a href="#">Menu</a></li>
                     <li><a href="#">Thông báo</a></li>
-                    <li><a href="@Url.Action("DangNhap", "DangNhapDK")">Tài khoản</a></li>
+                    <li><a href="@Url.Action("TrangCaNhan", "TrangCaNhan")">Tài khoản</a></li>
                 </ul>
             </div>
             <div class="overlay-sidebar">

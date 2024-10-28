@@ -1,0 +1,117 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container-info {
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin-top: 5px; /* Thay đổi khoảng cách từ 100px thành 5px */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+    .sidebar .profile {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+.profile-img img {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.profile p {
+    margin: 10px 0;
+}
+
+.profile button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    list-style: none;
+    width: 200px;
+    padding: 20px 0;
+    background-color: #E6E6E6;
+    border-radius: 10px;
+    text-align: start;
+}
+
+    .menu li {
+        padding: 10px;
+        width: 100%;
+    }
+
+        .menu li a {
+            text-decoration: none;
+            color: black;
+            font-weight: 400;
+            transition: all 0.3s;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+            .menu li a:hover {
+                background-color: #FFFFFF;
+                color: black;
+            }
+
+.status-container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 100px;
+}
+
+.status-item {
+    text-align: center;
+}
+
+.status-icon {
+    width: 40px; 
+    height: auto;
+    color: #555;
+    margin-bottom: 8px; 
+}
+
+.status-item p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 8px;
+}

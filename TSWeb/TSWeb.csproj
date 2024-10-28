@@ -116,6 +116,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\TrangCaNhanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,11 +153,17 @@
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\PaymentStyleSheet.css" />
     <Content Include="Content\Css\TongQuan.css" />
+    <Content Include="Content\Css\TrangCaNhanStyleSheet.css" />
+    <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\bell.png" />
     <Content Include="Content\Picture\bgg.jpg" />
     <Content Include="Content\Picture\bg_dn.jpg" />
     <Content Include="Content\Picture\cart.png" />
+    <Content Include="Content\Picture\cholayhang.png" />
+    <Content Include="Content\Picture\choxacnhan.png" />
+    <Content Include="Content\Picture\danggiao.png" />
+    <Content Include="Content\Picture\danhgia.png" />
     <Content Include="Content\Picture\diachi.jpg" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\icons8-avatar-50.png" />
@@ -234,6 +241,11 @@
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Admin\ThemKhachHang.cshtml" />
     <Content Include="Views\Admin\ThemNV.cshtml" />
+    <Content Include="Views\TrangCaNhan\TrangCaNhan.cshtml" />
+    <Content Include="Views\TrangCaNhan\Donhang.cshtml" />
+    <Content Include="Views\TrangCaNhan\Lichsudonhhang.cshtml" />
+    <Content Include="Views\TrangCaNhan\Voucher.cshtml" />
+    <Content Include="Views\TrangCaNhan\Diemtichluy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
