@@ -100,19 +100,54 @@ namespace TSWeb.Controllers
         // Các phương thức quản lý nhân viên
         public ActionResult QLNhanVien()
         {
+            ViewBag.list = db.get("Exec XemNguoiDung 2");
             return View();
         }
         public ActionResult ThemNV()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ThemNhanVien(string FullName,
+                                         string Email,
+                                         string Password,
+                                         int PhoneNumber,
+                                         string Address,
+                                         DateTime DateCreate,
+                                         string CN)
+        {
+            try
+            {
+                // Chuyển DateCreate sang định dạng phù hợp với SQL Server
+                string formattedDate = DateCreate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                // Xây dựng câu lệnh SQL với phép nối chuỗi như cũ nhưng có format lại cho chính xác
+                string sqlQuery = "EXEC ThemNhanVienVaNguoiDung N'" + FullName + "','" + Email + "', N'" + Password + "', "
+                                  + PhoneNumber + ", N'" + Address + "', '" + formattedDate + "', 2, " + CN + ";";
+
+                // Thực hiện câu lệnh SQL
+                db.get(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu có
+                Console.WriteLine(ex.Message);
+                return View("ThemNV");
+            }
+
+            // Nếu thành công, chuyển hướng đến trang quản lý nhân viên
+            return RedirectToAction("QLNhanVien", "Admin");
+        }
         public ActionResult ChinhSuaNV()
         {
+
             return View();
         }
-        public ActionResult XoaNV()
+
+        public ActionResult XoaNV(string id)
         {
-            return View();
+            ViewBag.list = db.get("EXEC XoaNguoiDungNhanVien " + id + ";");
+            return RedirectToAction("QLNhanVien", "Admin");
         }
     }
 }
