@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "ChinhSuaKhachHang";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -12,8 +12,10 @@
         </div>
 
         <div class="customer-form-container">
-            <form action="@Url.Action("ChinhSuaKhachHang")" method="post">
-                <input type="hidden" name="Id" value="1" /> <!-- Thay đổi giá trị Id khi có dữ liệu -->
+            <form action="@Url.Action("ChinhSuaKH", "Admin")" method="post">
+                <!-- Ẩn input IDND để lưu giá trị khách hàng -->
+                <input type="hidden" name="IDND" value="@ViewBag.list[0][0]" /> <!-- Chèn giá trị ID từ model hoặc dữ liệu truyền vào -->
+
                 <div class="form-sections">
                     <!-- Phần thông tin cơ bản -->
                     <div class="form-section">
@@ -21,62 +23,50 @@
                             <i class="fas fa-user-circle"></i>
                             <h3>Thông tin khách hàng</h3>
                         </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="FullName">Họ tên:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="FullName" name="FullName" value="Nguyễn Văn A" required />
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="Gender">Giới tính:</label>
-                                <div class="input-wrapper">
-                                    <select id="Gender" name="Gender" required>
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="DateOfBirth">Ngày sinh nhật:</label>
-                                <div class="input-wrapper">
-                                    <input type="date" id="DateOfBirth" name="DateOfBirth" value="1990-01-01" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PhoneNumber">Số điện thoại:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="PhoneNumber" name="PhoneNumber" value="0123456789" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Email">Email:</label>
-                                <div class="input-wrapper">
-                                    <input type="email" id="Email" name="Email" value="example@gmail.com" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Address">Địa chỉ:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="Address" name="Address" value="Hà Nội" required />
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="FullName">Họ Tên</label>
+                            <input type="text" id="FullName" name="FullName" class="form-control" required placeholder="Nguyễn Văn A" value="@ViewBag.list[0][1]" />
                         </div>
-                    </div>
 
-                    <!-- Nút thao tác -->
-                    <div class="form-actions center">
-                        <button type="button" class="btn btn-secondary" onclick="history.back()">
-                            <i class="fas fa-times"></i> Hủy
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Cập nhật
-                        </button>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" id="Email" name="Email" class="form-control" required placeholder="example@gmail.com" value="@ViewBag.list[0][2]" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">Mật Khẩu</label>
+                            <!-- Để trống nếu không muốn thay đổi mật khẩu -->
+                            <input type="password" id="Password" name="Password" value="@ViewBag.list[0][3]" class="form-control" placeholder="Để trống nếu không muốn thay đổi" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PhoneNumber">Số Điện Thoại</label>
+                            <input type="tel" id="PhoneNumber" name="PhoneNumber" class="form-control" value="@ViewBag.list[0][4]" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Address">Địa Chỉ</label>
+                            <input type="text" id="Address" name="Address" class="form-control" value="@ViewBag.list[0][5]" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="TB">Nhận thông báo</label>
+                            <input type="text" id="TB" name="TB" class="form-control" value="@ViewBag.list[0][10]" />
+                        </div>
+
+                        <!-- Nút thao tác -->
+                        <div class="form-actions center">
+                            <!-- Nút hủy -->
+                            <button type="button" class="btn btn-secondary" onclick="history.back()">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+
+                            <!-- Nút cập nhật -->
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Cập nhật
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>
