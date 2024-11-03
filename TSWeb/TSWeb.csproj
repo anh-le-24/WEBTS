@@ -165,6 +165,7 @@
     <Content Include="Content\Picture\danggiao.png" />
     <Content Include="Content\Picture\danhgia.png" />
     <Content Include="Content\Picture\diachi.jpg" />
+    <Content Include="Content\Picture\discount.png" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\icons8-avatar-50.png" />
     <Content Include="Content\Picture\img1.jpg" />
@@ -179,6 +180,7 @@
     <Content Include="Content\Picture\img9.png" />
     <Content Include="Content\Picture\menu1.png" />
     <Content Include="Content\Picture\minus.png" />
+    <Content Include="Content\Picture\next.png" />
     <Content Include="Content\Picture\phone.jpg" />
     <Content Include="Content\Picture\plus.png" />
     <Content Include="Content\Picture\profile.jpg" />
@@ -186,6 +188,11 @@
     <Content Include="Content\Picture\straw.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\logo.jpg" />
+    <Content Include="Content\Picture\uudai1.jpg" />
+    <Content Include="Content\Picture\uudai2.jpg" />
+    <Content Include="Content\Picture\uudai3.jpg" />
+    <Content Include="Content\Picture\uudai4.jpg" />
+    <Content Include="Content\Picture\uudai5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

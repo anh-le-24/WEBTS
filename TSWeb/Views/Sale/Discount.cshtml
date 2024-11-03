@@ -1,0 +1,50 @@
+﻿﻿ ﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Coupons</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/CouponStyleSheet.css" rel="stylesheet" />
+
+    @{
+        Layout = "~/Views/Shared/nav.cshtml";
+        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
+    }
+
+
+</head>
+<body>
+
+    <div class="coupon-container">
+        <div class="coupon">
+            <div class="coupon-left">
+                <div class="tag">HOT</div>
+                <img alt="Shop icon" height="80" src="~/Content/Picture/discount.png" width="80" />
+            </div>
+            <div class="coupon-right">
+                <div class="discount">Giảm ₫50k</div>
+                <div class="min-order">Đơn Tối Thiểu ₫299k</div>
+                <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
+                <a class="conditions" href="#">Điều Kiện</a>
+                <div class="save">Lưu</div>
+            </div>
+        </div>
+        <div class="coupon">
+            <div class="coupon-left">
+                <img alt="Video icon" height="80" src="~/Content/Picture/discount.png" width="80" />
+            </div>
+            <div class="coupon-right">
+                <div class="discount">Giảm 40% Giảm tối đa ₫100k</div>
+                <div class="min-order">Đơn Tối Thiểu ₫100k</div>
+                <div class="expiry">Có hiệu lực từ: 25.10.2024</div>
+                <a class="conditions" href="#">Điều Kiện</a>
+                <div class="save">Lưu</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
