@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.PortableExecutable;
+//using System.Reflection.PortableExecutable;
 using System.Web;
 using System.Web.DynamicData;
 using System.Web.Mvc;
@@ -20,11 +20,13 @@ namespace TSWeb.Controllers {
         }// GET: DangNhapDK
 
         [HttpPost]
-        public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi) {
-
+        public ActionResult DangKy(string hoten,
+                                    string email, 
+                                    string matkhau, 
+                                    string sdt, 
+                                    string diachi) {
             ViewBag.list = db.get("EXEC ThemNguoiDung N'" + hoten + "','" + email + "','" + matkhau + "'," + sdt + ",'" + diachi + "';");
-
-            return RedirectToAction("DangKyTC", "DangNhapDK");
+            return RedirectToAction("DangNhap", "DangNhapDk");
         }
         [HttpPost]
         public ActionResult XuLuDangNhap(string email, string matkhau) {
@@ -34,10 +36,12 @@ namespace TSWeb.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             else
-                return RedirectToAction("DangKyTC", "DangNhapDK");
+                return RedirectToAction("Index", "Home");
         }
-        public ActionResult DangKyTC() {
-            return View();
+        [HttpPost]
+        public ActionResult DangXuat() {
+            Session["taikhoan"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult UserList() {

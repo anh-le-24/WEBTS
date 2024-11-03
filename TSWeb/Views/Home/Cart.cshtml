@@ -1,7 +1,4 @@
-﻿@{
-    var cartItems = ViewBag.CartItems;
-}
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,34 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
     <link href="~/Content/Css/CartStyleSheet.css" rel="stylesheet">
+
     @{
-        Layout = null;
+        Layout = "~/Views/Shared/nav.cshtml";
+        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
     }
+
+
 </head>
+
 <body>
-    <!-- Thanh điều hướng -->
-    <header>
-        <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Down">
-            </div>
-            <div class="cart">
-                <a href="@Url.Action("Cart", "Home")"><img src="~/Content/Picture/cart.png" alt="Giỏ hàng" /></a>
-            </div>
-            <img src="~/Content/Picture/logo.jpg" alt="Logo" id="logo">
-            <div class="side-bar">
-                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                <ul class="menu-items">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Thông báo</a></li>
-                    <li><a href="#">Tài khoản</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
 
     <!-- Phần thân -->
     <main class="container">
@@ -54,25 +33,25 @@
             </div>
 
             <div class="cart-list">
-                @if (ViewBag.CartItems != null && ViewBag.CartItems.Count > 0) {
-                    foreach (var a in ViewBag.CartItems) {
+                @if (ViewBag.list != null && ViewBag.list.Count > 0) {
+                    foreach (var gh in ViewBag.list) {
                         <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
                             <!-- Nút xóa -->
-                            <button class="btn-remove" style="position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px; ">
+                            <button class="btn-remove" style="position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
                                 &times; <!-- Biểu tượng 'x' để xóa -->
                             </button>
 
                             <input type="checkbox" class="btn-check" style="margin-right: 10px;" />
 
                             <!-- Hiển thị hình ảnh sản phẩm -->
-                            <img src="~/Content/Picture/img7.jpg" class="img-product" alt="@a[1]" style="width: 120px; height: auto;" />
+                            <img src="~/Content/Picture/@gh[8]" class="img-product" alt="" style="width: 120px; height: auto;" />
 
                             <!-- Hiển thị thông tin sản phẩm -->
                             <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
-                                <h2 style="font-size: 1.2em;">@a[1]</h2>
+                                <h2 style="font-size: 1.2em;">@gh[5]</h2>
                                 <div class="sizes">
-                                    <div class="size" data-size="@a[5]" style="background-color: #FF6918; padding: 15px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
-                                        @a[5]
+                                    <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 15px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
+                                        @gh[4]
                                     </div>
                                 </div>
                                 <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
@@ -80,18 +59,17 @@
                                         <button class="item-minus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
                                             <img src="@Url.Content("~/Content/Picture/minus.png")" class="item-img-minus" alt="Giảm" />
                                         </button>
-                                        <span style="margin: 0 10px; font-weight: bold; color: black;">@a[3]</span>
+                                        <span style="margin: 0 10px; font-weight: bold; color: black;">@gh[2]</span>
                                         <button class="item-plus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
                                             <img src="@Url.Content("~/Content/Picture/plus.png")" class="item-img-plus" alt="Tăng" />
                                         </button>
                                     </div>
                                     <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
-                                        đ @a[4]/ly
+                                        đ @gh[3]/ly
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     }
                 }
                 else {
@@ -102,6 +80,7 @@
                     </div>
                 }
             </div>
+
         </div>
 
         <!-- Phần thanh toán -->
@@ -149,25 +128,5 @@
         </div>
     </main>
 
-    <footer class="bottom">
-        <div class="footer-left">
-            <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-                <div class="brand" style="flex: 1;">
-                    <h2 style="margin: 0; font-size: 24px;">LEAF TEA</h2>
-                    <p>VỀ CHÚNG TÔI</p>
-                    <p>Một thương hiệu mới với những trải nghiệm mới giúp cho những hương vị cuộc sống được bùng nổ hơn.</p>
-                </div>
-            </div>
-            <div class="footer-bottom" style="margin-top: 20px;">
-                <p>&copy; 2024 LEAF TEA - All rights reserved.</p>
-            </div>
-        </div>
-        <div class="footer-mid">
-            <div class="contact-info" style="flex: 1;">
-                <p style="margin: 0;">Email: leaftea@gmail.com</p>
-                <p style="margin: 0;">Hotline: 0123 456 789</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

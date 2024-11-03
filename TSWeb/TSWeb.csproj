@@ -118,10 +118,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\DangNhapDKModels.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
-    <Compile Include="Models\SanPham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +148,7 @@
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\PaymentStyleSheet.css" />
+    <Content Include="Content\Css\ListMenuStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\bell.png" />
     <Content Include="Content\Picture\bgg.jpg" />
@@ -171,6 +170,7 @@
     <Content Include="Content\Picture\img9.png" />
     <Content Include="Content\Picture\menu1.png" />
     <Content Include="Content\Picture\minus.png" />
+    <Content Include="Content\Picture\next.png" />
     <Content Include="Content\Picture\phone.jpg" />
     <Content Include="Content\Picture\plus.png" />
     <Content Include="Content\Picture\profile.jpg" />
@@ -178,6 +178,11 @@
     <Content Include="Content\Picture\straw.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\logo.jpg" />
+    <Content Include="Content\Picture\uudai1.jpg" />
+    <Content Include="Content\Picture\uudai2.jpg" />
+    <Content Include="Content\Picture\uudai3.jpg" />
+    <Content Include="Content\Picture\uudai4.jpg" />
+    <Content Include="Content\Picture\uudai5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -220,10 +225,11 @@
     <Content Include="Views\Home\vd.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
     <Content Include="Views\Sale\Discount.cshtml" />
+    <Content Include="Views\Home\ListSanPham.cshtml" />
+    <Content Include="Views\Shared\nav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

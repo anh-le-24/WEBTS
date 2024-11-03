@@ -1,4 +1,4 @@
-﻿﻿﻿
+﻿﻿﻿﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,13 +49,12 @@
                         <div class="size" data-size="L">L</div>
                     </div>
                     <div class="detail-taste">
-                            <p class="detail-taste__title">Topping</p>
-                            <div class="detail-taste__list-option">
-                                <button class="detail-taste__option">Trân châu</button>
-                                <button class="detail-taste__option">Thạch</button>
-                            </div>
+                        <p class="detail-taste__title">Topping</p>
+                        <div class="detail-taste__list-option">
+                            <button class="detail-taste__option">Trân Châu</button>
+                            <button class="detail-taste__option">Thạch</button>
+                        </div>
                     </div>
-                        
 
                     <div class="detail-taste">
                         <p class="detail-taste__title">Ngọt</p>
@@ -81,13 +80,13 @@
                                 <img src="~/Content/Picture/plus.png" class="item-img-plus" />
                             </button>
                         </div>
-                        <form class="btnthemsanpham"  action="@Url.Action("Themsp", "Home")" method="post">
+                        <form class="btnthemsanpham" action="@Url.Action("Themsp", "Home")" method="post">
                             <input type="hidden" name="idkh" value="1" /> <!-- Replace with the actual customer ID -->
                             <input type="hidden" name="idsp" value="@a[0]" />
                             <input type="hidden" name="soluong" value="1" />
                             <input type="hidden" name="size" value="M" />
                             <input type="hidden" name="idcttp" value="1" /> <!-- Replace with the actual topping ID -->
-                            <input type="hidden" name="idctgh" value="12" /> <!-- Replace with the actual cart detail ID if needed -->
+                            <input type="hidden" name="idctgh" value="9" /> <!-- Replace with the actual cart detail ID if needed -->
                             <button type="submit">Thêm</button>
                         </form>
                     </div>

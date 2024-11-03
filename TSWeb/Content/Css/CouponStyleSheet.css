@@ -157,7 +157,7 @@ body {
 
 .coupon-left {
     width: 40%; /* Width of the left side */
-    background-color: #DFCCFB; /* Background color */
+    background-color: #FFE3E3; /* Background color */
     color: white;
     padding: 10px;
     text-align: center;
@@ -183,7 +183,7 @@ body {
 .coupon-right {
     width: 60%; /* Width of the right side */
     padding: 10px;
-    background-color: #FEF9F2; /* Background color */
+    background-color: #FBFBFB; /* Background color */
     position: relative;
 }
 

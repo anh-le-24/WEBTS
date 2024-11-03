@@ -1,4 +1,4 @@
-﻿﻿﻿* {
+﻿﻿* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -83,7 +83,7 @@ header {
     z-index: 2;
     background-color: #212121;
     left: 0px;
-    width: 40%;
+    width: 20%;
     position: fixed;
     top: 0px;
     bottom: 0px;
@@ -132,7 +132,7 @@ main {
     width: 100%;
     max-width: 1520px;
     min-width: 320px;
-    height: 2782px;
+    min-height: 100vh;
 }
 
 /* Phần đầu trang */
@@ -369,118 +369,101 @@ main {
         }
 
 
-/**/
-.content-bibot {
-    background-color: #000000;
-    width: 100%;
-    height: 960px;
+/*Ưu đãi*/
+.sale_title {
+    padding: 10px;
+    text-align: center;
+}
+
+.sale {
+    overflow: hidden;
+    position: relative;
+}
+
+.sale__wrap {
     display: flex;
+    transition: all 0.5s ease-in;
+    margin-left: -5px;
+    margin-right: -5px;
 }
 
-.bibot-left {
-    background-color: black;
-    color: #FEF9F2;
-    width: 510px;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
+.sale__item {
+    flex: 1 0 33.333%;
+    padding: 0 5px;
 }
 
-    .bibot-left ul {
-        list-style-type: none; /* Bỏ dấu chấm */
-        padding: 0; /* Bỏ lề trong */
+.sale__img-wrap {
+    padding-top: 125.030525%;
+    position: relative;
+}
+
+    .sale__img-wrap img {
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        max-width: 100%;
+        height: 100%;
+        width: 100%;
     }
 
-    .bibot-left li {
-        padding: 16px 0; /* Thêm khoảng cách giữa các mục */
-        font-size: 18px; /* Kích thước chữ */
-        text-align: left;
-        width: 150px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-.bibot-right .card {
-    background-color: white;
-}
-
-.bibot-right {
-    background-color: white;
-    width: 100%;
-    max-width: 1000px;
-    height: 960px;
-    display: flex;
-    flex-direction: column;
-}
-/* Đường kẻ dọc phân chia */
-.bibot-divider {
-    width: 1px; /* Độ rộng của đường kẻ */
-    background-color: #ccc; /* Màu sắc của đường kẻ */
-    height: 100%; /* Chiều cao bằng 100% của container cha */
-    left: 510px; /* Đặt vị trí dọc theo chiều ngang của phần bên trái */
-    top: 0; /* Bắt đầu từ trên cùng */
-}
-
-.title-list {
-    height: 20px;
-    margin-bottom: 10px;
-    padding-left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-
-.list-card {
-    background-color: white;
-    width: 100%;
-    height: 940px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto;
-}
-
-
-/*hihi*/
-.content-bot {
-    background-color: #E4E6D9;
-    width: 100%;
-    display: flex;
-    height: 630px;
-}
-
-.gg-map-left {
-    width: 50%;
-    height: 100%;
+.sale__btn {
+    z-index: 2;
+    outline: none;
+    border: none;
     background-color: #212121;
-}
-
-    .gg-map-left h2 {
-        font-size: 50px;
-        font-weight: 500;
-        font-family: "Oswald", sans-serif;
-        line-height: 1.1;
-        color: white;
-    }
-
-    .gg-map-left h3 {
-        font-size: 16px;
-        font-weight: 500;
-        font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
-        color: white;
-    }
-
-.gg-map-right {
-    height: 100%;
-    width: 50%;
-    right: 0%;
+    border-radius: 50%;
+    padding: 10px;
+    opacity: 0.7;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    display: flex;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
+    .sale__btn:first-child img {
+        transform: rotate(180deg);
+    }
+
+    .sale__btn:first-child {
+        left: 10px;
+    }
+
+    .sale__btn:nth-child(2) {
+        right: 10px;
+    }
+
+    .sale__btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+.sale__content {
+    padding: 10px;
+}
+
+.sale__content-date {
+    padding-top: 9px;
+}
+
+.sale__content-desc {
+    padding-top: 7px;
+}
+
+.sale__content-more {
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #bf9369;
+    padding: 10px;
+    display: inline-block;
+}
+
+    .sale__content-more:hover {
+        background: #bf9369;
+        border: 1px solid #bf9369;
+    }
 /*cách xa ra đê*/
 footer {
     background-color: #272727;

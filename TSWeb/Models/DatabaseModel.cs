@@ -27,23 +27,5 @@ namespace TSWeb.Models {
             connection.Close();
             return datalist;
         }
-        public void execute(string sql, object parameters) {
-            using (SqlConnection connection = new SqlConnection(connecttionStrings))
-            using (SqlCommand command = new SqlCommand(sql, connection)) {
-                command.CommandType = CommandType.Text; // Use CommandType.StoredProcedure if calling a stored procedure
-                connection.Open();
-
-                // Handle parameters
-                if (parameters != null) {
-                    var paramDict = parameters.GetType().GetProperties();
-                    foreach (var param in paramDict) {
-                        command.Parameters.AddWithValue("@" + param.Name, param.GetValue(parameters) ?? DBNull.Value);
-                    }
-                }
-
-                // Execute the command
-                command.ExecuteNonQuery();
-            }
-        }
     }
 }
