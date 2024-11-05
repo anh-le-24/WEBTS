@@ -1,7 +1,333 @@
 ﻿
 @{
     ViewBag.Title = "Voucher";
+    Layout = null;
 }
 
-<h2>Voucher</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Voucher</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+        }
 
+        .flex {
+            display: flex;
+        }
+
+        .w-1-5 {
+            width: 20%;
+            background-color: #2D2824;
+        }
+
+        .w-4-5 {
+            width: 90%;
+            background-color: #E4E6D9;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-1-5 p-4" style="background-color: #2D2824; color: #FFFFFF;">
+            <!-- Set background and text color here -->
+            <div class="flex items-center mb-4">
+                <div style="width: 100px; height: 100px; margin: auto; border-radius: 50%; overflow: hidden;">
+                    <img src="https://w0.peakpx.com/wallpaper/577/451/HD-wallpaper-bae-suzy-suzy-women-with-glasses-asian-face-glasses.jpg" alt="User profile picture" width="100" height="100" style="display: block; margin: auto; width: 100%; height: auto;">
+                </div>
+            </div>
+            <ul class="menu-items">
+                <li class="mb-2">
+                    <a href="@Url.Action("TrangCaNhan", "TrangCaNhan")" class="flex items-center text-orange-500" style="color: #FFFFFF;">
+                        <i class="fas fa-user mr-2"></i> Tài Khoản Của Tôi
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Donhang", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Lichsudonhhang", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-bell mr-2"></i> Thông Báo
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Voucher", "TrangCaNhan")" class="flex items-center" style="color: #9A7E6F;">
+                        <i class="fas fa-ticket-alt mr-2"></i> Ví Voucher
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Diemtichluy", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-coins mr-2"></i> Điểm tích luỹ
+                    </a>
+                </li>
+                <li class="mb-2 mt-auto">
+                    <button class="flex items-center" style="background-color: #E4003A; border: none; color: #FFFFFF; cursor: pointer; padding: 0.5rem 1rem;"
+                            onmouseover="this.style.backgroundColor='#B8002E'"
+                            onmouseout="this.style.backgroundColor='#E4003A'"
+                            onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Thoát
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div class="w-4/5 p-6">
+            <!-- Top Banner -->
+            <div class="bg-[#F5F5DC] p-6 rounded-lg mb-6 border border-black"">
+                <h1 class="text-2xl font-bold mb-2">
+                    Cách lấy mã giảm giá nhà LEAF TEA:
+                </h1>
+                <h2 class="text-xl mb-4">
+                    Hướng dẫn chi tiết cho người mới
+                </h2>
+                <div class="flex items-center">
+                    <div class="flex items-center bg-white p-2 rounded-lg mr-4">
+                        <i class="fas fa-ticket-alt text-pink-500 text-2xl">
+                        </i>
+                        <span class="ml-2 text-pink-500 font-bold">
+                            % CODE
+                        </span>
+                    </div>
+                    <div class="flex items-center bg-white p-2 rounded-lg">
+                        <i class="fas fa-tags text-yellow-500 text-2xl">
+                        </i>
+                        <a href="@Url.Action("Thanhtoan", "Home")" class="ml-2 text-yellow-500 font-bold hover:text-yellow-600">
+                            Thanh Toán Ngay !!!
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Voucher Steps -->
+            <div class="bg-[#2D2824] p-6 rounded-lg mb-6 text-white">
+                <h2 class="text-2xl font-bold mb-4">
+                    5 BƯỚC SĂN VOUCHER
+                </h2>
+                <div class="grid grid-cols-3 gap-4 text-[#2D2824]">
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 1
+                        </h3>
+                        <p>
+                            Lấy mã FreeShip nho ><
+                        </p>
+                    </div>
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 2
+                        </h3>
+                        <p>
+                            Lấy mã nhà LEAF TEA iii
+                        </p>
+                    </div>
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 3
+                        </h3>
+                        <p>
+                            Múc thêm mã từ các bank !!!
+                        </p>
+                    </div>
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 4
+                        </h3>
+                        <p>
+                            Order trà sữa ngay nhoé ><
+                        </p>
+                    </div>
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 5
+                        </h3>
+                        <p>
+                            Thanh toán cùng voucher và tận hưởng x3 lần giảm giá
+                        </p>
+                    </div>
+                    <div class="bg-[#FFF8DC] p-4 rounded-lg text-center">
+                        <h3 class="font-bold">
+                            BƯỚC 6
+                        </h3>
+                        <p>
+                            Đừng quên checkin tại quán nha
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between p-4 bg-white border-b border-gray-300">
+                <span class="text-gray-700 font-semibold">
+                    Voucher đã lưu
+                </span>
+                <i class="fas fa-ticket-alt text-orange-500"></i>
+            </div>
+            <!-- Voucher List -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 2.000 đối với hoá đơn 100.000
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 5.000 khi dùng các món đá xay tại quán
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 10.000 khi KH có ngày sinh trong tháng 1
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                            <p class="text-gray-500">
+                                Áp dụng dùng tại chỗ
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 8.000 đối với hoá đơn 40.000
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 50.000 với hoá đơn 100.000.000
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-red-600 p-2 rounded-lg text-white mr-4">
+                            <i class="fas fa-ticket-alt">
+                            </i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">
+                                Giảm 20.000 đối với sản phẩm có Matcha
+                            </h3>
+                            <p class="text-gray-500">
+                                Có Hiệu Lực Từ: 12.01.2021 00:00
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-red-600 font-bold">
+                            Dùng ngay &gt;
+                        </p>
+                        <p class="text-gray-500">
+                            Điều Kiện
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Sự kiện thoát trang cá nhân
+        function confirmLogout() {
+            const userConfirmed = confirm("Bạn có chắc chắn muốn đăng xuất?");
+            if (userConfirmed) {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+    </script>
+</body>
+</html>
