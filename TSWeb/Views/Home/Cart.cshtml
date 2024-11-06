@@ -1,137 +1,109 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Giỏ Hàng</title>
     <link href="~/Content/Css/CartStyleSheet.css" rel="stylesheet">
+
     @{
-        Layout = null;
+        Layout = "~/Views/Shared/nav.cshtml";
+        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
+        var userId = a != null && a.Count > 0 ? a[0].ToString() : null; // Đây là ID người dùng (IDND)
     }
 
+
 </head>
+
 <body>
-    <!--thanh điều hướng-->
-    <header>
-        <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
-            </div>
-            <div class="cart"><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
-            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
-            <div class="side-bar">
-                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                <ul class="menu-items">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Thông báo</a></li>
-                    <li><a href="#">Tài khoản</a></li>
-                </ul>
-            </div>
-            <div class="overlay-sidebar">
-            </div>
-            <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
-        </div>
-    </header>
-    <!--Phần thân-->
+
+    <!-- Phần thân -->
     <main class="container">
+        <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
+            <button onclick="window.location='@Url.Action("Index", "Home")'"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #FF6918; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold">
+                Quay về Trang Chủ
+            </button>
+        </div>
+
         <div class="cart-container">
             <div class="card-btn-all">
                 <input id="checkall" type="checkbox" class="check-all" />
                 <label for="checkall">Tất cả</label>
             </div>
+
             <div class="cart-list">
-                <div class="cart-items">
-                    <input type="checkbox" class="btn-check" />
-                    <img src="~/Content/Picture/straw.png" class="img-product" />
-                    <div class="cart-item-info">
-                        <h2>Trà sữa dâu lorem</h2>
-                        <div class="sizes">
+                @if (ViewBag.list != null && ViewBag.list.Count > 0)
+                {
+                    foreach (var gh in ViewBag.list)
+                    {
+                        <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
+                            <!-- Nút xóa -->
+                            <button class="btn-remove" style="position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
+                                &times; <!-- Biểu tượng 'x' để xóa -->
+                            </button>
 
-                            <div class="size" data-size="M">M</div>
-                            <div class="size" data-size="L">L</div>
+                            <input type="checkbox" class="btn-check" style="margin-right: 10px;" />
 
-                        </div>
-                        <div class="cart-item-group">
-                            <div class="item-price">
-                                20,000đ
+                            <!-- Hiển thị hình ảnh sản phẩm -->
+                            <img src="~/Content/Picture/@gh[8]" class="img-product" alt="" style="width: 120px; height: auto;" />
+
+                            <!-- Hiển thị thông tin sản phẩm -->
+                            <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
+                                <h2 style="font-size: 1.2em;">@gh[5]</h2>
+                                <div class="sizes">
+                                    <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 15px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
+                                        @gh[4]
+                                    </div>
+                                </div>
+                                <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+                                    <div class="item-quanlity" style="display: flex; align-items: center; background-color: white; padding: 10px; border: 2px solid #FF6918; border-radius: 10px;">
+                                        <button class="item-minus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
+                                            <img src="@Url.Content("~/Content/Picture/minus.png")" class="item-img-minus" alt="Giảm" />
+                                        </button>
+                                        <span style="margin: 0 10px; font-weight: bold; color: black;">@gh[2]</span>
+                                        <button class="item-plus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
+                                            <img src="@Url.Content("~/Content/Picture/plus.png")" class="item-img-plus" alt="Tăng" />
+                                        </button>
+                                    </div>
+                                    <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
+                                        đ @gh[3]/ly
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-quanlity">
-                                <button class="item-minus-btn">
-                                    <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                                </button>
-                                <span>2</span>
-                                <button class="item-plus-btn">
-                                    <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                                </button>
-                            </div>
                         </div>
+                    }
+                }
+                else
+                {
+                    <!-- Nếu giỏ hàng trống -->
+                    <div class="empty-cart" style="text-align: center; padding: 20px;">
+                        <h3>Giỏ hàng của bạn hiện đang trống!</h3>
+                        <p>Hãy thêm sản phẩm vào giỏ hàng để bắt đầu mua sắm.</p>
                     </div>
-                </div>
-                <div class="cart-items">
-                    <input type="checkbox" class="btn-check" />
-                    <img src="~/Content/Picture/straw.png" class="img-product" />
-                    <div class="cart-item-info">
-                        <h2>Trà sữa dâu lorem</h2>
-                        <div class="sizes">
-
-                            <div class="size" data-size="M">M</div>
-                            <div class="size" data-size="L">L</div>
-
-                        </div>
-                        <div class="cart-item-group">
-                            <div class="item-price">
-                                20,000đ
-                            </div>
-                            <div class="item-quanlity">
-                                <button class="item-minus-btn">
-                                    <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                                </button>
-                                <span>2</span>
-                                <button class="item-plus-btn">
-                                    <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-items">
-                    <input type="checkbox" class="btn-check" />
-                    <img src="~/Content/Picture/straw.png" class="img-product" />
-                    <div class="cart-item-info">
-                        <h2>Trà sữa dâu lorem</h2>
-                        <div class="sizes">
-                            <div class="size" data-size="M">M</div>
-                            <div class="size" data-size="L">L</div>
-                        </div>
-                        <div class="cart-item-group">
-                            <div class="item-price">
-                                20,000đ
-                            </div>
-                            <div class="item-quanlity">
-                                <button class="item-minus-btn">
-                                    <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                                </button>
-                                <span>2</span>
-                                <button class="item-plus-btn">
-                                    <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
+
         </div>
+
+        <!-- Phần thanh toán -->
         <div class="info-pay">
             <form action="/" method="post" class="info-pay__form">
-                <h4>Thông tin vận chuyển</h4>
-                <div><img src="~/Content/Picture/profile.jpg" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
-                <div><img src="~/Content/Picture/phone.jpg" alt="" /><input type="number" name="name" value="" placeholder="Số điện thoại" /></div>
-                <div><img src="~/Content/Picture/diachi.jpg" alt="" /><input type="text" name="name" value="" placeholder="Địa chỉ" /></div>
-            </form>
+                <h4>Thông tin giỏ hàng</h4>
+                <div>
+                    <p>Sản phẩm đã chọn: <span id="total-items"> 0</span></p>
+                </div>
+                <div>
+                    <p>Tổng tiền: <span id="total-amount">đ 0</span></p>
+                </div>
 
+                <!-- Thông tin vận chuyển -->
+                <h4>Thông tin vận chuyển</h4>
+                <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
+                <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="Số điện thoại" /></div>
+                <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="Địa chỉ" /></div>
+            </form>
             <div class="info-pay__method-pay">
                 <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
                     <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-khi-nhan-hang" />
@@ -141,49 +113,24 @@
                     <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-vi" />
                     Thanh toán bằng Ví MeMe
                 </label>
-                <button class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home")'">
+                <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home")'"
+                        style="background-color: #FF0033;
+                                   color: white;
+                                   border: none;
+                                   outline: none;
+                                   border-radius: 8px;
+                                   padding: 15px 20px;
+                                   font-size: 18px;
+                                   font-family: 'Arial', sans-serif;
+                                   font-weight: bold;
+                                   cursor: pointer;
+                                   transition: background-color 0.3s ease;">
                     Thanh toán
                 </button>
-
             </div>
+
         </div>
     </main>
-    <footer class="bottom">
-        <div class="footer-left">
-            <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-                <!-- Logo hoặc tên thương hiệu -->
-                <div class="brand" style="flex: 1;">
-                    <h2 style="margin: 0; font-size: 24px;">LEAF TEA</h2>
-                    <p>VỀ CHÚNG TÔI</p>
-                    <p>Một thương hiệu mới với những trãi nghiệm mới giúp cho những hương vị cuộc sống được bùng nổ hơn.</p>
-                </div>
 
-            </div>
-            <div class="footer-bottom" style="margin-top: 20px;">
-                <p>&copy; 2024 LEAF TEA - All rights reserved.</p>
-            </div>
-
-        </div>
-        <div class="footer-mid">
-            <!-- Thông tin liên hệ -->
-            <div class="contact-info" style="flex: 1;">
-                <p style="margin: 0;">Email: leaftea@gmail.com</p>
-                <p style="margin: 0;">Hotline: 0123 456 789</p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <!-- Liên kết mạng xã hội -->
-            <div class="social-icons" style="flex: 1; display: flex; justify-content: center;">
-                <a href="https://www.instagram.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 32px;">
-                </a>
-                <a href="https://www.facebook.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width: 32px;">
-                </a>
-
-            </div>
-        </div>
-    </footer>
-    <script src="~/Scripts/HomeJavaScript.js"></script>
 </body>
 </html>

@@ -20,10 +20,8 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi)
         {
-
             ViewBag.list = db.get("EXEC ThemNguoiDung N'" + hoten + "','" + email + "','" + matkhau + "'," + sdt + ",'" + diachi + "';");
-
-            return RedirectToAction("DangKyTC", "DangNhapDK");
+            return RedirectToAction("DangNhap", "DangNhapDK");
         }
         [HttpPost]
         public ActionResult XuLuDangNhap(string email, string matkhau)
@@ -35,7 +33,13 @@ namespace TSWeb.Controllers
                 return RedirectToAction("Index", "Home");
             }
             else
-                return RedirectToAction("DangKyTC", "DangNhapDK");
+                return RedirectToAction("DangNhap", "DangNhapDK");
+        }
+        [HttpPost]
+        public ActionResult DangXuat()
+        {
+            Session["taikhoan"] = null;
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult DangKyTC()
         {

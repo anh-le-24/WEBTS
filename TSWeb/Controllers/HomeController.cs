@@ -12,28 +12,30 @@ namespace TSWeb.Controllers
         DatabaseModel db = new DatabaseModel();
 
         public ActionResult Index()
-        {
-            ViewBag.list = db.get("SELECT * FROM SANPHAM");
+        {          
             return View();
         }
-        public ActionResult Cart()
+        public ActionResult Cart(string id)
         {
+            ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             return View();
         }
         public ActionResult Chitiet(string idsp)
         {
+            ViewBag.Tp = db.get("select * from TOPPING");
+            ViewBag.ctdh = db.get("select * from CTDONHANG");
             ViewBag.list = db.get("EXEC HienThiSanPhamTheoID " + idsp + ";");
             return View();
         }
-        public ActionResult vd()
-        {
-            ViewBag.list = db.get("select * from SANPHAM");
-            return View();
-        }
+ 
         public ActionResult ThanhToan()
         {
             return View();
         }
-
+        public ActionResult ListSanPham()
+        {
+            ViewBag.list = db.get("SELECT * FROM SANPHAM");
+            return View();
+        }
     }
 }

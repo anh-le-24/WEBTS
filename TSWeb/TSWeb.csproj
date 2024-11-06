@@ -147,6 +147,7 @@
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
     <Content Include="Content\Css\HomeNVStyleSheet.css" />
+    <Content Include="Content\Css\ListMenuStylesheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
@@ -222,7 +223,6 @@
     <Content Include="Views\Home\Chitiet.cshtml" />
     <Content Include="Views\NhanVien\HomeNV.cshtml" />
     <Content Include="Views\NhanVien\DNNV.cshtml" />
-    <Content Include="Views\Home\vd.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
     <Content Include="Views\NhanVien\ThemDH.cshtml" />
     <Content Include="Views\SanPham\Index.cshtml" />
@@ -237,6 +237,8 @@
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Admin\ThemKhachHang.cshtml" />
     <Content Include="Views\Admin\ThemNV.cshtml" />
+    <Content Include="Views\Shared\nav.cshtml" />
+    <Content Include="Views\Home\ListSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
