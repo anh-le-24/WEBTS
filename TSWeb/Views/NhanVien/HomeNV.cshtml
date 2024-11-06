@@ -1,6 +1,6 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "HomeNV";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,47 +13,25 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="~/images/bs1.png" alt="Logo VinaAI">
-            <span>DEMO PHẦN MỀM PHÒNG KHÁM VINAAI</span>
-        </div>
-        <div class="user-info">
-            <span>@DateTime.Now.ToString("HH:mm:ss | dddd, 'ngày' dd 'tháng' MM 'năm' yyyy")</span>
-            <img src="~/images/avatar.png" alt="Avatar" />
-        </div>
-    </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <ul>
-            <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
-            <li>@Html.ActionLink("Tiếp nhận bệnh", "TiepNhanBenh", "BenhNhan")</li>
-            <li>@Html.ActionLink("Lịch hẹn", "LichHen", "BenhNhan")</li>
-            <li>@Html.ActionLink("Danh mục", "DanhMuc", "BenhNhan")</li>
-        </ul>
-    </aside>
+    <button class="btn-them-dh">
+        Thêm đơn hàng
+    </button>
 
-    <!-- Main Content -->
-    <main>
-        <button class="btn-them-dh">
-            Thêm đơn hàng
-        </button>
-        @foreach (var a in ViewBag.list)
-        {
-            <section class="dashboard">
-                <div class="card">
-                    <span>Đơn hàng số: @a[0]</span>
-                    <span>Ngày thanh toán : @a[1]</span>
-                    <span>Trạng thái: @a[2]</span>
-                    <span>Tổng tiền :@a[3]</span>
-                    <span>@a[4]</span>
-                </div>
-            </section>
-        }
-
-    </main>
+    @foreach (var a in ViewBag.list) {
+        <section class="dashboard">
+            <div class="card">
+                <span>Đơn hàng số: @a[0]</span><br />
+                <span>Ngày thanh toán: @a[1]</span><br />
+                <span>Trạng thái: @a[2]</span><br />
+                <span>Tổng tiền: @a[3]</span><br />
+                <span>Chi tiết: @a[4]</span><br />
+            </div>
+            <div class="chuc-nang">
+                <a href="~/NhanVien">Chi tiết đơn hàng</a>
+            </div>
+        </section>
+    }
 
 </body>
 </html>

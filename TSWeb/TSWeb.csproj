@@ -149,6 +149,8 @@
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\PaymentStyleSheet.css" />
     <Content Include="Content\Css\ListMenuStyleSheet.css" />
+    <Content Include="Content\Css\ShiftManage.css" />
+    <Content Include="Content\Css\ThemDHStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\bell.png" />
     <Content Include="Content\Picture\bgg.jpg" />
@@ -158,6 +160,7 @@
     <Content Include="Content\Picture\discount.png" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\icons8-avatar-50.png" />
+    <Content Include="Content\Picture\icthongbao.png" />
     <Content Include="Content\Picture\img1.jpg" />
     <Content Include="Content\Picture\img2.jpg" />
     <Content Include="Content\Picture\img2.png" />
@@ -205,6 +208,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\LoginJavaScript.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ThemDHJavaScript.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -227,6 +231,9 @@
     <Content Include="Views\Sale\Discount.cshtml" />
     <Content Include="Views\Home\ListSanPham.cshtml" />
     <Content Include="Views\Shared\nav.cshtml" />
+    <Content Include="Views\NhanVien\ThemDH.cshtml" />
+    <Content Include="Views\NhanVien\CaLam.cshtml" />
+    <Content Include="Views\Sale\MyVoucher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

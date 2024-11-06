@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Quản Lý Ca Làm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/ShiftManage.css" rel="stylesheet" />
+}
+
+<header>
+    <h1>Quản Lý Ca Làm Việc</h1>
+</header>
+
+<div class="container">
+<!-- Danh sách ca làm -->
+    <section id="shift-list">
+        <br /> <br /> <br />
+        <h2>DANH SÁCH VOUCHER GIẢM GIÁ</h2>
+        <br /> <br /> <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>IDCL</th>
+                    <th>Ngày Làm</th>
+                    <th>Ca Làm</th>
+                    <th>Ngày Đăng Ký</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cl in ViewBag.listCL) {
+                    <tr>
+                        <td>@cl[0]</td>
+                        <td>@cl[2]</td>
+                        <td>@cl[1]</td>
+                        <td>@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>
+                            <button class="edit-btn">Chỉnh Sửa</button>
+                            <button class="delete-btn">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+<!-- Đăng ký ca làm -->
+<section id="register-shift">
+        <h2>ĐĂNG KÝ CA LÀM MỚI</h2>
+        <form action="~/NhanVien/DkyCL" method="post" enctype="multipart/form-data">
+            <label for="shift-date">Ngày Làm:</label>
+            <input type="date" id="shift-date" name="ngaylam">
+
+            <label for="shift-time">Ca Làm:</label>
+            <select id="shift-time" name="calam">
+                <option value="morning">Ca Sáng (8:00 - 12:00)</option>
+                <option value="afternoon">Ca Chiều (12:00 - 16:00)</option>
+                <option value="evening">Ca Tối (16:00 - 20:00)</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit" class="register-btn">Đăng Ký</button>
+        </form>
+    </section>
+</div>

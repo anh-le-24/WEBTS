@@ -1,4 +1,5 @@
-﻿﻿* {
+﻿
+﻿* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -36,7 +37,7 @@ header {
     text-align: center;
     width: 113px;
     height: 60px;
-    right: 5%;
+    right: 7%;
 }
 
     .down span {
@@ -83,7 +84,7 @@ header {
     z-index: 2;
     background-color: #212121;
     left: 0px;
-    width: 20%;
+    width: 40%;
     position: fixed;
     top: 0px;
     bottom: 0px;
@@ -125,14 +126,108 @@ header {
 .cart {
     right: 1%;
     position: absolute;
+    display: flex;
+    align-items: center;
 }
+/*thong báo*/
+.thongbao img {
+    right: 0%;
+    width: 32px; /* Hoặc kích thước bạn muốn */
+    height: 32px;
+    display: flex;
+    cursor: pointer; /*Hình bàn tay :))*/
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-panel {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 300px;
+    max-height: 500px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+    .notification-header h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+    .tab.active {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+.notification-content {
+    padding: 10px;
+}
+
+.notification-item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-text {
+    flex: 1;
+}
+
+    .notification-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .notification-text .time {
+        font-size: 12px;
+        color: #777;
+    }
+
 /**/
 main {
     background-color: white;
     width: 100%;
     max-width: 1520px;
     min-width: 320px;
-    min-height: 100vh;
+    height: 2782px;
 }
 
 /* Phần đầu trang */
@@ -369,101 +464,118 @@ main {
         }
 
 
-/*Ưu đãi*/
-.sale_title {
-    padding: 10px;
-    text-align: center;
-}
-
-.sale {
-    overflow: hidden;
-    position: relative;
-}
-
-.sale__wrap {
+/**/
+.content-bibot {
+    background-color: #000000;
+    width: 100%;
+    height: 960px;
     display: flex;
-    transition: all 0.5s ease-in;
-    margin-left: -5px;
-    margin-right: -5px;
 }
 
-.sale__item {
-    flex: 1 0 33.333%;
-    padding: 0 5px;
+.bibot-left {
+    background-color: black;
+    color: #FEF9F2;
+    width: 510px;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.sale__img-wrap {
-    padding-top: 125.030525%;
-    position: relative;
-}
-
-    .sale__img-wrap img {
-        position: absolute;
-        inset: 0;
-        object-fit: cover;
-        max-width: 100%;
-        height: 100%;
-        width: 100%;
+    .bibot-left ul {
+        list-style-type: none; /* Bỏ dấu chấm */
+        padding: 0; /* Bỏ lề trong */
     }
 
-.sale__btn {
-    z-index: 2;
-    outline: none;
-    border: none;
+    .bibot-left li {
+        padding: 16px 0; /* Thêm khoảng cách giữa các mục */
+        font-size: 18px; /* Kích thước chữ */
+        text-align: left;
+        width: 150px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+.bibot-right .card {
+    background-color: white;
+}
+
+.bibot-right {
+    background-color: white;
+    width: 100%;
+    max-width: 1000px;
+    height: 960px;
+    display: flex;
+    flex-direction: column;
+}
+/* Đường kẻ dọc phân chia */
+.bibot-divider {
+    width: 1px; /* Độ rộng của đường kẻ */
+    background-color: #ccc; /* Màu sắc của đường kẻ */
+    height: 100%; /* Chiều cao bằng 100% của container cha */
+    left: 510px; /* Đặt vị trí dọc theo chiều ngang của phần bên trái */
+    top: 0; /* Bắt đầu từ trên cùng */
+}
+
+.title-list {
+    height: 20px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.list-card {
+    background-color: white;
+    width: 100%;
+    height: 940px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+
+/*hihi*/
+.content-bot {
+    background-color: #E4E6D9;
+    width: 100%;
+    display: flex;
+    height: 630px;
+}
+
+.gg-map-left {
+    width: 50%;
+    height: 100%;
     background-color: #212121;
-    border-radius: 50%;
-    padding: 10px;
-    opacity: 0.7;
-    display: inline-flex;
+}
+
+    .gg-map-left h2 {
+        font-size: 50px;
+        font-weight: 500;
+        font-family: "Oswald", sans-serif;
+        line-height: 1.1;
+        color: white;
+    }
+
+    .gg-map-left h3 {
+        font-size: 16px;
+        font-weight: 500;
+        font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+        color: white;
+    }
+
+.gg-map-right {
+    height: 100%;
+    width: 50%;
+    right: 0%;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    display: flex;
 }
-
-    .sale__btn:first-child img {
-        transform: rotate(180deg);
-    }
-
-    .sale__btn:first-child {
-        left: 10px;
-    }
-
-    .sale__btn:nth-child(2) {
-        right: 10px;
-    }
-
-    .sale__btn img {
-        width: 24px;
-        height: 24px;
-    }
-
-.sale__content {
-    padding: 10px;
-}
-
-.sale__content-date {
-    padding-top: 9px;
-}
-
-.sale__content-desc {
-    padding-top: 7px;
-}
-
-.sale__content-more {
-    margin-top: 8px;
-    border-radius: 5px;
-    border: 1px solid #bf9369;
-    padding: 10px;
-    display: inline-block;
-}
-
-    .sale__content-more:hover {
-        background: #bf9369;
-        border: 1px solid #bf9369;
-    }
 /*cách xa ra đê*/
 footer {
     background-color: #272727;

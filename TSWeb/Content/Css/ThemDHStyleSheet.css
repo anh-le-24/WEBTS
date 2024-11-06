@@ -1,0 +1,38 @@
+﻿﻿body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-between; /* Căn giữa khoảng cách giữa hai bên */
+    margin: 20px; /* Thêm một chút lề */
+}
+
+.top-left {
+    flex: 1; /* Chiếm 1 phần */
+    margin-right: 20px; /* Khoảng cách giữa top-left và left */
+}
+
+.left {
+    flex: 1; /* Chiếm 1 phần */
+}
+
+.right {
+    flex: 1; /* Chiếm 1 phần */
+    margin-left: 20px; /* Khoảng cách giữa left và right */
+}
+
+h2, h3 {
+    color: #333; /* Màu sắc cho tiêu đề */
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%; /* Chiếm hết chiều rộng */
+    padding: 8px; /* Thêm padding cho các input */
+    margin: 5px 0; /* Thêm lề trên và dưới */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+}
+
+label {
+    font-weight: bold; /* Đậm cho label */
+}

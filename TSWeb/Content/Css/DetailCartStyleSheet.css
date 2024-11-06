@@ -1,4 +1,4 @@
-﻿﻿﻿* {
+﻿﻿* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -297,7 +297,8 @@ footer {
     color: white;
     display: flex;
     justify-content: space-between;
-    margin-top: auto; /* Để đảm bảo footer nằm dưới cùng */
+    bottom: 0; /* Đưa footer sát xuống dưới */
+    left: 0; /* Canh sát bên trái */
 }
 
 .footer-left,
@@ -311,22 +312,42 @@ footer {
     position: relative;
 }
 
-.footer-left, .footer-mid, .footer-right {
+.footer-left {
     padding: 15px;
 }
 
-    /* Đường kẻ cho footer-left và footer-mid */
-    .footer-left::after,
-    .footer-mid::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 79%; /* Chiều dài của đường kẻ */
-        width: 1px; /* Độ dày của đường kẻ */
-        background-color: rgba(255, 255, 255, 0.4);
-    }
+.footer-mid {
+    padding: 15px;
+}
+
+.footer-right {
+    padding: 15px;
+}
+
+/* Đường kẻ cho footer-left */
+.footer-left::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 79%; /* Chiều dài của đường kẻ */
+    width: 1px; /* Độ dày của đường kẻ */
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Đường kẻ cho footer-mid */
+.footer-mid::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 79%; /* Chiều dài của đường kẻ */
+    width: 1px; /* Độ dày của đường kẻ */
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 
 @media screen and (max-width: 500px) {
     footer {

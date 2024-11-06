@@ -35,7 +35,7 @@ namespace TSWeb.Controllers {
         public ActionResult ListSanPham() {
             return View();
         }
-        [HttpPost]
+
 
     }
 }

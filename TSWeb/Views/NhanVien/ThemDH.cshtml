@@ -1,0 +1,91 @@
+﻿﻿@{
+    ViewBag.Title = "ThemDH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/ThemDHStyleSheet.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <form>
+        <!-- MÃ và trạng thái đơn hàng mới-->
+        <div class="top-left">
+            <h2>Thêm đơn hàng</h2>
+            <label for="Ngaydat">Ngày đặt: @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</label>
+            <input type="hidden" name="NgayDat" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+
+            <label for="TrangThai">Trạng thái:</label>
+            <input type="text" id="TrangThai" name="TrangThai" value="Đang xử lý" />
+
+            <label for="TongTien">Tổng tiền:</label>
+            <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
+
+            <div class="timmakh">
+                <label for="khachHang">Mã khách hàng:</label>
+                <input type="text" name="KhachHang" id="KhachHang" value="" />
+            </div>
+
+
+        </div>
+
+        <!--Thêm sản phẩm mới-->
+        <div class="left">
+            <h3>Thêm sản phẩm vào đơn hàng</h3>
+            <select name="IDSP" id="IDSP" onchange="updatePrice()">
+                @foreach (var a in ViewBag.list) {
+                    <option value="@a[0]" data-price="@a[2]">@a[1]</option>
+                    <!-- Giả sử a[2] là giá -->
+                }
+            </select>
+
+            <label for="SoLuong">Số lượng:</label>
+            <input type="number" id="SoLuong" name="SoLuong" min="0" max="20" placeholder="0" oninput="updateTotalPrice()" />
+
+            <label for="Gia">Giá:</label>
+            <input type="number" id="Gia" name="Gia" readonly />
+
+            <select name="Size" id="Size" onchange="updateTotalPrice()">
+                <option value="S">Size S</option>
+                <option value="L">Size L</option>
+            </select>
+
+            <label>Chọn Đá:</label><br>
+            <input type="checkbox" id="option1" name="ice" value="Đá ít">
+            <label for="option1">Đá ít</label><br>
+
+            <input type="checkbox" id="option2" name="ice" value="Đá bình thường">
+            <label for="option2">Đá bình thường</label><br>
+
+            <input type="checkbox" id="option3" name="ice" value="Đá nhiều">
+            <label for="option3">Đá nhiều</label><br>
+
+            <label>Chọn Đường:</label><br>
+            <input type="checkbox" id="option4" name="sugar" value="Đường ít">
+            <label for="option4">Đường ít</label><br>
+
+            <input type="checkbox" id="option5" name="sugar" value="Đường bình thường">
+            <label for="option5">Đường bình thường</label><br>
+
+            <input type="checkbox" id="option6" name="sugar" value="Đường nhiều">
+            <label for="option6">Đường nhiều</label><br>
+
+            <label>Topping:</label>
+            <ul>
+                @foreach (var topping in ViewBag.tp) {
+                    <li>
+                        <input type="checkbox" id="topping_@topping[0]" name="toppings" value="@topping[0]" data-price="@topping[2]" onchange="updateTotalPrice()">
+                        <label for="topping_@topping[0]">@topping[1]</label>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <!-- Danh sách sản phẩm đã thêm-->
+        <div class="right">
+            <h3>Sản phẩm đã thêm</h3>
+            @foreach (var a in ViewBag.ctdh) {
+
+            }
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/ThemDHJavaScript.js"></script>
