@@ -21,6 +21,7 @@
         <div class="title-list">
             <h3>Menu</h3>
         </div>
+
         <div class="list-card">
             @foreach (var sp in ViewBag.list)
             {
@@ -32,52 +33,52 @@
                     if (sp[6] != null && int.TryParse(sp[6].ToString(), out sp6) && sp6 > 0)
                     {
                         var salePrice = sp2 - ((sp2 / 100) * sp6); 
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
+            <div class="card">
+                <div class="card-top">
+                    <i class='bx bx-heart'></i>
+                    <i class='bx bx-cart'></i>
+                </div>
+                <div class="card-img">
                                 <img src="~/Content/Picture/@sp[3]">
-                            </div>
-                            <div class="card-bot">
+                </div>
+                <div class="card-bot">
                                 <span>@sp[1]</span>
                                 <span style="text-decoration: line-through;">@sp[2]</span>
                                 <span id="sale">@salePrice</span>
-                                <div class="card-size">
-                                </div>
-                                <div class="btn-buy-order">                                  
+                    <div class="card-size">
+                    </div>
+                    <div class="btn-buy-order">
                                         <a href="@Url.Action("Chitiet", "Home", new { idsp = sp[0] })">Xem chi tiết</a>                               
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
                     }
                     else
                     {
                         // Hiển thị giá gốc nếu không có giá trị giảm giá
-                        <div class="card">
-                            <div class="card-top">
-                                <i class='bx bx-heart'></i>
-                                <i class='bx bx-cart'></i>
-                            </div>
-                            <div class="card-img">
+            <div class="card">
+                <div class="card-top">
+                    <i class='bx bx-heart'></i>
+                    <i class='bx bx-cart'></i>
+                </div>
+                <div class="card-img">
                                 <img src="~/Content/Picture/@sp[3]">
-                            </div>
-                            <div class="card-bot">
+                </div>
+                <div class="card-bot">
                                 <span>@sp[1]</span>
                                 <span>@sp[2]</span>                             
-                                <div class="card-size">
-                                </div>
-                                <div class="btn-buy-order">
+                    <div class="card-size">
+                    </div>
+                    <div class="btn-buy-order">
                                     <a href="@Url.Action("Chitiet", "Home", new { idsp = sp[0] })">Xem chi tiết</a>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
                     }
                 }
             }
 
-        </div>
+                </div>
 
 
     </div>

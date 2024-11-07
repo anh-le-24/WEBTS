@@ -116,6 +116,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\TrangCaNhanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,12 +155,22 @@
     <Content Include="Content\Css\PaymentStyleSheet.css" />
     <Content Include="Content\Css\ThemDHStyleSheet.css" />
     <Content Include="Content\Css\TongQuan.css" />
+    <Content Include="Content\Css\TrangCaNhanStyleSheet.css" />
+    <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
+    <Content Include="Content\Picture\banner_diemtichluy.png" />
+    <Content Include="Content\Picture\banner_dtl_1.png" />
+    <Content Include="Content\Picture\banner_dtl_2.png" />
     <Content Include="Content\Picture\bell.png" />
     <Content Include="Content\Picture\bgg.jpg" />
     <Content Include="Content\Picture\bg_dn.jpg" />
     <Content Include="Content\Picture\cart.png" />
+    <Content Include="Content\Picture\cholayhang.png" />
+    <Content Include="Content\Picture\choxacnhan.png" />
+    <Content Include="Content\Picture\danggiao.png" />
+    <Content Include="Content\Picture\danhgia.png" />
     <Content Include="Content\Picture\diachi.jpg" />
+    <Content Include="Content\Picture\discount.png" />
     <Content Include="Content\Picture\down.png" />
     <Content Include="Content\Picture\icons8-avatar-50.png" />
     <Content Include="Content\Picture\icthongbao.png" />
@@ -175,6 +186,7 @@
     <Content Include="Content\Picture\img9.png" />
     <Content Include="Content\Picture\menu1.png" />
     <Content Include="Content\Picture\minus.png" />
+    <Content Include="Content\Picture\next.png" />
     <Content Include="Content\Picture\phone.jpg" />
     <Content Include="Content\Picture\plus.png" />
     <Content Include="Content\Picture\profile.jpg" />
@@ -182,6 +194,11 @@
     <Content Include="Content\Picture\straw.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\logo.jpg" />
+    <Content Include="Content\Picture\uudai1.jpg" />
+    <Content Include="Content\Picture\uudai2.jpg" />
+    <Content Include="Content\Picture\uudai3.jpg" />
+    <Content Include="Content\Picture\uudai4.jpg" />
+    <Content Include="Content\Picture\uudai5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -239,6 +256,11 @@
     <Content Include="Views\Admin\ThemNV.cshtml" />
     <Content Include="Views\Shared\nav.cshtml" />
     <Content Include="Views\Home\ListSanPham.cshtml" />
+    <Content Include="Views\TrangCaNhan\TrangCaNhan.cshtml" />
+    <Content Include="Views\TrangCaNhan\Donhang.cshtml" />
+    <Content Include="Views\TrangCaNhan\Lichsudonhhang.cshtml" />
+    <Content Include="Views\TrangCaNhan\Voucher.cshtml" />
+    <Content Include="Views\TrangCaNhan\Diemtichluy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

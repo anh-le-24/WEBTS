@@ -6,11 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TSWeb.Models;
+using System.Configuration;
+using System.Collections;
+using System.CodeDom.Compiler;
 
-namespace TSWeb.Controllers
-{
-    public class HomeController : Controller
-    {
+namespace TSWeb.Controllers {
+    public class HomeController : Controller {
         DatabaseModel db = new DatabaseModel();
 
         public ActionResult Index()
@@ -75,5 +76,6 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("SELECT * FROM SANPHAM");
             return View();
         }
+
     }
 }
