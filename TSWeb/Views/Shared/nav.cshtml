@@ -9,8 +9,7 @@
 
     @{
         // Lấy danh sách từ Session["taikhoan"]
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
-        var userId = a != null && a.Count > 0 ? a[0].ToString() : null; // Đây là ID người dùng (IDND)
+
     }
 
 </head>
@@ -24,7 +23,7 @@
             <div class="cart">
                 @if (Session["taikhoan"] != null)
                 {
-                    <a href='@Url.Action("Cart", "Home", new { id = userId })'>
+                    <a href='@Url.Action("Cart", "Home", new { id = Session["taikhoan"] })'>
                         <img src="~/Content/Picture/cart.png" alt="Cart" />
                     </a>
                 }
@@ -39,9 +38,9 @@
             <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                @if (Session["taikhoan"] != null && userId != null)
+                @if (Session["taikhoan"] != null && Session["taikhoan"] != null)
                 {
-                    <h3>@userId</h3>
+                    <h3>@Session["taikhoan"]</h3>
                 }
                 else
                 {

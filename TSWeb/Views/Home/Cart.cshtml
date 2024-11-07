@@ -9,8 +9,6 @@
 
     @{
         Layout = "~/Views/Shared/nav.cshtml";
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
-        var userId = a != null && a.Count > 0 ? a[0].ToString() : null; // Đây là ID người dùng (IDND)
     }
 
 
@@ -18,6 +16,7 @@
 
 <body>
 
+    <span>@ViewBag.id</span>
     <!-- Phần thân -->
     <main class="container">
         <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
