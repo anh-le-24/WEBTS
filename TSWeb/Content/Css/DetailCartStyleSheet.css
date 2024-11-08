@@ -170,6 +170,14 @@ button {
     margin-bottom: 12px; /* Tăng khoảng cách giữa các ô */
     gap: 15px; /* Khoảng cách giữa các ô chọn */
 }
+.ice{
+    display:flex;
+    gap:20px;
+}
+.sugar {
+    display: flex;
+    gap: 15px;
+}
 
 input[type="radio"] {
     display: none;
@@ -177,7 +185,6 @@ input[type="radio"] {
 
     /* Thiết kế cho các nhãn chọn để thành ô hình chữ nhật */
     input[type="radio"] + label {
-        display: ruby-text;
         padding: 12px 25px; /* Tăng padding để ô option lớn hơn */
         border: 1px solid #ddd;
         border-radius: 8px;
@@ -274,7 +281,6 @@ ul {
 }
 
 li {
-    padding: 10px;
     display: flex;
     align-items: center; /* Căn giữa các phần tử theo chiều dọc */
     gap: 5px; /* Khoảng cách giữa checkbox và label */

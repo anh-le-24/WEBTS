@@ -22,12 +22,13 @@
             <input value="@ViewBag.list[0][0]" name="idsp" type="hidden" />
 
             <div class="detail-product">
-                <img src="~/Content/Picture/profile.jpg" class="detail-product__img" />
+                <img src="~/Content/Picture/@ViewBag.list[0][5]" class="detail-product__img" />
                 <div class="detail-product__info">
                     <h2 class="detail-product__title">@ViewBag.list[0][1]</h2>
                     <p class="detail-product__price">Giá : @ViewBag.list[0][2]</p>
                     <p class="detail-product__label">Còn hàng</p>
 
+                    <h3>Chọn Size</h3>
                     <div class="sizes">
                         <input type="radio" id="sizeM" name="size" value="M" onchange="updateTotalPrice()" />
                         <label for="sizeM" class="size" data-size="M">M</label>
@@ -36,27 +37,30 @@
                         <label for="sizeL" class="size" data-size="L">L</label>
                     </div>
 
-                    <label>Chọn Đá:</label><br>
-                    <input type="radio" id="option1" name="ice" value="Đá ít" onchange="updateTotalPrice()">
-                    <label for="option1">Đá ít</label><br>
+                    <h3>Chọn Đá</h3>
+                    <div class="ice">
+                        <input type="radio" id="option1" name="ice" value="Đá ít" onchange="updateTotalPrice()">
+                        <label for="option1">Đá ít</label><br>
 
-                    <input type="radio" id="option2" name="ice" value="Đá bình thường" onchange="updateTotalPrice()">
-                    <label for="option2">Đá bình thường</label><br>
+                        <input type="radio" id="option2" name="ice" value="Đá bình thường" onchange="updateTotalPrice()">
+                        <label for="option2">Đá bình thường</label><br>
 
-                    <input type="radio" id="option3" name="ice" value="Đá nhiều" onchange="updateTotalPrice()">
-                    <label for="option3">Đá nhiều</label><br>
+                        <input type="radio" id="option3" name="ice" value="Đá nhiều" onchange="updateTotalPrice()">
+                        <label for="option3">Đá nhiều</label><br>
+                    </div>
 
-                    <label>Chọn Đường:</label><br>
-                    <input type="radio" id="option4" name="sugar" value="Đường ít" onchange="updateTotalPrice()">
-                    <label for="option4">Đường ít</label><br>
+                    <h3>Chọn Đường</h3>
+                    <div class="sugar">
+                        <input type="radio" id="option4" name="sugar" value="Đường ít" onchange="updateTotalPrice()">
+                        <label for="option4">Đường ít</label><br>
 
-                    <input type="radio" id="option5" name="sugar" value="Đường bình thường" onchange="updateTotalPrice()">
-                    <label for="option5">Đường bình thường</label><br>
+                        <input type="radio" id="option5" name="sugar" value="Đường bình thường" onchange="updateTotalPrice()">
+                        <label for="option5">Đường bình thường</label><br>
 
-                    <input type="radio" id="option6" name="sugar" value="Đường nhiều" onchange="updateTotalPrice()">
-                    <label for="option6">Đường nhiều</label><br>
-
-                    <label>Topping:</label>
+                        <input type="radio" id="option6" name="sugar" value="Đường nhiều" onchange="updateTotalPrice()">
+                        <label for="option6">Đường nhiều</label><br>
+                    </div>
+                    <h3>Chọn Topping</h3>
                     <ul style="list-style-type: none;">
                         @foreach (var topping in ViewBag.tp)
                         {

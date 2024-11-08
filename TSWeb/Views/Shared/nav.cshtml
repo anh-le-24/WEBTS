@@ -11,9 +11,18 @@
 <body>
     <header>
         <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
+            <div class="dangnhap">
+                @if (Session["taikhoan"] != null)
+                {
+                    <h3>Xin chào @Session["tennguoidung"]</h3>
+                    <form action="@Url.Action("DangXuat", "DangNhapDK")" method="post">
+                        <button type="submit" class="btn btn-link">Đăng xuất</button>
+                    </form>
+                }
+                else
+                {
+                    <a style="text-decoration:none; color:blue" href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
+                }
             </div>
             <div class="cart">
                 @if (Session["taikhoan"] != null)
@@ -37,14 +46,6 @@
 
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                @if (Session["taikhoan"] != null && Session["taikhoan"] != null)
-                {
-                    <h3>@Session["taikhoan"]</h3>
-                }
-                else
-                {
-                    <a href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
-                }
                 <ul class="menu-items">
                     <li><a href="@Url.Action("ListSanPham","Home")">Menu</a></li>
                     <li><a href="@Url.Action("GioiThieu", "Home")">Về chúng tôi</a></li>

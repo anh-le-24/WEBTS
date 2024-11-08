@@ -20,7 +20,11 @@ header {
     min-width: 320px;
     height: 80px;
 }
-
+.dangnhap { 
+    justify-items:center;
+    right: 5%;
+    position: absolute;
+}
 .nav {
     display: flex;
     justify-content: center;

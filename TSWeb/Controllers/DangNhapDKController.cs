@@ -44,8 +44,11 @@ namespace TSWeb.Controllers {
                     int idnd = 0;
                     int.TryParse(userId, out idnd); // Chuyển đổi từ string sang int
 
+
+                    string userName = userList[2].ToString();
                     // Lưu id người dùng vào session
                     Session["taikhoan"] = idnd;
+                    Session["tennguoidung"] = userName;
 
                     return RedirectToAction("Index", "Home");
                 }

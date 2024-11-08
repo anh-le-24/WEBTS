@@ -8,6 +8,7 @@
 
     @{
         Layout = "~/Views/Shared/nav.cshtml";
+        int count = 0;
     }
 
 
@@ -45,60 +46,28 @@
     <div class="content-mid">
         <h3>Sản Phẩm Bán Chạy</h3>
         <div class="sanphambanchay">
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img6.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên: </Span>
-                    <Span>Giá: </Span>
-                    <span id="sale">Giảm giá: </span>
-                    <div class="btn-buy-order">
-                        <button>Mua Ngay</button>
-                        <button>Thêm</button>
+            // chưa add sản phẩm 
+            @*@foreach (var sp in ViewBag.list)
+            {
+                <div class="card">
+                    <div class="card-top">
+                        <i class='bx bx-heart'></i>
+                        <i class='bx bx-cart'></i>
+                    </div>
+                    <div class="card-img">
+                        <img src="~/Content/Picture/img6.jpg">
+                    </div>
+                    <div class="card-bot">
+                        <Span>Tên: </Span>
+                        <Span>Giá: </Span>
+                        <span id="sale">Giảm giá: </span>
+                        <div class="btn-buy-order">
+                            <button>Mua Ngay</button>
+                            <button>Thêm</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img4.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên: </Span>
-                    <Span>Giá: </Span>
-                    <span id="sale">Giảm giá: </span>
-                    <div class="btn-buy-order">
-                        <button>Mua Ngay</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên: </Span>
-                    <Span>Giá: </Span>
-                    <span id="sale">Giảm giá: </span>
-                    <div class="btn-buy-order">
-                        <button>Mua Ngay</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
+            }*@
         </div>
     </div>
     <h2 class="sale_title">Ưu Đãi & Tin Tức</h2>

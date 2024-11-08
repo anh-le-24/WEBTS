@@ -185,6 +185,7 @@
     <Content Include="Content\Picture\img7.jpg" />
     <Content Include="Content\Picture\img8.png" />
     <Content Include="Content\Picture\img9.png" />
+    <Content Include="Content\Picture\Matcha-Tea-Latte-with-Matcha-Jelly.png" />
     <Content Include="Content\Picture\menu1.png" />
     <Content Include="Content\Picture\minus.png" />
     <Content Include="Content\Picture\next.png" />
@@ -193,8 +194,13 @@
     <Content Include="Content\Picture\profile.jpg" />
     <Content Include="Content\Picture\shop.jpg" />
     <Content Include="Content\Picture\straw.png" />
+    <Content Include="Content\Picture\Sua-Tuoi-Long-Nhan.png" />
     <Content Include="Content\Picture\tea1.jpg" />
     <Content Include="Content\Picture\logo.jpg" />
+    <Content Include="Content\Picture\tra-xanh-kem-sua-Milo.png" />
+    <Content Include="Content\Picture\Tra-Xanh-Long-Nhan.png" />
+    <Content Include="Content\Picture\Trà-sữa-Khoai-môn.png" />
+    <Content Include="Content\Picture\Trà-Đen-Milkfoam.png" />
     <Content Include="Content\Picture\uudai1.jpg" />
     <Content Include="Content\Picture\uudai2.jpg" />
     <Content Include="Content\Picture\uudai3.jpg" />
