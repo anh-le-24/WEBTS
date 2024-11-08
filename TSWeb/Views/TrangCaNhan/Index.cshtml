@@ -196,7 +196,7 @@
             </div>
             <ul class="menu-items">
                 <li class="mb-2">
-                    <a href="@Url.Action("TrangCaNhan", "TrangCaNhan")" class="flex items-center text-orange-500" style="color: #9A7E6F;">
+                    <a href="@Url.Action("Index","TrangCaNhan",new { idnd = Session["taikhoan"] })" class="flex items-center text-orange-500" style="color: #9A7E6F;">
                         <i class="fas fa-user mr-2"></i> Tài Khoản Của Tôi
                     </a>
                 </li>
@@ -240,37 +240,32 @@
                     <label class="block text-gray-700">
                         Tên:
                     </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="kim" required />
+                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="@ViewBag.list[0][1]" required />
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">
                         Số điện thoại:
                     </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="1234567890" />
+                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="@ViewBag.list[0][4]" />
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">
                         Email:
                     </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="email" value="quanly@gmail.com" readonly />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">
-                        Mật khẩu:
-                    </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="password" value="•••" />
+                    <input class="w-full p-2 border border-gray-300 rounded" type="email" value="@ViewBag.list[0][2]" readonly />
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">
                         Địa chỉ:
                     </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="456 Đường XYZ" />
+                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="@ViewBag.list[0][5]" />
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">
                         Điểm tích lũy:
                     </label>
-                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="100" readonly />
+                    <input class="w-full p-2 border border-gray-300 rounded" type="text" value="@ViewBag.list[0][9]" readonly style="cursor:not-allowed;"
+/>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">
@@ -289,9 +284,9 @@
                     <button class="bg-red-500 text-white px-4 py-2 rounded mr-2" type="submit" style="background-color: #FBD288; ">
                         Cập nhật
                     </button>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded" type="button" onclick="confirmLogout()">
+                    <a href="@Url.Action("DangNhap","DangNhapDK")" class="bg-red-500 text-white px-4 py-2 rounded" type="button" onclick="confirmLogout()">
                         Đăng xuất
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>
@@ -314,6 +309,6 @@
                 }
             }
         </script>
-
+</div>
 </body>
 </html>

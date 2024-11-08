@@ -18,12 +18,13 @@ namespace TSWeb.Controllers {
             return View();
         }
         public ActionResult Cart(string id) 
-        { 
+        {
+            ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             return View();
         }
         public ActionResult Chitiet(string idsp)
-    {
+        {
             ViewBag.Tp = db.get("select * from TOPPING");
             ViewBag.ctdh = db.get("select * from CTDONHANG");
             ViewBag.list = db.get("EXEC HienThiSanPhamTheoID " + idsp + ";");
@@ -60,7 +61,7 @@ namespace TSWeb.Controllers {
                          + (TongTien.HasValue ? TongTien.Value.ToString() : "0") + ","
                          + "'" + size + "',"
                          + idsp + ","
-                         + (string.IsNullOrEmpty(selectedOptions) ? "NULL" : "'" + selectedOptions + "'") + ","
+                         + (string.IsNullOrEmpty(selectedOptions) ? "NULL" : "N'" + selectedOptions + "'") + ","
                          + (TongTienTopping.HasValue ? TongTienTopping.Value.ToString() : "0") + ";";
 
                 // Thực hiện câu lệnh SQL
@@ -79,9 +80,14 @@ namespace TSWeb.Controllers {
             return RedirectToAction("ListSanPham", "Home");
         }
 
-
+        public ActionResult XoaGH(string id)
+        {
+            ViewBag.list= db.get("EXEC XoaSanPhamTrongGioHang "+ id);
+            return RedirectToAction("Cart","Home",new {id = Session["taikhoan"] });
+        }
         public ActionResult ThanhToan()
         {
+
             return View();
         }
         public ActionResult ListSanPham()

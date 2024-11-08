@@ -8,9 +8,10 @@ namespace TSWeb.Controllers
     {
         // GET: TrangCaNhan
         DatabaseModel db = new DatabaseModel();
-        public ActionResult TrangCaNhan()
+
+        public ActionResult Index(string idnd)
         {
-            ViewBag.list = db.get("EXEC XemNguoiDungTheoID 1;");
+            ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + idnd);
             return View();
         }
         public ActionResult Donhang()

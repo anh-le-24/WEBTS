@@ -256,7 +256,7 @@
     <Content Include="Views\Admin\ThemNV.cshtml" />
     <Content Include="Views\Shared\nav.cshtml" />
     <Content Include="Views\Home\ListSanPham.cshtml" />
-    <Content Include="Views\TrangCaNhan\TrangCaNhan.cshtml" />
+    <Content Include="Views\TrangCaNhan\Index.cshtml" />
     <Content Include="Views\TrangCaNhan\Donhang.cshtml" />
     <Content Include="Views\TrangCaNhan\Lichsudonhhang.cshtml" />
     <Content Include="Views\TrangCaNhan\Voucher.cshtml" />
