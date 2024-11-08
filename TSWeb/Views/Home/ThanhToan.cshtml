@@ -1,11 +1,9 @@
-﻿﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="~/Content/Css/DetailCartStyleSheet.css" rel="stylesheet">
     <link href="~/Content/Css/PaymentStyleSheet.css" rel="stylesheet">
 
     @{
@@ -14,71 +12,132 @@
 </head>
 <body>
 
-    <!--Phần thân-->
-    <main>
-        <div class="checkout-container">
-            <h3>Thông tin đơn hàng</h3>
+    <!-- Phần thân -->
+    <form action="" method="post">
+        <main>
+            <div class="checkout-container">
+                <h3>Thông tin đơn hàng</h3>
 
-            <!-- Store Selection -->
-            <div class="store-selection">
-                <div class="store-icon">
-                    <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
+                <!-- Store Selection -->
+                <div class="store-selection">
+                    <div class="store-icon">
+                        <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                @foreach (var gh in ViewBag.list)
+                {
+                    <div class="product-details">
+                        <div class="product-image">
+                            <img src="~/Content/Picture/@gh[7]" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <p><strong>@gh[5]</strong></p>
+                            <p>@gh[8]</p>
+                            <span id="tongtiensp_@gh[1]" class="product-price">@gh[3] VNĐ</span>
+                        </div>
+                    </div>
+                }
+
+                <!-- Promo Code Section -->
+                <div class="promo-code">
+                    <input type="text" placeholder="Mã khuyến mại" id="promoCode">
+                    <button type="button" onclick="addPromoCode()">Thêm khuyến mại</button>
+                </div>
+
+                <!-- Price Details -->
+                <div class="price-details">
+                    <div class="row">
+                        <span>Tổng:</span>
+                        <input id="totalAmount" value="0" name="tongtiensp" readonly /> <!-- Tổng tiền các sản phẩm -->
+                    </div>
+                    <div class="row">
+                        <span>Phí vận chuyển:</span>
+                        <span id="phivanchuyen">0đ</span>
+                    </div>
+
+                    <div class="row">
+                        <label for="quick">Chọn nhanh</label>
+                        <input type="radio" id="quick" name="shipping_speed" value="quick" onclick="updateShippingCost('quick')">
+
+                        <label for="slow">Chọn chậm</label>
+                        <input type="radio" id="slow" name="shipping_speed" value="slow" onclick="updateShippingCost('slow')">
+                    </div>
+
+                    <div class="row">
+                        <span>Khuyến mại:</span>
+                        <input id="khuyenmai" value="0" name="khuyenmai" />
+                    </div>
+
+                    <div class="row">
+                        <span><strong>Tổng cộng:</strong></span>
+                        <input id="finalTotal" value="0" name="tongtiendonhang" readonly />
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" class="order-button">ĐẶT HÀNG</button>
+                    <a href="@Url.Action("ListSanPham","Home")" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
                 </div>
             </div>
+        </main>
+    </form>
 
-            <!-- Product Details -->
-            <div class="product-details">
-                <div class="product-image">
-                    <img src="~/Content/Picture/img7.jpg" alt="Product Image">
-                </div>
-                <div class="product-info">
-                    <p><strong>Kem Vani Trà Sữa Trân Châu Hoàng Kim (M)</strong></p>
-                    <p>Thêm Thạch Konjac, Thêm Thạch quế hoa, Topping Thạch Dứa, Thêm trân châu sương mai, 100% đường, 100% đá</p>
-                    <p>46,000đ x 1 = 46,000đ</p>
-                </div>
-            </div>
+    <script>
+        // Hàm tính tổng tiền của các sản phẩm
+        function calculateTotalAmount() {
+            let totalAmount = 0;
 
-            <!-- Promo Code Section -->
-            <div class="promo-code">
-                <input type="text" placeholder="Mã khuyến mại">
-                <button>Thêm khuyến mại</button>
-            </div>
+            // Lấy tất cả các sản phẩm và cộng tổng tiền
+            let productPrices = document.querySelectorAll('.product-price');
+            productPrices.forEach(function (priceElement) {
+                let price = parseInt(priceElement.textContent.replace(' VNĐ', '').replace(',', '').trim());
+                totalAmount += price;
+            });
 
-            <!-- Price Details -->
-            <div class="price-details">
-                <div class="row">
-                    <span>Số lượng cốc:</span>
-                    <span>1 cốc</span>
-                </div>
-                <div class="row">
-                    <span>Tổng:</span>
-                    <span>46,000đ</span>
-                </div>
-                <div class="row">
-                    <span>Phí vận chuyển:</span>
-                    <span>0đ</span>
-                </div>
-                <div class="row">
-                    <span>Khuyến mại:</span>
-                    <span>0đ</span>
-                </div>
-                <div class="row">
-                    <span><strong>Tổng cộng:</strong></span>
-                    <span><strong>46,000đ</strong></span>
-                </div>
-            </div>
+            // Cập nhật tổng tiền vào giao diện
+            document.getElementById('totalAmount').value = totalAmount;
 
-            <!-- Notes Section -->
-            <div class="notes">
-                <textarea placeholder="Thêm ghi chú..."></textarea>
-            </div>
+            // Cập nhật phí vận chuyển và tính tổng cộng
+            updateShippingCost(document.querySelector('input[name="shipping_speed"]:checked')?.value || 'quick');
+        }
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="order-button">ĐẶT HÀNG</button>
-                <button class="continue-shopping">TIẾP TỤC MUA HÀNG</button>
-            </div>
-        </div>
-    </main>
+        // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
+        function updateShippingCost(shippingType) {
+            let totalAmount = parseInt(document.getElementById('totalAmount').value);
+            let shippingCost = 0;
+            let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0; // Nếu không có khuyến mãi, giá trị mặc định là 0
+
+            // Cập nhật phí vận chuyển
+            if (shippingType === 'quick') {
+                shippingCost = 5000; // Ví dụ phí vận chuyển nhanh
+            } else if (shippingType === 'slow') {
+                shippingCost = 2000; // Ví dụ phí vận chuyển chậm
+            }
+
+            // Cập nhật phí vận chuyển vào giao diện
+            document.getElementById('phivanchuyen').textContent = shippingCost + 'đ';
+
+            // Tính tổng cộng (Tổng sản phẩm + phí vận chuyển - khuyến mãi)
+            let finalTotal = totalAmount + shippingCost - khuyenMai;
+            document.getElementById('finalTotal').value = finalTotal;
+        }
+
+        // Hàm thêm khuyến mãi
+        function addPromoCode() {
+            let promoValue = prompt("Nhập giá trị khuyến mãi:"); // Ví dụ nhập khuyến mãi
+            let khuyenMai = parseInt(promoValue);
+
+            if (khuyenMai && khuyenMai > 0) {
+                document.getElementById('khuyenmai').value = khuyenMai;
+                updateShippingCost(document.querySelector('input[name="shipping_speed"]:checked')?.value || 'quick');
+            }
+        }
+
+        // Gọi hàm tính tổng tiền khi trang được tải
+        window.onload = calculateTotalAmount;
+    </script>
+
+
 </body>
 </html>

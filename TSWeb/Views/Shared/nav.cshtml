@@ -7,11 +7,6 @@
     <title></title>
     <link href="~/Content/Css/HomeStyleSheet.css" rel="stylesheet">
 
-    @{
-        // Lấy danh sách từ Session["taikhoan"]
-
-    }
-
 </head>
 <body>
     <header>
@@ -29,13 +24,17 @@
                 }
                 else
                 {
-                    <a href='@Url.Action("Cart", "Home")'>
+                    <a href="@Url.Action("DangNhap", "DangNhapDK")" onclick="alert('Vui lòng đăng nhập để xem giỏ hàng!');">
                         <img src="~/Content/Picture/cart.png" alt="Cart" />
                     </a>
                 }
             </div>
 
-            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+
+            <a href="@Url.Action("Index","Home")">
+                <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+            </a>
+
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
                 @if (Session["taikhoan"] != null && Session["taikhoan"] != null)
@@ -48,7 +47,7 @@
                 }
                 <ul class="menu-items">
                     <li><a href="@Url.Action("ListSanPham","Home")">Menu</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="@Url.Action("GioiThieu", "Home")">Về chúng tôi</a></li>
                     <li><a href="#">Ưu đãi</a></li>
                     <li><a href="@Url.Action("Index","TrangCaNhan",new { idnd = Session["taikhoan"] })">Thông tin cá nhân</a></li>
                     <li><a href="@Url.Action("DangNhap", "DangNhapDK")">Tài khoản</a></li>

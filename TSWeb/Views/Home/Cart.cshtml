@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,6 @@
 </head>
 
 <body>
-    <span>@ViewBag.id</span>
-
     <main class="container">
         <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
             <button onclick="window.location='@Url.Action("Index", "Home")'"
@@ -41,26 +40,32 @@
                                         @gh[4]
                                     </div>
                                 </div>
+                                <div class="thongtintopping" style="padding:5px;">
+                                    @gh[8]
+                                </div>
                                 <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
                                     <div class="plus-minus-product">
                                         <div class="item-quanlity">
-                                            <button type="button" class="item-minus-btn" onclick="updateQuantity('minus', @gh[0])">
+                                            <button type="button" class="item-minus-btn" onclick="updateQuantity('minus', @gh[1])">
                                                 <img src="~/Content/Picture/minus.png" class="item-img-minus" />
                                             </button>
                                             <label for="SoLuong">Số lượng:</label>
-                                            <input type="number" id="SoLuong-@gh[0]" name="SoLuong" min="1" max="10" value="@gh[2]" placeholder="@gh[2]" onchange="updateTotalPrice()" oninput="updateTotalPrice()" />
-                                            <button type="button" class="item-plus-btn" onclick="updateQuantity('plus', @gh[0])">
+                                            <input type="number" id="SoLuong-@gh[1]" name="SoLuong" min="1" max="10" value="@gh[2]" placeholder="@gh[2]" onchange="updateTotalPrice(@gh[0])" oninput="updateTotalPrice(@gh[0])" />
+                                            <button type="button" class="item-plus-btn" onclick="updateQuantity('plus', @gh[1])">
                                                 <img src="~/Content/Picture/plus.png" class="item-img-plus" />
                                             </button>
+                                            <input type="hidden" name="idctgh" value="@gh[1]" />
                                         </div>
                                     </div>
-                                    <div>
-                                        @gh[8]
-                                    </div>
+                                    <!-- Tổng tiền theo sản phẩm -->
                                     <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
-                                        @gh[9] VNĐ
+                                        <input type="number" name="tongtienSP" id="tongtienSP-@gh[1]" value="@gh[3]" readonly
+                                               data-price="@gh[3]" />
+                                        <input type="hidden" id="soluongcuasp" value="@gh[2]" />
+                                        <span> VNĐ</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     }
@@ -75,6 +80,7 @@
             </div>
         </div>
 
+        <!-- Thông tin của người dùng -->
         <div class="info-pay">
             <form action="/" method="post" class="info-pay__form">
                 <h4>Thông tin giỏ hàng</h4>
@@ -85,9 +91,9 @@
                 @if (ViewBag.list != null && ViewBag.list.Count > 0)
                 {
                     <h4>Thông tin vận chuyển</h4>
-                    <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="@ViewBag.nd[0][1]" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="@ViewBag.nd[0][4]" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="@ViewBag.nd[0][5]" /></div>
+                    <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="@ViewBag.nd[0][1]" placeholder="@ViewBag.nd[0][1]" /></div>
+                    <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="@ViewBag.nd[0][4]" placeholder="@ViewBag.nd[0][4]" /></div>
+                    <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="@ViewBag.nd[0][5]" placeholder="@ViewBag.nd[0][5]" /></div>
                 }
                 else
                 {
@@ -98,15 +104,8 @@
                 }
             </form>
             <div class="info-pay__method-pay">
-                <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
-                    <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-khi-nhan-hang" />
-                    Thanh toán khi nhận hàng
-                </label>
-                <label for="thanh-toan-vi" class="info-pay__mothod-item">
-                    <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-vi" />
-                    Thanh toán bằng Ví MeMe
-                </label>
-                <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home")'"
+
+                <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home",new {id = Session["taikhoan"]})'"
                         style="background-color: #FF0033;
                                color: white;
                                border: none;
@@ -125,27 +124,51 @@
     </main>
 
     <script>
+        // Cập nhật tổng tiền giỏ hàng
         function updateTotalPrice() {
             let totalAmount = 0;
 
+            // Duyệt qua tất cả các sản phẩm trong giỏ hàng
             document.querySelectorAll('.cart-items').forEach(item => {
-                let price = parseFloat(item.querySelector('.item-price').textContent.replace(" VNĐ", "").replace(",", ""));
+                // Lấy giá của sản phẩm (đã chuyển đổi thành số float) và nhân với 1000
+                let price = parseFloat(item.querySelector('.item-price input').getAttribute('data-price').replace(" VNĐ", "").replace(",", ""));
+
+                // Lấy số lượng của sản phẩm
                 let quantity = parseInt(item.querySelector('input[name="SoLuong"]').value);
-                totalAmount += (quantity * price);
+
+                // Tính tổng tiền cho sản phẩm này
+                let productTotal = price * quantity;
+
+                // Cập nhật lại tổng tiền cho sản phẩm (lẻ)
+                item.querySelector('.item-price input').value = productTotal.toFixed(0);
+
+                // Cộng vào tổng giỏ hàng
+                totalAmount += productTotal;
             });
 
-            document.getElementById('tongtiengh').value = totalAmount.toFixed(0) + ' đ';
+            // Hiển thị tổng tiền của giỏ hàng
+            document.querySelector('#tongtiengh').value = totalAmount.toFixed(0);
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            updateTotalPrice();
+        function updateQuantity(action, productId) {
+            var quantityInput = document.querySelector(`#SoLuong-${productId}`);
+            var currentQuantity = parseInt(quantityInput.value);
 
-            // Thêm sự kiện onchange và oninput vào tất cả các ô nhập số lượng
-            document.querySelectorAll('input[name="SoLuong"]').forEach(input => {
-                input.addEventListener("change", updateTotalPrice);
-                input.addEventListener("input", updateTotalPrice);
-            });
-        });
+            if (action === 'plus') {
+                quantityInput.value = currentQuantity + 1;
+            } else if (action === 'minus' && currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+
+            updateTotalPrice();
+        }
+
+        // Gọi hàm tính tổng tiền khi trang được tải
+        window.onload = function () {
+            updateTotalPrice();
+        }
     </script>
+
 </body>
+
 </html>

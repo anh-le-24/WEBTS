@@ -1,131 +1,243 @@
-﻿﻿﻿* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-    background-color: white;
-}
-/**/
+﻿﻿
+/* Main */
 main {
     background-color: white;
     max-width: 1520px;
     min-width: 320px;
-    height: 100%;
+    padding: 20px;
 }
 
-.btnthemsanpham { /*nút thêm sp*/
-    background-color: #FF9874;
-    color: black;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    padding: 19px;
-}
-
-/*Chỉnh sửa số lượng*/
-.item-quanlity {
-    justify-content: center;
-    gap: 12px;
+/* Tổng tiền section */
+.total-section {
     display: flex;
     align-items: center;
-    border: 1px solid #3C3D37;
-    width: 130px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.total-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+#TongTien {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 150px;
+    text-align: right;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Button thêm sản phẩm */
+.btnthemsanpham {
+    background-color: #FF9874;
+    color: white;
+    border: none;
     border-radius: 8px;
-    height: 50px;
+    padding: 14px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .btnthemsanpham:hover {
+        background-color: #e27f58;
+        transform: translateY(-2px);
+    }
+
+    .btnthemsanpham:active {
+        background-color: #d76a48;
+        transform: translateY(1px);
+    }
+
+
+/* Chỉnh sửa số lượng */
+.item-quanlity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px; /* Thêm khoảng cách giữa các phần tử */
+    padding: 10px; /* Thêm khoảng cách padding cho phần bên trong */
+    background-color: #f8f8f8; /* Màu nền để làm nổi bật */
+    border: none; /* Loại bỏ viền */
+    border-radius: 8px; /* Bo tròn các góc */
+    height: 40px; /* Tăng chiều cao để nhìn thoáng hơn */
 }
 
 .item-plus-btn, .item-minus-btn {
-    background-color: transparent;
-    outline: none;
-    border: none;
-}
-/*Hình plus - minus*/
-.item-img-minus, .item-img-plus {
-    width: 24px;
-    height: 24px;
-}
-/*chi tiết sản phẩm*/
-.detail-product {
-    /*background-color: cornsilk;*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-/*hình ảnh*/
-.detail-product__img {
-    width: 410px;
-    border-radius: 4px;
-    border-radius: 16px;
-}
-
-.detail-product__info {
-    width: 600px;
-    padding-left: 20px;
-    padding-right: 15px;
-}
-/*bọc 2 + - cùng với thêm sp*/
-.plus-minus-product {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 19px;
-}
-
-.detail-product__label { /*Còn hàng*/
-    margin-top: 10px;
-    color: green;
-}
-
-.detail-product__price { /*giá*/
-    margin-top: 10px;
-}
-
-button {
-    outline: none;
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
-.detail-taste {
-    margin-top: 10px;
+/* Hình plus - minus */
+.item-plus-btn, .item-minus-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.detail-taste__title {
-    font-size: 16px;
-    margin: 0px;
-    font-weight: bold;
-    color: rgb(0, 111, 60);
+.item-img-minus, .item-img-plus {
+    width: 20px; /* Điều chỉnh kích thước icon */
+    height: 20px;
 }
 
-.detail-taste__list-option {
+/* Chi tiết sản phẩm */
+.detail-product {
     display: flex;
-    column-gap: 12px;
-    margin-top: 4px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
 }
 
-.detail-taste__option {
-    background: rgb(236, 239, 241);
-    height: 32px;
-    border-radius: 4px;
+/* Hình ảnh */
+.detail-product__img {
+    width: 410px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+}
+
+.detail-product__info {
+    flex: 1;
+    padding-left: 20px;
+}
+
+/* Bọc 2 nút +/- với nút thêm sản phẩm */
+.plus-minus-product {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0px 12px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-    .detail-taste__option:hover {
-        opacity: 0.9;
+.detail-product__label {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+.detail-product__price {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Nút */
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+/* Container chung để căn ngang */
+.selection-container {
+    display: flex;
+    gap: 30px; /* Khoảng cách giữa các phần chọn */
+    align-items: center; /* Căn ngang các phần tử trong container */
+}
+
+/* Phần chọn đá và chọn đường */
+.selection-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Khoảng cách giữa các lựa chọn, tăng một chút để dễ nhìn */
+}
+
+    /* Phần chọn đường */
+    .selection-group:nth-child(2) {
+        margin-left: 20px; /* Khoảng cách giữa các phần chọn nếu cần */
     }
-/*size*/
+
+    .selection-group label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+/* Tạo một không gian đẹp hơn cho các ô option */
+.input-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px; /* Tăng khoảng cách giữa các ô */
+    gap: 15px; /* Khoảng cách giữa các ô chọn */
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+    /* Thiết kế cho các nhãn chọn để thành ô hình chữ nhật */
+    input[type="radio"] + label {
+        display: ruby-text;
+        padding: 12px 25px; /* Tăng padding để ô option lớn hơn */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f4f4f4;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+        /* Hiệu ứng khi hover */
+        input[type="radio"] + label:hover {
+            background-color: #e0e0e0;
+        }
+
+    /* Khi chọn thì thay đổi màu */
+    input[type="radio"]:checked + label {
+        background-color: #c8e6c9; /* Màu xanh nhạt */
+        border-color: #388e3c; /* Màu viền xanh đậm */
+        color: #388e3c; /* Màu chữ */
+    }
+
+/*phần topping*/
+/* Container của topping */
+.topping {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+    /* Đặt các phần tử trong ul thành dạng flex để sắp xếp theo chiều ngang */
+    .topping ul {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép xuống dòng khi không đủ chỗ */
+        gap: 20px; /* Khoảng cách giữa các topping */
+        padding: 0; /* Xóa padding mặc định của ul */
+        list-style-type: none;
+    }
+
+    /* Căn chỉnh từng topping (checkbox và label) */
+    .topping li {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Khoảng cách giữa checkbox và label */
+    }
+
+    .topping label {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Nếu muốn giãn các topping ra mỗi ô rộng hơn */
+    .topping li {
+        width: calc(33% - 20px); /* Chia thành 3 cột */
+        box-sizing: border-box;
+    }
+
+/* Kích thước sản phẩm */
 .card-size {
     display: flex;
-    height: 40px;
-    width: 100%;
-    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .sizes {
@@ -144,30 +256,52 @@ button {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-    .size:hover {
+    .size:hover,
+    .size.selected {
         background-color: #485935;
         color: #fff;
     }
 
-    .size.selected {
-        background-color: #485935;
-        color: white;
-        border: 2px solid #333;
-    }
-
-.product-description {
-    padding: 20px;
-    color: white;
-    background: url(../Picture/bgg.jpg);
-    min-height: 800px;
-    background-repeat: no-repeat;
-    background-size: cover;
+ul {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng khi không đủ chỗ */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    padding: 0; /* Xóa padding mặc định của ul */
+    list-style-type: none;
 }
 
-    .product-description p {
-        margin-top: 12px;
-    }
+li {
+    padding: 10px;
+    display: flex;
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    gap: 5px; /* Khoảng cách giữa checkbox và label */
+    width: calc(33% - 20px); /* Chia thành 3 cột, điều chỉnh theo nhu cầu */
+    box-sizing: border-box; /* Đảm bảo phần tử không vượt ra ngoài kích thước */
+}
 
+label {
+    display: flex;
+    font-size: 14px; /* Điều chỉnh kích thước font cho đẹp */
+    color: #333; /* Màu sắc cho text */
+}
+
+.ice_sugar {
+    display: flex;
+}
+
+.ice {
+    flex-grow: 3;
+}
+
+.sugar {
+    flex-grow: 5;
+}
+
+.tongtien {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

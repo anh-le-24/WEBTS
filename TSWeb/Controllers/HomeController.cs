@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TSWeb.Models;
 using System.Collections;
 using System.CodeDom.Compiler;
+using System.Net.NetworkInformation;
 
 namespace TSWeb.Controllers {
     public class HomeController : Controller {
@@ -32,12 +33,12 @@ namespace TSWeb.Controllers {
         }
         [HttpPost]
         public ActionResult ThemGhMoi(
-                     int idsp,
-                     string size,
-                     string selectedOptions,
-                     int SoLuong,
-                     float? TongTien,
-                     float? TongTienTopping)
+              int idsp,
+              string size,
+              string selectedOptions,
+              int SoLuong,
+              int TongTien,   // Thay đổi kiểu từ float? thành int?
+              int? TongTienTopping)
         {
             try
             {
@@ -54,11 +55,10 @@ namespace TSWeb.Controllers {
                     ViewBag.Idnd = "Không tìm thấy giá trị idnd trong session";
                 }
 
-
                 // Xây dựng câu lệnh SQL với các giá trị nhập từ người dùng
                 string sqlCommand = "EXEC ThemGioHang " + Session["taikhoan"].ToString() + ","
                          + SoLuong + ","
-                         + (TongTien.HasValue ? TongTien.Value.ToString() : "0") + ","
+                         + TongTien + ","  // Kiểm tra và sử dụng giá trị TongTien là int
                          + "'" + size + "',"
                          + idsp + ","
                          + (string.IsNullOrEmpty(selectedOptions) ? "NULL" : "N'" + selectedOptions + "'") + ","
@@ -80,14 +80,26 @@ namespace TSWeb.Controllers {
             return RedirectToAction("ListSanPham", "Home");
         }
 
+
         public ActionResult XoaGH(string id)
         {
             ViewBag.list= db.get("EXEC XoaSanPhamTrongGioHang "+ id);
             return RedirectToAction("Cart","Home",new {id = Session["taikhoan"] });
         }
-        public ActionResult ThanhToan()
-        {
 
+        public ActionResult SuaGH(
+            string idcttp,
+            int SoLuong,
+            int tongtienSP)
+        {
+            db.get("EXEC SuaSoLuongGiaCTTOPING " + Session["taikhoan"] + "," + idcttp + "," + SoLuong + "," + tongtienSP + ";");
+            return RedirectToAction(@Url.Action("ThanhToan", "Home"));
+        }
+
+        public ActionResult ThanhToan(string id)
+        {
+            ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
+            ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             return View();
         }
         public ActionResult ListSanPham()
@@ -97,6 +109,9 @@ namespace TSWeb.Controllers {
             return View();
         }
 
-
+        public ActionResult GioiThieu()
+        {
+            return View();
+        }
     }
 }

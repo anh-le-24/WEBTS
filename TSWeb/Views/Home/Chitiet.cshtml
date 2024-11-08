@@ -10,14 +10,6 @@
     }
 </head>
 <body>
-    @if (ViewBag.Idnd != null)
-    {
-        <p>Giá trị idnd là: @ViewBag.Idnd</p>
-    }
-    else
-    {
-        <p>Không có giá trị idnd.</p>
-    }
 
     @if (Session["taikhoan"] == null)
     {
@@ -107,94 +99,100 @@
             </div>
         </form>
     }
-    <script>
-        function updateTotalPrice() {
-            let totalPrice = 0;
+<script>
+    function updateTotalPrice() {
+        let totalPrice = 0;
 
-            // Lấy giá của sản phẩm (trừ ký tự không cần thiết như "Giá : ", "₫")
-            let productPrice = parseFloat(document.querySelector('.detail-product__price').textContent.replace('Giá : ', '').replace('₫', '').trim().replace(',', ''));
+        // Lấy giá của sản phẩm (trừ ký tự không cần thiết như "Giá : ", "₫" và dấu phẩy)
+        let productPrice = parseFloat(document.querySelector('.detail-product__price').textContent
+            .replace('Giá : ', '')  // Xóa chuỗi "Giá : "
+            .replace('₫', '')        // Xóa ký tự "₫"
+            .trim()                  // Loại bỏ khoảng trắng thừa
+            .replace(',', '')       // Xóa dấu phẩy nếu có
+        );
 
-            // Nếu giá sản phẩm không hợp lệ, dừng lại
-            if (isNaN(productPrice)) {
-                console.error('Giá sản phẩm không hợp lệ');
-                return;
-            }
 
-            // Lấy số lượng sản phẩm
-            let quantity = parseInt(document.getElementById('SoLuong').value);
-            if (isNaN(quantity) || quantity <= 0) {
-                console.error('Số lượng không hợp lệ');
-                return;
-            }
-
-            // Tính tổng tiền cho sản phẩm (sản phẩm x số lượng)
-            totalPrice = productPrice * quantity;
-
-            // Cộng giá trị của topping đã chọn
-            document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
-                let toppingPrice = parseFloat(topping.getAttribute('data-price'));
-                if (!isNaN(toppingPrice)) {
-                    totalPrice += toppingPrice;
-                }
-            });
-
-            // Cộng giá trị của size (M hoặc L)
-            let selectedSize = document.querySelector('input[name="size"]:checked');
-            if (selectedSize) {
-                let sizePrice = selectedSize.value === 'L' ? 10000 : 0;
-                totalPrice += sizePrice;
-            }
-
-            // Cộng giá trị của đá và đường
-            let selectedIce = document.querySelector('input[name="ice"]:checked');
-            let selectedSugar = document.querySelector('input[name="sugar"]:checked');
-
-            // Nếu có topping đá/đường, sẽ không cộng thêm gì vào tổng tiền, nếu không có thì tính thêm vào.
-            // Tùy thuộc vào logic của bạn về việc thêm giá trị cho đá và đường, có thể cập nhật sau.
-
-            // Cập nhật tổng tiền vào ô input
-            document.getElementById('TongTien').value = totalPrice.toLocaleString();
-
-            // Cập nhật các lựa chọn topping, đá, đường vào input hidden "SelectedOptions"
-            getSelectedOptions();
+        // Nếu giá sản phẩm không hợp lệ, dừng lại
+        if (isNaN(productPrice)) {
+            console.error('Giá sản phẩm không hợp lệ');
+            return;
         }
 
-        // Cập nhật các lựa chọn topping, đá, đường vào chuỗi
-        function getSelectedOptions() {
-            let selectedOptions = [];
-
-            // Lấy tất cả các lựa chọn "Đá" đã chọn
-            document.querySelectorAll('input[name="ice"]:checked').forEach(function (ice) {
-                selectedOptions.push(ice.value);
-            });
-
-            // Lấy tất cả các lựa chọn "Đường" đã chọn
-            document.querySelectorAll('input[name="sugar"]:checked').forEach(function (sugar) {
-                selectedOptions.push(sugar.value);
-            });
-
-            // Lấy tất cả topping đã chọn
-            document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
-                selectedOptions.push(topping.value);
-            });
-
-            // Cập nhật giá trị vào input hidden "SelectedOptions"
-            document.getElementById('SelectedOptions').value = selectedOptions.join(', ');
+        // Lấy số lượng sản phẩm
+        let quantity = parseInt(document.getElementById('SoLuong').value);
+        if (isNaN(quantity) || quantity <= 0) {
+            console.error('Số lượng không hợp lệ');
+            return;
         }
 
-        // Cập nhật số lượng sản phẩm
-        function updateQuantity(action) {
-            let quantityInput = document.getElementById('SoLuong');
-            let currentQuantity = parseInt(quantityInput.value);
+        // Tính tổng tiền cho sản phẩm (sản phẩm x số lượng)
+        totalPrice = productPrice * quantity;
 
-            if (action === 'plus' && currentQuantity < 10) {
-                quantityInput.value = currentQuantity + 1;
-            } else if (action === 'minus' && currentQuantity > 1) {
-                quantityInput.value = currentQuantity - 1;
+        // Cộng giá trị của topping đã chọn
+        document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
+            let toppingPrice = parseFloat(topping.getAttribute('data-price'));
+            if (!isNaN(toppingPrice)) {
+                totalPrice += toppingPrice;
             }
+        });
 
-            updateTotalPrice(); // Cập nhật lại tổng tiền
+        // Cộng giá trị của size (M hoặc L)
+        let selectedSize = document.querySelector('input[name="size"]:checked');
+        if (selectedSize) {
+            let sizePrice = selectedSize.value === 'L' ? 10000 : 0;
+            totalPrice += sizePrice;
         }
-    </script>
+
+        // Cộng giá trị của đá và đường
+        let selectedIce = document.querySelector('input[name="ice"]:checked');
+        let selectedSugar = document.querySelector('input[name="sugar"]:checked');
+
+        // Giữ tổng tiền là số nguyên mà không có dấu phẩy
+        let formattedPrice = totalPrice.toFixed(0);  // Số nguyên, không dấu phẩy
+
+        // Cập nhật tổng tiền vào ô input (dưới dạng số nguyên)
+        document.getElementById('TongTien').value = formattedPrice;
+
+        // Cập nhật các lựa chọn topping, đá, đường vào input hidden "SelectedOptions"
+        getSelectedOptions();
+    }
+
+    // Cập nhật các lựa chọn topping, đá, đường vào chuỗi
+    function getSelectedOptions() {
+        let selectedOptions = [];
+
+        // Lấy tất cả các lựa chọn "Đá" đã chọn
+        document.querySelectorAll('input[name="ice"]:checked').forEach(function (ice) {
+            selectedOptions.push(ice.value);
+        });
+
+        // Lấy tất cả các lựa chọn "Đường" đã chọn
+        document.querySelectorAll('input[name="sugar"]:checked').forEach(function (sugar) {
+            selectedOptions.push(sugar.value);
+        });
+
+        // Lấy tất cả topping đã chọn
+        document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
+            selectedOptions.push(topping.value);
+        });
+
+        // Cập nhật giá trị vào input hidden "SelectedOptions"
+        document.getElementById('SelectedOptions').value = selectedOptions.join(', ');
+    }
+
+    // Cập nhật số lượng sản phẩm
+    function updateQuantity(action) {
+        let quantityInput = document.getElementById('SoLuong');
+        let currentQuantity = parseInt(quantityInput.value);
+
+        if (action === 'plus' && currentQuantity < 10) {
+            quantityInput.value = currentQuantity + 1;
+        } else if (action === 'minus' && currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+
+        updateTotalPrice(); // Cập nhật lại tổng tiền
+    }
+</script>
 </body>
 </html>

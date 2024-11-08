@@ -1,0 +1,49 @@
+﻿﻿
+@{
+    ViewBag.Title = "GioiThieu";
+    Layout = "~/Views/Shared/nav.cshtml";
+    <link href="~/Content/Css/GioiThieuStyleSheet.css" rel="stylesheet">
+}
+
+<div class="navbar">
+    <button class="tab-button" onclick="showTab('gioithieu')">Giới thiệu</button>
+    <button class="tab-button" onclick="showTab('chinhanh')">Chi nhánh</button>
+    <button class="tab-button" onclick="showTab('lienhe')">Liên hệ</button>
+</div>
+
+<div id="gioithieu" class="tab-content">
+    <h2>LEAFTEA</h2>
+    <img src="~/Content/Picture/bggt.jpg" alt="LeafTea" class="featured-image">
+    <p>Katinat là một thương hiệu cà phê đã quá quen thuộc với giới trẻ Sài Thành. Năm 2022, chiến lược marketing của Katinat đã tạo nên “cơn sốt” trong thị trường F&B với sự bùng nổ thương hiệu mạnh mẽ. Sự “chuyển mình” này đã khiến các “ông lớn” trong ngành cũng phải dè chừng. </p>
+    <p>Các cửa hàng của Katinat ban đầu chỉ có mặt tại khu vực TP. HCM với 10 chi nhánh. Tuy nhiên, đến năm 2022, nhân lúc thị trường F&B “tái cơ cấu” hậu đại dịch, Katinat Saigon Kafe liên tục mở rộng chuỗi cửa hàng với hàng chục chi nhánh mới. Điều này khiến các “ông lớn” cùng ngành cũng phải e dè.</p>
+    <p><strong>Hotline:</strong> 0238.345.678</p>
+    <p><strong>Email:</strong> leaftea@gmail.com</p>
+    <p><strong>Giờ làm việc:</strong> 09h00 – 21h30</p>
+</div>
+
+<div id="chinhanh" class="tab-content">
+    <h2>Chi nhánh 1: 2290 QL1A, Phường Trung Mỹ tây, Quận 12, Thành phố Hồ Chí Minh</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4966556243726!2d106.62167647547852!3d10.84977888930352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a266f3fe537%3A0x74054a78ab89263d!2zMjI5MCBRTDFBLCBUcnVuZyBN4bu5IFTDonksIFF14bqtbiAxMiwgSOG7kyBDaMOtIE1pbmggNzAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1730910352535!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <h2>Chi nhánh 2: 828 Sư Vạn Hạnh, Phường 12, Quận 10, Thành phố Hồ Chí Minh</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.460294954712!2d106.66478987547744!3d10.776014689372698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3ae5901877%3A0x42c37972de865906!2zODI4IMSQLiBTxrAgVuG6oW4gSOG6oW5oLCBQaMaw4budbmcgMTIsIFF14bqtbiAxMCwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1730910449281!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<div id="lienhe" class="tab-content">
+    <h2>Liên hệ</h2>
+    <p>Vui lòng liên hệ qua email hoặc hotline để biết thêm chi tiết.</p>
+    <p><strong>Email:</strong> leaftea@gmail.com</p>
+    <p><strong>Hotline:</strong> 0238.345.678</p>
+    <img src="~/Content/Picture/anhlienhe.jpg" />
+</div>
+
+<script>
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.style.display = 'none');
+
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        // Hiển thị tab "Giới thiệu" mặc định
+        showTab('gioithieu');
+</script>

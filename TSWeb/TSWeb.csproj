@@ -157,6 +157,7 @@
     <Content Include="Content\Css\TongQuan.css" />
     <Content Include="Content\Css\TrangCaNhanStyleSheet.css" />
     <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
+    <Content Include="Content\Css\GioiThieuStyleSheet.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\banner_diemtichluy.png" />
     <Content Include="Content\Picture\banner_dtl_1.png" />
@@ -261,6 +262,7 @@
     <Content Include="Views\TrangCaNhan\Lichsudonhhang.cshtml" />
     <Content Include="Views\TrangCaNhan\Voucher.cshtml" />
     <Content Include="Views\TrangCaNhan\Diemtichluy.cshtml" />
+    <Content Include="Views\Home\GioiThieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
