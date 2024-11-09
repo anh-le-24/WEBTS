@@ -13,7 +13,7 @@
 <body>
 
     <!-- Phần thân -->
-    <form action="" method="post">
+    <form action="~/Home/ThanhToanHD" method="post">
         <main>
             <div class="checkout-container">
                 <h3>Thông tin đơn hàng</h3>
@@ -34,7 +34,8 @@
                         </div>
                         <div class="product-info">
                             <p><strong>@gh[5]</strong></p>
-                            <p>@gh[8]</p>
+                            <p>số lượng: <strong>@gh[2]</strong></p>
+                            <p>@gh[8]</p>                            
                             <span id="tongtiensp_@gh[1]" class="product-price">@gh[3] VNĐ</span>
                         </div>
                     </div>
@@ -59,10 +60,10 @@
 
                     <div class="row">
                         <label for="quick">Chọn nhanh</label>
-                        <input type="radio" id="quick" name="shipping_speed" value="quick" onclick="updateShippingCost('quick')">
+                        <input type="radio" id="quick" name="shippingspeed" value="nhanh ch" onclick="updateShippingCost('quick')">
 
                         <label for="slow">Chọn chậm</label>
-                        <input type="radio" id="slow" name="shipping_speed" value="slow" onclick="updateShippingCost('slow')">
+                        <input type="radio" id="slow" name="shippingspeed" value="slow" onclick="updateShippingCost('slow')">
                     </div>
 
                     <div class="row">
@@ -70,9 +71,21 @@
                         <input id="khuyenmai" value="0" name="khuyenmai" />
                     </div>
 
+                    <!-- Phương thức thanh toán -->
+                    <div class="row">
+                        <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
+                            <input type="radio" name="phuongthanhtoan" value="Thanh toán khi nhận hàng" id="thanh-toan-khi-nhan-hang" />
+                            Thanh toán khi nhận hàng
+                        </label>
+                        <label for="thanh-toan-vi" class="info-pay__mothod-item">
+                            <input type="radio" name="phuongthanhtoan" value="Thanh toán bằng Ví MeMe" id="thanh-toan-vi" />
+                            Thanh toán bằng Ví MeMe
+                        </label>
+                    </div>
+
                     <div class="row">
                         <span><strong>Tổng cộng:</strong></span>
-                        <input id="finalTotal" value="0" name="tongtiendonhang" readonly />
+                        <input id="finalTotal" name="finalTotal" readonly />
                     </div>
                 </div>
                 <div class="action-buttons">
@@ -110,9 +123,9 @@
 
             // Cập nhật phí vận chuyển
             if (shippingType === 'quick') {
-                shippingCost = 5000; // Ví dụ phí vận chuyển nhanh
+                shippingCost = 5000; //phí vận chuyển nhanh
             } else if (shippingType === 'slow') {
-                shippingCost = 2000; // Ví dụ phí vận chuyển chậm
+                shippingCost = 2000; //phí vận chuyển chậm
             }
 
             // Cập nhật phí vận chuyển vào giao diện
@@ -124,6 +137,7 @@
         }
 
         // Hàm thêm khuyến mãi
+
         function addPromoCode() {
             let promoValue = prompt("Nhập giá trị khuyến mãi:"); // Ví dụ nhập khuyến mãi
             let khuyenMai = parseInt(promoValue);

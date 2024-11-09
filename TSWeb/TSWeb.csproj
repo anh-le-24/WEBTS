@@ -147,6 +147,7 @@
     <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
+    <Content Include="Content\Css\DonHangStyleSheet.css" />
     <Content Include="Content\Css\HomeNVStyleSheet.css" />
     <Content Include="Content\Css\ListMenuStylesheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
@@ -269,6 +270,9 @@
     <Content Include="Views\TrangCaNhan\Voucher.cshtml" />
     <Content Include="Views\TrangCaNhan\Diemtichluy.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
+    <Content Include="Views\Home\TTTC.cshtml" />
+    <Content Include="Views\TrangCaNhan\ChoXacNhan.cshtml" />
+    <Content Include="Views\Shared\nav_DonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

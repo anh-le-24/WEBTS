@@ -102,6 +102,39 @@ namespace TSWeb.Controllers {
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan)
+        {
+            try
+            {
+                DateTime date = DateTime.Today;  // Lấy ngày hôm nay mà không bao gồm thời gian
+                string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
+
+                // Tạo chuỗi lệnh SQL
+                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
+                                    + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
+
+                // Thực hiện lưu vào cơ sở dữ liệu
+                db.get(sqlCommand);
+            }
+            catch (Exception)
+            {
+                // Nếu có lỗi, chuyển hướng về trang chi tiết sản phẩm
+                return RedirectToAction("ThanhToan", "Home", new { id = Session["taikhoan"] });
+            }
+
+            // Sau khi hoàn tất, chuyển hướng đến trang thông tin tài khoản
+            return RedirectToAction("TTTC", "Home");
+        }
+
+
+
+
+        public ActionResult TTTC()
+        {
+            return View();
+        }
         public ActionResult ListSanPham()
         {
             // Truyền danh sách sản phẩm vào ViewBag

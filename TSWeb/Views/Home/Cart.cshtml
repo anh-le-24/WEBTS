@@ -19,94 +19,96 @@
                 Quay về Trang Chủ
             </button>
         </div>
-
-        <div class="cart-container">
-            <div class="cart-list">
-                @if (ViewBag.list != null && ViewBag.list.Count > 0)
-                {
-                    foreach (var gh in ViewBag.list)
+        <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
+            <button onclick="window.location='@Url.Action("ListSanPham", "Home")'"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #FF6918; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold">
+                Quay về Menu
+            </button>
+        </div>
+            <div class="cart-container">
+                <div class="cart-list">
+                    @if (ViewBag.list != null && ViewBag.list.Count > 0)
                     {
-                        <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
-                            <a href="~/Home/XoaGH?id=@gh[1]" class="btn-remove" style="text-decoration:none;position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
-                                &times;
-                            </a>
+                        foreach (var gh in ViewBag.list)
+                        {
+                            <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
+                                <a href="~/Home/XoaGH?id=@gh[1]" class="btn-remove" style="text-decoration:none;position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
+                                    &times;
+                                </a>
 
-                            <img src="~/Content/Picture/@gh[7]" class="img-product" alt="" style="width: 120px; height: auto;" />
+                                <img src="~/Content/Picture/@gh[7]" class="img-product" alt="" style="width: 120px; height: auto;" />
 
-                            <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
-                                <h2 style="font-size: 1.2em;">@gh[5]</h2>
-                                <div class="sizes">
-                                    <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 2px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
-                                        @gh[4]
-                                    </div>
-                                </div>
-                                <div class="thongtintopping" style="padding:5px;">
-                                    @gh[8]
-                                </div>
-                                <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
-                                    <div class="plus-minus-product">
-                                        <div class="item-quanlity">
-                                            <button type="button" class="item-minus-btn" onclick="updateQuantity('minus', @gh[1])">
-                                                <img src="~/Content/Picture/minus.png" class="item-img-minus" />
-                                            </button>
-                                            <label for="SoLuong">Số lượng:</label>
-                                            <input type="number" id="SoLuong-@gh[1]" name="SoLuong" min="1" max="10" value="@gh[2]" placeholder="@gh[2]" onchange="updateTotalPrice(@gh[0])" oninput="updateTotalPrice(@gh[0])" />
-                                            <button type="button" class="item-plus-btn" onclick="updateQuantity('plus', @gh[1])">
-                                                <img src="~/Content/Picture/plus.png" class="item-img-plus" />
-                                            </button>
-                                            <input type="hidden" name="idctgh" value="@gh[1]" />
+                                <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
+                                    <h2 style="font-size: 1.2em;">@gh[5]</h2>
+                                    <div class="sizes">
+                                        <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 2px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
+                                            @gh[4]
                                         </div>
                                     </div>
-                                    <!-- Tổng tiền theo sản phẩm -->
-                                    <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
-                                        <input type="number" name="tongtienSP" id="tongtienSP-@gh[1]" value="@gh[3]" readonly
-                                               data-price="@gh[3]" />
-                                        <input type="hidden" id="soluongcuasp" value="@gh[2]" />
-                                        <span> VNĐ</span>
+                                    <div class="thongtintopping" style="padding:5px;">
+                                        @gh[8]
                                     </div>
-                                </div>
+                                    <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+                                        <div class="plus-minus-product">
+                                            <div class="item-quanlity">
+                                                
+                                                <label for="SoLuong">Số lượng:</label>
+                                                <input type="number" id="SoLuong-@gh[1]" name="SoLuong" min="1" max="10" value="@gh[2]" readonly
+                                                       placeholder="@gh[2]" onchange="updateTotalPrice(@gh[0])" oninput="updateTotalPrice(@gh[0])" />                                               
+                                            </div>
+                                        </div>
+                                        <!-- Tổng tiền theo sản phẩm -->
+                                        <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
+                                            <input type="number" name="tongtienSP" id="tongtienSP-@gh[1]" value="@gh[3]" readonly
+                                                   data-price="@gh[3]" />                                 
+                                            <span> VNĐ</span>
+                                        </div>
+                                        <div>
+                                            <a href="">Sửa</a>
+                                        </div>
+                                    </div>
 
+                                </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-cart" style="text-align: center; padding: 20px;">
+                            <h3>Giỏ hàng của bạn hiện đang trống!</h3>
+                            <p>Hãy thêm sản phẩm vào giỏ hàng để bắt đầu mua sắm.</p>
                         </div>
                     }
-                }
-                else
-                {
-                    <div class="empty-cart" style="text-align: center; padding: 20px;">
-                        <h3>Giỏ hàng của bạn hiện đang trống!</h3>
-                        <p>Hãy thêm sản phẩm vào giỏ hàng để bắt đầu mua sắm.</p>
-                    </div>
-                }
-            </div>
-        </div>
-
-        <!-- Thông tin của người dùng -->
-        <div class="info-pay">
-            <form action="/" method="post" class="info-pay__form">
-                <h4>Thông tin giỏ hàng</h4>
-                <div>
-                    <p>Tổng tiền: <input type="number" name="tongtiengh" id="tongtiengh" readonly />
                 </div>
+            </div>
 
-                @if (ViewBag.list != null && ViewBag.list.Count > 0)
-                {
-                    <h4>Thông tin vận chuyển</h4>
-                    <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="@ViewBag.nd[0][1]" placeholder="@ViewBag.nd[0][1]" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="@ViewBag.nd[0][4]" placeholder="@ViewBag.nd[0][4]" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="@ViewBag.nd[0][5]" placeholder="@ViewBag.nd[0][5]" /></div>
-                }
-                else
-                {
-                    <h4>Thông tin vận chuyển</h4>
-                    <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="Số điện thoại" /></div>
-                    <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="Địa chỉ" /></div>
-                }
-            </form>
-            <div class="info-pay__method-pay">
+            <!-- Thông tin của người dùng -->
+            <div class="info-pay">
+                <form action="/" method="post" class="info-pay__form">
+                    <h4>Thông tin giỏ hàng</h4>
+                    <div>
+                        <p>Tổng tiền: <input type="number" name="tongtiengh" id="tongtiengh" readonly />
+                    </div>
 
-                <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home",new {id = Session["taikhoan"]})'"
-                        style="background-color: #FF0033;
+                    @if (ViewBag.list != null && ViewBag.list.Count > 0)
+                    {
+                        <h4>Thông tin vận chuyển</h4>
+                        <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="@ViewBag.nd[0][1]" placeholder="@ViewBag.nd[0][1]" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="@ViewBag.nd[0][4]" placeholder="@ViewBag.nd[0][4]" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="@ViewBag.nd[0][5]" placeholder="@ViewBag.nd[0][5]" /></div>
+                    }
+                    else
+                    {
+                        <h4>Thông tin vận chuyển</h4>
+                        <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="Số điện thoại" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="Địa chỉ" /></div>
+                    }
+                </form>
+                <div class="info-pay__method-pay">
+
+                    <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home",new {id = Session["taikhoan"]})'"
+                            style="background-color: #FF0033;
                                color: white;
                                border: none;
                                outline: none;
@@ -117,10 +119,10 @@
                                font-weight: bold;
                                cursor: pointer;
                                transition: background-color 0.3s ease;">
-                    Thanh toán
-                </button>
+                        Thanh toán
+                    </button>
+                </div>
             </div>
-        </div>
     </main>
 
     <script>
@@ -130,37 +132,15 @@
 
             // Duyệt qua tất cả các sản phẩm trong giỏ hàng
             document.querySelectorAll('.cart-items').forEach(item => {
-                // Lấy giá của sản phẩm (đã chuyển đổi thành số float) và nhân với 1000
+                // Lấy giá của sản phẩm (đã chuyển đổi thành số float)
                 let price = parseFloat(item.querySelector('.item-price input').getAttribute('data-price').replace(" VNĐ", "").replace(",", ""));
 
-                // Lấy số lượng của sản phẩm
-                let quantity = parseInt(item.querySelector('input[name="SoLuong"]').value);
-
-                // Tính tổng tiền cho sản phẩm này
-                let productTotal = price * quantity;
-
-                // Cập nhật lại tổng tiền cho sản phẩm (lẻ)
-                item.querySelector('.item-price input').value = productTotal.toFixed(0);
-
-                // Cộng vào tổng giỏ hàng
-                totalAmount += productTotal;
+                // Cộng giá sản phẩm vào tổng tiền giỏ hàng
+                totalAmount += price;
             });
 
             // Hiển thị tổng tiền của giỏ hàng
             document.querySelector('#tongtiengh').value = totalAmount.toFixed(0);
-        }
-
-        function updateQuantity(action, productId) {
-            var quantityInput = document.querySelector(`#SoLuong-${productId}`);
-            var currentQuantity = parseInt(quantityInput.value);
-
-            if (action === 'plus') {
-                quantityInput.value = currentQuantity + 1;
-            } else if (action === 'minus' && currentQuantity > 1) {
-                quantityInput.value = currentQuantity - 1;
-            }
-
-            updateTotalPrice();
         }
 
         // Gọi hàm tính tổng tiền khi trang được tải

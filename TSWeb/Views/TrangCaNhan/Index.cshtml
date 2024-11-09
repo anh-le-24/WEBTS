@@ -201,7 +201,7 @@
                     </a>
                 </li>
                 <li class="mb-2">
-                    <a href="@Url.Action("Donhang", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                    <a href="@Url.Action("Donhang", "TrangCaNhan",new { id = Session["taikhoan"] })" class="flex items-center" style="color: #FFFFFF;">
                         <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
                     </a>
                 </li>

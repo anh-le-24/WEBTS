@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/DonHangStyleSheet.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-1-5 p-4" style="background-color: #2D2824; color: #FFFFFF;">
+            <!-- Set background and text color here -->
+            <div class="flex items-center mb-4">
+                <div style="width: 100px; height: 100px; margin: auto; border-radius: 50%; overflow: hidden;">
+                    <img src="https://w0.peakpx.com/wallpaper/577/451/HD-wallpaper-bae-suzy-suzy-women-with-glasses-asian-face-glasses.jpg" alt="User profile picture" width="100" height="100" style="display: block; margin: auto; width: 100%; height: auto;">
+                </div>
+            </div>
+            <ul class="menu-items">
+                <li class="mb-2">
+                    <a href="@Url.Action("TrangCaNhan", "TrangCaNhan")" class="flex items-center text-orange-500" style="color: #FFFFFF;">
+                        <i class="fas fa-user mr-2"></i> Tài Khoản Của Tôi
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Donhang", "TrangCaNhan")" class="flex items-center" style="color: #9A7E6F;">
+                        <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Lichsudonhhang", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-bell mr-2"></i> Thông Báo
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Voucher", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-ticket-alt mr-2"></i> Ví Voucher
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="@Url.Action("Diemtichluy", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-coins mr-2"></i> Điểm tích luỹ
+                    </a>
+                </li>
+                <li class="mb-2 mt-auto">
+                    <button class="flex items-center" style="background-color: #E4003A; border: none; color: #FFFFFF; cursor: pointer; padding: 0.5rem 1rem;"
+                            onmouseover="this.style.backgroundColor='#B8002E'"
+                            onmouseout="this.style.backgroundColor='#E4003A'"
+                            onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Thoát
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="w-4/5 p-4">
+            <!-- Tabs -->
+            <div class="flex border-b mb-4">
+                <a class="px-4 py-2 border-red-500 border-b-2 text-red-500" href="#">Tất cả</a>
+                <a class="px-4 py-2 text-gray-600" href="#">Chờ xác nhận</a>
+                <a class="px-4 py-2 text-gray-600" href="#">Đang giao</a>
+                <a class="px-4 py-2 text-gray-600" href="#">Đã giao</a>
+                <a class="px-4 py-2 text-gray-600" href="#">Đã Hủy</a>
+            </div>
+        </div>
+        <!-- Search Bar -->
+        <div class="mb-4">
+            <input class="w-full p-2 border rounded" placeholder="Tìm kiếm theo Tên Sản phẩm" type="text" />
+        </div>
+        <div class="bg-white p-4 mb-4 rounded shadow">
+            @RenderBody()
+        </div>
+            <script>
+        // Sự kiện thoát trang cá nhân
+        function confirmLogout() {
+            const userConfirmed = confirm("Bạn có chắc chắn muốn đăng xuất?");
+            if (userConfirmed) {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+            </script>
+        </div>
+</body>
+</html>

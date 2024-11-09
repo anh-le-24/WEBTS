@@ -14,10 +14,28 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + idnd);
             return View();
         }
-        public ActionResult Donhang()
+        public ActionResult Donhang(string id)
+        {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + id);
+            return View();
+        }
+        public ActionResult ChoXacNhan()
         {
             return View();
         }
+        public ActionResult ĐangGiao()
+        {
+            return View();
+        }
+        public ActionResult DaGiao()
+        {
+            return View();
+        }
+        public ActionResult DaHuy()
+        {
+            return View();
+        }
+
         public ActionResult Lichsudonhhang()
         {
             return View();
