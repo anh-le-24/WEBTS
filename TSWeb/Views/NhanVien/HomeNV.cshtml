@@ -6,25 +6,28 @@
 
 <!-- Main Content -->
 
-    <a class="btn-them-dh" href="~/NhanVien/ThemDH">
-        Thêm đơn hàng
-    </a>
-    @foreach (var a in ViewBag.list)
-    {
-        <form action=""></form>
-        <section class="dashboard">
-            <div class="card">
-                <span>Đơn hàng số: @a[0]</span>
-                <span>Ngày thanh toán : @a[1]</span>
-                <span>Trạng thái: @a[2]</span>
-                <span>Tổng tiền :@a[3]</span>
-                <span>@a[4]</span>
-                <div class="chuc-nang">
-                    <a href="~/NhanVien">Chi tiết đơn hàng</a>
-                </div>
+<a class="btn-them-dh" href="~/NhanVien/ThemDH">
+    Thêm đơn hàng
+</a>
+@foreach (var a in ViewBag.list)
+{
+    <form action=""></form>
+    <section class="dashboard">
+        <div class="card">
+            <span>Đơn hàng số: @a[0]</span>
+            <span>Ngày thanh toán : @a[1]</span>
+            <span>Trạng thái: @a[2]</span>
+            <span>Tổng tiền :@a[3]</span>
+            <span>@a[4]</span>
+            <div class="chuc-nang">
+                <a href="~/NhanVien">Chi tiết đơn hàng</a>
             </div>
-            
-        </section>
-    }
+        </div>
+
+    </section>
+}
+
+
+
 
 
