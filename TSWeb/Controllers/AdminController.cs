@@ -35,11 +35,13 @@ namespace TSWeb.Controllers
             return View();
         }
         public ActionResult TongQuan()
-            {
-                return View();
-            }
-       /* // API endpoint để lấy dữ liệu thống kê theo tháng
-        [HttpPost]
+        {
+
+            return View();
+        }
+
+        // API endpoint để lấy dữ liệu thống kê theo tháng
+        [HttpGet]
         public JsonResult GetStatistics(int year)
         {
             List<MonthlyRevenue> monthlyRevenueList = new List<MonthlyRevenue>();
@@ -111,20 +113,52 @@ namespace TSWeb.Controllers
         }
 
 
-        public ActionResult ChinhSuaCN(string id)
+        public JsonResult GetTopSellingProducts(int year)
         {
-            ViewBag.list = db.get("Exec XemChiNhanh @IDCN= " + id + ";");
-            return View();
+            List<TopSellingProduct> topSellingProducts = new List<TopSellingProduct>();
+            try
+            {
+                // Gọi Stored Procedure để lấy dữ liệu
+                string sqlQuery = "EXEC sp_ThongKeMatHangBanChay @year";
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@year", year)
+                };
+                var result = db.get(sqlQuery, parameters);
+
+                // Duyệt qua kết quả và tạo danh sách TopSellingProduct
+                foreach (ArrayList row in result)
+                {
+                    if (row != null && row.Count > 2) // Đảm bảo rằng hàng có ít nhất 3 cột
+                    {
+                        string tenSP = Convert.ToString(row[0]);
+                        int soLuongBan = Convert.ToInt32(row[1]);
+                        int thang = Convert.ToInt32(row[2]);
+                        topSellingProducts.Add(new TopSellingProduct
+                        {
+                            TenSP = tenSP,
+                            SoLuongBan = soLuongBan,
+                            Thang = thang
+                        });
+                    }
+                }
+
+                // Trả về dữ liệu thống kê sản phẩm bán chạy dưới dạng JSON
+                return Json(topSellingProducts, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Log exception (ví dụ, dùng Log4Net hoặc một công cụ log khác)
+                return Json(new { success = false, message = "Đã xảy ra lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
-        public ActionResult QLChiNhanh()
+        public class TopSellingProduct
         {
-            ViewBag.list = db.get("Exec XemTatCaChiNhanh");
-            return View();
+            public string TenSP { get; set; }
+            public int SoLuongBan { get; set; }
+            public int Thang { get; set; }
         }
-        public ActionResult ThemCN()
-        {
-            return View();
-        }
+
 
         // Các phương thức quản lý thanh toán
         public ActionResult QLThanhToan()
@@ -344,7 +378,7 @@ namespace TSWeb.Controllers
 
                 // Xây dựng câu lệnh SQL với phép nối chuỗi như cũ nhưng có format lại cho chính xác
                 string sqlQuery = "EXEC ThemNhanVienVaNguoiDung N'" + FullName + "','" + Email + "', N'" + Password + "', "
-                                  + PhoneNumber + ", N'" + Address + *//*"', '" + formattedDate +*//* "', 2, " + CN + ";";
+                                  + PhoneNumber + ", N'" + Address + /*"', '" + formattedDate +*/ "', 2, " + CN + ";";
 
                 // Thực hiện câu lệnh SQL
                 db.get(sqlQuery);
@@ -494,26 +528,26 @@ namespace TSWeb.Controllers
             return RedirectToAction("QLUuDai", "Admin");
         }
         public ActionResult QLSanPham(string tenSanPham, string ngayThem)
-{
-    DatabaseModel db = new DatabaseModel();
+        {
+            DatabaseModel db = new DatabaseModel();
 
-    // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
-    string query = "SELECT * FROM SANPHAM WHERE 1=1";
-    
-    if (!string.IsNullOrEmpty(tenSanPham))
-    {
-        query += $" AND TenSP LIKE N'%{tenSanPham}%'";
-    }
+            // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
+            string query = "SELECT * FROM SANPHAM WHERE 1=1";
 
-    if (!string.IsNullOrEmpty(ngayThem))
-    {
-        query += $" AND CONVERT(DATE, NgayTao) = '{ngayThem}'";
-    }
+            if (!string.IsNullOrEmpty(tenSanPham))
+            {
+                query += $" AND TenSP LIKE N'%{tenSanPham}%'";
+            }
 
-    var list = db.get(query); // Lấy sản phẩm từ cơ sở dữ liệu theo điều kiện
-    ViewBag.list = list;
-    return View();
-}
+            if (!string.IsNullOrEmpty(ngayThem))
+            {
+                query += $" AND CONVERT(DATE, NgayTao) = '{ngayThem}'";
+            }
+
+            var list = db.get(query); // Lấy sản phẩm từ cơ sở dữ liệu theo điều kiện
+            ViewBag.list = list;
+            return View();
+        }
 
         public ActionResult ThemSanPham()
         {
@@ -735,6 +769,6 @@ namespace TSWeb.Controllers
                 ViewBag.topping = toppingData;
                 return View("ChinhSuaTopping");
             }
-        }*/
+        }
     }
 }

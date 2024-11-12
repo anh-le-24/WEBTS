@@ -30,32 +30,9 @@
             <label for="topping-date">Ngày Tạo</label>
             <input type="date" id="topping-date" name="NgayTao" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="product-id">ID Sản Phẩm</label>
-            <input type="text" id="product-id" name="IDSP" class="form-control" required>
-            <form id="add-topping-form">
-                <div class="form-group">
-                    <label for="topping-name">Tên Topping</label>
-                    <input type="text" id="topping-name" name="topping-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="topping-price">Giá</label>
-                    <input type="number" id="topping-price" name="topping-price" required>
-                </div>
-                <div class="form-group">
-                    <label for="topping-status">Trạng thái</label>
-                    <select id="topping-status" name="topping-status" required>
-                        <option value="Còn hàng">Còn hàng</option>
-                        <option value="Hết hàng">Hết hàng</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="topping-quantity">Số lượng</label>
-                    <input type="number" id="topping-quantity" name="topping-quantity" required>
-                </div>
                 <button type="submit" class="btn btn-primary">Thêm Topping</button>
             </form>
-        </div>
+</div>
 
         <script>
     document.getElementById("add-topping-form").addEventListener("submit", function (event) {
