@@ -11,13 +11,7 @@
 </head>
 <body>
 
-    @if (Session["taikhoan"] == null)
-    {
-        <p>Bạn cần đăng nhập để tiếp tục.</p>
-        <a href="@Url.Action("DangNhap", "DangNhapDk")">Đăng nhập</a>
-    }
-    else
-    {
+    
         <form action="@Url.Action("ThemGhMoi", "Home")" method="post" enctype="multipart/form-data">
             <input value="@ViewBag.list[0][0]" name="idsp" type="hidden" />
 
@@ -102,7 +96,6 @@
                 </p>
             </div>
         </form>
-    }
 <script>
     function updateTotalPrice() {
         let totalPrice = 0;
@@ -140,24 +133,19 @@
             }
         });
 
-        // Cộng giá trị của size (M hoặc L)
         let selectedSize = document.querySelector('input[name="size"]:checked');
         if (selectedSize) {
             let sizePrice = selectedSize.value === 'L' ? 10000 : 0;
             totalPrice += sizePrice;
         }
 
-        // Cộng giá trị của đá và đường
         let selectedIce = document.querySelector('input[name="ice"]:checked');
         let selectedSugar = document.querySelector('input[name="sugar"]:checked');
 
-        // Giữ tổng tiền là số nguyên mà không có dấu phẩy
-        let formattedPrice = totalPrice.toFixed(0);  // Số nguyên, không dấu phẩy
+        let formattedPrice = totalPrice.toFixed(0);  
 
-        // Cập nhật tổng tiền vào ô input (dưới dạng số nguyên)
         document.getElementById('TongTien').value = formattedPrice;
 
-        // Cập nhật các lựa chọn topping, đá, đường vào input hidden "SelectedOptions"
         getSelectedOptions();
     }
 

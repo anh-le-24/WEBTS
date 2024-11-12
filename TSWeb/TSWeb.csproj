@@ -144,6 +144,8 @@
     <Content Include="Content\Css\Admincss.css" />
     <Content Include="Content\Css\CartStyleSheet.css" />
     <Content Include="Content\Css\chinhsuasanpham.css" />
+    <Content Include="Content\Css\ChinhSuaTopping.css" />
+    <Content Include="Content\Css\chinhsuauudai.css" />
     <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
@@ -154,11 +156,18 @@
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
     <Content Include="Content\Css\PaymentStyleSheet.css" />
+    <Content Include="Content\Css\SanPham.css" />
     <Content Include="Content\Css\ThemDHStyleSheet.css" />
+    <Content Include="Content\Css\ThemTopping.css" />
+    <Content Include="Content\Css\themuudai.css" />
     <Content Include="Content\Css\TongQuan.css" />
+    <Content Include="Content\Css\Topping.css" />
+    <Content Include="Content\Css\TrangCaNhan.css" />
     <Content Include="Content\Css\TrangCaNhanStyleSheet.css" />
     <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
     <Content Include="Content\Css\GioiThieuStyleSheet.css" />
+    <Content Include="Content\Css\UuDai.css" />
+    <Content Include="Content\Css\voucher.css" />
     <Content Include="Content\Picture\1.png" />
     <Content Include="Content\Picture\banner_diemtichluy.png" />
     <Content Include="Content\Picture\banner_dtl_1.png" />
@@ -273,6 +282,26 @@
     <Content Include="Views\Home\TTTC.cshtml" />
     <Content Include="Views\TrangCaNhan\ChoXacNhan.cshtml" />
     <Content Include="Views\Shared\nav_DonHang.cshtml" />
+    <Content Include="Views\Shared\_TrangCaNhanLayout.cshtml" />
+    <Content Include="Views\Admin\ChiNhanh.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaSP.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaThanhToan.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaTopping.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaUuDai.cshtml" />
+    <Content Include="Views\Admin\QLSanPham.cshtml" />
+    <Content Include="Views\Admin\QLThanhToan.cshtml" />
+    <Content Include="Views\Admin\QLUuDai.cshtml" />
+    <Content Include="Views\Admin\ThemSanPham.cshtml" />
+    <Content Include="Views\Admin\ThemThanhToan.cshtml" />
+    <Content Include="Views\Admin\ThemTopping.cshtml" />
+    <Content Include="Views\Admin\ThemUuDai.cshtml" />
+    <Content Include="Views\Admin\TongQuan.cshtml" />
+    <Content Include="Views\Admin\Topping.cshtml" />
+    <Content Include="Views\Admin\XemChiTietThanhToan.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaCN.cshtml" />
+    <Content Include="Views\Admin\QLChiNhanh.cshtml" />
+    <Content Include="Views\Admin\ThemCN.cshtml" />
+    <Content Include="Views\TrangCaNhan\DoiMatKhau.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

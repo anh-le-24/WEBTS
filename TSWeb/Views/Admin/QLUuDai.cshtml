@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Quản lý ưu đãi";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>Quản lý ưu đãi</h1>
+
+    <!-- Form tìm kiếm -->
+    <div class="search-section">
+        @using (Html.BeginForm("QLUuDai", "Admin", FormMethod.Get))
+        {
+            <input type="text" name="tenUuDai" placeholder="Nhập tên ưu đãi" value="@Request.QueryString["tenUuDai"]" />
+            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        }
+    </div>
+
+    <!-- Bảng danh sách ưu đãi -->
+    <table id="table-uu-dai">
+        <thead>
+            <tr>
+                <th>IDVC</th>
+                <th>Tên mã</th>
+                <th>Mô tả</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Phần trăm giảm</th>
+                <th>Điều kiện</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var uuDai in ViewBag.list)
+            {
+                <tr>
+                    <td>@uuDai[0]</td>
+                    <td>@uuDai[1]</td>
+                    <td>@uuDai[2]</td>
+                    <td>@Convert.ToDateTime(uuDai[3]).ToString("dd/MM/yyyy")</td>
+                    <td>@Convert.ToDateTime(uuDai[4]).ToString("dd/MM/yyyy")</td>
+                    <td>@uuDai[5] %</td>
+                    <td>@uuDai[6]</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="~/Admin/ChinhSuaUuDai?id=@uuDai[0]" class="btn-edit">Sửa</a>
+                            @using (Html.BeginForm("XoaMaGiamGia", "Admin", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value="@uuDai[0]" />
+                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("ThemUuDai", "Admin")" class="btn btn-primary">Thêm ưu đãi mới</a>
+</div>

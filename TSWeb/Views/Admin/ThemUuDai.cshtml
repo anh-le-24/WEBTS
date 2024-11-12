@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Thêm Ưu Đãi";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="main-content">
+    <div class="form-container">
+        <h2 class="form-title">Thêm Ưu Đãi Mới</h2>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(false)
+            </div>
+        }
+        <form action="~/Admin/ThemUuDaiMoi" method="post" class="product-form">
+            <div class="form-group">
+                <label for="IDVC">IDVC *</label>
+                <input type="number" id="IDVC" name="IDVC" class="form-control" required placeholder="Nhập IDVC" />
+            </div>
+            <div class="form-group">
+                <label for="TenMa">Tên Mã *</label>
+                <input type="text" id="TenMa" name="TenMa" class="form-control" required maxlength="9" placeholder="Nhập tên mã" />
+            </div>
+            <div class="form-group">
+                <label for="MoTa">Mô Tả *</label>
+                <textarea id="MoTa" name="MoTa" class="form-control" rows="4" required placeholder="Nhập mô tả"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="NgayBD">Ngày Bắt Đầu *</label>
+                <input type="date" id="NgayBD" name="NgayBD" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="NgayKT">Ngày Kết Thúc *</label>
+                <input type="date" id="NgayKT" name="NgayKT" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="PhanTramGiam">Phần Trăm Giảm *</label>
+                <input type="number" id="PhanTramGiam" name="PhanTramGiam" class="form-control" required min="0" max="100 placeholder="Nhập phần trăm giảm" />
+            </div>
+            <div class="form-group">
+                <label for="DieuKien">Điều Kiện *</label>
+                <input type="number" id="DieuKien" name="DieuKien" class="form-control" required placeholder="Nhập điều kiện" />
+            </div>
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Thêm Ưu Đãi</button>
+                <a href="@Url.Action("QLUuDai", "Admin")" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>

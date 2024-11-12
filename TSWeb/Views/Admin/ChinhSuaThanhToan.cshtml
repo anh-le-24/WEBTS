@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Chỉnh Sửa Thanh Toán";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Chỉnh Sửa Thanh Toán</h2>
+
+@using (Html.BeginForm("ChinhSuaTT", "Admin", FormMethod.Post))
+{
+    <input type="hidden" name="IDTT" value="@ViewBag.list[0][0]" />
+    <div class="form-group">
+        <label>Ngày Thanh Toán:@ViewBag.list[0][1] </label>
+        <input type="datetime" name="NgayThanhToan" value="@ViewBag.list[0][1]" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Tổng Tiền:</label>
+        <input type="number" name="TongTien" value="@ViewBag.list[0][2]" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Hình Thức Thanh Toán:</label>
+        <input type="text" name="HinhThucThanhToan" value="@ViewBag.list[0][3]" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>ID Đơn Hàng:</label>
+        <input type="number" name="IDDH" value="@ViewBag.list[0][4]" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Cập Nhật Thanh Toán</button>
+}

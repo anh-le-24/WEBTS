@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Chỉnh Sửa Sản Phẩm";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="form-container">
+        <h2 class="form-title">Chỉnh Sửa Sản Phẩm</h2>
+
+        <form action="~/Admin/ChinhSuaSanPham" method="post" enctype="multipart/form-data" class="product-form">
+            <input type="hidden" name="IDSP" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 0 ? ViewBag.list[0][0] : "")" />
+
+            <div class="form-group">
+                <label for="TenSP">Tên Sản Phẩm *</label>
+                <input type="text" id="TenSP" name="TenSP" class="form-control" required
+                       placeholder="Nhập tên sản phẩm" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 1 ? ViewBag.list[0][1] : "")" />
+            </div>
+
+            <div class="form-group">
+                <label for="Gia">Giá *</label>
+                <input type="number" id="Gia" name="Gia" class="form-control" required
+                       min="0" step="1000" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 2 ? ViewBag.list[0][2] : "0")" />
+            </div>
+
+            <div class="form-group">
+                <label for="GiamGia">Giảm Giá (%)</label>
+                <input type="number" id="GiamGia" name="GiamGia" class="form-control"
+                       min="0" max="100" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 3 ? ViewBag.list[0][6] : "0")" />
+            </div>
+
+            <div class="form-group">
+                <label for="MoTa">Mô Tả</label>
+                <textarea id="MoTa" name="MoTa" class="form-control" rows="4">@((ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 4) ? ViewBag.list[0][5] : "")</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="IDDM">Danh Mục *</label>
+                <select id="IDDM" name="IDDM" class="form-control" required>
+
+                    @foreach (var a in ViewBag.danhmuc)
+                    {
+                        if (a != null && a.Count > 1)
+                        {
+                            <option value="@a[0]">@a[1]</option>
+                        }
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="IDVC">IDVC *</label>
+                <select id="IDVC" name="IDVC" class="form-control" required>
+
+                    @foreach (var a in ViewBag.voucher)
+                    {
+                        if (a != null && a.Count > 1)
+                        {
+                            <option value="@a[0]">@a[1]</option>
+                        }
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="NgayTao">Ngày Tạo *</label>
+                <input type="date" id="NgayTao" name="NgayTao" class="form-control" required
+                       value="@(ViewBag.NgayTao != null ? ((DateTime)ViewBag.NgayTao).ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))" />
+            </div>
+
+            <div class="center">
+                <div class="form-group form">
+                    <span class="form-title">Hình Ảnh</span>
+                    <label for="HinhAnh" class="drop-container">
+                        <span class="drop-title">Kéo thả file vào đây</span>
+                        hoặc
+                        <input type="file" id="HinhAnh" name="HinhAnh" accept="image/*">
+                    </label>
+                    <div id="image-preview" class="image-preview">
+                        @if (!string.IsNullOrEmpty(ViewBag.HinhAnh))
+                        {
+                            <img src="~/Content/Picture/@ViewBag.HinhAnh" alt="Hình ảnh hiện tại" style="max-width: 200px; max-height: 200px;" />
+                        }
+                        else
+                        {
+                            <p>Không có hình ảnh hiện tại.</p>
+                        }
+                    </div>
+                    <input type="hidden" name="existingImage" value="@ViewBag.HinhAnh" />
+                </div>
+            </div>
+
+
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
+                <a href="@Url.Action("QLSanPham", "Admin")" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Preview hình ảnh trước khi upload
+    document.getElementById('HinhAnh').addEventListener('change', function (e) {
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = '';
+
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px';
+                img.style.maxHeight = '200px';
+                preview.appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Chỉnh Sửa Topping";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="form-container">
+        <h2 class="form-title">Chỉnh Sửa Topping</h2>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(false)
+            </div>
+        }
+
+        <form action="~/Admin/CapNhatTopping" method="post" class="topping-form" id="toppingForm">
+            @{
+                var topping = ViewBag.Topping != null && ViewBag.Topping.Count > 0 ? ViewBag.Topping[0] : null;
+            }
+
+            <input type="hidden" name="IDTP" value="@(topping != null ? topping[0] : "")" />
+
+            <div class="form-group">
+                <label for="TenTP">Tên Topping *</label>
+                <input type="text" id="TenTP" name="TenTP" class="form-control" required
+                       value="@(topping != null ? topping[1] : "")" />
+            </div>
+
+            <div class="form-group">
+                <label for="GiaTP">Giá Topping *</label>
+                <input type="number" step="0.01" id="GiaTP" name="GiaTP" class="form-control" required
+                       min="0.01" value="@(topping != null ? topping[2] : "0")" />
+            </div>
+
+            <div class="form-group">
+                <label for="IDSP">ID Sản Phẩm *</label>
+                <input type="number" id="IDSP" name="IDSP" class="form-control" required
+                       min="1" value="@(topping != null ? topping[3] : "")" />
+            </div>
+
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Cập Nhật Topping</button>
+                <a href="@Url.Action("Topping", "Admin")" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
