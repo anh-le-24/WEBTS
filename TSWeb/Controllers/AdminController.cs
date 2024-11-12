@@ -36,11 +36,10 @@ namespace TSWeb.Controllers
         }
         public ActionResult TongQuan()
             {
-
                 return View();
             }
-        // API endpoint để lấy dữ liệu thống kê theo tháng
-        [HttpGet]
+       /* // API endpoint để lấy dữ liệu thống kê theo tháng
+        [HttpPost]
         public JsonResult GetStatistics(int year)
         {
             List<MonthlyRevenue> monthlyRevenueList = new List<MonthlyRevenue>();
@@ -345,7 +344,7 @@ namespace TSWeb.Controllers
 
                 // Xây dựng câu lệnh SQL với phép nối chuỗi như cũ nhưng có format lại cho chính xác
                 string sqlQuery = "EXEC ThemNhanVienVaNguoiDung N'" + FullName + "','" + Email + "', N'" + Password + "', "
-                                  + PhoneNumber + ", N'" + Address + /*"', '" + formattedDate +*/ "', 2, " + CN + ";";
+                                  + PhoneNumber + ", N'" + Address + *//*"', '" + formattedDate +*//* "', 2, " + CN + ";";
 
                 // Thực hiện câu lệnh SQL
                 db.get(sqlQuery);
@@ -736,6 +735,6 @@ namespace TSWeb.Controllers
                 ViewBag.topping = toppingData;
                 return View("ChinhSuaTopping");
             }
-        }
+        }*/
     }
 }

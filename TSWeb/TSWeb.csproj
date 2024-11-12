@@ -152,6 +152,7 @@
     <Content Include="Content\Css\DonHangStyleSheet.css" />
     <Content Include="Content\Css\HomeNVStyleSheet.css" />
     <Content Include="Content\Css\ListMenuStylesheet.css" />
+    <Content Include="Content\Css\navNV_StyleSheet.css" />
     <Content Include="Content\Css\NVStyleSheet.css" />
     <Content Include="Content\Css\HomeStyleSheet.css" />
     <Content Include="Content\Css\LoginStyleSheet.css" />
@@ -166,6 +167,7 @@
     <Content Include="Content\Css\TrangCaNhanStyleSheet.css" />
     <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
     <Content Include="Content\Css\GioiThieuStyleSheet.css" />
+    <Content Include="Content\Css\TTDHStyleSheet.css" />
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Css\voucher.css" />
     <Content Include="Content\Picture\1.png" />
@@ -302,6 +304,16 @@
     <Content Include="Views\Admin\QLChiNhanh.cshtml" />
     <Content Include="Views\Admin\ThemCN.cshtml" />
     <Content Include="Views\TrangCaNhan\DoiMatKhau.cshtml" />
+    <Content Include="Views\NhanVien\DonchoXN.cshtml" />
+    <Content Include="Views\NhanVien\DonDaXN.cshtml" />
+    <Content Include="Views\NhanVien\DonDangGiao.cshtml" />
+    <Content Include="Views\NhanVien\DonDaHT.cshtml" />
+    <Content Include="Views\NhanVien\DonBiHuy.cshtml" />
+    <Content Include="Views\NhanVien\BaoCaoLoi.cshtml" />
+    <Content Include="Views\TrangCaNhan\DaXacNhan.cshtml" />
+    <Content Include="Views\TrangCaNhan\DangGiao.cshtml" />
+    <Content Include="Views\TrangCaNhan\DaGiao.cshtml" />
+    <Content Include="Views\TrangCaNhan\DaHuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

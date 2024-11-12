@@ -1,22 +1,110 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DoiMatKhau";
+    Layout = "~/Views/Shared/nav_DonHang.cshtml";
 }
 
-<h2>DoiMatKhau</h2>
+<style>
+    /* Tạo một không gian bao quanh form */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    /* Định dạng tiêu đề */
+    h2 {
+        text-align: center;
+        color: #4CAF50;
+    }
+
+    /* Định dạng các label */
+    label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+        color: #333;
+    }
+
+    /* Định dạng các input */
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0 20px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Định dạng nút submit */
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        /* Hiển thị hiệu ứng khi hover nút submit */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    /* Định dạng thông báo lỗi */
+    #message {
+        color: red;
+        font-size: 14px;
+        display: none; /* Ẩn thông báo lỗi mặc định */
+    }
+</style>
+
 <h2>Đổi Mật Khẩu</h2>
 <form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
-    <label for="currentPassword">Mật khẩu hiện tại:</label><br>
-    <input type="password" id="currentPassword" name="currentPassword" required><br><br>
+    <label for="currentPassword">Mật khẩu hiện tại:</label>
+    <input type="password" id="currentPassword" name="currentPassword" required>
 
-    <label for="newPassword">Mật khẩu mới:</label><br>
-    <input type="password" id="newPassword" name="newPassword" required><br><br>
+    <label for="newPassword">Mật khẩu mới:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
 
-    <label for="confirmPassword">Xác nhận mật khẩu mới:</label><br>
-    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+    <label for="confirmPassword">Xác nhận mật khẩu mới:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-    <span id="message" class="error"></span><br><br>
+    <!-- Thông báo lỗi sẽ hiển thị ở đây -->
+    <span id="message"></span>
 
     <button type="submit">Đổi mật khẩu</button>
 </form>
 
+<script>
+    function validatePassword() {
+        // Lấy giá trị của các trường nhập
+        var currentPassword = document.getElementById("currentPassword").value;
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var message = document.getElementById("message");
+
+        // Kiểm tra xem mật khẩu mới và mật khẩu xác nhận có khớp không
+        if (newPassword !== confirmPassword) {
+            message.textContent = "Mật khẩu mới và xác nhận mật khẩu không khớp!";
+            message.style.display = "block"; // Hiển thị thông báo lỗi
+            return false; // Dừng việc gửi form
+        }
+
+        // Kiểm tra mật khẩu mới có ít nhất 8 ký tự, bao gồm cả chữ và số
+        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(newPassword)) {
+            message.textContent = "Mật khẩu mới phải có ít nhất 8 ký tự và bao gồm cả chữ và số!";
+            message.style.display = "block"; // Hiển thị thông báo lỗi
+            return false; // Dừng việc gửi form
+        }
+
+        // Nếu không có lỗi, ẩn thông báo lỗi và cho phép gửi form
+        message.style.display = "none";
+        return true;
+    }
+</script>

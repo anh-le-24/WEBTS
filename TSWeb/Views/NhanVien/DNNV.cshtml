@@ -1,25 +1,108 @@
 ﻿
 @{
     ViewBag.Title = "DNNV";
-    Layout = "~/Views/NhanVien/DNNV.cshtml";
+    Layout = null;
+
 }
 
-<h2>Đăng nhập</h2>
-
-<form method="post" action="/DNNV/Login">
-    <div>
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username" required />
-    </div>
-    <div>
-        <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" name="password" required />
-    </div>
-    <div>
-        <button type="submit">Đăng nhập</button>
-    </div>
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <p style="color:red;">@ViewBag.ErrorMessage</p>
+<style>
+    /* Basic reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-</form>
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        background-color: #111;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        text-align: center;
+    }
+
+        .form-container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            color: #ccc;
+            font-size: 0.9rem;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            background-color: #333;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        .form-container .options {
+            text-align: left;
+            color: #ccc;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+            .form-container .btn:hover {
+                background-color: #0056b3;
+            }
+
+        .form-container .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+            .form-container .forgot-password:hover {
+                text-decoration: underline;
+            }
+</style>
+<body>
+    <!-- Login Form -->
+    <div class="form-container" id="login-form">
+        <h2>Đăng nhập nhân viên</h2>
+        <form action="~/NhanVien/XNDNNV" method="post">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Đăng nhập</button>
+
+        </form>
+        s
+    </div>
+</body>

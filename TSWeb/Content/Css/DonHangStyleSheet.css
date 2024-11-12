@@ -1,20 +1,27 @@
 ﻿body {
     background-color: #f3f4f6;
     font-family: Arial, sans-serif;
+    min-height: 100vh; /* Đảm bảo body chiếm hết chiều cao màn hình */
+    display: flex; /* Sử dụng flexbox để chia layout */
+    flex-direction: row; /* Chia layout thành 2 cột */
 }
 
 .flex {
     display: flex;
+    flex-grow: 1;
+    min-height: 100vh; /* Đảm bảo chiều cao của flex chứa các phần con */
 }
 
 .w-1-5 {
     width: 20%;
     background-color: #2D2824;
+    min-height: 100vh; /* Đảm bảo sidebar chiếm hết chiều cao màn hình */
 }
 
 .w-4-5 {
-    width: 90%;
+    width: 80%;
     background-color: #E4E6D9;
+    min-height: 100vh; /* Đảm bảo nội dung chính có chiều cao đầy đủ */
 }
 
 .bg-white {

@@ -1,45 +1,30 @@
 ﻿@{
     ViewBag.Title = "HomeNV";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/HomeNVStyleSheet.css" rel="stylesheet" />
 }
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewBag.Title</title>
-    <link href="~/Content/Css/HomeNVStyleSheet.css" rel="stylesheet" />
-</head>
+<!-- Main Content -->
 
-<body>
-
-    <button class="btn-them-dh">
+    <a class="btn-them-dh" href="~/NhanVien/ThemDH">
         Thêm đơn hàng
-    </button>
-
-    <!-- Main Content -->
-    <main>
-        <button class="btn-them-dh">
-            Thêm đơn hàng
-        </button>
-        @foreach (var a in ViewBag.list)
-        {
-            <section class="dashboard">
-                <div class="card">
-                    <span>Đơn hàng số: @a[0]</span>
-                    <span>Ngày thanh toán : @a[1]</span>
-                    <span>Trạng thái: @a[2]</span>
-                    <span>Tổng tiền :@a[3]</span>
-                    <span>@a[4]</span>
-                </div>
+    </a>
+    @foreach (var a in ViewBag.list)
+    {
+        <form action=""></form>
+        <section class="dashboard">
+            <div class="card">
+                <span>Đơn hàng số: @a[0]</span>
+                <span>Ngày thanh toán : @a[1]</span>
+                <span>Trạng thái: @a[2]</span>
+                <span>Tổng tiền :@a[3]</span>
+                <span>@a[4]</span>
                 <div class="chuc-nang">
                     <a href="~/NhanVien">Chi tiết đơn hàng</a>
                 </div>
-            </section>
-        }
+            </div>
+            
+        </section>
+    }
 
-    </main>
 
-</body>
-</html>

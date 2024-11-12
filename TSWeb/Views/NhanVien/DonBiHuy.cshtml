@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "DonBiHuy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/TTDHStyleSheet.css" rel="stylesheet" />
+}
+
+@foreach (var a in ViewBag.list)
+{
+    <div class="formdh">
+        <form action="~/NhanVien/XN" method="post">
+            <div class="form-content">
+                <span>Đơn hàng số: @a[0]</span>
+                <span>Ngày thanh toán : @a[1]</span>
+                <span style="color:red;">Trạng thái: @a[2]</span>
+                <span>Tổng tiền : @a[3] VNĐ</span>
+                <span>@a[4]</span>
+            </div>
+        </form>
+        </div>
+        }
+

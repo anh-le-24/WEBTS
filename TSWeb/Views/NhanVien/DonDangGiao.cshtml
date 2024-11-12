@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "DonDangGiao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/TTDHStyleSheet.css" rel="stylesheet" />
+}
+
+@foreach (var a in ViewBag.list)
+{
+    <div class="formdh">
+        <form action="~/NhanVien/XN" method="post">
+            <div class="form-content">
+                <input type="hidden" value="Đã xác nhận" name="trangthai" />
+                <input type="hidden" value="@a[0]" name="iddh" />
+                <span>Đơn hàng số: @a[0]</span>
+                <span>Ngày thanh toán : @a[1]</span>
+                <span style="color:red;">Trạng thái: @a[2]</span>
+                <span>Tổng tiền : @a[3] VNĐ</span>
+                <span>Tên khách hàng: @a[7]</span>
+                <span>Số điện thoại: @a[8]</span>
+                <span>Địa chỉ: @a[9]</span>
+            </div>
+            <div class="chuc_nang">
+                <a href="~/NhanVien">Chi tiết đơn hàng</a>
+                <button type="submit" onclick="logConfirmation(event, @a[0])">Giao hàng thành công</button>
+            </div>
+        </form>
+        </div>
+        }
+        <script>
+            function logConfirmation(event, orderId) {
+                // Log thông báo vào console khi bấm xác nhận đơn hàng
+                window.alert("Đơn hàng số " + orderId + " đã giao hàng tới người đặt.");
+
+            }
+        </script>
+

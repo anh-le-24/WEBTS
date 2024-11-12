@@ -8,9 +8,9 @@ namespace TSWeb.Controllers
     {
         // GET: TrangCaNhan
         DatabaseModel db = new DatabaseModel();
-        public ActionResult Index(string idnd)
+        public ActionResult Index()
         {
-            ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + idnd);
+            ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + Session["taikhoan"]);
             return View();
         }
        
@@ -27,25 +27,35 @@ namespace TSWeb.Controllers
         }
                 
 
-        public ActionResult Donhang(string id)
+        public ActionResult Donhang()
         {
-            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + id);
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + Session["taikhoan"]);
             return View();
         }
         public ActionResult ChoXacNhan()
         {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung "+ Session["taikhoan"] +",N'Đang xử lý';");
             return View();
         }
-        public ActionResult ĐangGiao()
+        public ActionResult DaXacNhan()
         {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đã xác nhận';");
+            return View();
+        }
+     
+        public ActionResult DangGiao()
+        {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đang giao';");
             return View();
         }
         public ActionResult DaGiao()
         {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đã hoàn thành';");
             return View();
         }
         public ActionResult DaHuy()
         {
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Bị hủy';");
             return View();
         }
 
