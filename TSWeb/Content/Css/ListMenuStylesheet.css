@@ -1,4 +1,6 @@
-﻿
+﻿﻿.list_sanpham {
+    display: flex;
+}
 /*Mục bên trái*/
 .bibot-left {
     background-color: black;
