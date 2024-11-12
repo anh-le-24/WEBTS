@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "ThemCN";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="main-content">
+    <div class="form-container">
+        <h2 class="form-title">Thêm Chi Nhánh Mới</h2>
+
+        <!-- Sửa đường dẫn action để đúng với controller -->
+        <form action="@Url.Action("ThemChiNhanh", "Admin")" method="post" class="customer-form">
+            <div class="form-group">
+                <label for="FullName">Tên Chi Nhánh</label>
+                <input type="text" id="name" name="name" class="form-control" required placeholder="Chi Nhánh Cao Thắng" />
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Địa Chỉ</label>
+                <input type="text" id="Address" name="Address" class="form-control" required placeholder="123 đường Cao Thắng, Quận 3, HCM" />
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Ngày Tạo</label>
+                <input type="date" id="DateCreate" name="DateCreate" class="form-control" required />
+            </div>
+
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Thêm Chi Nhánh</button>
+                <a href="@Url.Action("QLChiNhanh", "Admin")" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        const dateInput = document.getElementById("DateCreate");
+        const today = new Date().toISOString().split("T")[0]; // Lấy ngày hiện tại theo định dạng YYYY-MM-DD
+        dateInput.value = today; // Gán giá trị vào input
+    };
+</script>
+}
+
+

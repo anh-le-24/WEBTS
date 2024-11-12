@@ -201,6 +201,11 @@
                     </a>
                 </li>
                 <li class="mb-2">
+                    <a href="@Url.Action("DoiMatKhau", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
+                        <i class="fas fa-shopping-cart mr-2"></i> Đổi mật khẩu
+                    </a>
+                </li>
+                <li class="mb-2">
                     <a href="@Url.Action("Donhang", "TrangCaNhan",new { id = Session["taikhoan"] })" class="flex items-center" style="color: #FFFFFF;">
                         <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
                     </a>
@@ -222,8 +227,8 @@
                 </li>
                 <li class="mb-2 mt-auto">
                     <button class="flex items-center" style="background-color: #E4003A; border: 4px; color: #FFFFFF; cursor: pointer; padding: 0.5rem 1rem;"
-                            onmouseover="this.style.backgroundColor='#B8002E'" 
-                            onmouseout="this.style.backgroundColor='#E4003A'" 
+                            onmouseover="this.style.backgroundColor='#B8002E'"
+                            onmouseout="this.style.backgroundColor='#E4003A'"
                             onclick="confirmLogout()">
                         <i class="fas fa-sign-out-alt mr-2"></i> Thoát
                     </button>

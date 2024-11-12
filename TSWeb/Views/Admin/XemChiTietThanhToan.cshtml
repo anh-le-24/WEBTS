@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Chi Tiết Thanh Toán";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<h1>Chi tiết thanh toán</h1>
+<table class="table">
+    <tr><th>ID Thanh Toán:</th><td>@ViewBag.list[0][0]</td></tr>
+    <tr><th>Ngày Thanh Toán:</th><td>@ViewBag.list[0][1]</td></tr>
+    <tr><th>Tổng Tiền:</th><td>@ViewBag.list[0][2]</td></tr>
+    <tr><th>Hình Thức Thanh Toán:</th><td>@ViewBag.list[0][3]</td></tr>
+    <tr><th>ID Đơn Hàng:</th><td>@ViewBag.list[0][4]</td></tr>
+</table>
+<div class="form-actions center">
+    <a href="@Url.Action("QLThanhToan", "Admin")" class="btn btn-secondary">Quay lại</a>
+</div> 

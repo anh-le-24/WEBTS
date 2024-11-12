@@ -1,0 +1,20 @@
+﻿<style >
+.action-buttons {
+    display: flex; /* Sử dụng flexbox để sắp xếp các nút nằm ngang */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+/* Nếu cần điều chỉnh kiểu cho các nút */
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff; /* Màu nền cho nút */
+    color: white; /* Màu chữ */
+    border-radius: 5px; /* Bo tròn các góc */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Màu nền cho nút xóa */
+}
+
+</style >

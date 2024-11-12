@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!-- Form tìm kiếm và nút Thêm -->
+<div class="search-add-container">
+    <div class="search-filter">
+        @using (Html.BeginForm("QLSanPham", "Admin", FormMethod.Get))
+        {
+            <input type="text" name="tenSanPham" placeholder="Tìm theo tên sản phẩm" value="@Request.QueryString["tenSanPham"]" />
+            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+            <button type="submit" class="button">Tìm kiếm</button>
+        }
+    </div>
+    <a href="~/Admin/ThemSanPham" type="button" class="button add-button">
+        <span class="button__text">Thêm</span>
+        <span class="button__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+            </svg>
+        </span>
+    </a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>IDSP</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Hình Ảnh</th>
+            <th>Ngày Tạo</th>
+            <th>Mô tả</th>
+            <th>Giảm Giá</th>
+            <th>IDVC</th>
+            <th>Danh Mục</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in ViewBag.list)
+        {
+            <tr>
+                <td>@a[0]</td>
+                <td>@a[1]</td>
+                <td>@a[2]</td>
+                <td><img src="~/Content/Picture/@a[3]" alt="Hình ảnh sản phẩm" width="50" height="50" /></td>
+                <td>@a[4]</td>
+                <td>@a[5]</td>
+                <td>@a[6]</td>
+                <td>@a[7]</td>
+                <td>@a[8]</td>
+                <td>
+                    <div class="action-buttons">
+                        <a href="~/Admin/ChinhSuaSP?id=@a[0]" class="btn-edit">Sửa</a>
+                        @using (Html.BeginForm("XoaSanPham", "Admin", FormMethod.Post))
+                        {
+                            <input type="hidden" name="id" value="@a[0]" />
+                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

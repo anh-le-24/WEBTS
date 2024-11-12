@@ -8,12 +8,25 @@ namespace TSWeb.Controllers
     {
         // GET: TrangCaNhan
         DatabaseModel db = new DatabaseModel();
-
         public ActionResult Index(string idnd)
         {
             ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + idnd);
             return View();
         }
+       
+        public ActionResult DoiMatKhau()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DoiMK(string currentPassword,string newPassword)
+        {
+            ViewBag.list = db.get("EXEC DoiMatKhau " + Session["taikhoan"] + ", '" + currentPassword + "', '" + newPassword + "';");
+            return RedirectToAction("Index", "Home");              
+        }
+                
+
         public ActionResult Donhang(string id)
         {
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + id);

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "DoiMatKhau";
+}
+
+<h2>DoiMatKhau</h2>
+<h2>Đổi Mật Khẩu</h2>
+<form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
+    <label for="currentPassword">Mật khẩu hiện tại:</label><br>
+    <input type="password" id="currentPassword" name="currentPassword" required><br><br>
+
+    <label for="newPassword">Mật khẩu mới:</label><br>
+    <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+    <label for="confirmPassword">Xác nhận mật khẩu mới:</label><br>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+    <span id="message" class="error"></span><br><br>
+
+    <button type="submit">Đổi mật khẩu</button>
+</form>
+
