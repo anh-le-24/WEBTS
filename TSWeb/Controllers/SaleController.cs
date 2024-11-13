@@ -9,22 +9,26 @@ namespace TSWeb.Controllers
 {
     public class SaleController : Controller
     {
-        // GET: Sale
+        // GET: Sale 
+        DatabaseModel db = new DatabaseModel();
         public ActionResult Discount()
         {
-            DatabaseModel db = new DatabaseModel();
+            
             ViewBag.listVC = db.get("select * from MAGIAMGIA");
             return View();
         }
         [HttpPost]
-        public ActionResult SaveCoup(string tenma, string mota, string ngaybd, string ngaykt, string phantramgiam, string dieukien) {
-            DatabaseModel db = new DatabaseModel();
-            db.get("EXEC LuuMaGiamGia N'" +tenma+ "', N'" +mota+ "','" +ngaybd+ "','" +ngaykt+ "'," +phantramgiam+ "," +dieukien+ ";");
+        public ActionResult SaveCoup(string idvc) {
+            
+            ViewBag.list = db.get("EXEC LuuVoucherChoKhachHang " +idvc+ "," + Session["taikhoan"]);
             return RedirectToAction("Discount", "Sale");
         }
+
+
+
         public ActionResult MyVoucher() {
-            DatabaseModel db = new DatabaseModel();
-            ViewBag.listMYVC = db.get("select * from MYVOUCHER");
+        
+            ViewBag.list = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"] + ";");
             return View();
         }
     }

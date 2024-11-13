@@ -9,7 +9,7 @@
 
     @{
         Layout = "~/Views/Shared/nav.cshtml";
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
+
     }
 </head>
 <body>
@@ -20,16 +20,45 @@
                     <div class="tag">HOT</div>
                     <img alt="Shop icon" height="80" src="~/Content/Picture/discount.png" width="80" />
                 </div>
-
                 <div class="coupon-right">
                     <div class="discount">@vc[1]-@vc[5]% </div>
                     <div class="min-order">@vc[2]</div>
                     <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
                     <a class="conditions" href="#">@vc[6]</a>
-                    <div class="save" formaction="~/Sale/SaveCoup" formmethod="post">Lưu</div>
+                    <div class="save" data-idvc="@vc[0]">Lưu</div> <!-- Thêm data-idvc -->
                 </div>
             </div>
         }
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Bắt sự kiện click vào nút "Lưu"
+            $(".save").click(function() {
+                var idvc = $(this).data("idvc"); // Lấy idvc từ thuộc tính data-idvc
+                var idkh = "@idkh"; // Lấy idkh từ view
+
+                if (!idkh) {
+                    alert("Vui lòng đăng nhập để lưu voucher.");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("SaveCoup", "Sale")', // URL của phương thức SaveCoup
+                    type: 'POST',
+                    data: { idvc: idvc, idkh: idkh },
+                    success: function(response) {
+                        alert("Voucher đã được lưu thành công!");
+                        // Bạn có thể thêm code ở đây để cập nhật UI nếu cần
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Lỗi: " + error);
+                        alert("Đã xảy ra lỗi khi lưu voucher.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

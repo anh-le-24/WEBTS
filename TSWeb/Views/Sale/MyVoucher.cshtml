@@ -9,12 +9,11 @@
 
     @{
         Layout = "~/Views/Shared/nav.cshtml";
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
     }
 </head>
 <body>
     <div class="coupon-container">
-        @foreach (var myvc in ViewBag.listMYVC) {
+        @foreach (var myvc in ViewBag.list) {
             <div class="coupon">
                 <div class="coupon-left">
                     <div class="tag">HOT</div>
@@ -22,11 +21,12 @@
                 </div>
 
                 <div class="coupon-right">
-                    <div class="discount">@myvc[2]-@myvc[6]% </div>
-                    <div class="min-order">@myvc[3]</div>
+                    <div class="discount">@myvc[1]-@myvc[5]% </div>
+                    <div class="min-order">@myvc[2]</div>
                     <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
-                    <a class="conditions" href="#">@myvc[7]</a>
-                    <div class="apply">Áp dụng</div>
+                    <a class="conditions" href="#">@myvc[6]</a>
+                    <div class="save">Áp dụng</div>
+ @*                   <div class="delete">Xóa</div>*@
                 </div>
             </div>
         }
