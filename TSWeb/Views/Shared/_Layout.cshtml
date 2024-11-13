@@ -4,10 +4,39 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Css/navNV_StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="~/Content/Picture/logo.jpg" alt="TSWeb">
+            <span>QUẢN LÝ NHÂN VIÊN</span>
+        </div>
+        <div class="user-info">
+            <span>@DateTime.Now.ToString("HH:mm:ss | dddd, 'ngày' dd 'tháng' MM 'năm' yyyy")</span>
+            <img src="~/Content/Picture/profile.jpg" alt="Avatar" />
+        </div>
+    </header>
 
-    @RenderBody()
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <li>@Html.ActionLink("VỀ TRANG CHỦ", "Index", "Home")</li>
+            <li>@Html.ActionLink("ĐƠN HÀNG", "HomeNV", "NhanVien")</li>
+            <li>@Html.ActionLink("CA LÀM", "LichHen", "BenhNhan")</li>
+            <li>@Html.ActionLink("ĐƠN CHỜ XÁC NHẬN", "DonchoXN", "NhanVien")</li>
+            <li>@Html.ActionLink("ĐƠN ĐÃ XÁC NHẬN", "DonDaXN", "NhanVien")</li>
+            <li>@Html.ActionLink("ĐƠN ĐANG GIAO", "DonDangGiao", "NhanVien")</li>
+            <li>@Html.ActionLink("ĐƠN ĐÃ HOÀN THÀNH", "DonDaHT", "NhanVien")</li>
+            <li>@Html.ActionLink("ĐƠN BỊ HỦY", "DonBiHuy", "NhanVien")</li>
+            <li>@Html.ActionLink("BÁO CÁO LỖI", "BaoCaoLoi", "NhanVien")</li>
+        </ul>
+    </aside>
+    <main>
+        @RenderBody()
+    </main>
+    
 
 </body>
 </html>

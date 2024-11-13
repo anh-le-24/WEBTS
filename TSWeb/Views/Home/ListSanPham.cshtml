@@ -1,14 +1,14 @@
-﻿﻿
-@{
+﻿@{
     ViewBag.Title = "ListSanPham";
     Layout = "~/Views/Shared/nav.cshtml";
-    <link href="~/Content/Css/ListMenuStyleSheet.css" rel="stylesheet">
+    <link href="~/Content/Css/ListMenuStylesheet.css" rel="stylesheet">
 }
-<div class="list_sanpham">
+
+<div class="list_sanpham" style="display:flex">
     <div class="content-bibot">
         <div class="bibot-left">
+            <h2 style="margin-top:0; padding-left:10%">Menu</h2>
             <ul>
-                <li>Menu</li>
                 <li>Trà sữa</li>
                 <li>Trà trái cây</li>
                 <li>Đá xay</li>
@@ -18,111 +18,62 @@
     </div>
 
     <div class="bibot-right">
-        <div class="title-list">
-            <h3>Menu</h3>
-        </div>
-
         <div class="list-card">
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên:</Span>
-                    <Span>Giá:</Span>
-                    <span id="sale">Giảm giá:</span>
-                    <div class="card-size">
-                    </div>
-                    <div class="btn-buy-order">
-                        <button>Xem Chi Tiết</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên:</Span>
-                    <Span>Giá:</Span>
-                    <span id="sale">Giảm giá:</span>
-                    <div class="card-size">
-                    </div>
-                    <div class="btn-buy-order">
-                        <button>Xem Chi Tiết</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên:</Span>
-                    <Span>Giá:</Span>
-                    <span id="sale">Giảm giá:</span>
-                    <div class="card-size">
-                    </div>
-                    <div class="btn-buy-order">
-                        <button>Xem Chi Tiết</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên:</Span>
-                    <Span>Giá:</Span>
-                    <span id="sale">Giảm giá:</span>
-                    <div class="card-size">
-                    </div>
-                    <div class="btn-buy-order">
-                        <button>Xem Chi Tiết</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-top">
-                    <i class='bx bx-heart'></i>
-                    <i class='bx bx-cart'></i>
-                </div>
-                <div class="card-img">
-                    <img src="~/Content/Picture/img7.jpg">
-                </div>
-                <div class="card-bot">
-                    <Span>Tên:</Span>
-                    <Span>Giá:</Span>
-                    <span id="sale">Giảm giá:</span>
-                    <div class="card-size">
-                    </div>
-                    <div class="btn-buy-order">
-                        <button>Xem Chi Tiết</button>
-                        <button>Thêm</button>
-                    </div>
-                </div>
-            </div>
+            @foreach (var sp in ViewBag.list)
+            {
+                float sp2 = 0;
+                int sp6 = 0;
+
+                if (sp[2] != null && float.TryParse(sp[2].ToString(), out sp2) && sp2 >= 0)
+                {
+                    if (sp[6] != null && int.TryParse(sp[6].ToString(), out sp6) && sp6 > 0)
+                    {
+                        var salePrice = sp2 - ((sp2 / 100) * sp6);
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/@sp[3]">    
+                            </div>
+                            <div class="card-bot">
+                                <span>@sp[1]</span>
+                                <span style="text-decoration: line-through;">@sp[2]</span>
+                                <span id="sale">@salePrice</span>
+                                <div class="card-size">
+                                </div>
+                                <div class="btn-buy-order">
+                                    <a href="@Url.Action("Chitiet", "Home", new { idsp = sp[0] })">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        // Hiển thị giá gốc nếu không có giá trị giảm giá
+                        <div class="card">
+                            <div class="card-top">
+                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-cart'></i>
+                            </div>
+                            <div class="card-img">
+                                <img src="~/Content/Picture/@sp[3]">
+                            </div>
+                            <div class="card-bot">
+                                <span>@sp[1]</span>
+                                <span>@sp[2]</span>
+                                <div class="card-size">
+                                </div>
+                                <div class="btn-buy-order">
+                                    <a href="@Url.Action("Chitiet", "Home", new { idsp = sp[0]})">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
         </div>
     </div>
 </div>

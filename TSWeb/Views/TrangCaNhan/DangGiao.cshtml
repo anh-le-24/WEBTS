@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DangGiao";
+    Layout = "~/Views/Shared/nav.cshtml";
+    Layout = "~/Views/Shared/nav_DonHang.cshtml";
+}
+
+@foreach (var dh in ViewBag.list)
+{
+        <div class="bg-white p-4 mb-4 rounded shadow">
+            <div class="flex items-center mb-2">
+                <img alt="Store logo" class="mr-2" height="20" src="https://www.shutterstock.com/image-vector/bubble-milk-tea-boba-vector-600nw-2299991473.jpg" width="20" />
+                <span class="text-gray-800 font-semibold">LEAF TEA</span>
+                <button class="ml-2 px-2 py-1 text-xs text-white bg-red-500 rounded">Call</button>
+                <button class="ml-2 px-2 py-1 text-xs text-white bg-gray-500 rounded">Order</button>
+            </div>
+            <div class="flex mb-2">
+                <img alt="Product image" class="mr-4" height="80" src="https://maycha.com.vn/wp-content/uploads/2023/10/ts-matcha-kem-trung-khe.png" width="80" />
+                <div>
+                    <div class="text-gray-800">Đơn: @dh[0]</div>
+                    <div class="text-gray-600 text-sm">Ngày đặt: @dh[1]</div>
+                    <div class="text-gray-600 text-sm">Hình thức thanh toán: @dh[7]</div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-gray-600 text-sm">@dh[2]</div>
+                <div class="text-red-500 text-sm">ĐÃ ĐÁNH GIÁ</div>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+                <div class="text-gray-600 text-sm">
+                    Tổng số tiền: <span class="text-red-500 text-lg">@dh[3]</span>
+                </div>
+                <div>
+                    <button class="px-4 py-2 bg-red-500 text-white rounded">Mua Lần Nữa</button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded">Xem Chi Tiết Đơn Hàng</button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded">Xem Đánh Giá</button>
+                </div>
+            </div>
+        </div>
+}
+

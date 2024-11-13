@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Quản lý thanh toán";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@Html.ActionLink("Thêm Thanh Toán Mới", "ThemThanhToan", "Admin", null, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <tr>
+        <th>IDTT</th>
+        <th>Ngày Thanh Toán</th>
+        <th>Tổng Tiền</th>
+        <th>Hình Thức Thanh Toán</th>
+        <th>ID Đơn Hàng</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var a in ViewBag.list)
+    {
+        <tr>
+            <td>@a[0]</td>
+            <td>@a[1]</td>
+            <td>@a[2]</td>
+            <td>@a[3]</td>
+            <td>@a[4]</td>
+
+            <td>
+                @Html.ActionLink("Xem", "XemChiTietThanhToan", new { id = a[0] }) |
+                @Html.ActionLink("Chỉnh sửa", "ChinhSuaThanhToan", new { id = a[0] }) |
+                @Html.ActionLink("Xóa", "XoaThanhToan", new { id = a[0] })
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,56 @@
+﻿﻿@{
+    ViewBag.Title = "ThemKhachHang";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="form-container">
+        <h2 class="form-title">Thêm Khách Hàng Mới</h2>
+
+        <!-- Sửa đường dẫn action để đúng với controller -->
+        <form action="@Url.Action("ThemKH", "Admin")" method="post" class="customer-form">
+            <div class="form-group">
+                <label for="FullName">Họ Tên</label>
+                <input type="text" id="FullName" name="FullName" class="form-control" required placeholder="Nguyễn Văn A" />
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" required placeholder="example@gmail.com" />
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Mật Khẩu</label>
+                <input type="password" id="Password" name="Password" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="PhoneNumber">Số Điện Thoại</label>
+                <input type="number" id="PhoneNumber" name="PhoneNumber" class="form-control" required placeholder="0123456789" />
+            </div>
+
+            <div class="form-group">
+                <label for="Address">Địa Chỉ</label>
+                <input type="text" id="Address" name="Address" class="form-control" required placeholder="Hà Nội" />
+            </div>
+
+            <div class="form-group">
+                <label for="DateCreate">Ngày Tạo Tài Khoản</label>
+                <input type="date" id="DateCreate" name="DateCreate" class="form-control" />
+            </div>
+
+
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Thêm Khách Hàng</button>
+                <a href="@Url.Action("QLKhachHang", "Admin")" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        const dateInput = document.getElementById("DateCreate");
+        const today = new Date().toISOString().split("T")[0]; // Lấy ngày hiện tại theo định dạng YYYY-MM-DD
+        dateInput.value = today; // Gán giá trị vào input
+    };
+</script>

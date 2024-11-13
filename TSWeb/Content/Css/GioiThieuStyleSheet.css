@@ -1,0 +1,91 @@
+﻿﻿p {
+    margin-bottom: 15px; /* Thêm khoảng cách dưới mỗi đoạn */
+    text-align: justify; /* Căn đều văn bản */
+}
+
+h2 {
+    margin-bottom: 10px; /* Thêm khoảng cách dưới mỗi tiêu đề */
+    text-align: center; /* Căn giữa tiêu đề */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s;
+    border-radius: 5px; /* Thêm bo tròn cho nút */
+    font-weight: bold; /* Tăng độ đậm chữ cho nút */
+}
+
+    .tab-button:hover {
+        background-color: #bf9369;
+    }
+
+    .tab-button:focus {
+        background-color: #b0c4de;
+    }
+
+.tab-content {
+    display: none;
+    padding: 15px; /* Thêm khoảng đệm để nội dung không sát mép */
+}
+
+    .tab-content iframe {
+        width: 100%; /* Đặt chiều rộng của iframe chiếm toàn bộ chiều rộng của trang */
+        max-width: 100%; /* Đảm bảo không vượt quá chiều rộng màn hình */
+        height: 450px; /* Chiều cao cố định */
+        border: 0; /* Bỏ đường viền */
+        margin-bottom: 20px; /* Thêm khoảng cách dưới mỗi iframe */
+    }
+
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+/*Liên hệ*/
+#lienhe {
+    text-align: center; /* Căn giữa toàn bộ nội dung */
+    padding: 20px; /* Thêm khoảng đệm */
+    background-color: #f9f9f9; /* Màu nền nhẹ để nổi bật phần nội dung */
+    border-radius: 8px; /* Bo tròn góc */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+    #lienhe h2 {
+        margin-bottom: 15px; /* Thêm khoảng cách dưới tiêu đề */
+    }
+
+    #lienhe p {
+        margin-bottom: 10px; /* Thêm khoảng cách dưới mỗi đoạn văn */
+        font-size: 16px; /* Kích thước chữ phù hợp */
+    }
+
+    #lienhe img {
+        max-width: 80%; /* Đặt kích thước tối đa là 80% chiều rộng màn hình */
+        height: auto; /* Giữ tỷ lệ ảnh */
+        margin-top: 15px; /* Thêm khoảng cách trên ảnh */
+        border-radius: 8px; /* Bo tròn góc ảnh */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho ảnh */
+    }

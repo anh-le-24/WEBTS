@@ -1,0 +1,94 @@
+﻿/* Tạo kiểu cho các form đơn hàng */
+.formdh {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex; /* Dùng flex để đặt các form liền nhau */
+    justify-content: space-between; /* Căn giữa các form */
+}
+
+/* Định dạng các thông tin đơn hàng */
+.form-content {
+    margin-bottom: 15px;
+}
+
+    .form-content span {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        margin: 5px 0;
+    }
+
+        .form-content span:first-child {
+            font-weight: bold;
+        }
+
+        /* Tạo kiểu cho các trạng thái đơn hàng */
+        .form-content span:nth-child(3) {
+            color: red;
+        }
+
+/* Định dạng nút chức năng */
+.chuc_nang {
+    display: flex;
+    justify-content: space-between; /* Cách đều các nút */
+    margin-top: 15px;
+}
+
+    .chuc_nang a,
+    .chuc_nang button {
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        width: 45%; /* Đảm bảo nút chiếm 45% chiều rộng của container */
+    }
+
+    .chuc_nang a {
+        background-color: #007bff;
+    }
+
+    .chuc_nang button[type="submit"]:first-of-type {
+        background-color: #28a745; /* Xác nhận */
+    }
+
+    .chuc_nang button[type="submit"]:last-of-type {
+        background-color: #dc3545; /* Hủy */
+    }
+
+    .chuc_nang a:hover,
+    .chuc_nang button[type="submit"]:hover {
+        opacity: 0.8;
+    }
+
+/* Hover effect cho các nút */
+button[type="submit"]:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Đảm bảo các nút không bị tràn ra ngoài */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+/* Đảm bảo 2 form không tràn */
+.formdh form {
+    flex: 1; /* Mỗi form chiếm không gian ngang bằng nhau */
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column; /* Đặt các thành phần trong form theo chiều dọc */
+}
+
+    .formdh form:last-child {
+        margin-right: 0; /* Không có margin cho form cuối */
+    }

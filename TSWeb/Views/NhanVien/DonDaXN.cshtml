@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "DonDaXN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Css/TTDHStyleSheet.css" rel="stylesheet" />
+}
+
+@foreach (var a in ViewBag.list)
+{
+    <div class="formdh">
+        <form action="~/NhanVien/XN" method="post">
+            <div class="form-content">
+                <input type="hidden" value="Đã xác nhận" name="trangthai" />
+                <input type="hidden" value="@a[0]" name="iddh" />
+                <span>Đơn hàng số: @a[0]</span>
+                <span>Ngày thanh toán : @a[1]</span>
+                <span style="color:red;">Trạng thái: @a[2]</span>
+                <span>Tổng tiền : @a[3] VNĐ</span>
+                <span>Tên khách hàng: @a[7]</span>
+                <span>Số điện thoại: @a[9]</span>
+                <span>Địa chỉ: @a[10]</span>
+            </div>
+            <div class="chuc_nang">
+                <a href="~/NhanVien">Chi tiết đơn hàng</a>
+
+                <button type="submit" onclick="logConfirmation(event, @a[0])">Giao hàng</button>
+            </div>
+        </form>
+        <form action="~/NhanVien/XN" method="post" onsubmit="return confirmCancellation(event, @a[0])">
+            <input type="hidden" value="@a[0]" name="iddh" />
+            <input type="hidden" value="Bị hủy" name="trangthai" />
+            <button type="submit">Hủy đơn hàng</button>
+        </form>
+    </div>
+}
+<script>
+    function logConfirmation(event, orderId) {
+        // Log thông báo vào console khi bấm xác nhận đơn hàng
+        window.alert("Đơn hàng số " + orderId + " đang được giao đi.");
+
+    }
+
+    function confirmCancellation(event, orderId) {
+        // Hiển thị thông báo xác nhận khi người dùng muốn hủy đơn hàng
+        if (window.confirm("Bạn có chắc muốn hủy đơn hàng số " + orderId + " không?")) {
+            // Nếu người dùng chọn "OK", tiếp tục gửi form hủy
+            return true;
+        } else {
+            // Nếu người dùng chọn "Cancel", ngừng hành động
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>

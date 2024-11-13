@@ -21,21 +21,25 @@ namespace TSWeb.Controllers {
         }// GET: DangNhapDK
 
         [HttpPost]
-        public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi) {
+        public ActionResult DangKy(string hoten, string email, string matkhau, string sdt, string diachi)
+        {
             ViewBag.list = db.get("EXEC ThemNguoiDung N'" + hoten + "','" + email + "','" + matkhau + "'," + sdt + ",'" + diachi + "';");
             return RedirectToAction("DangNhap", "DangNhapDK");
         }
         [HttpPost]
-        public ActionResult XuLuDangNhap(string email, string matkhau) {
+        public ActionResult XuLuDangNhap(string email, string matkhau)
+        {
             // Lấy thông tin từ cơ sở dữ liệu (có thể là một mảng hoặc một danh sách)
             ViewBag.list = db.get("EXEC DangNhapNG '" + email + "','" + matkhau + "';");
 
-            if (ViewBag.list.Count > 0) {
+            if (ViewBag.list.Count > 0)
+            {
                 // Lấy thông tin người dùng từ ViewBag.list[0]
                 var user = ViewBag.list[0];
 
                 // Kiểm tra kiểu dữ liệu của user và lấy id
-                if (user is ArrayList userList && userList.Count > 0) {
+                if (user is ArrayList userList && userList.Count > 0)
+                {
                     // Giả sử userList[0] là id người dùng
                     string userId = userList[0].ToString(); // Lấy id từ ArrayList
                     int idnd = 0;
@@ -57,7 +61,8 @@ namespace TSWeb.Controllers {
 
 
         [HttpPost]
-        public ActionResult DangXuat() {
+        public ActionResult DangXuat()
+        {
             Session["taikhoan"] = null;
             return RedirectToAction("Index", "Home");
         }

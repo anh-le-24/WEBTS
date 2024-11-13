@@ -28,3 +28,14 @@ function updateTotalPrice() {
     var totalPrice = (productPrice + toppingPrice + sizePrice) * quantity; // Tổng tiền
     document.getElementById("TongTien").value = totalPrice; // Cập nhật tổng tiền
 }
+//tạo mã khách hàng ngẫu nhiên
+    function generateRandomNumber() {
+            // Tạo số ngẫu nhiên gồm 4 chữ số từ 1000 đến 9999
+            var randomNumber = Math.floor(1000 + Math.random() * 9000);
+    // Gán giá trị vào input
+    document.getElementById("KhachHang").value = randomNumber;
+        }
+
+    // Gọi hàm để gán số ngẫu nhiên khi trang tải
+    window.onload = generateRandomNumber;
+

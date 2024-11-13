@@ -1,52 +1,55 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
     <link href="~/Content/Css/HomeStyleSheet.css" rel="stylesheet">
-
-    @{
-        // Lấy danh sách từ Session["taikhoan"]
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
-        var userId = a != null && a.Count > 0 ? a[0].ToString() : null; // Đây là ID người dùng (IDND)
-    }
 
 </head>
 <body>
     <header>
         <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
+            <div class="dangnhap">
+                @if (Session["taikhoan"] != null)
+                {
+                    <h3>Xin chào @Session["tennguoidung"]</h3>
+                    <form action="@Url.Action("DangXuat", "DangNhapDK")" method="post">
+                        <button type="submit" class="btn btn-link">Đăng xuất</button>
+                    </form>
+                }
+                else
+                {
+                    <a style="text-decoration:none; color:blue" href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
+                }
             </div>
             <div class="cart">
-                @if (Session["taikhoan"] != null) {
-                    <a href='@Url.Action("Cart", "Home", new { id = userId })'>
+                @if (Session["taikhoan"] != null)
+                {
+                    <a href='@Url.Action("Cart", "Home", new { id = Session["taikhoan"] })'>
                         <img src="~/Content/Picture/cart.png" alt="Cart" />
                     </a>
                 }
-                else {
-                    <a href='@Url.Action("Cart", "Home")'>
+                else
+                {
+                    <a href="@Url.Action("DangNhap", "DangNhapDK")" onclick="alert('Vui lòng đăng nhập để xem giỏ hàng!');">
                         <img src="~/Content/Picture/cart.png" alt="Cart" />
                     </a>
                 }
             </div>
 
-            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+
+            <a href="@Url.Action("Index","Home")">
+                <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
+            </a>
+
             <div class="side-bar">
                 <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                @if (Session["taikhoan"] != null && userId != null) {
-                    <h3>@userId</h3>
-                }
-                else {
-                    <a href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
-                }
                 <ul class="menu-items">
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="@Url.Action("ListSanPham","Home")">Menu</a></li>
+                    <li><a href="@Url.Action("GioiThieu", "Home")">Về chúng tôi</a></li>
                     <li><a href="#">Ưu đãi</a></li>
-                    <li><a href="#">Thông tin cá nhân</a></li>
+                    <li><a href="@Url.Action("Index","TrangCaNhan",new { idnd = Session["taikhoan"] })">Thông tin cá nhân</a></li>
                     <li><a href="@Url.Action("DangNhap", "DangNhapDK")">Tài khoản</a></li>
                 </ul>
             </div>

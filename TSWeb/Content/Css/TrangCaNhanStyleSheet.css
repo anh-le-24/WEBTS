@@ -1,0 +1,144 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container-info {
+    display: flex;
+    width: 90%;
+    margin-top: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+    .sidebar .profile {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+.profile-img img {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.profile p {
+    margin: 10px 0;
+}
+
+.profile button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    list-style: none;
+    width: 200px;
+    padding: 20px 0;
+    background-color: #E6E6E6;
+    border-radius: 10px;
+    text-align: start;
+}
+
+    .menu li {
+        padding: 10px;
+        width: 100%;
+    }
+
+        .menu li a {
+            text-decoration: none;
+            color: black;
+            font-weight: 400;
+            transition: all 0.3s;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+            .menu li a:hover {
+                background-color: #FFFFFF;
+                color: black;
+            }
+
+.content {
+    width: 75%;
+    height: auto;
+    padding: 20px;
+}
+
+    .content h1 {
+        margin-bottom: 20px;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    .form-group input {
+        font-size: 16px;
+        width: calc(100% - 22px);
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: black;
+    }
+
+button[type="submit"], .button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.fm-phanquyen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+}
+
+.item-phanquyen {
+    margin-top: 10px;
+}
+
+.update-diachi {
+    display: flex;
+}
+
+    .update-diachi label {
+        font-size: 16px;
+    }

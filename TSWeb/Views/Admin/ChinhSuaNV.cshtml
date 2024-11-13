@@ -1,0 +1,86 @@
+﻿﻿
+@{
+    ViewBag.Title = "ChinhSuaNV";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="center">
+    <div class="edit-customer-container">
+        <div class="page-header">
+            <div class="header-content">
+                <h2>Chỉnh sửa thông tin nhân viên</h2>
+            </div>
+        </div>
+
+        <div class="customer-form-container">
+            <form action="@Url.Action("ChinhSuaNV")" method="post">
+                <input type="hidden" name="Id" value="1" /> <!-- Thay đổi giá trị Id khi có dữ liệu -->
+                <div class="form-sections">
+                    <!-- Phần thông tin cơ bản -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i class="fas fa-user-circle"></i>
+                            <h3>Thông tin nhân viên</h3>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="FullName">Họ tên:</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="FullName" name="FullName" value="Nguyễn Văn A" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Gender">Giới tính:</label>
+                                <div class="input-wrapper">
+                                    <select id="Gender" name="Gender" required>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DateOfBirth">Ngày sinh nhật:</label>
+                                <div class="input-wrapper">
+                                    <input type="date" id="DateOfBirth" name="DateOfBirth" value="1990-01-01" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PhoneNumber">Số điện thoại:</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="PhoneNumber" name="PhoneNumber" value="0123456789" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <div class="input-wrapper">
+                                    <input type="email" id="Email" name="Email" value="example@gmail.com" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Địa chỉ:</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="Address" name="Address" value="Hà Nội" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nút thao tác -->
+                    <div class="form-actions center">
+                        <button type="button" class="btn btn-secondary" onclick="history.back()">
+                            <i class="fas fa-times"></i> Hủy
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Cập nhật
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

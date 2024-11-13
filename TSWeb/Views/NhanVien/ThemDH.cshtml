@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "ThemDH";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <link href="~/Content/Css/ThemDHStyleSheet.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                 <label for="khachHang">Mã khách hàng:</label>
                 <input type="text" name="KhachHang" id="KhachHang" value="" />
             </div>
-
+           
 
         </div>
 
@@ -30,7 +30,8 @@
         <div class="left">
             <h3>Thêm sản phẩm vào đơn hàng</h3>
             <select name="IDSP" id="IDSP" onchange="updatePrice()">
-                @foreach (var a in ViewBag.list) {
+                @foreach (var a in ViewBag.list)
+                {
                     <option value="@a[0]" data-price="@a[2]">@a[1]</option>
                     <!-- Giả sử a[2] là giá -->
                 }
@@ -69,7 +70,8 @@
 
             <label>Topping:</label>
             <ul>
-                @foreach (var topping in ViewBag.tp) {
+                @foreach (var topping in ViewBag.tp)
+                {
                     <li>
                         <input type="checkbox" id="topping_@topping[0]" name="toppings" value="@topping[0]" data-price="@topping[2]" onchange="updateTotalPrice()">
                         <label for="topping_@topping[0]">@topping[1]</label>
@@ -81,9 +83,10 @@
         <!-- Danh sách sản phẩm đã thêm-->
         <div class="right">
             <h3>Sản phẩm đã thêm</h3>
-            @foreach (var a in ViewBag.ctdh) {
+                @foreach(var a in ViewBag.ctdh)
+                {
 
-            }
+                }
         </div>
     </form>
 </div>

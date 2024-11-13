@@ -1,0 +1,55 @@
+﻿﻿@{
+    ViewBag.Title = "QLKhachHang";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<a href="~/Admin/ThemKhachHang" type="button" class="button ">
+    <span class="button__text">Thêm </span>
+    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</a>
+
+
+<table>
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Mật khẩu</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Hành động</th>
+            <th>Vai Trò</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dữ liệu mẫu, bạn có thể thay đổi sau khi có model -->
+        @foreach (var a in ViewBag.list)
+        {
+            <tr>
+                <td>@a[0]</td>
+                <td>@a[1]</td>
+                <td>@a[2]</td>
+                <td>@a[3]</td>
+                <td>@a[4]</td>
+                <td>@a[5]</td>
+                <td>@a[7]</td>
+                <td>
+                    <a href="~/Admin/ChinhSuaKhachHang?id=@a[0]">sửa</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete(@a[0])">xóa</a>
+                </td>
+            </tr>
+        }
+
+        <!-- Thêm nhiều dòng dữ liệu mẫu nếu cần -->
+    </tbody>
+</table>
+<script>
+function confirmDelete(id) {
+    if (confirm("Bạn có chắc muốn xóa khách hàng này không?")) {
+        // Sử dụng Url.Action để tạo đường dẫn đúng
+        window.location.href = '@Url.Action("XoaKhachHang", "Admin")?id=' + id;
+    }
+}
+</script>

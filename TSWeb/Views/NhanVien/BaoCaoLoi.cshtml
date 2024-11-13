@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "BaoCaoLoi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Đặt kiểu chung cho body */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+
+    /* Đặt kiểu cho form */
+    form {
+        width: 100%;
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Đặt kiểu cho các phần tử span (tiêu đề) */
+        form span {
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Đặt kiểu cho input text và textarea */
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Đặt kiểu cho nút submit */
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+            form button:hover {
+                background-color: #45a049;
+            }
+
+        /* Đặt kiểu cho các lỗi (nếu có) */
+        form input:invalid,
+        form textarea:invalid {
+            border-color: red;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+</style>
+
+<form id="reportForm" action="~/NhanVien/GuiBC" method="post">
+    <span>Tiêu đề của thông báo</span>
+    <input type="text" id="tieude" name="tieude" required />
+
+    <span>Nội dung</span>
+    <textarea id="noidung" name="noidung" required></textarea>
+
+    <button type="submit">Gửi báo cáo</button>
+</form>
+
+<script>
+    // Thêm sự kiện submit cho form báo cáo
+    document.getElementById("reportForm").addEventListener("submit", function(event) {
+        // Ngăn chặn gửi form tự động
+        event.preventDefault();
+
+        // Kiểm tra nếu form hợp lệ
+        if (document.getElementById("tieude").value && document.getElementById("noidung").value) {
+            // Hiển thị thông báo log thành công
+            alert("Đã gửi báo cáo thành công!");
+
+            // Gửi form sau khi thông báo thành công
+            this.submit();  // Thực hiện gửi form sau khi thông báo thành công
+        } else {
+            alert("Vui lòng điền đầy đủ thông tin báo cáo.");
+        }
+    });
+</script>

@@ -1,23 +1,17 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
     <link href="~/Content/Css/CartStyleSheet.css" rel="stylesheet">
-
     @{
         Layout = "~/Views/Shared/nav.cshtml";
-        System.Collections.ArrayList a = (System.Collections.ArrayList)Session["taikhoan"];
     }
-
-
 </head>
 
 <body>
-
-    <!-- Phần thân -->
     <main class="container">
         <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
             <button onclick="window.location='@Url.Action("Index", "Home")'"
@@ -25,108 +19,136 @@
                 Quay về Trang Chủ
             </button>
         </div>
+        <div class="go-home-btn" style="margin-bottom: 20px; text-align: center;">
+            <button onclick="window.location='@Url.Action("ListSanPham", "Home")'"
+                    style="padding: 10px 20px; font-size: 16px; background-color: #FF6918; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold">
+                Quay về Menu
+            </button>
+        </div>
+            <div class="cart-container">
+                <div class="cart-list">
+                    @if (ViewBag.list != null && ViewBag.list.Count > 0)
+                    {
+                        foreach (var gh in ViewBag.list)
+                        {
+                            <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
+                                <a href="~/Home/XoaGH?id=@gh[1]" class="btn-remove" style="text-decoration:none;position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
+                                    &times;
+                                </a>
 
-        <div class="cart-container">
-            <div class="card-btn-all">
-                <input id="checkall" type="checkbox" class="check-all" />
-                <label for="checkall">Tất cả</label>
-            </div>
+                                <img src="~/Content/Picture/@gh[7]" class="img-product" alt="" style="width: 120px; height: auto;" />
 
-            <div class="cart-list">
-                @if (ViewBag.list != null && ViewBag.list.Count > 0) {
-                    foreach (var gh in ViewBag.list) {
-                        <div class="cart-items" style="border: 2px solid #FFB38E; background-color: #FFF1DB; margin-bottom: 15px; display: flex; align-items: center; position: relative;">
-                            <!-- Nút xóa -->
-                            <button class="btn-remove" style="position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #000; font-size: 2em; font-weight: bold; padding: 10px;">
-                                &times; <!-- Biểu tượng 'x' để xóa -->
-                            </button>
-
-                            <input type="checkbox" class="btn-check" style="margin-right: 10px;" />
-
-                            <!-- Hiển thị hình ảnh sản phẩm -->
-                            <img src="~/Content/Picture/@gh[8]" class="img-product" alt="" style="width: 120px; height: auto;" />
-
-                            <!-- Hiển thị thông tin sản phẩm -->
-                            <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
-                                <h2 style="font-size: 1.2em;">@gh[5]</h2>
-                                <div class="sizes">
-                                    <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 15px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
-                                        @gh[4]
+                                <div class="cart-item-info" style="flex-grow: 1; margin-left: 20px;">
+                                    <h2 style="font-size: 1.2em;">@gh[5]</h2>
+                                    <div class="sizes">
+                                        <div class="size" data-size="@gh[4]" style="background-color: #FF6918; padding: 2px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; font-size: 1.2em; font-weight: bold;">
+                                            @gh[4]
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
-                                    <div class="item-quanlity" style="display: flex; align-items: center; background-color: white; padding: 10px; border: 2px solid #FF6918; border-radius: 10px;">
-                                        <button class="item-minus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
-                                            <img src="@Url.Content("~/Content/Picture/minus.png")" class="item-img-minus" alt="Giảm" />
-                                        </button>
-                                        <span style="margin: 0 10px; font-weight: bold; color: black;">@gh[2]</span>
-                                        <button class="item-plus-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; color: black;">
-                                            <img src="@Url.Content("~/Content/Picture/plus.png")" class="item-img-plus" alt="Tăng" />
-                                        </button>
+                                    <div class="thongtintopping" style="padding:5px;">
+                                        @gh[8]
                                     </div>
-                                    <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
-                                        đ @gh[3]/ly
+                                    <div class="cart-item-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+                                        <div class="plus-minus-product">
+                                            <div class="item-quanlity">
+                                                
+                                                <label for="SoLuong">Số lượng:</label>
+                                                <input type="number" id="SoLuong-@gh[1]" name="SoLuong" min="1" max="10" value="@gh[2]" readonly
+                                                       placeholder="@gh[2]" onchange="updateTotalPrice(@gh[0])" oninput="updateTotalPrice(@gh[0])" />                                               
+                                            </div>
+                                        </div>
+                                        <!-- Tổng tiền theo sản phẩm -->
+                                        <div class="item-price" style="color: #FF0033; font-weight: bold; margin-left: 20px; font-size: 1.5em;">
+                                            <input type="number" name="tongtienSP" id="tongtienSP-@gh[1]" value="@gh[3]" readonly
+                                                   data-price="@gh[3]" />                                 
+                                            <span> VNĐ</span>
+                                        </div>
+                                        <div>
+                                            <a href="">Sửa</a>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-cart" style="text-align: center; padding: 20px;">
+                            <h3>Giỏ hàng của bạn hiện đang trống!</h3>
+                            <p>Hãy thêm sản phẩm vào giỏ hàng để bắt đầu mua sắm.</p>
                         </div>
                     }
-                }
-                else {
-                    <!-- Nếu giỏ hàng trống -->
-                    <div class="empty-cart" style="text-align: center; padding: 20px;">
-                        <h3>Giỏ hàng của bạn hiện đang trống!</h3>
-                        <p>Hãy thêm sản phẩm vào giỏ hàng để bắt đầu mua sắm.</p>
+                </div>
+            </div>
+
+            <!-- Thông tin của người dùng -->
+            <div class="info-pay">
+                <form action="/" method="post" class="info-pay__form">
+                    <h4>Thông tin giỏ hàng</h4>
+                    <div>
+                        <p>Tổng tiền: <input type="number" name="tongtiengh" id="tongtiengh" readonly />
                     </div>
-                }
-            </div>
 
-        </div>
+                    @if (ViewBag.list != null && ViewBag.list.Count > 0)
+                    {
+                        <h4>Thông tin vận chuyển</h4>
+                        <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="@ViewBag.nd[0][1]" placeholder="@ViewBag.nd[0][1]" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="@ViewBag.nd[0][4]" placeholder="@ViewBag.nd[0][4]" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="@ViewBag.nd[0][5]" placeholder="@ViewBag.nd[0][5]" /></div>
+                    }
+                    else
+                    {
+                        <h4>Thông tin vận chuyển</h4>
+                        <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="Số điện thoại" /></div>
+                        <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="Địa chỉ" /></div>
+                    }
+                </form>
+                <div class="info-pay__method-pay">
 
-        <!-- Phần thanh toán -->
-        <div class="info-pay">
-            <form action="/" method="post" class="info-pay__form">
-                <h4>Thông tin giỏ hàng</h4>
-                <div>
-                    <p>Sản phẩm đã chọn: <span id="total-items"> 0</span></p>
+                    <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home",new {id = Session["taikhoan"]})'"
+                            style="background-color: #FF0033;
+                               color: white;
+                               border: none;
+                               outline: none;
+                               border-radius: 8px;
+                               padding: 15px 20px;
+                               font-size: 18px;
+                               font-family: 'Arial', sans-serif;
+                               font-weight: bold;
+                               cursor: pointer;
+                               transition: background-color 0.3s ease;">
+                        Thanh toán
+                    </button>
                 </div>
-                <div>
-                    <p>Tổng tiền: <span id="total-amount">đ 0</span></p>
-                </div>
-
-                <!-- Thông tin vận chuyển -->
-                <h4>Thông tin vận chuyển</h4>
-                <div><img src="@Url.Content("~/Content/Picture/profile.jpg")" alt="" /><input type="text" name="name" value="" placeholder="Tên người nhận" /></div>
-                <div><img src="@Url.Content("~/Content/Picture/phone.jpg")" alt="" /><input type="number" name="phone" value="" placeholder="Số điện thoại" /></div>
-                <div><img src="@Url.Content("~/Content/Picture/diachi.jpg")" alt="" /><input type="text" name="address" value="" placeholder="Địa chỉ" /></div>
-            </form>
-            <div class="info-pay__method-pay">
-                <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
-                    <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-khi-nhan-hang" />
-                    Thanh toán khi nhận hàng
-                </label>
-                <label for="thanh-toan-vi" class="info-pay__mothod-item">
-                    <input type="radio" name="phuong-thanh-toan" value="" id="thanh-toan-vi" />
-                    Thanh toán bằng Ví MeMe
-                </label>
-                <button type="submit" class="btnthanhtoan" onclick="window.location='@Url.Action("ThanhToan", "Home")'"
-                        style="background-color: #FF0033;
-                                   color: white;
-                                   border: none;
-                                   outline: none;
-                                   border-radius: 8px;
-                                   padding: 15px 20px;
-                                   font-size: 18px;
-                                   font-family: 'Arial', sans-serif;
-                                   font-weight: bold;
-                                   cursor: pointer;
-                                   transition: background-color 0.3s ease;">
-                    Thanh toán
-                </button>
             </div>
-
-        </div>
     </main>
 
+    <script>
+        // Cập nhật tổng tiền giỏ hàng
+        function updateTotalPrice() {
+            let totalAmount = 0;
+
+            // Duyệt qua tất cả các sản phẩm trong giỏ hàng
+            document.querySelectorAll('.cart-items').forEach(item => {
+                // Lấy giá của sản phẩm (đã chuyển đổi thành số float)
+                let price = parseFloat(item.querySelector('.item-price input').getAttribute('data-price').replace(" VNĐ", "").replace(",", ""));
+
+                // Cộng giá sản phẩm vào tổng tiền giỏ hàng
+                totalAmount += price;
+            });
+
+            // Hiển thị tổng tiền của giỏ hàng
+            document.querySelector('#tongtiengh').value = totalAmount.toFixed(0);
+        }
+
+        // Gọi hàm tính tổng tiền khi trang được tải
+        window.onload = function () {
+            updateTotalPrice();
+        }
+    </script>
+
 </body>
+
 </html>

@@ -1,144 +1,157 @@
-﻿﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="~/Content/Css/DetailCartStyleSheet.css" rel="stylesheet">
     <link href="~/Content/Css/PaymentStyleSheet.css" rel="stylesheet">
 
     @{
-        Layout = null;
+        Layout = "~/Views/Shared/nav.cshtml";
     }
 </head>
 <body>
-    <!--thanh điều hướng-->
-    <header>
-        <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
-            </div>
-            <div class="cart"><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
-            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
-            <div class="side-bar">
-                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                <ul class="menu-items">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Thông báo</a></li>
-                    <li><a href="#">Tài khoản</a></li>
-                </ul>
-            </div>
-            <div class="overlay-sidebar">
-            </div>
-            <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
-        </div>
-    </header>
-    <!--Phần thân-->
-    <main>
-        <div class="checkout-container">
-            <h3>Thông tin đơn hàng</h3>
 
-            <!-- Store Selection -->
-            <div class="store-selection">
-                <div class="store-icon">
-                    <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
-                </div>
-            </div>
+    <!-- Phần thân -->
+    <form action="~/Home/ThanhToanHD" method="post">
+        <main>
+            <div class="checkout-container">
+                <h3>Thông tin đơn hàng</h3>
 
-            <!-- Product Details -->
-            <div class="product-details">
-                <div class="product-image">
-                    <img src="~/Content/Picture/img7.jpg" alt="Product Image">
-                </div>
-                <div class="product-info">
-                    <p><strong>Kem Vani Trà Sữa Trân Châu Hoàng Kim (M)</strong></p>
-                    <p>Thêm Thạch Konjac, Thêm Thạch quế hoa, Topping Thạch Dứa, Thêm trân châu sương mai, 100% đường, 100% đá</p>
-                    <p>46,000đ x 1 = 46,000đ</p>
-                </div>
-            </div>
-
-            <!-- Promo Code Section -->
-            <div class="promo-code">
-                <input type="text" placeholder="Mã khuyến mại">
-                <button>Thêm khuyến mại</button>
-            </div>
-
-            <!-- Price Details -->
-            <div class="price-details">
-                <div class="row">
-                    <span>Số lượng cốc:</span>
-                    <span>1 cốc</span>
-                </div>
-                <div class="row">
-                    <span>Tổng:</span>
-                    <span>46,000đ</span>
-                </div>
-                <div class="row">
-                    <span>Phí vận chuyển:</span>
-                    <span>0đ</span>
-                </div>
-                <div class="row">
-                    <span>Khuyến mại:</span>
-                    <span>0đ</span>
-                </div>
-                <div class="row">
-                    <span><strong>Tổng cộng:</strong></span>
-                    <span><strong>46,000đ</strong></span>
-                </div>
-            </div>
-
-            <!-- Notes Section -->
-            <div class="notes">
-                <textarea placeholder="Thêm ghi chú..."></textarea>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="order-button">ĐẶT HÀNG</button>
-                <button class="continue-shopping">TIẾP TỤC MUA HÀNG</button>
-            </div>
-        </div>
-    </main>
-    <footer class="bottom">
-        <div class="footer-left">
-            <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-                <!-- Logo hoặc tên thương hiệu -->
-                <div class="brand" style="flex: 1;">
-                    <h2 style="margin: 0; font-size: 24px;">LEAF TEA</h2>
-                    <p>VỀ CHÚNG TÔI</p>
-                    <p>Một thương hiệu mới với những trãi nghiệm mới giúp cho những hương vị cuộc sống được bùng nổ hơn.</p>
+                <!-- Store Selection -->
+                <div class="store-selection">
+                    <div class="store-icon">
+                        <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
+                    </div>
                 </div>
 
-            </div>
-            <div class="footer-bottom" style="margin-top: 20px;">
-                <p>&copy; 2024 LEAF TEA - All rights reserved.</p>
-            </div>
+                <!-- Product Details -->
+                @foreach (var gh in ViewBag.list)
+                {
+                    <div class="product-details">
+                        <div class="product-image">
+                            <img src="~/Content/Picture/@gh[7]" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <p><strong>@gh[5]</strong></p>
+                            <p>số lượng: <strong>@gh[2]</strong></p>
+                            <p>@gh[8]</p>                            
+                            <span id="tongtiensp_@gh[1]" class="product-price">@gh[3] VNĐ</span>
+                        </div>
+                    </div>
+                }
 
-        </div>
-        <div class="footer-mid">
-            <!-- Thông tin liên hệ -->
-            <div class="contact-info" style="flex: 1;">
-                <p style="margin: 0;">Email: leaftea@gmail.com</p>
-                <p style="margin: 0;">Hotline: 0123 456 789</p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <!-- Liên kết mạng xã hội -->
-            <div class="social-icons" style="flex: 1; display: flex; justify-content: center;">
-                <a href="https://www.instagram.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 32px;">
-                </a>
-                <a href="https://www.facebook.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width: 32px;">
-                </a>
+                <!-- Promo Code Section -->
+                <div class="promo-code">
+                    <input type="text" placeholder="Mã khuyến mại" id="promoCode">
+                    <button type="button" onclick="addPromoCode()">Thêm khuyến mại</button>
+                </div>
 
+                <!-- Price Details -->
+                <div class="price-details">
+                    <div class="row">
+                        <span>Tổng:</span>
+                        <input id="totalAmount" value="0" name="tongtiensp" readonly /> <!-- Tổng tiền các sản phẩm -->
+                    </div>
+                    <div class="row">
+                        <span>Phí vận chuyển:</span>
+                        <span id="phivanchuyen">0đ</span>
+                    </div>
+
+                    <div class="row">
+                        <label for="quick">Chọn nhanh</label>
+                        <input type="radio" id="quick" name="shippingspeed" value="nhanh ch" onclick="updateShippingCost('quick')">
+
+                        <label for="slow">Chọn chậm</label>
+                        <input type="radio" id="slow" name="shippingspeed" value="slow" onclick="updateShippingCost('slow')">
+                    </div>
+
+                    <div class="row">
+                        <span>Khuyến mại:</span>
+                        <input id="khuyenmai" value="0" name="khuyenmai" />
+                    </div>
+
+                    <!-- Phương thức thanh toán -->
+                    <div class="row">
+                        <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
+                            <input type="radio" name="phuongthanhtoan" value="Thanh toán khi nhận hàng" id="thanh-toan-khi-nhan-hang" />
+                            Thanh toán khi nhận hàng
+                        </label>
+                        <label for="thanh-toan-vi" class="info-pay__mothod-item">
+                            <input type="radio" name="phuongthanhtoan" value="Thanh toán bằng Ví MeMe" id="thanh-toan-vi" />
+                            Thanh toán bằng Ví MeMe
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <span><strong>Tổng cộng:</strong></span>
+                        <input id="finalTotal" name="finalTotal" readonly />
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" class="order-button">ĐẶT HÀNG</button>
+                    <a href="@Url.Action("ListSanPham","Home")" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
+                </div>
             </div>
-        </div>
-    </footer>
-    <script src="~/Scripts/HomeJavaScript.js"></script>
+        </main>
+    </form>
+
+    <script>
+        // Hàm tính tổng tiền của các sản phẩm
+        function calculateTotalAmount() {
+            let totalAmount = 0;
+
+            // Lấy tất cả các sản phẩm và cộng tổng tiền
+            let productPrices = document.querySelectorAll('.product-price');
+            productPrices.forEach(function (priceElement) {
+                let price = parseInt(priceElement.textContent.replace(' VNĐ', '').replace(',', '').trim());
+                totalAmount += price;
+            });
+
+            // Cập nhật tổng tiền vào giao diện
+            document.getElementById('totalAmount').value = totalAmount;
+
+            // Cập nhật phí vận chuyển và tính tổng cộng
+            updateShippingCost(document.querySelector('input[name="shipping_speed"]:checked')?.value || 'quick');
+        }
+
+        // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
+        function updateShippingCost(shippingType) {
+            let totalAmount = parseInt(document.getElementById('totalAmount').value);
+            let shippingCost = 0;
+            let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0; // Nếu không có khuyến mãi, giá trị mặc định là 0
+
+            // Cập nhật phí vận chuyển
+            if (shippingType === 'quick') {
+                shippingCost = 5000; //phí vận chuyển nhanh
+            } else if (shippingType === 'slow') {
+                shippingCost = 2000; //phí vận chuyển chậm
+            }
+
+            // Cập nhật phí vận chuyển vào giao diện
+            document.getElementById('phivanchuyen').textContent = shippingCost + 'đ';
+
+            // Tính tổng cộng (Tổng sản phẩm + phí vận chuyển - khuyến mãi)
+            let finalTotal = totalAmount + shippingCost - khuyenMai;
+            document.getElementById('finalTotal').value = finalTotal;
+        }
+
+        // Hàm thêm khuyến mãi
+
+        function addPromoCode() {
+            let promoValue = prompt("Nhập giá trị khuyến mãi:"); // Ví dụ nhập khuyến mãi
+            let khuyenMai = parseInt(promoValue);
+
+            if (khuyenMai && khuyenMai > 0) {
+                document.getElementById('khuyenmai').value = khuyenMai;
+                updateShippingCost(document.querySelector('input[name="shipping_speed"]:checked')?.value || 'quick');
+            }
+        }
+
+        // Gọi hàm tính tổng tiền khi trang được tải
+        window.onload = calculateTotalAmount;
+    </script>
+
+
 </body>
 </html>

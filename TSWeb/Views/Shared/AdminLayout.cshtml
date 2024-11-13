@@ -1,0 +1,49 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/admincss.css" rel="stylesheet" />
+    <link href="~/css/SanPham.css" rel="stylesheet" />
+    <link href="~/Content/css/chinhsuasanpham.css" rel="stylesheet" />
+    <link href="~/Content/css/DanhSachSP.css" rel="stylesheet" />
+    <link href="~/css/SanPham.css" rel="stylesheet" />
+    <link href="~/css/UuDai.css" rel="stylesheet" />
+    <link href="~/Content/css/UuDai.css" rel="stylesheet" />
+    <link href="~/css/Topping.css" rel="stylesheet" />
+    <link href="~/Content/css/Topping.css" rel="stylesheet" />
+    <link href="~/Content/css/ThemTopping.css" rel="stylesheet" />
+    <link href="~/Content/css/ChinhSuaTopping.css" rel="stylesheet" />
+    <link href="~/Content/Css/TongQuan.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header và navigation ở đây -->
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+
+                <img src="~/Content/Picture/logo.jpg" alt="Tea Leaf Logo" width="120" height="90">
+            </div>
+            <div class="menu-top">
+                <a href="@Url.Action("TongQuan","Admin")">Tổng Quan</a>
+                <a href="~/Admin/QLSanPham">Sản Phẩm</a>
+                <a href="~/Admin/QLUuDai">Ưu Đãi</a>
+                <a href="~/Admin/QLKhachHang">Khách Hàng</a>
+                <a href="@Url.Action("QLNhanVien","Admin")">Nhân Viên</a>
+                <a href="@Url.Action("QLThanhToan","Admin")">Thanh Toán</a>
+                <a href="~/Admin/Topping">Topping</a>
+                <a href="~/Admin/DonHang">Đơn Hàng</a>
+                <a href="~/Admin/ThongBao">Thông Báo</a>
+                <a href="~/Admin/ChiNhanh">Chi Nhánh</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="content">
+        @RenderBody()
+    </main>
+</body>
+</html>

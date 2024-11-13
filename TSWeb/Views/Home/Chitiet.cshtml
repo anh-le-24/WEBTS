@@ -1,5 +1,4 @@
-﻿﻿﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,136 +6,185 @@
     <title>Document</title>
     <link href="~/Content/Css/DetailCartStyleSheet.css" rel="stylesheet">
     @{
-        Layout = null;
+        Layout = "~/Views/Shared/nav.cshtml";
     }
 </head>
 <body>
-    <!--thanh điều hướng-->
-    <header>
-        <div class="nav">
-            <div class="down">
-                <span id="word">LANGUAGES</span>
-                <img src="~/Content/Picture/down.png" alt="Doswn">
-            </div>
-            <div class="cart"><a href="~/Views/Home/Cart.cshtml"><img src="~/Content/Picture/cart.png" /></a></div>
-            <img src="~/Content/Picture/logo.jpg" alt="Green Tea" id="logo">
-            <div class="side-bar">
-                <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu1">
-                <ul class="menu-items">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Thông báo</a></li>
-                    <li><a href="#">Tài khoản</a></li>
-                </ul>
-            </div>
-            <div class="overlay-sidebar">
-            </div>
-            <img src="~/Content/Picture/menu1.png" alt="Menu" id="menu">
-        </div>
-    </header>
-    <!--Phần thân-->
-    <main class="container">
-        @foreach (var a in ViewBag.list) {
+
+    
+        <form action="@Url.Action("ThemGhMoi", "Home")" method="post" enctype="multipart/form-data">
+            <input value="@ViewBag.list[0][0]" name="idsp" type="hidden" />
+
             <div class="detail-product">
-                <img src="~/Content/Picture/tea1.jpg" class="detail-product__img" />
+                <img src="~/Content/Picture/@ViewBag.list[0][5]" class="detail-product__img" />
                 <div class="detail-product__info">
-                    <h2 class="detail-product__title">@a[1]</h2>
-                    <p class="detail-product__price">Giá : @a[2]</p>
+                    <h2 class="detail-product__title">@ViewBag.list[0][1]</h2>
+                    <p class="detail-product__price">Giá : @ViewBag.list[0][2]</p>
                     <p class="detail-product__label">Còn hàng</p>
+
+                    <h3>Chọn Size</h3>
                     <div class="sizes">
-                        <div class="size" data-size="M">M</div>
-                        <div class="size" data-size="L">L</div>
-                    </div>
-                    <div class="detail-taste">
-                        <p class="detail-taste__title">Topping</p>
-                        <div class="detail-taste__list-option">
-                            <button class="detail-taste__option">Trân Châu</button>
-                            <button class="detail-taste__option">Thạch</button>
-                        </div>
+                        <input type="radio" id="sizeM" name="size" value="M" onchange="updateTotalPrice()" />
+                        <label for="sizeM" class="size" data-size="M">M</label>
+
+                        <input type="radio" id="sizeL" name="size" value="L" onchange="updateTotalPrice()" />
+                        <label for="sizeL" class="size" data-size="L">L</label>
                     </div>
 
-                    <div class="detail-taste">
-                        <p class="detail-taste__title">Ngọt</p>
-                        <div class="detail-taste__list-option">
-                            <button class="detail-taste__option">Ít</button>
-                            <button class="detail-taste__option">Bình thường</button>
-                        </div>
+                    <h3>Chọn Đá</h3>
+                    <div class="ice">
+                        <input type="radio" id="option1" name="ice" value="Đá ít" onchange="updateTotalPrice()">
+                        <label for="option1">Đá ít</label><br>
+
+                        <input type="radio" id="option2" name="ice" value="Đá bình thường" onchange="updateTotalPrice()">
+                        <label for="option2">Đá bình thường</label><br>
+
+                        <input type="radio" id="option3" name="ice" value="Đá nhiều" onchange="updateTotalPrice()">
+                        <label for="option3">Đá nhiều</label><br>
                     </div>
-                    <div class="detail-taste">
-                        <p class="detail-taste__title">Đá</p>
-                        <div class="detail-taste__list-option">
-                            <button class="detail-taste__option">Ít</button>
-                            <button class="detail-taste__option">Bình thường</button>
-                        </div>
+
+                    <h3>Chọn Đường</h3>
+                    <div class="sugar">
+                        <input type="radio" id="option4" name="sugar" value="Đường ít" onchange="updateTotalPrice()">
+                        <label for="option4">Đường ít</label><br>
+
+                        <input type="radio" id="option5" name="sugar" value="Đường bình thường" onchange="updateTotalPrice()">
+                        <label for="option5">Đường bình thường</label><br>
+
+                        <input type="radio" id="option6" name="sugar" value="Đường nhiều" onchange="updateTotalPrice()">
+                        <label for="option6">Đường nhiều</label><br>
                     </div>
+                    <h3>Chọn Topping</h3>
+                    <ul style="list-style-type: none;">
+                        @foreach (var topping in ViewBag.tp)
+                        {
+                            <li>
+                                <input type="checkbox" id="topping_@topping[0]" name="toppings" value="@topping[1]" data-price="@topping[2]" onchange="updateTotalPrice()">
+                                <label for="topping_@topping[0]">@topping[1] giá : @topping[2]</label>
+                            </li>
+                        }
+                    </ul>
+
                     <div class="plus-minus-product">
                         <div class="item-quanlity">
-                            <button class="item-minus-btn">
+                            <button type="button" class="item-minus-btn" onclick="updateQuantity('minus')">
                                 <img src="~/Content/Picture/minus.png" class="item-img-minus" />
                             </button>
-                            <span>2</span>
-                            <button class="item-plus-btn">
+                            <label for="SoLuong">Số lượng:</label>
+                            <input type="number" id="SoLuong" name="SoLuong" min="1" max="10" value="1" placeholder="1" onchange="updateTotalPrice()" />
+                            <button type="button" class="item-plus-btn" onclick="updateQuantity('plus')">
                                 <img src="~/Content/Picture/plus.png" class="item-img-plus" />
                             </button>
                         </div>
-                        <form class="btnthemsanpham" action="@Url.Action("Themsp", "Home")" method="post">
-                            <input type="hidden" name="idkh" value="1" /> <!-- Replace with the actual customer ID -->
-                            <input type="hidden" name="idsp" value="@a[0]" />
-                            <input type="hidden" name="soluong" value="1" />
-                            <input type="hidden" name="size" value="M" />
-                            <input type="hidden" name="idcttp" value="1" /> <!-- Replace with the actual topping ID -->
-                            <input type="hidden" name="idctgh" value="9" /> <!-- Replace with the actual cart detail ID if needed -->
-                            <button type="submit">Thêm</button>
-                        </form>
                     </div>
+
+                    <!-- Lưu chuỗi topping -->
+                    <input type="hidden" id="SelectedOptions" name="selectedOptions" value="" readonly />
+                    <input type="hidden" name="TongTienTopping" id="TongTienTopping" value="0" readonly />
+
+                    <label for="TongTien">Tổng tiền ly nước:</label>
+                    <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
+
+                    <input type="submit" />
                 </div>
-                }
             </div>
+
             <div class="product-description">
                 <h3>Mô tả sản phẩm</h3>
                 <p>
-                    @a[4]
+                    @ViewBag.list[0][4]
                 </p>
             </div>
+        </form>
+<script>
+    function updateTotalPrice() {
+        let totalPrice = 0;
+
+        // Lấy giá của sản phẩm (trừ ký tự không cần thiết như "Giá : ", "₫" và dấu phẩy)
+        let productPrice = parseFloat(document.querySelector('.detail-product__price').textContent
+            .replace('Giá : ', '')  // Xóa chuỗi "Giá : "
+            .replace('₫', '')        // Xóa ký tự "₫"
+            .trim()                  // Loại bỏ khoảng trắng thừa
+            .replace(',', '')       // Xóa dấu phẩy nếu có
+        );
+
+
+        // Nếu giá sản phẩm không hợp lệ, dừng lại
+        if (isNaN(productPrice)) {
+            console.error('Giá sản phẩm không hợp lệ');
+            return;
         }
-    </main>
-    <footer class="bottom">
-        <div class="footer-left">
-            <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-                <!-- Logo hoặc tên thương hiệu -->
-                <div class="brand" style="flex: 1;">
-                    <h2 style="margin: 0; font-size: 24px;">LEAF TEA</h2>
-                    <p>VỀ CHÚNG TÔI</p>
-                    <p>Một thương hiệu mới với những trãi nghiệm mới giúp cho những hương vị cuộc sống được bùng nổ hơn.</p>
-                </div>
 
-            </div>
-            <div class="footer-bottom" style="margin-top: 20px;">
-                <p>&copy; 2024 LEAF TEA - All rights reserved.</p>
-            </div>
+        // Lấy số lượng sản phẩm
+        let quantity = parseInt(document.getElementById('SoLuong').value);
+        if (isNaN(quantity) || quantity <= 0) {
+            console.error('Số lượng không hợp lệ');
+            return;
+        }
 
-        </div>
-        <div class="footer-mid">
-            <!-- Thông tin liên hệ -->
-            <div class="contact-info" style="flex: 1;">
-                <p style="margin: 0;">Email: leaftea@gmail.com</p>
-                <p style="margin: 0;">Hotline: 0123 456 789</p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <!-- Liên kết mạng xã hội -->
-            <div class="social-icons" style="flex: 1; display: flex; justify-content: center;">
-                <a href="https://www.instagram.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 32px;">
-                </a>
-                <a href="https://www.facebook.com" target="_blank" style="margin-right: 15px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width: 32px;">
-                </a>
+        // Tính tổng tiền cho sản phẩm (sản phẩm x số lượng)
+        totalPrice = productPrice * quantity;
 
-            </div>
-        </div>
-    </footer>
+        // Cộng giá trị của topping đã chọn
+        document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
+            let toppingPrice = parseFloat(topping.getAttribute('data-price'));
+            if (!isNaN(toppingPrice)) {
+                totalPrice += toppingPrice;
+            }
+        });
 
+        let selectedSize = document.querySelector('input[name="size"]:checked');
+        if (selectedSize) {
+            let sizePrice = selectedSize.value === 'L' ? 10000 : 0;
+            totalPrice += sizePrice;
+        }
+
+        let selectedIce = document.querySelector('input[name="ice"]:checked');
+        let selectedSugar = document.querySelector('input[name="sugar"]:checked');
+
+        let formattedPrice = totalPrice.toFixed(0);  
+
+        document.getElementById('TongTien').value = formattedPrice;
+
+        getSelectedOptions();
+    }
+
+    // Cập nhật các lựa chọn topping, đá, đường vào chuỗi
+    function getSelectedOptions() {
+        let selectedOptions = [];
+
+        // Lấy tất cả các lựa chọn "Đá" đã chọn
+        document.querySelectorAll('input[name="ice"]:checked').forEach(function (ice) {
+            selectedOptions.push(ice.value);
+        });
+
+        // Lấy tất cả các lựa chọn "Đường" đã chọn
+        document.querySelectorAll('input[name="sugar"]:checked').forEach(function (sugar) {
+            selectedOptions.push(sugar.value);
+        });
+
+        // Lấy tất cả topping đã chọn
+        document.querySelectorAll('input[name="toppings"]:checked').forEach(function (topping) {
+            selectedOptions.push(topping.value);
+        });
+
+        // Cập nhật giá trị vào input hidden "SelectedOptions"
+        document.getElementById('SelectedOptions').value = selectedOptions.join(', ');
+    }
+
+    // Cập nhật số lượng sản phẩm
+    function updateQuantity(action) {
+        let quantityInput = document.getElementById('SoLuong');
+        let currentQuantity = parseInt(quantityInput.value);
+
+        if (action === 'plus' && currentQuantity < 10) {
+            quantityInput.value = currentQuantity + 1;
+        } else if (action === 'minus' && currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+
+        updateTotalPrice(); // Cập nhật lại tổng tiền
+    }
+</script>
 </body>
 </html>

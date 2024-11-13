@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Thêm Topping";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="container">
+    <h2>Thêm Topping Mới</h2>
+    <div class="controls">
+        <button class="btn btn-primary" onclick="window.location.href='@Url.Action("Topping", "Admin")'">
+            <i class="fas fa-arrow-left"></i> Quay lại danh sách Topping
+        </button>
+    </div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(false)
+        </div>
+    }
+
+    <form id="add-topping-form" action="~/Admin/ThemToppingMoi" method="post" class="product-form">
+        <div class="form-group">
+            <label for="topping-name">Tên Topping</label>
+            <input type="text" id="topping-name" name="TenTP" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="topping-price">Giá</label>
+            <input type="number" id="topping-price" name="GiaTP" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="topping-date">Ngày Tạo</label>
+            <input type="date" id="topping-date" name="NgayTao" class="form-control" required>
+        </div>
+                <button type="submit" class="btn btn-primary">Thêm Topping</button>
+            </form>
+</div>
+
+        <script>
+    document.getElementById("add-topping-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const toppingName = document.getElementById("topping-name").value;
+        const toppingPrice = document.getElementById("topping-price").value;
+        const toppingDate = document.getElementById("topping-date").value;
+        const productId = document.getElementById("product-id").value;
+
+        if (!toppingName) {
+            alert("Tên topping không được để trống!");
+            return;
+        }
+
+        fetch('/Admin/ThemToppingMoi', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                TenTP: toppingName,
+                GiaTP: toppingPrice,
+                NgayTao: toppingDate,
+                IDSP: productId
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Topping đã được thêm thành công.');
+                    window.location.href = '/Admin/Topping';
+                } else {
+                    alert('Thêm topping thất bại.');
+                }
+            })
+            .catch(error => {
+                console.error('Lỗi:', error);
+                alert('Có lỗi xảy ra khi thêm topping.');
+            });
+    });
+        </script>

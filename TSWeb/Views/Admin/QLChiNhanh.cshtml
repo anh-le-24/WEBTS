@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "QLChiNhanh";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<a href="~/Admin/ThemCN" type="button" class="button">
+    <span class="button__text">Thêm</span>
+    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Chi Nhánh</th>
+            <th>Địa Chỉ</th>
+            <th>Ngày Tạo</th>
+            <th>Hành động</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in ViewBag.list)
+        {
+            <tr>
+                <td>@a[0]</td>
+                <td>@a[1]</td>
+                <td>@a[2]</td>
+                <td>@a[3]</td>
+                <td>
+                    <a href="~/Admin/ChinhSuaCN?id=@a[0]">Sửa</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete(@a[0])">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    function confirmDelete(id) {
+        if (confirm("Bạn có chắc muốn xóa chi nhánh này không?")) {
+            // Sử dụng Url.Action để tạo đường dẫn đúng
+            window.location.href = '@Url.Action("XoaCN", "Admin")?id=' + id;
+            }
+        }
+</script>
+

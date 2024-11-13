@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+﻿﻿@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
 * {
     margin: 0;
@@ -12,12 +12,13 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #03a9f4;
+    background: #2D2824;
     transition: 1s;
 }
 
 .slide {
-    background: #f43648;
+    background: #E4E6D9;
+    border-radius: 10px;
 }
 
 .container {
@@ -71,10 +72,12 @@ body {
     transition: 0.5s;
     transition-delay: 0.5s;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .slide .formBx {
     left: 400px;
+    border-radius: 10px;
 }
 
 .formBx .form {
@@ -93,21 +96,25 @@ body {
     .formBx .form.signupform {
         top: 100%;
         transition-delay: 0s;
+        border-radius: 10px;
     }
 
 .slide .formBx .form.signupform {
     top: 0;
     transition-delay: 1s;
+    border-radius: 10px;
 }
 
 .formBx .form.signinform {
     top: 0;
     transition-delay: 1s;
+    border-radius: 10px;
 }
 
 .slide .formBx .form.signinform {
     top: -100%;
     transition-delay: 0s;
+    border-radius: 10px;
 }
 
 .formBx .form form {
@@ -115,6 +122,7 @@ body {
     flex-direction: column;
     padding: 0 50px;
     width: 100%;
+    border-radius: 10px;
 }
 
     .formBx .form form h3 {
@@ -122,33 +130,38 @@ body {
         color: #333;
         margin-bottom: 20px;
         font-weight: 600;
+        border-radius: 10px;
     }
 
     .formBx .form form input {
         width: 100%;
-        margin-bottom: 15px;
         padding: 10px;
         outline: none;
         font-size: 0.8em;
         border: 1px solid #333;
         letter-spacing: 0.1em;
+        border-radius: 10px;
     }
 
         .formBx .form form input[type="submit"] {
-            background: #03a9f4;
+            background: #D5D7CA;
             border: none;
-            color: #fff;
+            color: #2D2824;
             max-width: 100px;
             cursor: pointer;
             font-weight: 500;
+            border-radius: 10px;
         }
 
 .formBx .signupform form input[type="submit"] {
-    background: #f43648;
+    background: #2D2824;
+    border-radius: 10px;
+    color: #E4E6D9;
 }
 
 .forgot {
     color: #333;
     letter-spacing: 0.05em;
     font-size: 0.8em;
+    border-radius: 10px;
 }

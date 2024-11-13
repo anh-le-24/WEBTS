@@ -1,0 +1,51 @@
+﻿﻿body {
+    font-family: Arial, sans-serif;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between; /* Căn giữa các bảng thống kê */
+    flex-wrap: wrap; /* Cho phép các bảng thống kê xuống dòng nếu cần */
+}
+
+.stat-card {
+    margin: 10px; /* Khoảng cách giữa các bảng thống kê */
+    padding: 10px; /* Giảm padding */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+    flex: 1 1 30%; /* Giảm độ rộng tối đa của bảng thống kê */
+    max-width: 300px; /* Đặt chiều rộng tối đa cho bảng thống kê */
+}
+
+    .stat-card p {
+        margin-bottom: 10px;
+    }
+
+    .stat-card span {
+        font-weight: bold;
+        color: #337ab7;
+    }
+
+.charts h2 {
+    color: white; /* Đặt màu trắng cho tiêu đề */
+    background-color: #337ab7; /* Tùy chọn: màu nền cho tiêu đề */
+    padding: 10px; /* Thêm khoảng cách bên trong cho tiêu đề */
+    border-radius: 5px; /* Bo góc cho tiêu đề */
+}
+
+.chart-container {
+    display: flex; /* Sử dụng flexbox để bố trí các biểu đồ */
+    justify-content: space-around; /* Căn giữa các biểu đồ */
+    flex-wrap: wrap; /* Cho phép các biểu đồ xuống dòng nếu cần */
+}
+
+.chart {
+    background-color: whitesmoke;
+    flex: 1 1 30%; /* Đặt tỷ lệ cho biểu đồ để chúng nhỏ lại */
+    margin: 10px; /* Khoảng cách giữa các biểu đồ */
+    height: 250px; /* Giảm chiều cao cho biểu đồ */
+    max-width: 600px; /* Đặt chiều rộng tối đa cho biểu đồ */
+    min-width: 400px; /* Đặt chiều rộng tối thiểu cho biểu đồ */
+}
