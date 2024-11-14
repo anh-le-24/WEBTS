@@ -1,38 +1,338 @@
-﻿body {
-    font-family: Arial, sans-serif;
-}
-
+﻿/* Container Styling */
 .container {
-    display: flex; /* Sử dụng Flexbox */
-    justify-content: space-between; /* Căn giữa khoảng cách giữa hai bên */
-    margin: 20px; /* Thêm một chút lề */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.top-left {
-    flex: 1; /* Chiếm 1 phần */
-    margin-right: 20px; /* Khoảng cách giữa top-left và left */
+/* Left and Right Sections */
+.left-right {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.left, .right {
+    flex: 1;
+    min-width: 300px;
 }
 
 .left {
-    flex: 1; /* Chiếm 1 phần */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .right {
-    flex: 1; /* Chiếm 1 phần */
-    margin-left: 20px; /* Khoảng cách giữa left và right */
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h2, h3 {
-    color: #333; /* Màu sắc cho tiêu đề */
+/* Bottom Section Styling */
+.bottom {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-input[type="text"], input[type="number"], select {
-    width: 100%; /* Chiếm hết chiều rộng */
-    padding: 8px; /* Thêm padding cho các input */
-    margin: 5px 0; /* Thêm lề trên và dưới */
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+    .bottom label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+    }
+
+.price-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-label {
-    font-weight: bold; /* Đậm cho label */
+/* Row Styling for Price Details */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[id="totalAmount"], input[id="finalTotal"] {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    width: 150px;
+    text-align: right;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+input[id="khuyenmai"] {
+    width: 100px;
+    text-align: right;
+    padding: 8px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style for the total amount input */
+input[id="totalAmount"], input[id="finalTotal"] {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    width: 150px;
+    text-align: right;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+/* Submit Button for Checkout */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+/* Styles for Radio Buttons in Payment Methods */
+input[type="radio"] + label {
+    background-color: #e0e7ff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #4f46e5;
+    color: #fff;
+}
+
+/* Select, Input, and Button Styling */
+select, input[type="text"], input[type="number"], input[type="date"], input[type="radio"] + label {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.sizes, .ice, .sugar, ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+    input[type="radio"] + label, input[type="checkbox"] + label {
+        background-color: #e0e7ff;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
+        background-color: #4f46e5;
+        color: #fff;
+    }
+
+button {
+    width: 100%;
+    background-color: #28a745;
+    color: #fff;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+    button:hover {
+        background-color: #218838;
+    }
+
+/* Quantity Button Styling */
+.plus-minus-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.item-quanlity {
+    display: flex;
+    align-items: center;
+}
+
+    .item-quanlity label {
+        margin: 0 10px;
+        font-size: 16px;
+    }
+
+.item-minus-btn, .item-plus-btn {
+    background-color: #ddd;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+    .item-minus-btn:hover, .item-plus-btn:hover {
+        background-color: #bbb;
+    }
+
+ul {
+    padding: 0;
+    width: 100%;
+}
+
+li {
+    list-style-type: none;
+    width: 100%;
+}
+
+.bottom label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+input[type="radio"]:required:before {
+    content: "* ";
+    color: red;
+}
+
+/*cart*/
+/* Cart Item Styles */
+.cart-items {
+    border: 2px solid #FFB38E;
+    background-color: #FFF1DB;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.btn-remove {
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.img-product {
+    width: 120px;
+    height: auto;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+    .cart-item-info h2 {
+        font-size: 1.2em;
+    }
+
+.sizes {
+    margin-top: 5px;
+}
+
+.size {
+    background-color: #FF6918;
+    padding: 2px;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.thongtintopping {
+    padding: 5px;
+}
+
+.cart-item-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.plus-minus-product .item-quanlity {
+    display: flex;
+    align-items: center;
+}
+
+.item-price {
+    color: #FF0033;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 1.5em;
+}
+
+    .item-price input {
+        width: 100px;
+        text-align: right;
+    }
+
+/* Empty Cart Styles */
+.empty-cart {
+    text-align: center;
+    padding: 20px;
 }

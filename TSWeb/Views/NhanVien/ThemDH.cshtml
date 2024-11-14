@@ -5,90 +5,260 @@
 }
 
 <div class="container">
-    <form>
-        <!-- MÃ và trạng thái đơn hàng mới-->
-        <div class="top-left">
-            <h2>Thêm đơn hàng</h2>
-            <label for="Ngaydat">Ngày đặt: @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</label>
-            <input type="hidden" name="NgayDat" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
-
-            <label for="TrangThai">Trạng thái:</label>
-            <input type="text" id="TrangThai" name="TrangThai" value="Đang xử lý" />
-
-            <label for="TongTien">Tổng tiền:</label>
-            <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
-
-            <div class="timmakh">
-                <label for="khachHang">Mã khách hàng:</label>
-                <input type="text" name="KhachHang" id="KhachHang" value="" />
-            </div>
-           
-
-        </div>
-
-        <!--Thêm sản phẩm mới-->
+    <div class="left-right">
         <div class="left">
-            <h3>Thêm sản phẩm vào đơn hàng</h3>
-            <select name="IDSP" id="IDSP" onchange="updatePrice()">
-                @foreach (var a in ViewBag.list)
-                {
-                    <option value="@a[0]" data-price="@a[2]">@a[1]</option>
-                    <!-- Giả sử a[2] là giá -->
-                }
-            </select>
+            <!--Thêm sản phẩm mới-->
+            <form action="@Url.Action("ThemSPDH","NhanVien")" method="post" enctype="multipart/form-data">
+                <h3>Thêm sản phẩm vào đơn hàng</h3>
+                <h3>@Session["taikhoanNV"]</h3>
+                <select name="idsp" id="idsp" onchange="updateTotalPrice()">
+                    @foreach (var a in ViewBag.list)
+                    {
+                        <option value="@a[0]" data-price="@a[2]">@a[1]</option>
+                    }
+                </select>
 
-            <label for="SoLuong">Số lượng:</label>
-            <input type="number" id="SoLuong" name="SoLuong" min="0" max="20" placeholder="0" oninput="updateTotalPrice()" />
+                <h3>Chọn Size</h3>
+                <div class="sizes">
+                    <input type="radio" id="sizeM" name="size" value="M" onchange="updateTotalPrice()" />
+                    <label for="sizeM" class="size" data-size="M">M</label>
 
-            <label for="Gia">Giá:</label>
-            <input type="number" id="Gia" name="Gia" readonly />
+                    <input type="radio" id="sizeL" name="size" value="L" onchange="updateTotalPrice()" />
+                    <label for="sizeL" class="size" data-size="L">L</label>
+                </div>
 
-            <select name="Size" id="Size" onchange="updateTotalPrice()">
-                <option value="S">Size S</option>
-                <option value="L">Size L</option>
-            </select>
+                <h3>Chọn Đá</h3>
+                <div class="ice">
+                    <input type="radio" id="option1" name="ice" value="Đá ít" onchange="updateTotalPrice()">
+                    <label for="option1">Đá ít</label><br>
 
-            <label>Chọn Đá:</label><br>
-            <input type="checkbox" id="option1" name="ice" value="Đá ít">
-            <label for="option1">Đá ít</label><br>
+                    <input type="radio" id="option2" name="ice" value="Đá bình thường" onchange="updateTotalPrice()">
+                    <label for="option2">Đá bình thường</label><br>
 
-            <input type="checkbox" id="option2" name="ice" value="Đá bình thường">
-            <label for="option2">Đá bình thường</label><br>
+                    <input type="radio" id="option3" name="ice" value="Đá nhiều" onchange="updateTotalPrice()">
+                    <label for="option3">Đá nhiều</label><br>
+                </div>
 
-            <input type="checkbox" id="option3" name="ice" value="Đá nhiều">
-            <label for="option3">Đá nhiều</label><br>
+                <h3>Chọn Đường</h3>
+                <div class="sugar">
+                    <input type="radio" id="option4" name="sugar" value="Đường ít" onchange="updateTotalPrice()">
+                    <label for="option4">Đường ít</label><br>
 
-            <label>Chọn Đường:</label><br>
-            <input type="checkbox" id="option4" name="sugar" value="Đường ít">
-            <label for="option4">Đường ít</label><br>
+                    <input type="radio" id="option5" name="sugar" value="Đường bình thường" onchange="updateTotalPrice()">
+                    <label for="option5">Đường bình thường</label><br>
 
-            <input type="checkbox" id="option5" name="sugar" value="Đường bình thường">
-            <label for="option5">Đường bình thường</label><br>
+                    <input type="radio" id="option6" name="sugar" value="Đường nhiều" onchange="updateTotalPrice()">
+                    <label for="option6">Đường nhiều</label><br>
+                </div>
 
-            <input type="checkbox" id="option6" name="sugar" value="Đường nhiều">
-            <label for="option6">Đường nhiều</label><br>
+                <h3>Chọn Topping</h3>
+                <ul style="list-style-type: none;">
+                    @foreach (var topping in ViewBag.tp)
+                    {
+                        <li>
+                            <input type="checkbox" id="topping_@topping[0]" name="toppings" value="@topping[1]" data-price="@topping[2]" onchange="updateTotalPrice()">
+                            <label for="topping_@topping[0]">@topping[1] giá : @topping[2]</label>
+                        </li>
+                    }
+                </ul>
 
-            <label>Topping:</label>
-            <ul>
-                @foreach (var topping in ViewBag.tp)
-                {
-                    <li>
-                        <input type="checkbox" id="topping_@topping[0]" name="toppings" value="@topping[0]" data-price="@topping[2]" onchange="updateTotalPrice()">
-                        <label for="topping_@topping[0]">@topping[1]</label>
-                    </li>
-                }
-            </ul>
+                <div class="plus-minus-product">
+                    <div class="item-quanlity">
+                        <button type="button" class="item-minus-btn" onclick="updateQuantity('minus')">
+                            <img src="~/Content/Picture/minus.png" class="item-img-minus" />
+                        </button>
+                        <label for="SoLuong">Số lượng:</label>
+                        <input type="number" id="SoLuong" name="SoLuong" min="1" max="10" value="1" placeholder="1" onchange="updateTotalPrice()" />
+                        <button type="button" class="item-plus-btn" onclick="updateQuantity('plus')">
+                            <img src="~/Content/Picture/plus.png" class="item-img-plus" />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lưu chuỗi topping -->
+                <input type="hidden" id="SelectedOptions" name="selectedOptions" value="" readonly />
+                <input type="hidden" name="TongTienTopping" id="TongTienTopping" value="0" readonly />
+
+                <label for="TongTien">Tổng tiền ly nước:</label>
+                <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
+
+                <button type="submit">Thêm sản phẩm</button>
+            </form>
+
+
         </div>
+
 
         <!-- Danh sách sản phẩm đã thêm-->
         <div class="right">
             <h3>Sản phẩm đã thêm</h3>
-                @foreach(var a in ViewBag.ctdh)
+            @if (ViewBag.gh != null && ViewBag.gh.Count > 0)
+            {
+                foreach (var gh in ViewBag.gh)
                 {
+                    <div class="cart-items">
+                        <a href="~/NhanVien/Xoa?id=@gh[1]" class="btn-remove">
+                            &times;
+                        </a>
 
+                        <img src="~/Content/Picture/@gh[7]" class="img-product" alt="" />
+
+                        <div class="cart-item-info">
+                            <h2>@gh[5]</h2>
+                            <div class="sizes">
+                                <div class="size" data-size="@gh[4]">
+                                    @gh[4]
+                                </div>
+                            </div>
+                            <div class="thongtintopping">
+                                @gh[8]
+                            </div>
+                            <div class="cart-item-group">
+                                <div class="plus-minus-product">
+                                    <div class="item-quanlity">
+                                        <label for="SoLuong">Số lượng:</label>
+                                        <input type="number" id="SoLuong-@gh[1]" name="SoLuong" min="1" max="10" value="@gh[2]" readonly
+                                               placeholder="@gh[2]" onchange="updateTotalPrice(@gh[0])" oninput="updateTotalPrice(@gh[0])" />
+                                    </div>
+                                </div>
+                                <div class="item-price">
+                                    <input type="number" name="tongtienSP" id="tongtienSP-@gh[1]" value="@gh[3]" readonly
+                                           data-price="@gh[3]" />
+                                    <span> VNĐ</span>
+                                </div>
+                                <div>
+                                    <a href="">Sửa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
+            }
+            else
+            {
+                <div class="empty-cart">
+                    <h3>Hiện đang trống!</h3>
+                </div>
+            }
+
         </div>
-    </form>
+    </div>
+    <!-- MÃ và trạng thái đơn hàng mới-->
+    <div class="bottom">
+        <h2>Thêm đơn hàng</h2>
+        <form action="~/NhanVien/TaoDH" method="post">
+            <label for="Ngaydat">Ngày đặt: @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</label>
+
+            <div class="price-details">
+                <div class="row">
+                    <span>Tổng:</span>
+                    <input id="totalAmount" value="0" name="tongtiensp" readonly /> <!-- Tổng tiền các sản phẩm -->
+                </div>
+                <div class="row">
+                    <span>Phí vận chuyển:</span>
+                    <span id="phivanchuyen">0đ</span>
+                </div>
+
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="quick" name="shippingspeed" value="quick">
+                        <label for="quick">Nhanh</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="slow" name="shippingspeed" value="slow">
+                        <label for="slow">Chậm</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <span>Khuyến mại:</span>
+                    <input id="khuyenmai" value="0" name="khuyenmai" />
+                </div>
+
+                <!-- Phương thức thanh toán -->
+                <div class="row">
+                    <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
+                        <input type="radio" name="phuongthanhtoan" value="Thanh toán khi nhận hàng" id="thanh-toan-khi-nhan-hang" />
+                        Thanh toán khi nhận hàng
+                    </label>
+                    <label for="thanh-toan-vi" class="info-pay__mothod-item">
+                        <input type="radio" name="phuongthanhtoan" value="Thanh toán bằng Ví MeMe" id="thanh-toan-vi" />
+                        Thanh toán bằng Ví MeMe
+                    </label>
+                </div>
+
+                <div class="row">
+                    <span><strong>Tổng cộng:</strong></span>
+                    <input id="finalTotal" name="finalTotal" value="0" readonly />
+                </div>
+
+                <!-- Hidden field to send the value of finalTotal -->
+                <input type="hidden" id="finalTotalHidden" name="finalTotal" value="0" />
+
+            </div>
+
+            <button type="submit">Thêm đơn hàng mới </button>
+        </form>
+    </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const totalAmountInput = document.getElementById("totalAmount");
+        const finalTotalInput = document.getElementById("finalTotal");
+        const hiddenFinalTotalInput = document.getElementById("finalTotalHidden");
+        const shippingFeeElement = document.getElementById("phivanchuyen");
+        const discountInput = document.getElementById("khuyenmai");
+
+        function updateFinalTotal() {
+            // Get all product total input fields
+            const productTotals = document.querySelectorAll("input[name='tongtienSP']");
+
+            // Calculate total of all products
+            let totalAmount = 0;
+            productTotals.forEach(item => {
+                totalAmount += parseFloat(item.value) || 0; // Ensure it's treated as a number
+            });
+
+            // Display total product amount
+            totalAmountInput.value = totalAmount.toLocaleString("vi-VN") + " VNĐ";
+
+            // Get shipping fee and discount values
+            const shippingFee = parseFloat(shippingFeeElement.textContent.replace("đ", "")) || 0; // Default to 0 if not valid
+            const discount = parseFloat(discountInput.value) || 0; // Default to 0 if not valid
+
+            // Calculate final total price
+            const finalTotal = totalAmount + shippingFee - discount;
+
+            // Display final total
+            finalTotalInput.value = finalTotal.toLocaleString("vi-VN") + " VNĐ";
+
+            // Update the hidden field to ensure it gets sent with the form
+            hiddenFinalTotalInput.value = finalTotal; // Update hidden input with the numeric value
+        }
+
+        // Update final total when discount is changed
+        discountInput.addEventListener("input", updateFinalTotal);
+
+        // Update final total when any product total is updated
+        document.querySelectorAll("input[name='tongtienSP']").forEach(item => {
+            item.addEventListener("input", updateFinalTotal);
+        });
+
+        // Update final total when a shipping speed is selected
+        document.querySelectorAll("input[name='shippingspeed']").forEach(radio => {
+            radio.addEventListener("change", function () {
+                // Set shipping fee based on selected shipping speed
+                shippingFeeElement.textContent = radio.value === "quick" ? "50000đ" : "20000đ"; // Example fees
+                updateFinalTotal();
+            });
+        });
+
+        // Initial call to set up totals on page load
+        updateFinalTotal();
+    });
+
+</script>
+
 
 <script src="~/Scripts/ThemDHJavaScript.js"></script>

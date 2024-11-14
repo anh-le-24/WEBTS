@@ -80,7 +80,6 @@ namespace TSWeb.Controllers {
             return RedirectToAction("ListSanPham", "Home");
         }
 
-
         public ActionResult XoaGH(string id)
         {
             ViewBag.list= db.get("EXEC XoaSanPhamTrongGioHang "+ id);
@@ -112,7 +111,7 @@ namespace TSWeb.Controllers {
                 string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
 
                 // Tạo chuỗi lệnh SQL
-                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
+                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đã xác nhận', {finalTotal}, "
                                     + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
 
                 // Thực hiện lưu vào cơ sở dữ liệu
