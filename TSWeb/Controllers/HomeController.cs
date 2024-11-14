@@ -9,6 +9,7 @@ using TSWeb.Models;
 using System.Collections;
 using System.CodeDom.Compiler;
 using System.Net.NetworkInformation;
+using System.Data;
 
 namespace TSWeb.Controllers {
     public class HomeController : Controller {
@@ -100,6 +101,7 @@ namespace TSWeb.Controllers {
         {
             ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
+            ViewBag.listVC = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
             return View();
         }
 
@@ -146,5 +148,23 @@ namespace TSWeb.Controllers {
         {
             return View();
         }
+
+        public ActionResult Discount()
+        {
+            ViewBag.listVC = db.get("SELECT * FROM MAGIAMGIA");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveVch(string idvc) {
+            ViewBag.list = db.get("EXEC LuuVoucherChoKhachHang " +idvc+ "," + Session["taikhoan"]);
+            return RedirectToAction("Discount", "Home");
+        }
+
+        public ActionResult SearchVch(string phantramgiam) {
+            ViewBag.list = db.get("EXEC TimKiemVoucher " + Session["taikhoan"] + "," + phantramgiam);
+            return RedirectToAction("ThanhToan", "Home");
+        }
+
     }
 }

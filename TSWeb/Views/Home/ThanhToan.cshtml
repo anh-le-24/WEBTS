@@ -26,8 +26,7 @@
                 </div>
 
                 <!-- Product Details -->
-                @foreach (var gh in ViewBag.list)
-                {
+                @foreach (var gh in ViewBag.list) {
                     <div class="product-details">
                         <div class="product-image">
                             <img src="~/Content/Picture/@gh[7]" alt="Product Image">
@@ -35,23 +34,57 @@
                         <div class="product-info">
                             <p><strong>@gh[5]</strong></p>
                             <p>số lượng: <strong>@gh[2]</strong></p>
-                            <p>@gh[8]</p>                            
+                            <p>@gh[8]</p>
                             <span id="tongtiensp_@gh[1]" class="product-price">@gh[3] VNĐ</span>
                         </div>
                     </div>
                 }
 
-                <!-- Promo Code Section -->
-                <div class="promo-code">
-                    <input type="text" placeholder="Mã khuyến mại" id="promoCode">
-                    <button type="button" onclick="addPromoCode()">Thêm khuyến mại</button>
+                <!-- Promo Code Button Section -->
+                <div class="promo-code-button">
+                    <input type="text" placeholder="Số tiền được giảm" id="promoCode" readonly />
+                    <button type="button" onclick="toggleVoucherForm()">Thêm khuyến mãi</button>
                 </div>
+
+                <!-- Voucher Form Section -->
+                <div id="voucherForm" class="voucher-form-overlay" style="display: none;">
+                    <div class="voucher-form-content">
+                        <!-- Close Button -->
+                        <button type="button" class="close-button" onclick="toggleVoucherForm()">×</button>
+                        <!-- Voucher Search Bar -->
+                        <form class="search-container" action="~/Home/SearchVch">
+                            <input type="text" class="search-bar" placeholder="Tìm kiếm mã giảm giá..." name="phantramgiam"/>
+                            <button type="submit" class="search-button" >Tìm kiếm</button>
+                        </form>
+
+                        <!-- Voucher Cards Container -->
+                        <div class="coupon-container">
+                            @foreach (var vc in ViewBag.listVC) {
+                                <div class="coupon">
+                                    <div class="coupon-left">
+                                        <div class="tag">HOT</div>
+                                        <img alt="Shop icon" src="~/Content/Picture/discount.png" />
+                                    </div>
+                                    <div class="coupon-right">
+                                        <div class="discount">@vc[2]-@vc[6]% </div>
+                                        <div class="min-order">@vc[3]</div>
+                                        <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
+                                        <a class="conditions" href="#">@vc[7]</a>
+                                        <!-- Standard Form Submission for Voucher -->
+                                        <button type="button" class="save" onclick="applyVoucher(@vc[6])">Áp dụng</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Price Details -->
                 <div class="price-details">
                     <div class="row">
                         <span>Tổng:</span>
-                        <input id="totalAmount" value="0" name="tongtiensp" readonly /> <!-- Tổng tiền các sản phẩm -->
+                        <input id="totalAmount" value="0" name="tongtiensp" readonly />
                     </div>
                     <div class="row">
                         <span>Phí vận chuyển:</span>
@@ -68,19 +101,7 @@
 
                     <div class="row">
                         <span>Khuyến mại:</span>
-                        <input id="khuyenmai" value="0" name="khuyenmai" />
-                    </div>
-
-                    <!-- Phương thức thanh toán -->
-                    <div class="row">
-                        <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
-                            <input type="radio" name="phuongthanhtoan" value="Thanh toán khi nhận hàng" id="thanh-toan-khi-nhan-hang" />
-                            Thanh toán khi nhận hàng
-                        </label>
-                        <label for="thanh-toan-vi" class="info-pay__mothod-item">
-                            <input type="radio" name="phuongthanhtoan" value="Thanh toán bằng Ví MeMe" id="thanh-toan-vi" />
-                            Thanh toán bằng Ví MeMe
-                        </label>
+                        <input id="khuyenmai" value="0" name="khuyenmai" readonly />
                     </div>
 
                     <div class="row">
@@ -100,44 +121,33 @@
         // Hàm tính tổng tiền của các sản phẩm
         function calculateTotalAmount() {
             let totalAmount = 0;
-
-            // Lấy tất cả các sản phẩm và cộng tổng tiền
             let productPrices = document.querySelectorAll('.product-price');
             productPrices.forEach(function (priceElement) {
                 let price = parseInt(priceElement.textContent.replace(' VNĐ', '').replace(',', '').trim());
                 totalAmount += price;
             });
-
-            // Cập nhật tổng tiền vào giao diện
             document.getElementById('totalAmount').value = totalAmount;
-
-            // Cập nhật phí vận chuyển và tính tổng cộng
-            updateShippingCost(document.querySelector('input[name="shipping_speed"]:checked')?.value || 'quick');
+            updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
         }
 
         // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
         function updateShippingCost(shippingType) {
             let totalAmount = parseInt(document.getElementById('totalAmount').value);
             let shippingCost = 0;
-            let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0; // Nếu không có khuyến mãi, giá trị mặc định là 0
+            let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0;
 
-            // Cập nhật phí vận chuyển
             if (shippingType === 'quick') {
-                shippingCost = 5000; //phí vận chuyển nhanh
+                shippingCost = 5000;
             } else if (shippingType === 'slow') {
-                shippingCost = 2000; //phí vận chuyển chậm
+                shippingCost = 2000;
             }
 
-            // Cập nhật phí vận chuyển vào giao diện
             document.getElementById('phivanchuyen').textContent = shippingCost + 'đ';
-
-            // Tính tổng cộng (Tổng sản phẩm + phí vận chuyển - khuyến mãi)
             let finalTotal = totalAmount + shippingCost - khuyenMai;
             document.getElementById('finalTotal').value = finalTotal;
         }
 
         // Hàm thêm khuyến mãi
-
         function addPromoCode() {
             let promoValue = prompt("Nhập giá trị khuyến mãi:"); // Ví dụ nhập khuyến mãi
             let khuyenMai = parseInt(promoValue);
@@ -148,8 +158,37 @@
             }
         }
 
-        // Gọi hàm tính tổng tiền khi trang được tải
+        // Hàm áp dụng mã giảm giá và tính toán tiền giảm
+        function applyVoucher(discountPercent) {
+            // Lấy tổng số tiền từ `totalAmount`
+            let totalAmount = parseInt(document.getElementById('totalAmount').value);
+
+            // Tính số tiền được giảm
+            let discountAmount = Math.floor((totalAmount * discountPercent) / 100);
+
+            // Cập nhật trường `khuyenmai` để hiển thị số tiền được giảm
+            document.getElementById('khuyenmai').value = discountAmount;
+
+            // Cập nhật trường `promoCode` để hiển thị số tiền giảm trong phần "Số tiền được giảm"
+            document.getElementById('promoCode').value = discountAmount + ' VNĐ';
+
+            // Tính toán lại tổng cộng sau khi áp dụng khuyến mãi
+            updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
+
+            // Đóng form khuyến mãi sau khi áp dụng
+            toggleVoucherForm();
+        }
+
+
+        // Toggle voucher form display
+        function toggleVoucherForm() {
+            let voucherForm = document.getElementById("voucherForm");
+            voucherForm.style.display = (voucherForm.style.display === "none" || voucherForm.style.display === "") ? "flex" : "none";
+        }
+
+        // Calculate total amount on page load
         window.onload = calculateTotalAmount;
+
     </script>
 
 

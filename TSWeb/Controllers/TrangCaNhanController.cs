@@ -65,8 +65,17 @@ namespace TSWeb.Controllers
         }
         public ActionResult Voucher()
         {
+            ViewBag.list = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
             return View();
         }
+
+        [HttpPost]
+        public ActionResult DelVch() {
+            ViewBag.list = db.get("");
+            return View();
+        }
+
+
         public ActionResult Diemtichluy()
         {
             return View();

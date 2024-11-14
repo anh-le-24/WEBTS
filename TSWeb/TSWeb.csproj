@@ -146,6 +146,7 @@
     <Content Include="Content\Css\chinhsuasanpham.css" />
     <Content Include="Content\Css\ChinhSuaTopping.css" />
     <Content Include="Content\Css\chinhsuauudai.css" />
+    <Content Include="Content\Css\CouponStyleSheet.css" />
     <Content Include="Content\Css\DanhSachSP.css" />
     <Content Include="Content\Css\DetailCartStyleSheet.css" />
     <Content Include="Content\Css\DNNVStyleSheet.css" />
@@ -314,6 +315,7 @@
     <Content Include="Views\TrangCaNhan\DangGiao.cshtml" />
     <Content Include="Views\TrangCaNhan\DaGiao.cshtml" />
     <Content Include="Views\TrangCaNhan\DaHuy.cshtml" />
+    <Content Include="Views\Home\Discount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

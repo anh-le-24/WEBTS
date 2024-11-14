@@ -110,12 +110,8 @@ namespace TSWeb.Controllers
         {
             return View();
         }
-        public ActionResult ThemDH() {
-            ViewBag.list = db.get("select * from SANPHAM");
-            ViewBag.Tp = db.get("select * from TOPPING");
-            ViewBag.ctdh = db.get("select * from CTDONHANG");
-            return View();
-        }
+     
+
 
         // API gửi báo cáo lỗi
         [HttpPost]
