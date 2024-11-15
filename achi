@@ -1,0 +1,43 @@
+[33mcommit 786ad7e3d023fa60109f1713121d214a707fd954[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mvanh[m[33m, [m[1;31morigin/vanh[m[33m)[m
+Merge: 053ed23 cd88bf5
+Author: anh-le-24 <anhle241003@gmail.com>
+Date:   Fri Nov 15 01:24:12 2024 +0700
+
+    merge
+
+[33mcommit 053ed239468dab54cfdf0e36326ba2f39259363f[m
+Author: anh-le-24 <anhle241003@gmail.com>
+Date:   Fri Nov 15 01:09:18 2024 +0700
+
+    thêm đơn hàng
+
+[33mcommit cd88bf5719f938ced3fff1ee61072bf121ceabf0[m
+Merge: 283de8a 4044806
+Author: Fiiii <phinc2004blabla@gmail.com>
+Date:   Wed Nov 13 19:55:03 2024 +0700
+
+    hh
+
+[33mcommit 283de8aab4ac91a787f3763ac5a2b40686a25b57[m
+Author: Fiiii <phinc2004blabla@gmail.com>
+Date:   Wed Nov 13 19:51:46 2024 +0700
+
+    gộp
+
+[33mcommit 4044806f1d6845c1973101d486842c4bd5a92170[m
+Author: anh-le-24 <anhle241003@gmail.com>
+Date:   Tue Nov 12 22:02:14 2024 +0700
+
+    cập nhật API nhân viên
+
+[33mcommit 0c98a98be55279d68ef9dfbd355af2ae0b683044[m
+Author: anh-le-24 <anhle241003@gmail.com>
+Date:   Tue Nov 12 21:12:35 2024 +0700
+
+    update admin
+
+[33mcommit 2957317f6e614629e71bc5f7c3564943126905e0[m
+Author: anh-le-24 <anhle241003@gmail.com>
+Date:   Tue Nov 12 20:49:13 2024 +0700
+
+    cập nhật trạng thái đơn hàng
