@@ -16,15 +16,8 @@
     <!-- Phần thân -->
     <form action="~/Home/ThanhToanHD" method="post">
         <main>
-            <div class="checkout-container">
+            <div class="checkout-container" style="padding:0px 100px">
                 <h3>Thông tin đơn hàng</h3>
-
-                <!-- Store Selection -->
-                <div class="store-selection">
-                    <div class="store-icon">
-                        <img src="~/Content/Picture/shop.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
 
                 <!-- Product Details -->
                 @foreach (var gh in ViewBag.list)
@@ -93,30 +86,32 @@
                         <span>Phí vận chuyển:</span>
                         <span id="phivanchuyen">0đ</span>
                     </div>
-
                     <div class="row">
-                        <label for="quick">Chọn nhanh</label>
-                        <input type="radio" id="quick" name="shippingspeed" value="nhanh ch" onclick="updateShippingCost('quick')">
-
-                        <label for="slow">Chọn chậm</label>
-                        <input type="radio" id="slow" name="shippingspeed" value="slow" onclick="updateShippingCost('slow')">
+                        <div class="fast">
+                            <label for="quick">Chọn nhanh</label>
+                            <input type="radio" id="quick" name="shippingspeed" value="nhanh ch" onclick="updateShippingCost('quick')">
+                        </div>
+                        <div class="low">
+                            <label for="slow">Chọn chậm</label>
+                            <input type="radio" id="slow" name="shippingspeed" value="slow" onclick="updateShippingCost('slow')">
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <span>Khuyến mại:</span>
-                        <input id="khuyenmai" value="0" name="khuyenmai" readonly />
-                    </div>
+                        <div class="row">
+                            <span>Khuyến mại:</span>
+                            <input id="khuyenmai" value="0" name="khuyenmai" readonly />
+                        </div>
 
-                    <div class="row">
-                        <span><strong>Tổng cộng:</strong></span>
-                        <input id="finalTotal" name="finalTotal" readonly />
+                        <div class="row">
+                            <span><strong>Tổng cộng:</strong></span>
+                            <input id="finalTotal" name="finalTotal" readonly />
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="order-button">ĐẶT HÀNG</button>
+                        <a href="@Url.Action("ListSanPham","Home")" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
                     </div>
                 </div>
-                <div class="action-buttons">
-                    <button type="submit" class="order-button">ĐẶT HÀNG</button>
-                    <a href="@Url.Action("ListSanPham","Home")" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
-                </div>
-            </div>
         </main>
     </form>
 

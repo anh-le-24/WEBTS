@@ -71,7 +71,7 @@ h3 {
     }
 
 .price-details {
-    margin-bottom: 20px;
+    padding:10px 350px;
 }
 
     .price-details .row {
@@ -79,6 +79,8 @@ h3 {
         justify-content: space-between;
         margin-bottom: 10px;
     }
+
+
 
 .notes textarea {
     width: 100%;

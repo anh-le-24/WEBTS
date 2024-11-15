@@ -3,6 +3,7 @@
     ViewBag.Title = "DangNhap";
     <link href="~/Content/Css/LoginStyleSheet.css" rel="stylesheet" />
     Layout = null;
+    string errorMessage = TempData["ErrorMessage"] as string;
 }
 
 <div class="container">
@@ -16,10 +17,16 @@
     </div>
     <div class="formBx">
         <div class="form signinform">
-            <form action="~/DangNhapDK/XuLuDangNhap" method="post">
+            <form action="~/DangNhapDK/XuLyDangNhap" method="post">
                 <input type="text" name="email" placeholder="Email" /><br />
                 <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
                 <button type="submit">Đăng nhập</button>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div id="error-message" style="color: red; margin-top: 10px;text-align:center;">
+                        @errorMessage
+                    </div>
+                }
             </form>
         </div>
         <div class="form signupform">
@@ -34,6 +41,63 @@
             </form>
         </div>
     </div>
+    
 </div>
+
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".signupform form");
+
+        form.addEventListener("submit", function (event) {
+            const hoten = form.hoten.value.trim();
+            const email = form.email.value.trim();
+            const matkhau = form.matkhau.value;
+            const nhaplaimatkhau = form.nhaplaimatkhau.value;
+            const sdt = form.sdt.value.trim();
+            const diachi = form.diachi.value.trim();
+
+            let isValid = true;
+            let errorMessage = "";
+
+            if (hoten.length < 3) {
+                isValid = false;
+                errorMessage += "Họ và tên phải có ít nhất 3 ký tự.\n";
+            }
+            const uppercaseRegex = /[A-Z]/; // Chữ viết hoa
+
+            if (matkhau.length < 8) {
+                isValid = false;
+                errorMessage += "Mật khẩu phải có ít nhất 8 ký tự.\n";
+            }
+            if (!uppercaseRegex.test(matkhau)) {
+                isValid = false;
+                errorMessage += "Mật khẩu phải chứa ít nhất một chữ cái viết hoa.\n";
+            }
+
+            if (matkhau !== nhaplaimatkhau) {
+                isValid = false;
+                errorMessage += "Mật khẩu và nhập lại mật khẩu không khớp.\n";
+            }
+
+            const phoneRegex = /^[0-9]{10,11}$/;
+            if (!phoneRegex.test(sdt)) {
+                isValid = false;
+                errorMessage += "Số điện thoại phải gồm 10-11 chữ số.\n";
+            }
+
+            if (diachi.length < 5) {
+                isValid = false;
+                errorMessage += "Địa chỉ phải có ít nhất 5 ký tự.\n";
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Ngăn gửi form
+                alert(errorMessage);   // Hiển thị lỗi
+            }
+        });
+    });
+</script>
+
 
 <script src="~/Scripts/LoginJavaScript.js"></script>
