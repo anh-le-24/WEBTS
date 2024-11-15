@@ -314,6 +314,7 @@
     <Content Include="Views\TrangCaNhan\DangGiao.cshtml" />
     <Content Include="Views\TrangCaNhan\DaGiao.cshtml" />
     <Content Include="Views\TrangCaNhan\DaHuy.cshtml" />
+    <Content Include="Views\Home\Discount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

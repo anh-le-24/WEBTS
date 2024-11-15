@@ -13,19 +13,19 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("EXEC XemNguoiDungTheoID " + Session["taikhoan"]);
             return View();
         }
-       
+
         public ActionResult DoiMatKhau()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult DoiMK(string currentPassword,string newPassword)
+        public ActionResult DoiMK(string currentPassword, string newPassword)
         {
             ViewBag.list = db.get("EXEC DoiMatKhau " + Session["taikhoan"] + ", '" + currentPassword + "', '" + newPassword + "';");
-            return RedirectToAction("Index", "Home");              
+            return RedirectToAction("Index", "Home");
         }
-                
+
 
         public ActionResult Donhang()
         {
@@ -34,7 +34,7 @@ namespace TSWeb.Controllers
         }
         public ActionResult ChoXacNhan()
         {
-            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung "+ Session["taikhoan"] +",N'Đang xử lý';");
+            ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đang xử lý';");
             return View();
         }
         public ActionResult DaXacNhan()
@@ -42,7 +42,7 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đã xác nhận';");
             return View();
         }
-     
+
         public ActionResult DangGiao()
         {
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đang giao';");
@@ -65,8 +65,18 @@ namespace TSWeb.Controllers
         }
         public ActionResult Voucher()
         {
+            ViewBag.list = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
             return View();
         }
+
+        [HttpPost]
+        public ActionResult DelVch()
+        {
+            ViewBag.list = db.get("");
+            return View();
+        }
+
+
         public ActionResult Diemtichluy()
         {
             return View();
