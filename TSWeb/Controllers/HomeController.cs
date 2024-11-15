@@ -9,16 +9,19 @@ using TSWeb.Models;
 using System.Collections;
 using System.CodeDom.Compiler;
 using System.Net.NetworkInformation;
+using System.Data;
 
-namespace TSWeb.Controllers {
-    public class HomeController : Controller {
+namespace TSWeb.Controllers
+{
+    public class HomeController : Controller
+    {
         DatabaseModel db = new DatabaseModel();
 
         public ActionResult Index()
-        {          
+        {
             return View();
         }
-        public ActionResult Cart(string id) 
+        public ActionResult Cart(string id)
         {
             ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
@@ -80,10 +83,11 @@ namespace TSWeb.Controllers {
             return RedirectToAction("ListSanPham", "Home");
         }
 
+
         public ActionResult XoaGH(string id)
         {
-            ViewBag.list= db.get("EXEC XoaSanPhamTrongGioHang "+ id);
-            return RedirectToAction("Cart","Home",new {id = Session["taikhoan"] });
+            ViewBag.list = db.get("EXEC XoaSanPhamTrongGioHang " + id);
+            return RedirectToAction("Cart", "Home", new { id = Session["taikhoan"] });
         }
 
         public ActionResult SuaGH(
@@ -99,6 +103,7 @@ namespace TSWeb.Controllers {
         {
             ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
+            ViewBag.listVC = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
             return View();
         }
 
@@ -111,7 +116,7 @@ namespace TSWeb.Controllers {
                 string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
 
                 // Tạo chuỗi lệnh SQL
-                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đã xác nhận', {finalTotal}, "
+                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
                                     + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
 
                 // Thực hiện lưu vào cơ sở dữ liệu
@@ -145,6 +150,7 @@ namespace TSWeb.Controllers {
         {
             return View();
         }
+
         public ActionResult Discount()
         {
             ViewBag.listVC = db.get("SELECT * FROM MAGIAMGIA");
@@ -163,5 +169,6 @@ namespace TSWeb.Controllers {
             ViewBag.list = db.get("EXEC TimKiemVoucher " + Session["taikhoan"] + "," + phantramgiam);
             return RedirectToAction("ThanhToan", "Home");
         }
+
     }
 }
