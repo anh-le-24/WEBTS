@@ -126,14 +126,13 @@ header {
     right: 1%;
     position: absolute;
 }
-    
+
 
 /*main*/
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
-    padding: 20px;
 }
 
 .coupon-container {
@@ -239,3 +238,8 @@ body {
         font-size: 10px; /* Reduced font size */
         border-radius: 3px;
     }
+
+Explain
+Quick actions for selected text. Click to disable if not needed.
+Got it
+1

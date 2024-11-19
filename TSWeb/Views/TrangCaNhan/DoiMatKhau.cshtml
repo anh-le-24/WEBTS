@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "DoiMatKhau";
-    Layout = "~/Views/Shared/nav.cshtml";
-    Layout = "~/Views/Shared/nav_DonHang.cshtml";
+    Layout = "~/Views/Shared/_TrangCaNhanLayout.cshtml";
 }
 
 <style>
@@ -64,48 +63,58 @@
     }
 </style>
 
-<h2>Đổi Mật Khẩu</h2>
-<form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
-    <label for="currentPassword">Mật khẩu hiện tại:</label>
-    <input type="password" id="currentPassword" name="currentPassword" required>
+    <div class="card">
+        <div class="card-header bg-light">
+            <h3 class="text-center">Đổi Mật Khẩu</h3>
+        </div>
+        <div class="card-body">
+            <form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
+                <div class="mb-3">
+                    <label for="currentPassword" class="form-label">Mật khẩu hiện tại:</label>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Nhập mật khẩu hiện tại" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newPassword" class="form-label">Mật khẩu mới:</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Nhập mật khẩu mới" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới:</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu mới" required>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-warning me-2">Đổi mật khẩu</button>
+                    <button type="submit" class="btn btn-secondary">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <label for="newPassword">Mật khẩu mới:</label>
-    <input type="password" id="newPassword" name="newPassword" required>
 
-    <label for="confirmPassword">Xác nhận mật khẩu mới:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <script>
+        function validatePassword() {
+            // Lấy giá trị của các trường nhập
+            var currentPassword = document.getElementById("currentPassword").value;
+            var newPassword = document.getElementById("newPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var message = document.getElementById("message");
 
-    <!-- Thông báo lỗi sẽ hiển thị ở đây -->
-    <span id="message"></span>
+            // Kiểm tra xem mật khẩu mới và mật khẩu xác nhận có khớp không
+            if (newPassword !== confirmPassword) {
+                message.textContent = "Mật khẩu mới và xác nhận mật khẩu không khớp!";
+                message.style.display = "block"; // Hiển thị thông báo lỗi
+                return false; // Dừng việc gửi form
+            }
 
-    <button type="submit">Đổi mật khẩu</button>
-</form>
+            // Kiểm tra mật khẩu mới có ít nhất 8 ký tự, bao gồm cả chữ và số
+            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(newPassword)) {
+                message.textContent = "Mật khẩu mới phải có ít nhất 8 ký tự và bao gồm cả chữ và số!";
+                message.style.display = "block"; // Hiển thị thông báo lỗi
+                return false; // Dừng việc gửi form
+            }
 
-<script>
-    function validatePassword() {
-        // Lấy giá trị của các trường nhập
-        var currentPassword = document.getElementById("currentPassword").value;
-        var newPassword = document.getElementById("newPassword").value;
-        var confirmPassword = document.getElementById("confirmPassword").value;
-        var message = document.getElementById("message");
-
-        // Kiểm tra xem mật khẩu mới và mật khẩu xác nhận có khớp không
-        if (newPassword !== confirmPassword) {
-            message.textContent = "Mật khẩu mới và xác nhận mật khẩu không khớp!";
-            message.style.display = "block"; // Hiển thị thông báo lỗi
-            return false; // Dừng việc gửi form
+            // Nếu không có lỗi, ẩn thông báo lỗi và cho phép gửi form
+            message.style.display = "none";
+            return true;
         }
-
-        // Kiểm tra mật khẩu mới có ít nhất 8 ký tự, bao gồm cả chữ và số
-        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        if (!passwordPattern.test(newPassword)) {
-            message.textContent = "Mật khẩu mới phải có ít nhất 8 ký tự và bao gồm cả chữ và số!";
-            message.style.display = "block"; // Hiển thị thông báo lỗi
-            return false; // Dừng việc gửi form
-        }
-
-        // Nếu không có lỗi, ẩn thông báo lỗi và cho phép gửi form
-        message.style.display = "none";
-        return true;
-    }
-</script>
+    </script>

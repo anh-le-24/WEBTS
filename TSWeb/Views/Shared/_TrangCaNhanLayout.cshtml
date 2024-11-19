@@ -1,60 +1,52 @@
 ﻿<!DOCTYPE html>
-
-<html>
+<html lang="vi">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link href="~/Content/Css/TrangCaNhan.css" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Trang Cá Nhân</title>
+    <link rel="stylesheet" href="~/Content/Css/TrangCaNhan.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="flex">
-    <!-- Sidebar -->
-    <div class="w-1-5 p-4" style="background-color: #2D2824; color: #FFFFFF;">
-        <!-- Set background and text color here -->
-        <div class="flex items-center mb-4">
-            <div style="width: 100px; height: 100px; margin: auto; border-radius: 50%; overflow: hidden;">
-                <img src="https://w0.peakpx.com/wallpaper/577/451/HD-wallpaper-bae-suzy-suzy-women-with-glasses-asian-face-glasses.jpg" alt="User profile picture" width="100" height="100" style="display: block; margin: auto; width: 100%; height: auto;">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="sidebar bg-dark text-white p-3">
+                    <div class="text-center mb-4">
+                        <img src="~/Content/Picture/avatar.jpg" alt="Avatar" class="rounded-circle" width="80">
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("Index","TrangCaNhan")" class="nav-link text-white"><i class="fas fa-user"></i> Tài Khoản Của Tôi</a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("DoiMatKhau","TrangCaNhan")" class="nav-link text-white"><i class="fas fa-key"></i> Đổi Mật Khẩu</a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("DonHang","TrangCaNhan")" class="nav-link text-white"><i class="fas fa-shopping-bag"></i> Đơn Hàng</a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-white"><i class="fas fa-bell"></i> Thông Báo</a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-white"><i class="fas fa-wallet"></i> Ví Voucher</a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-white"><i class="fas fa-coins"></i> Điểm Tích Lũy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Thoát</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Content -->
+            <div class="col-md-9">
+                @RenderBody()
             </div>
         </div>
-        <ul class="menu-items">
-            <li class="mb-2">
-                <a href="@Url.Action("TrangCaNhan", "TrangCaNhan")" class="flex items-center text-orange-500" style="color: #FFFFFF;">
-                    <i class="fas fa-user mr-2"></i> Tài Khoản Của Tôi
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="@Url.Action("Donhang", "TrangCaNhan")" class="flex items-center" style="color: #9A7E6F;">
-                    <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="@Url.Action("Lichsudonhhang", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
-                    <i class="fas fa-bell mr-2"></i> Thông Báo
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="@Url.Action("Voucher", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
-                    <i class="fas fa-ticket-alt mr-2"></i> Ví Voucher
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="@Url.Action("Diemtichluy", "TrangCaNhan")" class="flex items-center" style="color: #FFFFFF;">
-                    <i class="fas fa-coins mr-2"></i> Điểm tích luỹ
-                </a>
-            </li>
-            <li class="mb-2 mt-auto">
-                <button class="flex items-center" style="background-color: #E4003A; border: none; color: #FFFFFF; cursor: pointer; padding: 0.5rem 1rem;"
-                        onmouseover="this.style.backgroundColor='#B8002E'"
-                        onmouseout="this.style.backgroundColor='#E4003A'"
-                        onclick="confirmLogout()">
-                    <i class="fas fa-sign-out-alt mr-2"></i> Thoát
-                </button>
-            </li>
-        </ul>
-    </div>
-    <div>
-        @RenderBody()
     </div>
 </body>
 </html>

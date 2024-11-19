@@ -28,18 +28,7 @@
                     <a class="conditions" href="#">@vc[6]</a>
                     <form action="~/Home/SaveVch" method="post" style="display: inline;">
                         <input type="hidden" name="idvc" value="@vc[0]" />
-                        @if (Session["taikhoan"] != null)
-                        {
-                            
-                                <button type="submit" class="save">Lưu</button>
-                           
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("DangNhap", "DangNhapDK")">
-                                
-                            </a>
-                        }
+                        <button type="submit" class="save">Lưu</button>
                     </form>
                 </div>
             </div>
