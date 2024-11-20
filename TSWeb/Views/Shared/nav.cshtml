@@ -48,12 +48,21 @@
                 <ul class="menu-items">
                     <li><a href="@Url.Action("ListSanPham","Home")">Menu</a></li>
                     <li><a href="@Url.Action("GioiThieu", "Home")">Về chúng tôi</a></li>
-                    <li><a href="@Url.Action("Index","TrangCaNhan",new { idnd = Session["taikhoan"] })">Thông tin cá nhân</a></li>
+                    @if (Session["taikhoan"] != null)
+                    {
+                        <li><a href="@Url.Action("Index", "TrangCaNhan", new { idnd = Session["taikhoan"] })">Thông tin cá nhân</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("DangNhap", "DangNhapDK")" onclick="alert('Bạn cần đăng nhập để xem thông tin cá nhân'); return true;">Thông tin cá nhân</a></li>
+                    }
+
+
                     <li>
                         @if (Session["taikhoan"] == null)
                         {
                             <a href="@Url.Action("DangNhap", "DangNhapDK")">Voucher</a>
-                            
+
                         }
                         else
                         {
@@ -63,7 +72,7 @@
                         }
                         @*<a href="@Url.Action("Discount", "Home")">Voucher</a>*@
                     </li>
-                   
+
                 </ul>
             </div>
             <div class="overlay-sidebar">

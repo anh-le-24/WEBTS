@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.SqlTypes;
+using System.Net;
 using System.Web.Mvc;
 using TSWeb.Models;
 
@@ -22,11 +24,16 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult DoiMK(string currentPassword, string newPassword)
         {
-            ViewBag.list = db.get("EXEC DoiMatKhau " + Session["taikhoan"] + ", '" + currentPassword + "', '" + newPassword + "';");
-            return RedirectToAction("Index", "Home");
+            try
+            {
+                ViewBag.list = db.get("EXEC DoiMatKhau " + Session["taikhoan"] + ", '" + currentPassword + "', '" + newPassword + "';");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ) {
+                return RedirectToAction("DoiMatKhau", "TrangCaNhan");
+            }
         }
-
-
+            
         public ActionResult Donhang()
         {
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + Session["taikhoan"]);
@@ -80,6 +87,28 @@ namespace TSWeb.Controllers
         public ActionResult Diemtichluy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CapNhatTK(string name,
+            string email,
+            string phone,
+            string address,
+            int notification)
+        {
+            try
+            {
+                string sql = ("EXEC SuaNguoiDungKhachHang " + Session["taikhoan"] + ",N'" + name + "','" + email + "','" 
+                    + phone + "',N'" + address + "'," + notification + ";");
+                db.get(sql);
+                return RedirectToAction("Index", "TrangCaNhan");
+               
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            
         }
     }
 }

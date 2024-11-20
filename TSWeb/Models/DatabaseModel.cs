@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -63,5 +64,33 @@ namespace TSWeb.Models
             }
             return datalist;
         }
+        public DataTable GetDataTable(string procedureName, params SqlParameter[] parameters)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    using (var command = new SqlCommand(procedureName, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (parameters != null)
+                            command.Parameters.AddRange(parameters);
+
+                        var adapter = new SqlDataAdapter(command);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi nếu cần thiết
+                    throw new Exception("Lỗi khi truy vấn dữ liệu: " + ex.Message);
+                }
+            }
+        }
+
+
     }
+
 }

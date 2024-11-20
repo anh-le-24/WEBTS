@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Quản lý Topping";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -24,7 +24,6 @@
                 <th>Tên Topping</th>
                 <th>Giá</th>
                 <th>Ngày Tạo</th>
-                <th>ID Sản Phẩm</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
@@ -36,62 +35,7 @@
                     <td>@topping[1]</td>
                     <td>@topping[2]</td>
                     <td>@Convert.ToDateTime(topping[3]).ToString("dd/MM/yyyy")</td>
-              
-                    <td>
-                        <div class="action-buttons">
-                            <a href="~/Admin/ChinhSuaTopping?id=@topping[0]" class="btn-edit">Sửa</a>
-                            @using (Html.BeginForm("XoaTopping", "Admin", FormMethod.Post))
-                            {
-                                <input type="hidden" name="id" value="@topping[0]" />
-                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa topping này không?');">Xóa</button>
-                            }
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <a href="@Url.Action("ThemTopping", "Admin")" class="btn btn-primary">Thêm topping mới</a>
-</div>
-@{
-    ViewBag.Title = "Quản lý Topping";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
-}
 
-<div class="container">
-    <h1>Quản lý Topping</h1>
-
-    <!-- Form tìm kiếm -->
-    <div class="search-section">
-        @using (Html.BeginForm("Topping", "Admin", FormMethod.Get))
-        {
-            <input type="text" name="tenTopping" placeholder="Nhập tên topping" value="@Request.QueryString["tenTopping"]" />
-            <input type="date" name="ngayTao" value="@Request.QueryString["ngayTao"]" />
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-        }
-    </div>
-
-    <!-- Bảng danh sách topping -->
-    <table id="table-topping">
-        <thead>
-            <tr>
-                <th>IDTP</th>
-                <th>Tên Topping</th>
-                <th>Giá</th>
-                <th>Ngày Tạo</th>
-                <th>ID Sản Phẩm</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var topping in ViewBag.list)
-            {
-                <tr>
-                    <td>@topping[0]</td>
-                    <td>@topping[1]</td>
-                    <td>@topping[2]</td>
-                    <td>@Convert.ToDateTime(topping[3]).ToString("dd/MM/yyyy")</td>
-              
                     <td>
                         <div class="action-buttons">
                             <a href="~/Admin/ChinhSuaTopping?id=@topping[0]" class="btn-edit">Sửa</a>

@@ -8,43 +8,38 @@
         <h3>Thông Tin Tài Khoản</h3>
     </div>
     <div class="card-body">
-        <form>
+        <form action="~/TrangCaNhan/CapNhatTK" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Tên:</label>
-                <input type="text" class="form-control" id="name" value="Nguyễn Huỳnh Phú Quý">
+                <input type="text" class="form-control" id="name" name="name" value="@ViewBag.list[0][1]">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Số điện thoại:</label>
-                <input type="text" class="form-control" id="phone" value="869100723">
+                <input type="text" class="form-control" id="phone" name="phone" value="@ViewBag.list[0][4]">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" value="nguyenphuquytv2012@gmail.com">
+                <input type="email" class="form-control" id="email" name="email" value="@ViewBag.list[0][2]">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Địa chỉ:</label>
-                <input type="text" class="form-control" id="address" value="Trà Vinh">
+                <input type="text" class="form-control" id="address" name="address" value="@ViewBag.list[0][5]">
             </div>
             <div class="mb-3">
                 <label for="points" class="form-label">Điểm tích lũy:</label>
-                <input type="number" class="form-control" id="points" value="0" readonly>
+                <input type="number" class="form-control" id="points" value="@ViewBag.list[0][9]" readonly>
             </div>
             <div class="mb-3">
-                <label class="form-label">Đăng ký nhận thông báo:</label>
-                <div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="notification" id="notifyYes" value="yes" checked>
-                        <label class="form-check-label" for="notifyYes">Nhận thông báo</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="notification" id="notifyNo" value="no">
-                        <label class="form-check-label" for="notifyNo">Không nhận thông báo</label>
-                    </div>
-                </div>
+                <label class="form-label" for="notification">Đăng ký nhận thông báo:</label>
+                <select class="form-select" id="notification" name="notification" value="@ViewBag.list[0][10]">
+                    <option value="1" selected>Nhận thông báo</option>
+                    <option value="0">Không nhận thông báo</option>
+                </select>
             </div>
+
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-warning me-2">Cập nhật</button>
-                <button type="button" class="btn btn-danger">Đăng xuất</button>
+                <button type="submit" class="btn btn-warning me-2">Cập nhật</button>
+                <a href="@Url.Action("DangNhap","DangNhapDK")" class="btn btn-danger">Đăng xuất</a>
             </div>
         </form>
     </div>

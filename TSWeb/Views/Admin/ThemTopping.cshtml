@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Thêm Topping";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -24,53 +24,66 @@
         </div>
         <div class="form-group">
             <label for="topping-price">Giá</label>
-            <input type="number" id="topping-price" name="GiaTP" class="form-control" required>
+            <input type="number" id="topping-price" name="GiaTP" class="form-control" required min="1" step="0.01" />
         </div>
+
         <div class="form-group">
             <label for="topping-date">Ngày Tạo</label>
-            <input type="date" id="topping-date" name="NgayTao" class="form-control" required>
+            <input type="date" id="topping-date" name="NgayTao" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required>
         </div>
-                <button type="submit" class="btn btn-primary">Thêm Topping</button>
-            </form>
+        <button type="submit" id="submit-button" class="btn btn-primary">Thêm Topping</button>
+    </form>
 </div>
 
-        <script>
-    document.getElementById("add-topping-form").addEventListener("submit", function (event) {
-        event.preventDefault();
+@*<script>
+        document.getElementById("add-topping-form").addEventListener("submit", function (event) {
+            event.preventDefault();  // Ngừng hành động mặc định của form (gửi request)
 
-        const toppingName = document.getElementById("topping-name").value;
-        const toppingPrice = document.getElementById("topping-price").value;
-        const toppingDate = document.getElementById("topping-date").value;
-        const productId = document.getElementById("product-id").value;
+            // Lấy dữ liệu từ các trường trong form
+            const toppingName = document.getElementById("topping-name").value;
+            const toppingPrice = document.getElementById("topping-price").value;
+            const toppingDate = document.getElementById("topping-date").value;
 
-        if (!toppingName) {
-            alert("Tên topping không được để trống!");
-            return;
-        }
+            // Kiểm tra nếu tên topping không có giá trị
+            if (!toppingName || !toppingPrice || !toppingDate) {
+                alert("Vui lòng điền đầy đủ thông tin topping!");
+                return;
+            }
 
-        fetch('/Admin/ThemToppingMoi', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                TenTP: toppingName,
-                GiaTP: toppingPrice,
-                NgayTao: toppingDate,
-                IDSP: productId
+            // Thay đổi nút thành 'Đang thêm...' và vô hiệu hóa nút
+            const submitButton = document.getElementById("submit-button");
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Đang thêm...';
+
+            // Gửi yêu cầu AJAX đến server
+            fetch('/Admin/ThemToppingMoi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    TenTP: toppingName,
+                    GiaTP: toppingPrice,
+                    NgayTao: toppingDate
+                })
             })
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert('Topping đã được thêm thành công.');
-                    window.location.href = '/Admin/Topping';
-                } else {
-                    alert('Thêm topping thất bại.');
-                }
-            })
-            .catch(error => {
-                console.error('Lỗi:', error);
-                alert('Có lỗi xảy ra khi thêm topping.');
-            });
-    });
-        </script>
+                .then(response => response.json())  // Chuyển đổi phản hồi từ server thành JSON
+                .then(data => {
+                    if (data.success) {
+                        alert('Topping đã được thêm thành công.');
+                        window.location.href = '/Admin/Topping';  // Chuyển hướng về trang quản lý topping
+                    } else {
+                        alert('Thêm topping thất bại. Vui lòng thử lại!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                    alert('Có lỗi xảy ra khi thêm topping.');
+                })
+                .finally(() => {
+                    // Kích hoạt lại nút sau khi xử lý xong
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Thêm Topping';
+                });
+        });
+    </script>*@

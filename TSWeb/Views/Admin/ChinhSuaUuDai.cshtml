@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Chỉnh Sửa Ưu Đãi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -88,28 +88,29 @@
 </div>
 
 
-<script>document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('uudaiForm');
-            const ngayBD = document.getElementById('NgayBD');
-            const ngayKT = document.getElementById('NgayKT');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('uudaiForm');
+        const ngayBD = document.getElementById('NgayBD');
+        const ngayKT = document.getElementById('NgayKT');
 
-            // Update minimum date for end date when start date changes
-            ngayBD.addEventListener('change', function () {
-                ngayKT.min = this.value;
-                if (ngayKT.value < this.value) {
-                    ngayKT.value = this.value;
-                }
-            });
+        // Update minimum date for end date when start date changes
+        ngayBD.addEventListener('change', function () {
+            ngayKT.min = this.value;
+            if (ngayKT.value < this.value) {
+                ngayKT.value = this.value;
+            }
+        });
 
-            // Validate dates before form submission
-            form.addEventListener('submit', function (e) {
-                const startDate = new Date(ngayBD.value);
-                const endDate = new Date(ngayKT.value);
+        // Validate dates before form submission
+        form.addEventListener('submit', function (e) {
+            const startDate = new Date(ngayBD.value);
+            const endDate = new Date(ngayKT.value);
 
-                if (startDate > endDate) {
-                    e.preventDefault();
-                    alert('Ngày bắt đầu không thể sau ngày kết thúc!');
-                    return false;
-                }
-            });
-        });</script>
+            if (startDate > endDate) {
+                e.preventDefault();
+                alert('Ngày bắt đầu không thể sau ngày kết thúc!');
+                return false;
+            }
+        });
+    });</script>

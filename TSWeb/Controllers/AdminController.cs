@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,93 @@ namespace TSWeb.Controllers
     public class AdminController : Controller
     {
         DatabaseModel db = new DatabaseModel();
+        public ActionResult ThongKe()
+        {
+            return View();
+        }
+        public JsonResult ThongKeSanPhamBanChay(int? ngay, int? thang, int nam)
+        {
+            try
+            {
+                var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@Nam", nam)
+            };
+
+                if (ngay.HasValue)
+                {
+                    parameters.Add(new SqlParameter("@Ngay", ngay.Value));
+                    parameters.Add(new SqlParameter("@Thang", thang.Value));
+                }
+                else if (thang.HasValue)
+                {
+                    parameters.Add(new SqlParameter("@Ngay", DBNull.Value));
+                    parameters.Add(new SqlParameter("@Thang", thang.Value));
+                }
+                else
+                {
+                    parameters.Add(new SqlParameter("@Ngay", DBNull.Value));
+                    parameters.Add(new SqlParameter("@Thang", DBNull.Value));
+                }
+
+                var data = db.GetDataTable("ThongKeSanPhamBanChay", parameters.ToArray());
+
+                var result = data.AsEnumerable().Select(row => new
+                {
+                    TenSanPham = row["TenSP"].ToString(),
+                    SoLuongBan = Convert.ToInt32(row["TongSoLuongBan"])
+                }).ToList();
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ThongKeDoanhThuKhuyenMai(int? ngay, int? thang, int nam)
+        {
+            try
+            {
+                var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@Nam", nam)
+            };
+
+                if (ngay.HasValue)
+                {
+                    parameters.Add(new SqlParameter("@Ngay", ngay.Value));
+                    parameters.Add(new SqlParameter("@Thang", thang.Value));
+                }
+                else if (thang.HasValue)
+                {
+                    parameters.Add(new SqlParameter("@Ngay", DBNull.Value));
+                    parameters.Add(new SqlParameter("@Thang", thang.Value));
+                }
+                else
+                {
+                    parameters.Add(new SqlParameter("@Ngay", DBNull.Value));
+                    parameters.Add(new SqlParameter("@Thang", DBNull.Value));
+                }
+
+                var data = db.GetDataTable("ThongKeDoanhThuKhuyenMai", parameters.ToArray());
+
+                var result = data.AsEnumerable().Select(row => new
+                {
+                    TenKhuyenMai = row["TenKhuyenMai"].ToString(),
+                    DoanhThu = Convert.ToDecimal(row["DoanhThu"])
+                }).ToList();
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
         public ActionResult Index()
         {
@@ -34,130 +122,8 @@ namespace TSWeb.Controllers
 
             return View();
         }
-        public ActionResult TongQuan()
-        {
-
-            return View();
-        }
-
-        // API endpoint để lấy dữ liệu thống kê theo tháng
-        [HttpGet]
-        public JsonResult GetStatistics(int year)
-        {
-            List<MonthlyRevenue> monthlyRevenueList = new List<MonthlyRevenue>();
-
-            try
-            {
-                // Lấy dữ liệu thống kê doanh thu theo tháng
-                string sqlQueryRevenue = "EXEC ThongKeDoanhThuTheoThang @Nam";
-                SqlParameter[] revenueParameters = new SqlParameter[]
-                {
-                new SqlParameter("@Nam", year)
-                };
-                var revenueResult = db.get(sqlQueryRevenue, revenueParameters);
-
-                // Duyệt qua kết quả doanh thu hàng tháng
-                foreach (ArrayList row in revenueResult)
-                {
-                    if (row != null && row.Count > 1) // Đảm bảo rằng hàng có ít nhất 2 cột
-                    {
-                        int thang = Convert.ToInt32(row[0]); // Chuyển kiểu đúng
-                        decimal doanhThu = Convert.ToDecimal(row[1]); // Chuyển kiểu đúng
-
-                        monthlyRevenueList.Add(new MonthlyRevenue
-                        {
-                            Thang = thang,
-                            DoanhThu = doanhThu
-                        });
-                    }
-                }
-
-                // Lấy dữ liệu thống kê số lượng khách hàng
-                string sqlQueryCustomers = "SELECT COUNT(*) AS TongSoKhachHang FROM KHACHHANG";
-                var customerResult = db.get(sqlQueryCustomers);
-                int totalCustomers = 0;
-                if (customerResult != null && customerResult.Count > 0 && customerResult[0] is ArrayList customerRow && customerRow.Count > 0)
-                {
-                    totalCustomers = Convert.ToInt32(customerRow[0]); // Chuyển kiểu đúng
-                }
-
-                // Lấy dữ liệu thống kê số lượng đơn hàng
-                string sqlQueryOrders = "SELECT COUNT(*) AS TongSoDonHang FROM THANHTOAN";
-                var orderResult = db.get(sqlQueryOrders);
-                int totalOrders = 0;
-                if (orderResult != null && orderResult.Count > 0 && orderResult[0] is ArrayList orderRow && orderRow.Count > 0)
-                {
-                    totalOrders = Convert.ToInt32(orderRow[0]); // Chuyển kiểu đúng
-                }
-
-                // Trả về dữ liệu thống kê dưới dạng JSON
-                return Json(new
-                {
-                    monthlyRevenue = monthlyRevenueList,
-                    totalCustomers = totalCustomers,
-                    totalOrders = totalOrders
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                // Log exception (ví dụ, dùng Log4Net hoặc một công cụ log khác)
-                return Json(new { success = false, message = "Đã xảy ra lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        // Lớp MonthlyRevenue để chứa thông tin doanh thu theo tháng
-        public class MonthlyRevenue
-        {
-            public int Thang { get; set; }
-            public decimal DoanhThu { get; set; }
-        }
 
 
-        public JsonResult GetTopSellingProducts(int year)
-        {
-            List<TopSellingProduct> topSellingProducts = new List<TopSellingProduct>();
-            try
-            {
-                // Gọi Stored Procedure để lấy dữ liệu
-                string sqlQuery = "EXEC sp_ThongKeMatHangBanChay @year";
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-            new SqlParameter("@year", year)
-                };
-                var result = db.get(sqlQuery, parameters);
-
-                // Duyệt qua kết quả và tạo danh sách TopSellingProduct
-                foreach (ArrayList row in result)
-                {
-                    if (row != null && row.Count > 2) // Đảm bảo rằng hàng có ít nhất 3 cột
-                    {
-                        string tenSP = Convert.ToString(row[0]);
-                        int soLuongBan = Convert.ToInt32(row[1]);
-                        int thang = Convert.ToInt32(row[2]);
-                        topSellingProducts.Add(new TopSellingProduct
-                        {
-                            TenSP = tenSP,
-                            SoLuongBan = soLuongBan,
-                            Thang = thang
-                        });
-                    }
-                }
-
-                // Trả về dữ liệu thống kê sản phẩm bán chạy dưới dạng JSON
-                return Json(topSellingProducts, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                // Log exception (ví dụ, dùng Log4Net hoặc một công cụ log khác)
-                return Json(new { success = false, message = "Đã xảy ra lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        public class TopSellingProduct
-        {
-            public string TenSP { get; set; }
-            public int SoLuongBan { get; set; }
-            public int Thang { get; set; }
-        }
 
 
         // Các phương thức quản lý thanh toán
@@ -551,18 +517,26 @@ namespace TSWeb.Controllers
 
         public ActionResult ThemSanPham()
         {
+            // Lấy danh sách ưu đãi từ cơ sở dữ liệu
+            string sql = "SELECT IDVC, TenMa FROM MAGIAMGIA";
+            var vouchers = db.get(sql); // Giả định phương thức get trả về danh sách record
+
+            // Đưa danh sách ưu đãi vào ViewBag
+            ViewBag.Vouchers = vouchers;
+
             return View();
         }
 
+
         [HttpPost]
         public ActionResult ThemSPMoi(string TenSP,
-                                   HttpPostedFileBase HinhAnh,
-                                   float Gia,
-                                   int GiamGia,
-                                   DateTime NgayTao,
-                                   string MoTa,
-                                   int IDVC,
-                                   int IDDM)
+                                       HttpPostedFileBase HinhAnh,
+                                       float Gia,
+                                       int GiamGia,
+                                       DateTime NgayTao,
+                                       string MoTa,
+                                       int IDVC,
+                                       int IDDM)
         {
             // Kiểm tra và lưu hình ảnh
             string fileName = null;
@@ -574,25 +548,16 @@ namespace TSWeb.Controllers
             }
 
             // Gọi stored procedure
-            try
-            {
-                // Xây dựng câu lệnh SQL
-                string sql = "EXEC ThemSanPham N'" + TenSP + "', " + Gia + ", N'" +
-                             (fileName ?? "NULL") + "', '" +
-                             NgayTao.ToString("yyyy-MM-dd") + "', N'" +
-                             MoTa + "', " + GiamGia + ", " + IDVC + ", " + IDDM + ";";
+            string sql = "EXEC ThemSanPham N'" + TenSP + "', " + Gia + ", N'" +
+                         (fileName ?? "NULL") + "', '" +
+                         NgayTao.ToString("yyyy-MM-dd") + "', N'" +
+                         MoTa + "', " + GiamGia + ", " + IDVC + ", " + IDDM + ";";
 
-                db.get(sql);
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi, có thể ghi log hoặc trả thông báo lỗi
-                ModelState.AddModelError("", "Có lỗi xảy ra trong quá trình thêm sản phẩm: " + ex.Message);
-                return View("ThemSanPham"); // Trả lại view để người dùng sửa lỗi
-            }
+            db.get(sql); // Gọi phương thức thực hiện câu lệnh SQL
 
             return RedirectToAction("QLSanPham", "Admin");
         }
+
 
 
         [HttpPost]
@@ -677,14 +642,13 @@ namespace TSWeb.Controllers
             return View();
         }
 
-
         public ActionResult ThemTopping()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult ThemToppingMoi(int? IDTP, string TenTP, float GiaTP, int? IDSP)
+        public ActionResult ThemToppingMoi(string TenTP, float GiaTP, string NgayTao)
         {
             if (!ModelState.IsValid)
             {
@@ -693,18 +657,27 @@ namespace TSWeb.Controllers
 
             try
             {
-                int sanPhamId = IDSP ?? 0; // Gán IDSP là 0 nếu không được truyền vào
-                string sql = $"EXEC sp_ThemTopping N'{TenTP}', {GiaTP}, {sanPhamId}";
+                // Kiểm tra giá topping phải lớn hơn 0
+                if (GiaTP <= 0)
+                {
+                    ModelState.AddModelError("", "Giá topping phải lớn hơn 0");
+                    return View("ThemTopping");
+                }
+
+                // Gọi stored procedure để thêm topping
+                string sql = $"EXEC sp_ThemTopping N'{TenTP}', {GiaTP}, '{NgayTao}'";
                 db.get(sql);
+
+                return RedirectToAction("Topping", "Admin"); // Chuyển hướng về trang quản lý topping
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Có lỗi xảy ra khi thêm topping: " + ex.Message);
                 return View("ThemTopping");
             }
-
-            return RedirectToAction("Topping", "Admin");
         }
+
+
 
         [HttpPost]
         public ActionResult XoaTopping(string id)
@@ -734,7 +707,7 @@ namespace TSWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult CapNhatTopping(int IDTP, string TenTP, float GiaTP, int IDSP)
+        public ActionResult CapNhatTopping(int IDTP, string TenTP, float GiaTP, DateTime NgayTao)
         {
             if (!ModelState.IsValid)
             {
@@ -752,12 +725,12 @@ namespace TSWeb.Controllers
                     return View("ChinhSuaTopping");
                 }
 
-                // Gọi stored procedure để cập nhật topping
+                // Gọi stored procedure để cập nhật topping, bao gồm Ngày Tạo
                 string sql = "EXEC sp_ChinhSuaTopping " +
                     "@IDTP = " + IDTP + ", " +
                     "@TenTP = N'" + TenTP + "', " +
                     "@GiaTP = " + GiaTP + ", " +
-                    "@IDSP = " + IDSP;
+                    "@NgayTao = '" + NgayTao.ToString("yyyy-MM-dd") + "'";
 
                 db.get(sql);
                 return RedirectToAction("Topping", "Admin"); // Chuyển hướng về trang quản lý topping
@@ -770,5 +743,6 @@ namespace TSWeb.Controllers
                 return View("ChinhSuaTopping");
             }
         }
+
     }
 }
