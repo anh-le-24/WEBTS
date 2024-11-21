@@ -97,8 +97,7 @@ namespace TSWeb.Controllers {
             return RedirectToAction(@Url.Action("ThanhToan", "Home"));
         }
 
-        public ActionResult ThanhToan(string id)
-        {
+        public ActionResult ThanhToan(string id) {
             ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             ViewBag.listVC = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
@@ -106,31 +105,32 @@ namespace TSWeb.Controllers {
         }
 
         [HttpPost]
-        public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan)
-        {
-            try
-            {
-                DateTime date = DateTime.Today;  // Lấy ngày hôm nay mà không bao gồm thời gian
+        public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan, string voucherId) {
+            try {
+                DateTime date = DateTime.Today;  // Ngày hiện tại
                 string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
 
-                // Tạo chuỗi lệnh SQL
+                // Kiểm tra và xử lý nếu có voucher
+                if (!string.IsNullOrEmpty(voucherId)) {
+                    // Trừ voucher khỏi tài khoản người dùng (giả định phương thức `XoaVoucher` đã có trong `db`)
+                    db.get($"EXEC XoaVoucherDaLuu '{voucherId}', {Session["taikhoan"]}");
+                }
+
+                // Tạo chuỗi lệnh SQL để thêm đơn hàng
                 string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
                                     + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
 
                 // Thực hiện lưu vào cơ sở dữ liệu
                 db.get(sqlCommand);
             }
-            catch (Exception)
-            {
-                // Nếu có lỗi, chuyển hướng về trang chi tiết sản phẩm
+            catch (Exception) {
+                // Nếu có lỗi, chuyển hướng về trang ThanhToan
                 return RedirectToAction("ThanhToan", "Home", new { id = Session["taikhoan"] });
             }
 
             // Sau khi hoàn tất, chuyển hướng đến trang thông tin tài khoản
             return RedirectToAction("TTTC", "Home");
         }
-
-
 
 
         public ActionResult TTTC()
@@ -160,6 +160,7 @@ namespace TSWeb.Controllers {
             ViewBag.list = db.get("EXEC LuuVoucherChoKhachHang " +idvc+ "," + Session["taikhoan"]);
             return RedirectToAction("Discount", "Home");
         }
+
 
         public ActionResult SearchVch(string phantramgiam) {
             ViewBag.list = db.get("EXEC TimKiemVoucher " + Session["taikhoan"] + "," + phantramgiam);

@@ -1,4 +1,4 @@
-﻿* {
+﻿﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -104,10 +104,10 @@ body {
 }
 
 .status-icon {
-    width: 40px; 
+    width: 40px;
     height: auto;
     color: #555;
-    margin-bottom: 8px; 
+    margin-bottom: 8px;
 }
 
 .status-item p {

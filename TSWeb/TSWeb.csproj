@@ -172,6 +172,7 @@
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Css\voucher.css" />
     <Content Include="Content\Picture\1.png" />
+    <Content Include="Content\Picture\avatar.jpg" />
     <Content Include="Content\Picture\banner_diemtichluy.png" />
     <Content Include="Content\Picture\banner_dtl_1.png" />
     <Content Include="Content\Picture\banner_dtl_2.png" />

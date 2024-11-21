@@ -14,6 +14,7 @@
 
     <!-- Phần thân -->
     <form action="~/Home/ThanhToanHD" method="post">
+        <input type="hidden" name="voucherId" id="voucherId" />
         <main>
             <div class="checkout-container">
                 <h3>Thông tin đơn hàng</h3>
@@ -53,13 +54,17 @@
                         <button type="button" class="close-button" onclick="toggleVoucherForm()">×</button>
                         <!-- Voucher Search Bar -->
                         <form class="search-container" action="~/Home/SearchVch">
-                            <input type="text" class="search-bar" placeholder="Tìm kiếm mã giảm giá..." name="phantramgiam"/>
-                            <button type="submit" class="search-button" >Tìm kiếm</button>
+                            <input type="text" class="search-bar" placeholder="Tìm kiếm mã giảm giá..." name="phantramgiam" />
+                            <button type="submit" class="search-button">Tìm kiếm</button>
                         </form>
 
                         <!-- Voucher Cards Container -->
                         <div class="coupon-container">
                             @foreach (var vc in ViewBag.listVC) {
+                                var startDate = DateTime.Parse(vc[4].ToString());
+                                var endDate = DateTime.Parse(vc[5].ToString());
+                                var remainingTimeSpan = endDate - DateTime.Now;
+
                                 <div class="coupon">
                                     <div class="coupon-left">
                                         <div class="tag">HOT</div>
@@ -67,11 +72,26 @@
                                     </div>
                                     <div class="coupon-right">
                                         <div class="discount">@vc[2]-@vc[6]% </div>
-                                        <div class="min-order">@vc[3]</div>
-                                        <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
-                                        <a class="conditions" href="#">@vc[7]</a>
+                                        <div class="min-order">Đơn hàng trên @vc[7] VND</div>
+                                        <div class="expiry">
+                                            @if (remainingTimeSpan.TotalSeconds > 0) {
+                                                if (remainingTimeSpan.TotalHours > 24) {
+                                                    var days = (int)remainingTimeSpan.TotalDays;
+                                                    var hours = remainingTimeSpan.Hours;
+                                                    <span>Sắp hết hạn: Còn @days ngày @hours giờ</span>
+                                                }
+                                                else {
+                                                    var hours = (int)remainingTimeSpan.TotalHours;
+                                                    <span>Sắp hết hạn: Còn @hours giờ</span>
+                                                }
+                                            }
+                                            else {
+                                                <span style="color: red;">Voucher đã hết hạn</span>
+                                            }
+                                        </div>
+                                        <a class="conditions" href="#">@vc[3]</a>
                                         <!-- Standard Form Submission for Voucher -->
-                                        <button type="button" class="save" onclick="applyVoucher(@vc[6])">Áp dụng</button>
+                                        <button type="button" class="save" onclick="applyVoucher(@vc[6], @vc[7], '@vc[0]', '@vc[5]')">Áp dụng</button>
                                     </div>
                                 </div>
                             }
@@ -131,18 +151,23 @@
         }
 
         // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
+        // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
         function updateShippingCost(shippingType) {
             let totalAmount = parseInt(document.getElementById('totalAmount').value);
             let shippingCost = 0;
             let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0;
 
+            // Tính phí vận chuyển
             if (shippingType === 'quick') {
                 shippingCost = 5000;
             } else if (shippingType === 'slow') {
                 shippingCost = 2000;
             }
 
+            // Hiển thị phí vận chuyển
             document.getElementById('phivanchuyen').textContent = shippingCost + 'đ';
+
+            // Tính tổng cộng
             let finalTotal = totalAmount + shippingCost - khuyenMai;
             document.getElementById('finalTotal').value = finalTotal;
         }
@@ -158,25 +183,43 @@
             }
         }
 
-        // Hàm áp dụng mã giảm giá và tính toán tiền giảm
-        function applyVoucher(discountPercent) {
-            // Lấy tổng số tiền từ `totalAmount`
+        // Hàm áp dụng voucher và tính toán số tiền giảm
+        function applyVoucher(discountPercent, minOrderAmount, voucherId, expiryDate) {
             let totalAmount = parseInt(document.getElementById('totalAmount').value);
 
-            // Tính số tiền được giảm
-            let discountAmount = Math.floor((totalAmount * discountPercent) / 100);
+            // Kiểm tra xem voucher có hết hạn không
+            let now = new Date();
+            let voucherExpiryDate = new Date(expiryDate);
 
-            // Cập nhật trường `khuyenmai` để hiển thị số tiền được giảm
-            document.getElementById('khuyenmai').value = discountAmount;
+            if (voucherExpiryDate < now) {
+                alert("Voucher đã hết hạn. Vui lòng chọn voucher khác.");
+                return; // Không cho phép áp dụng voucher đã hết hạn
+            }
 
-            // Cập nhật trường `promoCode` để hiển thị số tiền giảm trong phần "Số tiền được giảm"
-            document.getElementById('promoCode').value = discountAmount + ' VNĐ';
+            // Kiểm tra xem voucher có đủ điều kiện được áp dụng không
+            if (totalAmount >= minOrderAmount) {
+                let discountAmount = Math.floor((totalAmount * discountPercent) / 100);
 
-            // Tính toán lại tổng cộng sau khi áp dụng khuyến mãi
-            updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
+                // Cập nhật giá trị khuyến mãi vào trường hợp ẩn
+                document.getElementById('khuyenmai').value = discountAmount;
+                document.getElementById('promoCode').value = discountAmount + ' VNĐ';
 
-            // Đóng form khuyến mãi sau khi áp dụng
-            toggleVoucherForm();
+                // Lưu voucher ID vào input ẩn
+                document.getElementById('voucherId').value = voucherId; // Lưu ID voucher
+
+                // Kiểm tra console.log giá trị voucherId
+                console.log("Voucher ID:", document.getElementById('voucherId').value);
+
+                // Tính lại tổng tiền
+                updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
+
+                // Đóng form voucher
+                toggleVoucherForm();
+
+                alert("Voucher đã được áp dụng thành công!");
+            } else {
+                alert("Không đủ điều kiện để áp dụng voucher. Tổng tiền đơn hàng phải từ " + minOrderAmount + " VND trở lên.");
+            }
         }
 
 

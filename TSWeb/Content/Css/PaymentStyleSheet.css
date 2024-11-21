@@ -1,4 +1,4 @@
-﻿﻿﻿.checkout-container {
+﻿﻿﻿﻿﻿.checkout-container {
     width: 400px;
     margin: 50px auto;
     background-color: white;
@@ -71,7 +71,7 @@ h3 {
     }
 
 .price-details {
-    margin-bottom: 20px;
+    padding: 10px 350px;
 }
 
     .price-details .row {
@@ -79,6 +79,8 @@ h3 {
         justify-content: space-between;
         margin-bottom: 10px;
     }
+
+
 
 .notes textarea {
     width: 100%;
@@ -333,4 +335,3 @@ h3 {
         font-size: 10px;
         border-radius: 3px;
     }
-

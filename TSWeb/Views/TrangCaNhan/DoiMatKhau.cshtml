@@ -1,7 +1,6 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "DoiMatKhau";
-    Layout = "~/Views/Shared/nav.cshtml";
-    Layout = "~/Views/Shared/nav_DonHang.cshtml";
+    Layout = "~/Views/Shared/_TrangCaNhanLayout.cshtml";
 }
 
 <style>
@@ -64,22 +63,32 @@
     }
 </style>
 
-<h2>Đổi Mật Khẩu</h2>
-<form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
-    <label for="currentPassword">Mật khẩu hiện tại:</label>
-    <input type="password" id="currentPassword" name="currentPassword" required>
+<div class="card">
+    <div class="card-header bg-light">
+        <h3 class="text-center">Đổi Mật Khẩu</h3>
+    </div>
+    <div class="card-body">
+        <form action="@Url.Action("DoiMK", "TrangCaNhan")" method="post" onsubmit="return validatePassword()">
+            <div class="mb-3">
+                <label for="currentPassword" class="form-label">Mật khẩu hiện tại:</label>
+                <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Nhập mật khẩu hiện tại" required>
+            </div>
+            <div class="mb-3">
+                <label for="newPassword" class="form-label">Mật khẩu mới:</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới:</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu mới" required>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-warning me-2">Đổi mật khẩu</button>
+                <button type="submit" class="btn btn-secondary">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-    <label for="newPassword">Mật khẩu mới:</label>
-    <input type="password" id="newPassword" name="newPassword" required>
-
-    <label for="confirmPassword">Xác nhận mật khẩu mới:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-    <!-- Thông báo lỗi sẽ hiển thị ở đây -->
-    <span id="message"></span>
-
-    <button type="submit">Đổi mật khẩu</button>
-</form>
 
 <script>
     function validatePassword() {
