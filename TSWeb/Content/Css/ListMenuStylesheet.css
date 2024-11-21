@@ -70,3 +70,30 @@
     box-sizing: border-box;
     overflow: auto;
 }
+.btn_buy_order, .btn_seen_detail {
+    font-size: 14px;
+    height: 32px;
+    width: 117px;
+    border-radius: 5px;
+    background: #212121;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .btn_buy_order a, .btn_seen_detail a {
+        text-decoration: none;
+        color: white;
+    }
+
+.btn_all {
+    position: absolute;
+    height: 40px;
+    width: 250px;
+    display: flex;
+    bottom: 0%;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+}

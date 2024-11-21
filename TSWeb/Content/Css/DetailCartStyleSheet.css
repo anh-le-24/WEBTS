@@ -35,28 +35,6 @@ main {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Button thêm sản phẩm */
-.btnthemsanpham {
-    background-color: #FF9874;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 14px 24px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-    .btnthemsanpham:hover {
-        background-color: #e27f58;
-        transform: translateY(-2px);
-    }
-
-    .btnthemsanpham:active {
-        background-color: #d76a48;
-        transform: translateY(1px);
-    }
 
 
 /* Chỉnh sửa số lượng */
@@ -133,11 +111,30 @@ main {
 }
 
 /* Nút */
-button {
-    background-color: transparent;
+
+/* Button thêm sản phẩm */
+.btnthemsanpham {
+    background-color: #FF9874;
+    color: white;
     border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 12px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+    .btnthemsanpham:hover {
+        background-color: #e27f58;
+        transform: translateY(-2px);
+    }
+
+    .btnthemsanpham:active {
+        background-color: #d76a48;
+        transform: translateY(1px);
+    }
+
 /* Container chung để căn ngang */
 .selection-container {
     display: flex;
@@ -253,8 +250,8 @@ input[type="radio"] {
 }
 
 .size {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
