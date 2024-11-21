@@ -97,22 +97,34 @@
                         </div>
                     </div>
 
-                        <div class="row">
-                            <span>Khuyến mại:</span>
-                            <input id="khuyenmai" value="0" name="khuyenmai" readonly />
-                        </div>
-
-                        <div class="row">
-                            <span><strong>Tổng cộng:</strong></span>
-                            <input id="finalTotal" name="finalTotal" readonly />
-                        </div>
+                    <div class="row">
+                        <span>Khuyến mại:</span>
+                        <input id="khuyenmai" value="0" name="khuyenmai" readonly />
                     </div>
+
+                    <div class="row">
+                        <span><strong>Tổng cộng:</strong></span>
+                        <input id="finalTotal" name="finalTotal" readonly />
+                    </div>
+                </div>
+                <!-- Phương thức thanh toán -->
+                <div class="row">
+                    <label for="thanh-toan-khi-nhan-hang" class="info-pay__mothod-item">
+                        <input type="radio" name="phuongthanhtoan" value="Thanh toán khi nhận hàng" id="thanh-toan-khi-nhan-hang" />
+                        Thanh toán khi nhận hàng
+                    </label>
+                    <label for="thanh-toan-vi" class="info-pay__mothod-item">
+                        <input type="radio" name="phuongthanhtoan" value="Thanh toán bằng Ví MeMe" id="thanh-toan-vi" />
+                        Thanh toán bằng Ví MeMe
+                    </label>
+                </div>
+
                     <div class="action-buttons">
                         <button type="submit" class="order-button">ĐẶT HÀNG</button>
                         <a href="@Url.Action("ListSanPham","Home")" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
                     </div>
                 </div>
-        </main>
+</main>
     </form>
 
     <script>
