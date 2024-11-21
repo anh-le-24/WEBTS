@@ -1,40 +1,62 @@
 ﻿
 @{
     ViewBag.Title = "DaHuy";
-    Layout = "~/Views/Shared/nav.cshtml";
-    Layout = "~/Views/Shared/nav_DonHang.cshtml";
+    Layout = "~/Views/Shared/_TrangCaNhanLayout.cshtml";
+    <link href="~/Content/Css/DonHangStyleSheet.css" rel="stylesheet" />
 }
-
-@foreach (var dh in ViewBag.list)
-{
-    <div class="bg-white p-4 mb-4 rounded shadow">
-        <div class="flex items-center mb-2">
-            <img alt="Store logo" class="mr-2" height="20" src="https://www.shutterstock.com/image-vector/bubble-milk-tea-boba-vector-600nw-2299991473.jpg" width="20" />
-            <span class="text-gray-800 font-semibold">LEAF TEA</span>
-            <button class="ml-2 px-2 py-1 text-xs text-white bg-red-500 rounded">Call</button>
-            <button class="ml-2 px-2 py-1 text-xs text-white bg-gray-500 rounded">Order</button>
-        </div>
-        <div class="flex mb-2">
-            <img alt="Product image" class="mr-4" height="80" src="https://maycha.com.vn/wp-content/uploads/2023/10/ts-matcha-kem-trung-khe.png" width="80" />
-            <div>
-                <div class="text-gray-800">Đơn: @dh[0]</div>
-                <div class="text-gray-600 text-sm">Ngày đặt: @dh[1]</div>
-                <div class="text-gray-600 text-sm">Hình thức thanh toán: @dh[7]</div>
-            </div>
-        </div>
-        <div class="flex justify-between items-center">
-            <div class="text-gray-600 text-sm">@dh[2]</div>
-            <div class="text-red-500 text-sm">ĐÃ ĐÁNH GIÁ</div>
-        </div>
-        <div class="flex justify-between items-center mt-2">
-            <div class="text-gray-600 text-sm">
-                Tổng số tiền: <span class="text-red-500 text-lg">@dh[3]</span>
-            </div>
-            <div>
-                <button class="px-4 py-2 bg-red-500 text-white rounded">Mua Lần Nữa</button>
-                <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded">Xem Chi Tiết Đơn Hàng</button>
-                <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded">Xem Đánh Giá</button>
-            </div>
-        </div>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<div class="content">
+    <!-- Tabs -->
+    <div class="tabs">
+        <a href="@Url.Action("DonHang", "TrangCaNhan")" class="tab ">Tất cả</a>
+        <a href="@Url.Action("ChoXacNhan", "TrangCaNhan")" class="tab">Chờ xác nhận</a>
+        <a href="@Url.Action("DaXacNhan", "TrangCaNhan")" class="tab">Đã xác nhận</a>
+        <a href="@Url.Action("DangGiao", "TrangCaNhan")" class="tab">Đang giao</a>
+        <a href="@Url.Action("DaGiao", "TrangCaNhan")" class="tab">Đã giao</a>
+        <a href="@Url.Action("DaHuy", "TrangCaNhan")" class="tab active">Đã hủy</a>
     </div>
-}
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Tìm kiếm theo Tên Sản phẩm" />
+    </div>
+
+    <!-- Orders List -->
+    <div class="orders">
+        @if (ViewBag.list != null && ViewBag.list.Count > 0)
+        {
+            foreach (var dh in ViewBag.list)
+            {
+                <div class="order">
+                    <!-- Product Image -->
+                    <img src="https://via.placeholder.com/60" alt="Product" class="product-img" />
+
+                    <!-- Order Details -->
+                    <div class="order-details">
+
+                        <p>Đơn: @dh[0]</p>
+                        <p>Ngày đặt: @dh[1]</p>
+                        <p>Hình thức thanh toán: @dh[7]</p>
+                        <p class="status " style="color:red;">@dh[2]</p>
+                        <p>Tổng số tiền: <span class="price">@dh[3] VND</span></p>
+                    </div>
+
+                    <!-- Order Actions -->
+                    <div class="order-actions">
+                        <button class="btn repeat">Mua Lần Nữa</button>
+                        <button class="btn details">Xem Chi Tiết Đơn Hàng</button>
+                        <button class="btn review">Xem Đánh Giá</button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Không có đơn hàng nào để hiển thị.</p>
+        }
+    </div>
+</div>

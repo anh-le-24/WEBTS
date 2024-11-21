@@ -3,16 +3,22 @@
     Layout = "~/Views/Shared/_TrangCaNhanLayout.cshtml";
     <link href="~/Content/Css/DonHangStyleSheet.css" rel="stylesheet" />
 }
+<style>
+    a
+    {
+        text-decoration:none;
+    }
+</style>
 
 <div class="content">
     <!-- Tabs -->
     <div class="tabs">
-        <button class="tab active">Tất cả</button>
-        <button class="tab">Chờ xác nhận</button>
-        <button class="tab">Đã xác nhận</button>
-        <button class="tab">Đang giao</button>
-        <button class="tab">Đã giao</button>
-        <button class="tab">Đã hủy</button>
+        <a href="@Url.Action("DonHang", "TrangCaNhan")" class="tab active">Tất cả</a>
+        <a href="@Url.Action("ChoXacNhan", "TrangCaNhan")" class="tab">Chờ xác nhận</a>
+        <a href="@Url.Action("DaXacNhan", "TrangCaNhan")" class="tab">Đã xác nhận</a>
+        <a href="@Url.Action("DangGiao", "TrangCaNhan")" class="tab">Đang giao</a>
+        <a href="@Url.Action("DaGiao", "TrangCaNhan")" class="tab">Đã giao</a>
+        <a href="@Url.Action("DaHuy", "TrangCaNhan")" class="tab">Đã hủy</a>
     </div>
 
     <!-- Search Bar -->
@@ -28,12 +34,12 @@
             {
                 <div class="order">
                     <!-- Product Image -->
-                    <img src="https://via.placeholder.com/60" alt="Product" class="product-img" />
+                  
 
                     <!-- Order Details -->
                     <div class="order-details">
-                        <h4>@dh[0]</h4>
-                        @*<p>Đơn: @dh[2]</p>*@
+
+                        <p>Đơn: @dh[0]</p>
                         <p>Ngày đặt: @dh[1]</p>
                         <p>Hình thức thanh toán: @dh[6]</p>
                         <p class="status " style="color:red;">@dh[2]</p>
