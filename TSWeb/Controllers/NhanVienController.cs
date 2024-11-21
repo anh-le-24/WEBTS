@@ -31,31 +31,68 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult XNDNNV(string email, string password)
         {
+            // Lấy dữ liệu người dùng từ thủ tục kiểm tra đăng nhập
             ViewBag.list = db.get("EXEC KiemTraDangNhapNV '" + email + "','" + password + "';");
+
             if (ViewBag.list.Count > 0)
             {
-                // Lấy thông tin người dùng từ ViewBag.list[0]
                 var user = ViewBag.list[0];
 
-                // Kiểm tra kiểu dữ liệu của user và lấy id
                 if (user is ArrayList userList && userList.Count > 0)
                 {
-                    // Giả sử userList[0] là id người dùng
-                    string userId = userList[0].ToString(); // Lấy id từ ArrayList
+                    string userId = userList[0].ToString();
                     int idnd = 0;
-                    int.TryParse(userId, out idnd); // Chuyển đổi từ string sang int
-
+                    int.TryParse(userId, out idnd);
 
                     string userName = userList[1].ToString();
-                    // Lưu id người dùng vào session
-                    Session["taikhoanNV"] = idnd;
-                    Session["tennguoidungNV"] = userName;
 
-                    return RedirectToAction("HomeNV", "NhanVien");
+                    // Gọi thủ tục lấy vai trò người dùng từ idnd
+                    var roleCheck = db.get("EXEC GetUserRoleById " + idnd);  // Gọi thủ tục GetUserRoleById
+
+                    if (roleCheck.Count > 0)
+                    {
+                        var roleInfo = roleCheck[0] as ArrayList;
+                        if (roleInfo != null && roleInfo.Count > 0)
+                        {
+                            int idvt = 0;
+                            int.TryParse(roleInfo[0].ToString(), out idvt);  // Lấy giá trị idvt
+
+                            // Lưu thông tin người dùng vào session
+                            Session["taikhoanNV"] = idnd;
+                            Session["tennguoidungNV"] = userName;
+
+                            // Kiểm tra nếu idvt = 1 (Admin)
+                            if (idvt == 1)
+                            {
+                                return RedirectToAction("Index", "Admin");
+                            }
+                            else
+                            {
+                                return RedirectToAction("HomeNV", "NhanVien");
+                            }
+                        }
+                        else
+                        {
+                            // Nếu không có thông tin vai trò
+                            // Xử lý lỗi khi không có vai trò
+                            ViewBag.ErrorMessage = "Không tìm thấy vai trò cho người dùng.";
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        // Nếu không gọi được thủ tục hoặc không trả về dữ liệu
+                        ViewBag.ErrorMessage = "Lỗi khi lấy vai trò người dùng.";
+                        return View();
+                    }
                 }
             }
-                return RedirectToAction("DNNV", "NhanVien");
+
+            // Nếu không đăng nhập thành công, quay lại trang đăng nhập
+            return RedirectToAction("DNNV", "NhanVien");
         }
+
+
 
         [HttpPost]
         public ActionResult TaoDH(int? finalTotal, string phuongthanhtoan)

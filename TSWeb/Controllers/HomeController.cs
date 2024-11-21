@@ -139,10 +139,22 @@ namespace TSWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult TimKiemSanPham(string tensp)
+        {
+            ViewBag.list = db.get("EXEC TimKiemSanPham '" + tensp + "';");
+            return View();
+        }
         public ActionResult ListSanPham()
         {
             // Truyền danh sách sản phẩm vào ViewBag
             ViewBag.list = db.get("SELECT * FROM SANPHAM");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult LocDanhMuc(int id)
+        {
+            ViewBag.list = db.get("SELECT * FROM SANPHAM WHERE IDDM = " + id);
             return View();
         }
 

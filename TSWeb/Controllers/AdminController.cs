@@ -608,7 +608,6 @@ namespace TSWeb.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult XoaSanPham(string id)
         {

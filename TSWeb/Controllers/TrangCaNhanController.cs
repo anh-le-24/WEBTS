@@ -36,6 +36,7 @@ namespace TSWeb.Controllers
             
         public ActionResult Donhang()
         {
+            ViewBag.dg = db.get("select * from DANHGIA");
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + Session["taikhoan"]);
             return View();
         }
@@ -120,6 +121,24 @@ namespace TSWeb.Controllers
         {
             ViewBag.thongbaos = db.get("EXEC xemthongbao " + Session["taikhoan"]);
             return View(); 
+        }
+
+        [HttpPost]
+        public ActionResult ThemDanhGia(string diem,
+            string noiDung,
+            string iddh)
+        {
+            DateTime date = DateTime.Today;  // Lấy ngày hôm nay mà không bao gồm thời gian
+           
+            try
+            {
+                db.get("EXEC ThemDanhGia '"+ diem +"'',N'"+ noiDung + "','"+ date +"',"+ Session["taikhoan"] +","+ iddh);
+                return RedirectToAction("DonHang", "TrangCaNhan");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

@@ -12,7 +12,7 @@
         <div class="formdh">
             <form action="~/NhanVien/XN" method="post">
                 <div class="form-content">
-                    <input type="hidden" value="Đã xác nhận" name="trangthai" />
+                    <input type="hidden" value="Đang Giao" name="trangthai" />
                     <input type="hidden" value="@a[0]" name="iddh" />
                     <span>Đơn hàng số: @a[0]</span>
                     <span>Ngày thanh toán : @a[1]</span>
@@ -23,7 +23,7 @@
                     <span>Địa chỉ: @a[10]</span>
                 </div>
                 <div class="chuc_nang">
-                    <a href="~/NhanVien">Chi tiết đơn hàng</a>
+                    <a href="~/TrangCaNhan/XemChiTietDH?id=@a[0]">Chi tiết đơn hàng</a>
 
                     <button type="submit" onclick="logConfirmation(event, @a[0])">Giao hàng</button>
                 </div>
@@ -40,7 +40,7 @@
         <div class="formdh">
             <form action="~/NhanVien/XN" method="post">
                 <div class="form-content">
-                    <input type="hidden" value="Đã xác nhận" name="trangthai" />
+                    <input type="hidden" value="Đang Giao" name="trangthai" />
                     <input type="hidden" value="@a[0]" name="iddh" />
                     <span>Đơn hàng số: @a[0]</span>
                     <span>Ngày thanh toán : @a[1]</span>
@@ -49,7 +49,7 @@
                    
                 </div>
                 <div class="chuc_nang">
-                    <a href="~/NhanVien">Chi tiết đơn hàng</a>
+                    <a href="~/TrangCaNhan/XemChiTietDH?id=@a[0]">Chi tiết đơn hàng</a>
 
                     <button type="submit" onclick="logConfirmation(event, @a[0])">Giao hàng</button>
                 </div>
