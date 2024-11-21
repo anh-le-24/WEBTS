@@ -17,6 +17,7 @@ body {
 
 /* Tabs */
 .tabs {
+    text-decoration: none;
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid #ddd;
@@ -24,6 +25,7 @@ body {
 }
 
 .tab {
+    text-decoration:none;
     background: none;
     border: none;
     padding: 10px 20px;
@@ -38,6 +40,7 @@ body {
     }
 
     .tab.active {
+        text-decoration: none;
         font-weight: bold;
         border-bottom: 3px solid #007bff;
         color: #007bff;
