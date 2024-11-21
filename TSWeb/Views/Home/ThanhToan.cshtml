@@ -13,7 +13,7 @@
 <body>
 
     <!-- Phần thân -->
-    <form action="~/Home/ThanhToanHD" method="post">
+    <form action="@Url.Action("ThanhToanHD", "Home")" method="post" onsubmit="return confirmOrder()">
         <input type="hidden" name="voucherId" id="voucherId" />
         <main>
             <div class="checkout-container">
@@ -52,18 +52,15 @@
                     <div class="voucher-form-content">
                         <!-- Close Button -->
                         <button type="button" class="close-button" onclick="toggleVoucherForm()">×</button>
-                        <!-- Voucher Search Bar -->
-                        <form class="search-container" action="~/Home/SearchVch">
-                            <input type="text" class="search-bar" placeholder="Tìm kiếm mã giảm giá..." name="phantramgiam" />
-                            <button type="submit" class="search-button">Tìm kiếm</button>
-                        </form>
 
                         <!-- Voucher Cards Container -->
                         <div class="coupon-container">
                             @foreach (var vc in ViewBag.listVC) {
                                 var startDate = DateTime.Parse(vc[4].ToString());
                                 var endDate = DateTime.Parse(vc[5].ToString());
-                                var remainingTimeSpan = endDate - DateTime.Now;
+                                var now = DateTime.Now;
+                                var remainingTimeSpan = endDate - now;
+                                var notYetActive = startDate > now; // Kiểm tra nếu chưa đến ngày bắt đầu
 
                                 <div class="coupon">
                                     <div class="coupon-left">
@@ -74,7 +71,12 @@
                                         <div class="discount">@vc[2]-@vc[6]% </div>
                                         <div class="min-order">Đơn hàng trên @vc[7] VND</div>
                                         <div class="expiry">
-                                            @if (remainingTimeSpan.TotalSeconds > 0) {
+                                            @if (notYetActive) {
+                                                // Chưa đến ngày bắt đầu
+                                                <span style="color: blue;">Hiệu lực từ: @startDate.ToString("dd/MM/yyyy")</span>
+                                            }
+                                            else if (remainingTimeSpan.TotalSeconds > 0) {
+                                                // Phiếu còn hiệu lực
                                                 if (remainingTimeSpan.TotalHours > 24) {
                                                     var days = (int)remainingTimeSpan.TotalDays;
                                                     var hours = remainingTimeSpan.Hours;
@@ -82,16 +84,18 @@
                                                 }
                                                 else {
                                                     var hours = (int)remainingTimeSpan.TotalHours;
-                                                    <span>Sắp hết hạn: Còn @hours giờ</span>
+                                                    var minutes = remainingTimeSpan.Minutes;
+                                                    <span>Sắp hết hạn: Còn @hours giờ @minutes phút</span>
                                                 }
                                             }
                                             else {
+                                                // Phiếu đã hết hạn
                                                 <span style="color: red;">Voucher đã hết hạn</span>
                                             }
                                         </div>
                                         <a class="conditions" href="#">@vc[3]</a>
                                         <!-- Standard Form Submission for Voucher -->
-                                        <button type="button" class="save" onclick="applyVoucher(@vc[6], @vc[7], '@vc[0]', '@vc[5]')">Áp dụng</button>
+                                        <button type="button" class="save" onclick="applyVoucher(@vc[6], @vc[7], '@vc[0]', '@vc[5]', '@vc[4]')">Áp dụng</button>
                                     </div>
                                 </div>
                             }
@@ -124,6 +128,17 @@
                         <input id="khuyenmai" value="0" name="khuyenmai" readonly />
                     </div>
 
+                    <!-- Điểm tích lũy -->
+                    @foreach (var d in ViewBag.listD) {
+                        <div class="row">
+                            <label for="useLoyaltyPoints">Sử dụng điểm tích lũy: @d[0] điểm</label>
+                            <input type="checkbox" id="useLoyaltyPoints" onchange="handleLoyaltyPoints(@d[0])">
+                            <!-- Trường ẩn lưu giá trị quy đổi từ điểm tích lũy -->
+                            <input type="hidden" id="loyaltyPointsUsed" name="loyaltyPointsUsed" value="0">
+                        </div>
+                    }
+
+
                     <div class="row">
                         <span><strong>Tổng cộng:</strong></span>
                         <input id="finalTotal" name="finalTotal" readonly />
@@ -138,6 +153,19 @@
     </form>
 
     <script>
+
+        // Confirmation before submitting the order
+        function confirmOrder() {
+            let confirmMessage = "Bạn chắc chắn muốn đặt hàng?";
+
+            // Show a confirmation dialog
+            if (confirm(confirmMessage)) {
+                return true;  // Continue submitting the form
+            } else {
+                return false;  // Prevent form submission
+            }
+        }
+
         // Hàm tính tổng tiền của các sản phẩm
         function calculateTotalAmount() {
             let totalAmount = 0;
@@ -151,13 +179,13 @@
         }
 
         // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
-        // Hàm cập nhật giá trị phí vận chuyển và tính toán tổng cộng
         function updateShippingCost(shippingType) {
-            let totalAmount = parseInt(document.getElementById('totalAmount').value);
-            let shippingCost = 0;
+            let totalAmount = parseInt(document.getElementById('totalAmount').value) || 0;
+            let shippingCost = parseInt(document.getElementById('phivanchuyen').textContent.replace('đ', '').trim()) || 0;
             let khuyenMai = parseInt(document.getElementById('khuyenmai').value) || 0;
+            let loyaltyPointsUsed = parseInt(document.getElementById('loyaltyPointsUsed').value) || 0;
 
-            // Tính phí vận chuyển
+            // Kiểm tra loại vận chuyển và gán phí vận chuyển tương ứng
             if (shippingType === 'quick') {
                 shippingCost = 5000;
             } else if (shippingType === 'slow') {
@@ -168,9 +196,12 @@
             document.getElementById('phivanchuyen').textContent = shippingCost + 'đ';
 
             // Tính tổng cộng
-            let finalTotal = totalAmount + shippingCost - khuyenMai;
-            document.getElementById('finalTotal').value = finalTotal;
+            let finalTotal = totalAmount + shippingCost - khuyenMai - loyaltyPointsUsed;
+
+            // Đảm bảo tổng cộng không âm
+            document.getElementById('finalTotal').value = finalTotal < 0 ? 0 : finalTotal;
         }
+
 
         // Hàm thêm khuyến mãi
         function addPromoCode() {
@@ -184,13 +215,21 @@
         }
 
         // Hàm áp dụng voucher và tính toán số tiền giảm
-        function applyVoucher(discountPercent, minOrderAmount, voucherId, expiryDate) {
+        function applyVoucher(discountPercent, minOrderAmount, voucherId, expiryDate, startDate) {
             let totalAmount = parseInt(document.getElementById('totalAmount').value);
 
-            // Kiểm tra xem voucher có hết hạn không
+            // Kiểm tra ngày hiện tại và ngày bắt đầu
             let now = new Date();
             let voucherExpiryDate = new Date(expiryDate);
+            let voucherStartDate = new Date(startDate);
 
+            // Nếu voucher chưa đến ngày bắt đầu
+            if (voucherStartDate > now) {
+                alert("Voucher chưa đến ngày áp dụng. Vui lòng chọn voucher khác.");
+                return; // Không cho phép áp dụng voucher
+            }
+
+            // Kiểm tra xem voucher có hết hạn không
             if (voucherExpiryDate < now) {
                 alert("Voucher đã hết hạn. Vui lòng chọn voucher khác.");
                 return; // Không cho phép áp dụng voucher đã hết hạn
@@ -205,10 +244,7 @@
                 document.getElementById('promoCode').value = discountAmount + ' VNĐ';
 
                 // Lưu voucher ID vào input ẩn
-                document.getElementById('voucherId').value = voucherId; // Lưu ID voucher
-
-                // Kiểm tra console.log giá trị voucherId
-                console.log("Voucher ID:", document.getElementById('voucherId').value);
+                document.getElementById('voucherId').value = voucherId;
 
                 // Tính lại tổng tiền
                 updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
@@ -222,6 +258,23 @@
             }
         }
 
+        // Hàm thêm logic điểm tích lũy
+        function handleLoyaltyPoints(points) {
+            let checkbox = document.getElementById('useLoyaltyPoints');
+            let loyaltyPointsUsed = document.getElementById('loyaltyPointsUsed'); // Input ẩn để gửi giá trị về server
+
+            // Nếu checkbox được chọn
+            if (checkbox.checked) {
+                loyaltyPointsUsed.value = points; // Cập nhật giá trị điểm tích lũy được sử dụng
+            } else {
+                loyaltyPointsUsed.value = 0; // Không sử dụng điểm tích lũy
+            }
+
+            // Cập nhật tổng tiền mà không thay đổi loại vận chuyển
+            let currentShippingType = document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick';
+            updateShippingCost(currentShippingType); // Truyền loại vận chuyển hiện tại
+        }
+
 
         // Toggle voucher form display
         function toggleVoucherForm() {
@@ -229,8 +282,11 @@
             voucherForm.style.display = (voucherForm.style.display === "none" || voucherForm.style.display === "") ? "flex" : "none";
         }
 
-        // Calculate total amount on page load
-        window.onload = calculateTotalAmount;
+        window.onload = function () {
+            calculateTotalAmount();
+            document.getElementById('quick').checked = true; // Mặc định chọn vận chuyển nhanh
+            updateShippingCost('quick'); // Áp dụng vận chuyển nhanh ngay khi tải trang
+        };
 
     </script>
 

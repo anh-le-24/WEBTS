@@ -101,35 +101,47 @@ namespace TSWeb.Controllers {
             ViewBag.nd = db.get("Exec  XemNguoiDungTheoID " + id);
             ViewBag.list = db.get("EXEC XemTatCaSanPhamGioHang " + id + ";");
             ViewBag.listVC = db.get("EXEC XemVoucherDaLuu " + Session["taikhoan"]);
+            ViewBag.listD = db.get("EXEC GetDiemTichLuyTheoIDND " + Session["taikhoan"]);
             return View();
         }
 
         [HttpPost]
-        public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan, string voucherId) {
+        public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan, string voucherId, int loyaltyPointsUsed = 0) {
             try {
                 DateTime date = DateTime.Today;  // Ngày hiện tại
                 string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
 
-                // Kiểm tra và xử lý nếu có voucher
+                // Xóa voucher nếu có
                 if (!string.IsNullOrEmpty(voucherId)) {
-                    // Trừ voucher khỏi tài khoản người dùng (giả định phương thức `XoaVoucher` đã có trong `db`)
                     db.get($"EXEC XoaVoucherDaLuu '{voucherId}', {Session["taikhoan"]}");
                 }
 
-                // Tạo chuỗi lệnh SQL để thêm đơn hàng
+                // Trừ điểm tích lũy nếu có
+                if (loyaltyPointsUsed > 0) {
+                    var isSuccess = db.get($"EXEC TruDiemTichLuy {Session["taikhoan"]}, {loyaltyPointsUsed}");
+                    if (isSuccess == null) {
+                        throw new Exception("Không thể trừ điểm tích lũy.");
+                    }
+                }
+
+                // Tạo câu lệnh SQL để thêm đơn hàng
                 string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
                                     + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
 
-                // Thực hiện lưu vào cơ sở dữ liệu
+                // Thực thi câu lệnh SQL để lưu đơn hàng
                 db.get(sqlCommand);
+
+                // Chuyển hướng đến trang TTTC sau khi đặt hàng thành công
+                return RedirectToAction("TTTC", "Home");
             }
-            catch (Exception) {
-                // Nếu có lỗi, chuyển hướng về trang ThanhToan
+            catch (Exception ex) {
+                // Ghi lại lỗi để kiểm tra
+                // Có thể sử dụng logger để ghi lại lỗi hoặc ghi vào Debug
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
+                // Nếu có lỗi, chuyển hướng về trang thanh toán
                 return RedirectToAction("ThanhToan", "Home", new { id = Session["taikhoan"] });
             }
-
-            // Sau khi hoàn tất, chuyển hướng đến trang thông tin tài khoản
-            return RedirectToAction("TTTC", "Home");
         }
 
 
@@ -159,12 +171,6 @@ namespace TSWeb.Controllers {
         public ActionResult SaveVch(string idvc) {
             ViewBag.list = db.get("EXEC LuuVoucherChoKhachHang " +idvc+ "," + Session["taikhoan"]);
             return RedirectToAction("Discount", "Home");
-        }
-
-
-        public ActionResult SearchVch(string phantramgiam) {
-            ViewBag.list = db.get("EXEC TimKiemVoucher " + Session["taikhoan"] + "," + phantramgiam);
-            return RedirectToAction("ThanhToan", "Home");
         }
 
     }

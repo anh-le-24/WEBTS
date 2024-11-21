@@ -21,7 +21,9 @@
         @foreach (var vc in ViewBag.listVC) {
             var startDate = DateTime.Parse(vc[3].ToString());
             var endDate = DateTime.Parse(vc[4].ToString());
-            var remainingTimeSpan = endDate - DateTime.Now;
+            var now = DateTime.Now;
+            var remainingTimeSpan = endDate - now;
+            var notYetActive = startDate > now; // Kiểm tra nếu chưa đến ngày bắt đầu
 
             <div class="coupon">
                 <div class="coupon-left">
@@ -32,7 +34,12 @@
                     <div class="discount">@vc[1] - @vc[5]%</div>
                     <div class="min-order">Đơn hàng trên @vc[6]VND</div>
                     <div class="expiry">
-                        @if (remainingTimeSpan.TotalSeconds > 0) {
+                        @if (notYetActive) {
+                            // Chưa đến ngày bắt đầu
+                            <span style="color: blue;">Hiệu lực từ: @startDate.ToString("dd/MM/yyyy")</span>
+                        }
+                        else if (remainingTimeSpan.TotalSeconds > 0) {
+                            // Phiếu còn hiệu lực
                             if (remainingTimeSpan.TotalHours > 24) {
                                 var days = (int)remainingTimeSpan.TotalDays;
                                 var hours = remainingTimeSpan.Hours;
@@ -40,18 +47,20 @@
                             }
                             else {
                                 var hours = (int)remainingTimeSpan.TotalHours;
-                                <span>Sắp hết hạn: Còn @hours giờ</span>
+                                var minutes = remainingTimeSpan.Minutes;
+                                <span>Sắp hết hạn: Còn @hours giờ @minutes phút</span>
                             }
                         }
                         else {
+                            // Phiếu đã hết hạn
                             <span style="color: red;">Voucher đã hết hạn</span>
                         }
                     </div>
                     <a class="conditions" href="#">@vc[2]</a>
-                        <form action="~/Home/SaveVch" method="post" style="display: inline;">
-                            <input type="hidden" name="idvc" value="@vc[0]" />
-                            <button type="submit" class="save">Lưu</button>
-                        </form>
+                    <form action="~/Home/SaveVch" method="post" style="display: inline;">
+                        <input type="hidden" name="idvc" value="@vc[0]" />
+                        <button type="submit" class="save">Lưu</button>
+                    </form>
                 </div>
             </div>
         }

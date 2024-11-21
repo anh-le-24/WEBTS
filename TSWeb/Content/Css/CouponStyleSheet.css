@@ -75,7 +75,7 @@
 .coupon {
     display: flex;
     border-radius: 15px;
-    width: 320px;
+    width: 400px; /* Tăng chiều rộng của thẻ voucher */
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
@@ -88,7 +88,7 @@
     }
 
 .coupon-left {
-    width: 40%;
+    width: 35%; /* Giảm chiều rộng phần bên trái */
     background: linear-gradient(to top, #ff7e5f, #feb47b);
     color: white;
     display: flex;
@@ -118,7 +118,7 @@
     }
 
 .coupon-right {
-    width: 60%;
+    width: 65%; /* Tăng chiều rộng phần bên phải */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -146,6 +146,13 @@
         font-size: 0.8rem;
         color: #3498db;
         text-decoration: underline;
+    }
+
+    /* Đặt hai nút trên cùng một hàng */
+    .coupon-right .button-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Căn giữa theo chiều dọc */
     }
 
     .coupon-right .save {
@@ -191,4 +198,22 @@
     text-align: center;
     font-size: 1rem;
 }
+
+.coupon-right .delete {
+    background: #e74c3c; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 10px; /* Khoảng cách giữa hai nút */
+}
+
+    .coupon-right .delete:hover {
+        background: #c0392b; /* Màu đỏ đậm hơn khi hover */
+    }
+
 

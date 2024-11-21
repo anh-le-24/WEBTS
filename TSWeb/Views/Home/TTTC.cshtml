@@ -4,7 +4,66 @@
     Layout = "~/Views/Shared/nav.cshtml";
 }
 
-<h2>Thanh toán thành công</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tài khoản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
 
-<a href="@Url.Action("ListSanPham","Home")">Quay lại Menu</a>
+        .thank-you-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .thank-you-container h1 {
+                color: #27ae60;
+            }
+
+            .thank-you-container p {
+                font-size: 16px;
+                color: #555555;
+            }
+
+            .thank-you-container a {
+                display: inline-block;
+                margin: 10px;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #3498db;
+                transition: background-color 0.3s;
+            }
+
+                .thank-you-container a:hover {
+                    background-color: #2980b9;
+                }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <h1>Cảm ơn bạn đã đặt hàng!</h1>
+        <p>Đơn hàng của bạn đã được ghi nhận và đang trong quá trình xử lý.</p>
+        <p>Bạn có thể kiểm tra trạng thái đơn hàng trong tài khoản của mình.</p>
+        <a href="@Url.Action("ThongTinTaiKhoan", "Home")" class="check-order">Xem thông tin tài khoản</a>
+        <a href="@Url.Action("ListSanPham", "Home")" class="continue-shopping">Tiếp tục mua sắm</a>
+    </div>
+</body>
+</html>
 
