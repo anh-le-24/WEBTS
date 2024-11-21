@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "XemChiTietDH";
+    Layout = "~/Views/Shared/nav.cshtml";
+}
+<style>
+    /* Cấu trúc chung */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Nút quay lại */
+    .btn-back {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+    /* Tiêu đề các phần */
+    .section-title {
+        font-size: 28px;
+        color: #333;
+        margin: 30px 0 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+        font-weight: 600;
+    }
+
+    /* Phần thông tin thanh toán */
+    .info-section {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    /* Khoảng cách giữa thông tin thanh toán và phần tiếp theo */
+    .info-item {
+        font-size: 16px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .info-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .info-value {
+        color: #555;
+    }
+
+    /* Danh sách sản phẩm */
+    .product-list {
+        margin-bottom: 30px;
+    }
+
+    .product-item {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-item span {
+            display: block;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+    .product-name {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .product-quantity,
+    .product-size,
+    .product-total,
+    .product-topping {
+        font-size: 14px;
+    }
+
+
+</style>
+<a href="~/TrangCaNhan/DonHang" class="btn-back">Quay lại đơn hàng</a>
+
+<h2 class="section-title">Thông tin thanh toán</h2>
+
+<div class="info-section">
+    <div class="info-item">
+        <span class="info-label">IDDH: </span><span class="info-value">@ViewBag.tt[0][0]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Ngày đặt: </span><span class="info-value">@ViewBag.tt[0][1]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label" >Trạng thái: </span><span style="color:red;" class="info-value">@ViewBag.tt[0][2]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Tổng tiền đơn hàng: </span><span class="info-value">@ViewBag.tt[0][3]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Tên người đặt: </span><span class="info-value">@ViewBag.tt[0][5]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Email: </span><span class="info-value">@ViewBag.tt[0][6]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Số điện thoại: </span><span class="info-value">@ViewBag.tt[0][7]</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Địa chỉ: </span><span class="info-value">@ViewBag.tt[0][8]</span>
+    </div>
+</div>
+
+<h2 class="section-title">Danh sách sản phẩm</h2>
+<div class="product-list">
+    @foreach (var ct in ViewBag.ct)
+    {
+        <div class="product-item">
+            <span class="product-name">Tên sản phẩm: @ct[1]</span>
+            <span class="product-quantity">Số lượng: @ct[2]</span>
+            <span class="product-size">Size: @ct[4]</span>
+            <span class="product-total">Tổng tiền sản phẩm: @ct[3]</span>
+            <span class="product-topping">Topping: @ct[5]</span>
+        </div>
+    }
+</div>

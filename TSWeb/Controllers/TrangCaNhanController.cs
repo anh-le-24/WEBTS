@@ -39,6 +39,12 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoIDND " + Session["taikhoan"]);
             return View();
         }
+        public ActionResult XemChiTietDH(string id)
+        {
+            ViewBag.tt = db.get("EXEC XemThongTinThanhToan "+ id);
+            ViewBag.ct = db.get("EXEC XemChiTietDonHang " + id);
+            return View();
+        }
         public ActionResult ChoXacNhan()
         {
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoNguoiDung " + Session["taikhoan"] + ",N'Đang xử lý';");
@@ -109,6 +115,11 @@ namespace TSWeb.Controllers
                 return RedirectToAction("Index","Home");
             }
             
+        }
+        public ActionResult XemThongBao() 
+        {
+            ViewBag.thongbaos = db.get("EXEC xemthongbao " + Session["taikhoan"]);
+            return View(); 
         }
     }
 }

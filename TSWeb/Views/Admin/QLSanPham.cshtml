@@ -52,13 +52,9 @@
                 <td>@a[8]</td>
                 <td>
                     <div class="action-buttons">
-                        <a href="~/Admin/ChinhSuaSP?id=@a[0]" class="btn-edit">Sửa</a>
-                        @using (Html.BeginForm("XoaSanPham", "Admin", FormMethod.Post))
-                        {
-                            <input type="hidden" name="id" value="@a[0]" />
-                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
-                        }
-                    </div>
+                        <a href="~/Admin/ChinhSuaSP?id=@a[0]" class="btn-edit">Sửa</a>      
+                            <a href="~/Admin/XoaSanPham?id=@a[0]" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</a>
+                       </div>
                 </td>
             </tr>
         }

@@ -612,12 +612,9 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult XoaSanPham(string id)
         {
-            ViewBag.id = db.get("EXEC XoaSanPham " + id + ";");
+            ViewBag.id = db.get("EXEC XoaSanPham " + id);
             return RedirectToAction("QLSanPham", "Admin");
         }
-
-
-
 
         public ActionResult Topping(string tenTopping = "", DateTime? ngayTao = null)
         {
