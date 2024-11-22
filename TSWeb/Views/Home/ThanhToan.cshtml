@@ -13,8 +13,8 @@
 <body>
 
     <!-- Phần thân -->
-    <form action="@Url.Action("ThanhToanHD", "Home")" method="post" onsubmit="return confirmOrder()">
-        <input type="hidden" name="voucherId" id="voucherId" />
+    <form action="~/Home/ThanhToanHD" method="post" onsubmit="return confirmOrder()">
+        <input type="text" name="voucherId" />
         <main>
             <div class="checkout-container">
                 <h3>Thông tin đơn hàng</h3>
@@ -62,7 +62,7 @@
                                 var remainingTimeSpan = endDate - now;
                                 var notYetActive = startDate > now; // Kiểm tra nếu chưa đến ngày bắt đầu
 
-                                <div class="coupon">
+                                <div class="coupon" data-voucher-id="@vc[0]">
                                     <div class="coupon-left">
                                         <div class="tag">HOT</div>
                                         <img alt="Shop icon" src="~/Content/Picture/discount.png" />
@@ -138,7 +138,6 @@
                         </div>
                     }
 
-
                     <div class="row">
                         <span><strong>Tổng cộng:</strong></span>
                         <input id="finalTotal" name="finalTotal" readonly />
@@ -157,6 +156,17 @@
         // Confirmation before submitting the order
         function confirmOrder() {
             let confirmMessage = "Bạn chắc chắn muốn đặt hàng?";
+
+            // Check if voucher is applied but not reflected in the form
+            let voucherId = document.getElementById('voucherId').value;
+            let discountValue = parseInt(document.getElementById('khuyenmai').value) || 0;
+
+            if (voucherId && discountValue > 0) {
+                // Double-check values are correctly set
+                console.log("Voucher áp dụng: ", voucherId, "Giá trị giảm: ", discountValue);
+            } else {
+                console.warn("Chưa áp dụng voucher hoặc giá trị không đúng.");
+            }
 
             // Show a confirmation dialog
             if (confirm(confirmMessage)) {
@@ -215,41 +225,41 @@
         }
 
         // Hàm áp dụng voucher và tính toán số tiền giảm
+        // Hàm áp dụng voucher và tính toán số tiền giảm
         function applyVoucher(discountPercent, minOrderAmount, voucherId, expiryDate, startDate) {
             let totalAmount = parseInt(document.getElementById('totalAmount').value);
 
-            // Kiểm tra ngày hiện tại và ngày bắt đầu
             let now = new Date();
             let voucherExpiryDate = new Date(expiryDate);
             let voucherStartDate = new Date(startDate);
 
-            // Nếu voucher chưa đến ngày bắt đầu
             if (voucherStartDate > now) {
                 alert("Voucher chưa đến ngày áp dụng. Vui lòng chọn voucher khác.");
-                return; // Không cho phép áp dụng voucher
+                return;
             }
 
-            // Kiểm tra xem voucher có hết hạn không
             if (voucherExpiryDate < now) {
                 alert("Voucher đã hết hạn. Vui lòng chọn voucher khác.");
-                return; // Không cho phép áp dụng voucher đã hết hạn
+                return;
             }
 
-            // Kiểm tra xem voucher có đủ điều kiện được áp dụng không
             if (totalAmount >= minOrderAmount) {
                 let discountAmount = Math.floor((totalAmount * discountPercent) / 100);
 
-                // Cập nhật giá trị khuyến mãi vào trường hợp ẩn
-                document.getElementById('khuyenmai').value = discountAmount;
-                document.getElementById('promoCode').value = discountAmount + ' VNĐ';
-
-                // Lưu voucher ID vào input ẩn
-                document.getElementById('voucherId').value = voucherId;
+                // Set the discount and voucher information
+                document.getElementById('khuyenmai').value = discountAmount; // Giá trị giảm
+                document.getElementById('promoCode').value = discountAmount + ' VNĐ'; // Hiển thị giảm giá
+                document.getElementById('voucherId').value = voucherId; // Lưu voucherId để gửi lên server
 
                 // Tính lại tổng tiền
                 updateShippingCost(document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick');
 
-                // Đóng form voucher
+                // Ẩn voucher đã áp dụng
+                let voucherElement = document.querySelector(`.coupon[data-voucher-id="${voucherId}"]`);
+                if (voucherElement) {
+                    voucherElement.style.display = "none"; // Ẩn voucher
+                }
+
                 toggleVoucherForm();
 
                 alert("Voucher đã được áp dụng thành công!");
@@ -258,35 +268,36 @@
             }
         }
 
-        // Hàm thêm logic điểm tích lũy
-        function handleLoyaltyPoints(points) {
-            let checkbox = document.getElementById('useLoyaltyPoints');
-            let loyaltyPointsUsed = document.getElementById('loyaltyPointsUsed'); // Input ẩn để gửi giá trị về server
 
-            // Nếu checkbox được chọn
-            if (checkbox.checked) {
-                loyaltyPointsUsed.value = points; // Cập nhật giá trị điểm tích lũy được sử dụng
-            } else {
-                loyaltyPointsUsed.value = 0; // Không sử dụng điểm tích lũy
-            }
+    // Hàm thêm logic điểm tích lũy
+    function handleLoyaltyPoints(points) {
+    let checkbox = document.getElementById('useLoyaltyPoints');
+    let loyaltyPointsUsed = document.getElementById('loyaltyPointsUsed'); // Input ẩn để gửi giá trị về server
 
-            // Cập nhật tổng tiền mà không thay đổi loại vận chuyển
-            let currentShippingType = document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick';
-            updateShippingCost(currentShippingType); // Truyền loại vận chuyển hiện tại
-        }
+    // Nếu checkbox được chọn
+    if (checkbox.checked) {
+    loyaltyPointsUsed.value = points; // Cập nhật giá trị điểm tích lũy được sử dụng
+    } else {
+    loyaltyPointsUsed.value = 0; // Không sử dụng điểm tích lũy
+    }
+
+    // Cập nhật tổng tiền mà không thay đổi loại vận chuyển
+    let currentShippingType = document.querySelector('input[name="shippingspeed"]:checked')?.value || 'quick';
+    updateShippingCost(currentShippingType); // Truyền loại vận chuyển hiện tại
+    }
 
 
-        // Toggle voucher form display
-        function toggleVoucherForm() {
-            let voucherForm = document.getElementById("voucherForm");
-            voucherForm.style.display = (voucherForm.style.display === "none" || voucherForm.style.display === "") ? "flex" : "none";
-        }
+    // Toggle voucher form display
+    function toggleVoucherForm() {
+    let voucherForm = document.getElementById("voucherForm");
+    voucherForm.style.display = (voucherForm.style.display === "none" || voucherForm.style.display === "") ? "flex" : "none";
+    }
 
-        window.onload = function () {
-            calculateTotalAmount();
-            document.getElementById('quick').checked = true; // Mặc định chọn vận chuyển nhanh
-            updateShippingCost('quick'); // Áp dụng vận chuyển nhanh ngay khi tải trang
-        };
+    window.onload = function () {
+    calculateTotalAmount();
+    document.getElementById('quick').checked = true; // Mặc định chọn vận chuyển nhanh
+    updateShippingCost('quick'); // Áp dụng vận chuyển nhanh ngay khi tải trang
+    };
 
     </script>
 

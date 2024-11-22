@@ -108,38 +108,46 @@ namespace TSWeb.Controllers {
         [HttpPost]
         public ActionResult ThanhToanHD(int finalTotal, string phuongthanhtoan, string voucherId, int loyaltyPointsUsed = 0) {
             try {
-                DateTime date = DateTime.Today;  // Ngày hiện tại
+                DateTime date = DateTime.Today;
                 string dateTH = phuongthanhtoan == "Thanh toán khi nhận hàng" ? "NULL" : $"'{date.ToString("yyyy-MM-dd")}'";
 
-                // Xóa voucher nếu có
-                if (!string.IsNullOrEmpty(voucherId)) {
-                    db.get($"EXEC XoaVoucherDaLuu '{voucherId}', {Session["taikhoan"]}");
-                }
+                // Lưu thông tin đơn hàng
+                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
+                                    + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
+                db.get(sqlCommand); // Execute the order insertion.
 
                 // Trừ điểm tích lũy nếu có
                 if (loyaltyPointsUsed > 0) {
-                    var isSuccess = db.get($"EXEC TruDiemTichLuy {Session["taikhoan"]}, {loyaltyPointsUsed}");
-                    if (isSuccess == null) {
-                        throw new Exception("Không thể trừ điểm tích lũy.");
+                    try {
+                        var isSuccess = db.get($"EXEC TruDiemTichLuy {Session["taikhoan"]}, {loyaltyPointsUsed}");
+                        if (isSuccess == null) {
+                            System.Diagnostics.Debug.WriteLine("Không thể trừ điểm tích lũy.");
+                        }
+                    }
+                    catch (Exception ex) {
+                        System.Diagnostics.Debug.WriteLine($"Lỗi khi trừ điểm tích lũy: {ex.Message}");
                     }
                 }
 
-                // Tạo câu lệnh SQL để thêm đơn hàng
-                string sqlCommand = $"EXEC ThemDonHang '{date.ToString("yyyy-MM-dd")}', N'Đang xử lý', {finalTotal}, "
-                                    + $"{Session["taikhoan"]}, {dateTH}, N'{phuongthanhtoan}'";
+                // Xóa voucher nếu có và mọi thứ đã thành công
+                if (!string.IsNullOrEmpty(voucherId)) {
+                    try {
+                        // Call the stored procedure to delete the voucher
+                        var result = db.get($"EXEC XoaVoucherDaLuu {voucherId}, {Session["taikhoan"]}");
 
-                // Thực thi câu lệnh SQL để lưu đơn hàng
-                db.get(sqlCommand);
+                        // Debugging the result to check if the voucher was deleted successfully
+                        System.Diagnostics.Debug.WriteLine($"Xóa voucher thành công: {result}");
+                    }
+                    catch (Exception ex) {
+                        System.Diagnostics.Debug.WriteLine($"Lỗi khi xóa voucher: {ex.Message}");
+                    }
+                }
 
-                // Chuyển hướng đến trang TTTC sau khi đặt hàng thành công
+                // Chuyển hướng sang trang TTTC sau khi xử lý xong
                 return RedirectToAction("TTTC", "Home");
             }
             catch (Exception ex) {
-                // Ghi lại lỗi để kiểm tra
-                // Có thể sử dụng logger để ghi lại lỗi hoặc ghi vào Debug
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-
-                // Nếu có lỗi, chuyển hướng về trang thanh toán
+                System.Diagnostics.Debug.WriteLine($"Lỗi khi xử lý đặt hàng: {ex.Message}");
                 return RedirectToAction("ThanhToan", "Home", new { id = Session["taikhoan"] });
             }
         }
