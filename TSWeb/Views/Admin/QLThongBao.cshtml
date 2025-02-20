@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "QLThongBao";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Quản lý thông báo";
+}
+
+<!-- Form tìm kiếm và nút Thêm -->
+<div class="search-add-container">
+    <div class="search-filter">
+        @using (Html.BeginForm("QLThongBao", "Admin", FormMethod.Get))
+        {
+            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+            <button type="submit" class="button">Tìm kiếm</button>
+            <button type="button" class="button reset-button" onclick="resetSearch()">Xóa</button>
+        }
+    </div>
+    <a href="~/Admin/ThemTB" type="button" class="button add-button">
+        <span class="button__text">Thêm</span>
+        <span class="button__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+            </svg>
+        </span>
+    </a>
+</div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tiêu đề</th>
+            <th>Nội dung</th>
+            <th>Ngày tạo</th>
+            <th>Người đăng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in ViewBag.list)
+        {
+            <tr>
+                <td>@a[0]</td>
+                <td>@a[1]</td>
+                <td>@a[2]</td>
+                <td>@a[3]</td>
+                <td>@a[4]</td>
+                <td>
+                    <a href="~/Admin/ChinhSuaTB?id=@a[0]">Sửa</a> |
+                    <a href="javascript:void(0);" onclick="confirmDelete(@a[0])">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(id) {
+        if (confirm("Xóa thông báo?S Bạn có chắc muốn tiếp tục?")) {
+            // Sử dụng Url.Action để chuyển tới action XoaCN nếu người dùng đồng ý
+            window.location.href = '@Url.Action("XoaTB", "Admin")?id=' + id;
+        }
+    } function resetSearch() {
+        // Xóa các giá trị nhập
+        document.getElementsByName("ngayThem")[0].value = "";
+
+        // Gửi lại form mà không có giá trị nào
+        document.forms[0].submit();
+    }
+</script>

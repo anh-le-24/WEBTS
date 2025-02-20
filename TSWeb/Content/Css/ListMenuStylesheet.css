@@ -1,10 +1,9 @@
 ﻿.list_sanpham {
     display: flex;
 }
-
-li button {
+li button{
     padding: 10px;
-    background-color: white;
+    background-color:white;
 }
 /*Mục bên trái*/
 .bibot-left {
@@ -85,9 +84,9 @@ body, h1, input, button {
 
 /* Toàn bộ container */
 .search-container {
-    height: auto;
-    padding: 20px;
-    color: black;
+    height:auto;
+    padding:20px;
+    color:black;
 }
 
     /* Tiêu đề */

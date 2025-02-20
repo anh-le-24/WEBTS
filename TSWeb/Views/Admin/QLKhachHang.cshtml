@@ -1,16 +1,31 @@
-﻿﻿@{
+﻿QLKhachHang html
+@{
     ViewBag.Title = "QLKhachHang";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<a href="~/Admin/ThemKhachHang" type="button" class="button ">
-    <span class="button__text">Thêm </span>
-    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-</a>
-
-
+<!-- Form tìm kiếm và nút Thêm -->
+<div class="search-add-container">
+    <div class="search-filter">
+        @using (Html.BeginForm("QLKhachHang", "Admin", FormMethod.Get))
+        {
+            <input type="text" name="tenKH" placeholder="Tìm theo tên khách hàng" value="@Request.QueryString["tenKH"]" />
+            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+            <button type="submit" class="button">Tìm kiếm</button>
+            <button type="button" class="button reset-button" onclick="resetSearch()">Xóa</button>
+        }
+    </div>
+    <a href="~/Admin/ThemKhachHang" type="button" class="button add-button">
+        <span class="button__text">Thêm</span>
+        <span class="button__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+            </svg>
+        </span>
+    </a>
+</div>
 <table>
-
     <thead>
         <tr>
             <th>ID</th>
@@ -19,12 +34,12 @@
             <th>Mật khẩu</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
+            <th>Vai trò</th>
             <th>Hành động</th>
-            <th>Vai Trò</th>
+
         </tr>
     </thead>
     <tbody>
-        <!-- Dữ liệu mẫu, bạn có thể thay đổi sau khi có model -->
         @foreach (var a in ViewBag.list)
         {
             <tr>
@@ -41,15 +56,24 @@
                 </td>
             </tr>
         }
-
-        <!-- Thêm nhiều dòng dữ liệu mẫu nếu cần -->
     </tbody>
 </table>
+
 <script>
-function confirmDelete(id) {
-    if (confirm("Bạn có chắc muốn xóa khách hàng này không?")) {
-        // Sử dụng Url.Action để tạo đường dẫn đúng
-        window.location.href = '@Url.Action("XoaKhachHang", "Admin")?id=' + id;
+    function confirmDelete(id) {
+        if (confirm("Bạn có chắc muốn xóa khách hàng này không?")) {
+            // Sử dụng Url.Action để tạo đường dẫn đúng
+            window.location.href = '@Url.Action("XoaKhachHang", "Admin")?id=' + id;
+            }
     }
-}
+    // Hàm resetSearch để xóa nội dung tìm kiếm và tải lại trang
+    function resetSearch() {
+        // Xóa các giá trị nhập
+        document.getElementsByName("tenKH")[0].value = "";
+        document.getElementsByName("ngayThem")[0].value = "";
+
+        // Gửi lại form mà không có giá trị nào
+        document.forms[0].submit();
+    }
 </script>
+

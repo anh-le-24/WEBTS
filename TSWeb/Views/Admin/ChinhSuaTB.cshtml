@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "ChinhSuaTB";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Chỉnh sửa thông báo";
+    var thongBao = ViewBag.thongBao;
+}
+
+<form method="post" action="/Admin/ChinhSuaTB">
+    <input type="hidden" id="IDTB" name="IDTB" value="@ViewBag.list[0][0]" />
+
+    <label for="TieuDe">Tiêu đề:</label>
+    <input type="text" id="TieuDe" name="TieuDe" value="@ViewBag.list[0][1]" required />
+
+    <label for="NoiDung">Nội dung:</label>
+    <textarea id="NoiDung" name="NoiDung" required>@ViewBag.list[0][2]</textarea>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<!-- Nút thao tác -->
+<div class="form-actions center">
+    <!-- Nút hủy -->
+    <button type="button" class="btn btn-secondary" onclick="history.back()">
+        <i class="fas fa-times"></i> Hủy
+    </button>
+
+    <!-- Nút cập nhật -->
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Cập nhật
+    </button>
+</div>

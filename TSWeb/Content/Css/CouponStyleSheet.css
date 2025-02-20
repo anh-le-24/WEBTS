@@ -1,245 +1,218 @@
-﻿* {
+﻿
+﻿body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
     margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    overscroll-behavior: contain;
 }
 
-body {
-    background: #212121;
-}
-
-header {
+.promo-banner {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Hiệu ứng gradient */
     color: white;
-    position: sticky;
-    top: 0px;
-    z-index: 3;
-    background-color: black;
-    width: 100%;
-    max-width: 1520px;
-    min-width: 320px;
-    height: 80px;
-}
-
-.nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.down {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    width: 113px;
-    height: 60px;
-    right: 5%;
+    padding: 30px 0;
+    border-radius: 15px; /* Bo tròn các góc */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-    .down span {
-        margin-left: 5px;
-        width: 104px;
-        height: 60px;
-        padding: 0 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    .promo-banner h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin: 0;
+        text-transform: uppercase; /* Viết hoa chữ */
+        letter-spacing: 2px; /* Khoảng cách giữa các chữ */
+        text-shadow: 2px 4px rgba(0, 0, 0, 0.3); /* Tạo bóng cho chữ */
     }
 
-    .down img {
-        height: 14px;
-        width: 9px;
-        margin-left: 5px; /* Căn khoảng cách giữa text và hình ảnh */
+    .promo-banner p {
+        font-size: 1.2em;
+        font-weight: 300;
+        margin: 10px 0 0;
+        letter-spacing: 1px; /* Khoảng cách giữa các chữ */
+        color: #fff;
     }
 
-#logo {
-    height: 80px;
-    width: 80px;
-}
-
-#menu, #menu1 {
-    cursor: pointer;
-    position: absolute;
-    left: 3%;
-    top: 50%;
-    margin-right: 10px;
-    transform: translateY(-50%);
-    max-width: 50px;
-}
-
-#menu1 {
-    top: 42px;
-    left: 30px;
-}
-
-.side-bar {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 0.5s linear;
-    z-index: 2;
-    background-color: #212121;
-    left: 0px;
-    width: 40%;
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-}
-
-    .side-bar.active {
-        opacity: 1;
-        transform: translateX(0);
+    .promo-banner::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+        animation: spin 6s linear infinite; /* Hiệu ứng xoay */
+        z-index: 0;
     }
 
-    .side-bar .menu-items {
-        padding: 20px;
-        list-style: none;
-        margin-top: 80px;
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
 
-.menu-items li a {
-    color: white;
-    display: block;
-    padding: 10px 0px;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-.overlay-sidebar {
-    transition: all 0.5s linear;
-    visibility: hidden;
-    position: fixed;
-    inset: 0;
-    background-color: black;
-    opacity: 0;
-}
-
-    .overlay-sidebar.active {
-        opacity: 0.5;
-        visibility: visible;
+    100% {
+        transform: rotate(360deg);
     }
-
-.cart {
-    right: 1%;
-    position: absolute;
 }
 
-
-/*main*/
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
+/* Đảm bảo nội dung nằm trên hiệu ứng xoay */
+.promo-banner h1, .promo-banner p {
+    position: relative;
+    z-index: 1;
+    color: #000;
 }
 
 .coupon-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Increased gap between the coupons */
+    gap: 30px;
     max-width: 1200px;
-    margin: 0 auto;
-    justify-content: center; /* Center the coupons */
+    margin: 20px auto;
+    justify-content: center;
+    padding: 20px;
 }
 
 .coupon {
     display: flex;
-    border-radius: 10px;
-    width: 30%; /* Adjusted width of the coupon */
+    border-radius: 15px;
+    width: 400px; /* Tăng chiều rộng của thẻ voucher */
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
-    height: 100px; /* Reduced height of the coupon */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
 }
+
+    .coupon:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
 
 .coupon-left {
-    width: 40%; /* Width of the left side */
-    background-color: #FFE3E3; /* Background color */
+    width: 35%; /* Giảm chiều rộng phần bên trái */
+    background: linear-gradient(to top, #ff7e5f, #feb47b);
     color: white;
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
     position: relative;
 }
-
-    .coupon-left img {
-        width: 80px;
-        height: 80px;
-    }
 
     .coupon-left .tag {
         position: absolute;
-        top: 5px;
-        left: 5px;
-        background-color: red;
+        top: 10px;
+        left: 10px;
+        background: #e74c3c;
         color: white;
-        padding: 2px 5px;
-        font-size: 10px; /* Reduced font size */
-        border-radius: 3px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+    }
+
+    .coupon-left img {
+        width: 70px;
+        height: 70px;
+        margin: 10px 0;
     }
 
 .coupon-right {
-    width: 60%; /* Width of the right side */
-    padding: 10px;
-    background-color: #FBFBFB; /* Background color */
+    width: 65%; /* Tăng chiều rộng phần bên phải */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
 }
 
     .coupon-right .discount {
-        font-size: 14px; /* Reduced font size */
+        font-size: 1.2rem;
         font-weight: bold;
-        letter-spacing: 1px; /* Increased space between characters */
-        line-height: 1.5; /* Added line spacing */
+        color: #2c3e50;
     }
 
     .coupon-right .min-order {
-        font-size: 12px; /* Reduced font size */
-        color: #555;
-        letter-spacing: 0.5px; /* Increased space between characters */
-        line-height: 1.5; /* Added line spacing */
+        font-size: 0.9rem;
+        color: #7f8c8d;
     }
 
     .coupon-right .expiry {
-        font-size: 10px; /* Reduced font size */
-        color: #999;
-        letter-spacing: 0.5px; /* Increased space between characters */
-        line-height: 1.5; /* Added line spacing */
+        font-size: 0.8rem;
+        color: #e74c3c;
     }
 
     .coupon-right .conditions {
-        font-size: 10px; /* Reduced font size */
-        color: #1e88e5;
-        text-decoration: none;
-        letter-spacing: 0.5px; /* Increased space between characters */
-        line-height: 1.5; /* Added line spacing */
+        font-size: 0.8rem;
+        color: #3498db;
+        text-decoration: underline;
+    }
+
+    /* Đặt hai nút trên cùng một hàng */
+    .coupon-right .button-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Căn giữa theo chiều dọc */
     }
 
     .coupon-right .save {
-        position: absolute;
-        bottom: 20px; /* Position the button closer to the bottom */
-        right: 10px;
-        background-color: #f44336;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
         color: white;
-        border: 1px solid #f44336;
-        padding: 5px 10px;
-        font-size: 10px; /* Reduced font size */
-        border-radius: 3px;
+        border: none;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 20px;
         cursor: pointer;
+        transition: background 0.3s;
     }
+
+        .coupon-right .save:hover {
+            background: linear-gradient(to right, #ff512f, #dd2476);
+        }
 
     .coupon-right .quantity {
         position: absolute;
         top: 10px;
-        right: 60px;
-        background-color: #ffeb3b;
-        color: red;
-        padding: 2px 5px;
-        font-size: 10px; /* Reduced font size */
-        border-radius: 3px;
+        right: 10px;
+        background: #f1c40f;
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: bold;
     }
 
-Explain
-Quick actions for selected text. Click to disable if not needed.
-Got it
-1
+.saved-message {
+    font-size: 0.9rem;
+    color: #2ecc71; /* Màu xanh */
+    font-weight: bold;
+}
+
+.alert-success {
+    padding: 10px;
+    background-color: #2ecc71; /* Màu xanh lá */
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.coupon-right .delete {
+    background: #e74c3c; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 10px; /* Khoảng cách giữa hai nút */
+}
+
+    .coupon-right .delete:hover {
+        background: #c0392b; /* Màu đỏ đậm hơn khi hover */
+    }

@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "Thống Kê Admin";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -58,9 +58,9 @@
 
     $(document).ready(function () {
         // Xử lý sự kiện thay đổi loại filter
-        $('#filterType').change(function() {
+        $('#filterType').change(function () {
             $('.filter-section').hide();
-            switch($(this).val()) {
+            switch ($(this).val()) {
                 case 'day':
                     $('#dayFilter').show();
                     break;
@@ -74,41 +74,40 @@
         });
 
         // Xử lý sự kiện click nút áp dụng
-        $('#applyFilter').click(function() {
+        $('#applyFilter').click(function () {
             const filterType = $('#filterType').val();
             let params = {};
 
-            switch(filterType) {
+            switch (filterType) {
                 case 'day':
                     const selectedDate = new Date($('#selectedDate').val());
-                    params = {
-                        ngay: selectedDate.getDate(),
+                    params = {/ -strong / -heart:>: o: -((: -h ngay: selectedDate.getDate(),
                         thang: selectedDate.getMonth() + 1,
-                        nam: selectedDate.getFullYear()
-                    };
-                    break;
+                            nam: selectedDate.getFullYear()
+            };
+            break;
                 case 'month':
-                    const [year, month] = $('#selectedMonth').val().split('-');
-                    params = {
-                        thang: parseInt(month),
-                        nam: parseInt(year)
-                    };
-                    break;
+            const [year, month] = $('#selectedMonth').val().split('-');
+            params = {
+                thang: parseInt(month),
+                nam: parseInt(year)
+            };
+            break;
                 case 'year':
-                    params = {
-                        nam: parseInt($('#selectedYear').val())
-                    };
-                    break;
-            }
+            params = {
+                nam: parseInt($('#selectedYear').val())
+            };
+            break;
+        }
 
             fetchData(params);
-        });
+    });
 
-        // Khởi tạo với ngày hiện tại
-        const today = new Date();
-        $('#selectedDate').val(today.toISOString().split('T')[0]);
-        $('#selectedMonth').val(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}`);
-        $('#applyFilter').click();
+    // Khởi tạo với ngày hiện tại
+    const today = new Date();
+    $('#selectedDate').val(today.toISOString().split('T')[0]);
+    $('#selectedMonth').val(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}`);
+    $('#applyFilter').click();
     });
 
     function fetchData(params) {
@@ -168,13 +167,12 @@
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }]
+            },/ -strong / -heart:>: o: -((: -h options: {
+            scales: {
+                y: { beginAtZero: true }
             },
-            options: {
-                scales: {
-                    y: { beginAtZero: true }
-                },
-                responsive: true
-            }
+            responsive: true
+        }
         });
     }
 

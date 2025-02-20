@@ -84,15 +84,27 @@ namespace TSWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult DelVch()
+        public ActionResult XoaVch(string idvc)
         {
-            ViewBag.list = db.get("");
-            return View();
+            try
+            {
+                // Gọi thủ tục xóa voucher
+                db.get($"EXEC XoaVoucherDaLuu {idvc}, {Session["taikhoan"]}");
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi (nếu cần) hoặc xử lý ngoại lệ
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            // Chuyển hướng về trang Voucher
+            return RedirectToAction("Voucher", "TrangCaNhan");
         }
 
 
         public ActionResult Diemtichluy()
         {
+            ViewBag.list = db.get("EXEC GetDiemTichLuyTheoIDND " + Session["taikhoan"]);
             return View();
         }
 

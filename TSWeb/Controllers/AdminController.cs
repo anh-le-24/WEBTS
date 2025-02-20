@@ -23,9 +23,9 @@ namespace TSWeb.Controllers
             try
             {
                 var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@Nam", nam)
-            };
+     {
+         new SqlParameter("@Nam", nam)
+     };
 
                 if (ngay.HasValue)
                 {
@@ -64,9 +64,9 @@ namespace TSWeb.Controllers
             try
             {
                 var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@Nam", nam)
-            };
+     {
+         new SqlParameter("@Nam", nam)
+     };
 
                 if (ngay.HasValue)
                 {
@@ -112,16 +112,99 @@ namespace TSWeb.Controllers
 
             return View();
         }
-        public ActionResult ThongBao()
+        public ActionResult QLThongBao(string ngayThem)
         {
+            DatabaseModel db = new DatabaseModel();
+            // Khởi tạo câu truy vấn cơ bản
+            string sqlQuery = "EXEC XemTatCaThongBao";
 
+            // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
+            string query = "SELECT * FROM THONGBAO ";
+            if (!string.IsNullOrEmpty(ngayThem))
+            {
+                query += $" WHERE CONVERT(DATE, NgayTaoTB) = '{ngayThem}'";
+            }
+            var list = db.get(query); // Lấy thông báo từ cơ sở dữ liệu theo điều kiện
+            ViewBag.list = list;
             return View();
         }
-        public ActionResult ChiNhanh()
+        public ActionResult ThemTB()
         {
-
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ThemThongBao(string TieuDe, string NoiDung, DateTime NgayTaoTB, int IDND)
+        {
+            try
+            {
+                // Format ngày tạo thông báo
+                string formattedDate = NgayTaoTB.ToString("yyyy-MM-dd");
+
+                // Gọi stored procedure để thêm thông báo
+                string sqlQuery = $"EXEC ThemThongBao N'{TieuDe}', N'{NoiDung}', '{formattedDate}', {IDND}";
+                DatabaseModel db = new DatabaseModel();
+                db.get(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("ThemTB");
+            }
+
+            return RedirectToAction("QLThongBao", "Admin");
+        }
+        public ActionResult ChinhSuaTB(string id)
+        {
+            ViewBag.list = db.get("SELECT * FROM THONGBAO WHERE IDTB= " + id + ";");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChinhSuaThongBao(int IDTB, string TieuDe, string NoiDung, DateTime NgayTaoTB)
+        {
+            try
+            {
+                // Format ngày
+                string formattedDate = NgayTaoTB.ToString("yyyy-MM-dd");
+
+                // Gọi stored procedure để cập nhật thông báo
+                string sqlQuery = "EXEC CapNhatThongBao " + IDTB + ", @TieuDe = N'" + TieuDe + "', @NoiDung = N'" + NoiDung + "';";
+                DatabaseModel db = new DatabaseModel();
+                db.get(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("ChinhSuaThongBao");
+            }
+
+            return RedirectToAction("QLThongBao", "Admin");
+        }
+        public ActionResult XoaTB(string id)
+        {
+            db.get("EXEC XoaThongBao " + id);
+            return RedirectToAction("QLThongBao", "Admin");
+        }
+
+        public ActionResult QLChiNhanh(string tenCN)
+        {
+            DatabaseModel db = new DatabaseModel();
+            // Khởi tạo câu truy vấn cơ bản
+            string sqlQuery = "EXEC XemTatCaChiNhanh";
+
+            // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
+            string query = "SELECT * FROM CHINHANH ";
+
+            if (!string.IsNullOrEmpty(tenCN))
+            {
+                query += $" WHERE TenCN LIKE N'%{tenCN}%'";
+            }
+            var list = db.get(query); // Lấy chi nhánh từ cơ sở dữ liệu theo điều kiện
+            ViewBag.list = list;
+            return View();
+        }
+
 
 
 
@@ -194,9 +277,27 @@ namespace TSWeb.Controllers
 
         // Các phương thức quản lý khách hàng
 
-        public ActionResult QLKhachHang()
+        public ActionResult QLKhachHang(string tenKH, string ngayThem)
         {
-            ViewBag.list = db.get("Exec XemNguoiDung 3");
+            DatabaseModel db = new DatabaseModel();
+            // Khởi tạo câu truy vấn cơ bản
+            string sqlQuery = "EXEC XemNguoiDung 3";
+
+            // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
+            string query = "SELECT * FROM NGUOIDUNG WHERE IDVT=3";
+
+            if (!string.IsNullOrEmpty(tenKH))
+            {
+                query += $" AND TenND LIKE N'%{tenKH}%'";
+            }
+
+            if (!string.IsNullOrEmpty(ngayThem))
+            {
+                query += $" AND CONVERT(DATE, NgayTaoTK) = '{ngayThem}'";
+            }
+
+            var list = db.get(query); // Lấy khách hàng từ cơ sở dữ liệu theo điều kiện
+            ViewBag.list = list;
             return View();
         }
 
@@ -281,11 +382,30 @@ namespace TSWeb.Controllers
 
 
         // Các phương thức quản lý nhân viên
-        public ActionResult QLNhanVien()
+        public ActionResult QLNhanVien(string tenNV, string ngayThem)
         {
-            ViewBag.list = db.get("Exec XemNguoiDung 2");
+            DatabaseModel db = new DatabaseModel();
+            // Khởi tạo câu truy vấn cơ bản
+            string sqlQuery = "EXEC XemNguoiDung 2";
+
+            // Tạo truy vấn SQL với điều kiện tìm kiếm và lọc
+            string query = "SELECT * FROM NGUOIDUNG WHERE IDVT=2";
+
+            if (!string.IsNullOrEmpty(tenNV))
+            {
+                query += $" AND TenND LIKE N'%{tenNV}%'";
+            }
+
+            if (!string.IsNullOrEmpty(ngayThem))
+            {
+                query += $" AND CONVERT(DATE, NgayTaoTK) = '{ngayThem}'";
+            }
+
+            var list = db.get(query); // Lấy nhân viên từ cơ sở dữ liệu theo điều kiện
+            ViewBag.list = list;
             return View();
         }
+
 
         public ActionResult ThemNV()
         {

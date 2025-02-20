@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ThemTB";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Thêm thông báo";
+}
+
+<form method="post" action="~/Admin/ThemThongBao">
+    <label for="TieuDe">Tiêu đề:</label>
+    <input type="text" id="TieuDe" name="TieuDe" required />
+
+    <label for="NoiDung">Nội dung:</label>
+    <textarea id="NoiDung" name="NoiDung" required></textarea>
+
+    <label for="NgayTaoTB">Ngày tạo:</label>
+    <input type="date" id="NgayTaoTB" name="NgayTaoTB" required />
+
+    <label for="IDND">Người Nhận:</label>
+    <input type="number" id="IDND" name="IDND" required />
+
+
+    <button type="submit">Thêm</button>
+</form>
+
+<a href="/Admin/QLThongBao">Quay lại</a>
+

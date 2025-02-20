@@ -319,6 +319,9 @@
     <Content Include="Views\TrangCaNhan\XemThongBao.cshtml" />
     <Content Include="Views\Home\TimKiemSanPham.cshtml" />
     <Content Include="Views\Home\LocDanhMuc.cshtml" />
+    <Content Include="Views\Admin\QLThongBao.cshtml" />
+    <Content Include="Views\Admin\ThemTB.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaTB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

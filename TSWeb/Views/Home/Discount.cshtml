@@ -1,4 +1,6 @@
-﻿﻿
+﻿﻿@{
+    Layout = "~/Views/Shared/nav.cshtml";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +10,59 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="~/Content/Css/CouponStyleSheet.css" rel="stylesheet" />
 
-    @{
-        Layout = "~/Views/Shared/nav.cshtml";
-    }
 </head>
 <body>
+    <div class="promo-banner">
+        <h1>Khuyến Mãi Đặc Biệt</h1>
+        <p>Đừng bỏ lỡ cơ hội nhận những ưu đãi hấp dẫn từ chúng tôi!</p>
+    </div>
+
     <div class="coupon-container">
         @foreach (var vc in ViewBag.listVC)
         {
+            var startDate = DateTime.Parse(vc[3].ToString());
+            var endDate = DateTime.Parse(vc[4].ToString());
+            var now = DateTime.Now;
+            var remainingTimeSpan = endDate - now;
+            var notYetActive = startDate > now; // Kiểm tra nếu chưa đến ngày bắt đầu
+
             <div class="coupon">
                 <div class="coupon-left">
                     <div class="tag">HOT</div>
                     <img alt="Shop icon" height="80" src="~/Content/Picture/discount.png" width="80" />
                 </div>
                 <div class="coupon-right">
-                    <div class="discount">@vc[1]-@vc[5]% </div>
-                    <div class="min-order">@vc[2]</div>
-                    <div class="expiry">Sắp hết hạn: Còn 23 giờ</div>
-                    <a class="conditions" href="#">@vc[6]</a>
+                    <div class="discount">@vc[1] - @vc[5]%</div>
+                    <div class="min-order">Đơn hàng trên @vc[6]VND</div>
+                    <div class="expiry">
+                        @if (notYetActive)
+                        {
+                            // Chưa đến ngày bắt đầu
+                            <span style="color: blue;">Hiệu lực từ: @startDate.ToString("dd/MM/yyyy")</span>
+                        }
+                        else if (remainingTimeSpan.TotalSeconds > 0)
+                        {
+                            // Phiếu còn hiệu lực
+                            if (remainingTimeSpan.TotalHours > 24)
+                            {
+                                var days = (int)remainingTimeSpan.TotalDays;
+                                var hours = remainingTimeSpan.Hours;
+                                <span>Sắp hết hạn: Còn @days ngày @hours giờ</span>
+                            }
+                            else
+                            {
+                                var hours = (int)remainingTimeSpan.TotalHours;
+                                var minutes = remainingTimeSpan.Minutes;
+                                <span>Sắp hết hạn: Còn @hours giờ @minutes phút</span>
+                            }
+                        }
+                        else
+                        {
+                            // Phiếu đã hết hạn
+                            <span style="color: red;">Voucher đã hết hạn</span>
+                        }
+                    </div>
+                    <a class="conditions" href="#">@vc[2]</a>
                     <form action="~/Home/SaveVch" method="post" style="display: inline;">
                         <input type="hidden" name="idvc" value="@vc[0]" />
                         <button type="submit" class="save">Lưu</button>

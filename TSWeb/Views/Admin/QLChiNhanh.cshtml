@@ -1,12 +1,30 @@
-﻿
+﻿QLChiNhanh html
+
 @{
     ViewBag.Title = "QLChiNhanh";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<a href="~/Admin/ThemCN" type="button" class="button">
-    <span class="button__text">Thêm</span>
-    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-</a>
+
+<!-- Form tìm kiếm và nút Thêm -->
+<div class="search-add-container">
+    <div class="search-filter">
+        @using (Html.BeginForm("QLChiNhanh", "Admin", FormMethod.Get))
+        {
+            <input type="text" name="tenCN" placeholder="Tìm theo tên chi nhánh" value="@Request.QueryString["tenCN"]" />
+            <button type="submit" class="button">Tìm kiếm</button>
+            <button type="button" class="button reset-button" onclick="resetSearch()">Xóa</button>
+        }
+    </div>
+    <a href="~/Admin/ThemCN" type="button" class="button add-button">
+        <span class="button__text">Thêm</span>
+        <span class="button__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+            </svg>
+        </span>
+    </a>
+</div>
 
 <table>
     <thead>
@@ -39,10 +57,15 @@
 
 <script>
     function confirmDelete(id) {
-        if (confirm("Bạn có chắc muốn xóa chi nhánh này không?")) {
-            // Sử dụng Url.Action để tạo đường dẫn đúng
+        if (confirm("Xóa chi nhánh sẽ xóa toàn bộ nhân viên thuộc chi nhánh đó. Bạn có chắc muốn tiếp tục?")) {
+            // Sử dụng Url.Action để chuyển tới action XoaCN nếu người dùng đồng ý
             window.location.href = '@Url.Action("XoaCN", "Admin")?id=' + id;
-            }
         }
-</script>
+    } function resetSearch() {
+        // Xóa các giá trị nhập
+        document.getElementsByName("tenCN")[0].value = "";
 
+        // Gửi lại form mà không có giá trị nào
+        document.forms[0].submit();
+    }
+</script>

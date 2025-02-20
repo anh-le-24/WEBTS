@@ -133,6 +133,7 @@ namespace TSWeb.Controllers
             ViewBag.list = db.get("EXEC XemTatCaDonHangKH");
             return View();
         }
+       
 
         // API cho Home
         [HttpGet]
@@ -189,6 +190,29 @@ namespace TSWeb.Controllers
         {
             ViewBag.list = db.get("EXEC XemTatCaDonHangTheoTrangThai N'Đang Xử lý';");
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult DonchoXNApi()
+        {
+            try
+            {
+                // Lấy danh sách đơn hàng "Đang xử lý" từ stored procedure
+                var list = db.get("EXEC XemTatCaDonHangTheoTrangThai N'Đang Xử lý';");
+
+                // Trả về kết quả dưới dạng JSON
+                return Json(new { success = true, data = list }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi và trả về thông tin lỗi dưới dạng JSON
+                return Json(new
+                {
+                    success = false,
+                    message = "Có lỗi xảy ra khi lấy danh sách đơn hàng.",
+                    error = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult DonDaXN()
