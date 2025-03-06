@@ -1,136 +1,152 @@
 ﻿.list_sanpham {
     display: flex;
-}
-li button{
-    padding: 10px;
-    background-color:white;
-}
-/*Mục bên trái*/
-.bibot-left {
-    background-color: black;
-    color: #FEF9F2;
-    width: 350px;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
 
-    .bibot-left ul {
-        list-style-type: none; /* Bỏ dấu chấm */
-        padding: 0; /* Bỏ lề trong */
+.content-bibot {
+    width: 20%;
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+    .content-bibot h2 a {
+        color: white;
+        text-decoration: none;
     }
 
-    .bibot-left li {
-        padding: 16px 0; /* Thêm khoảng cách giữa các mục */
-        font-size: 18px; /* Kích thước chữ */
-        text-align: left;
-        width: 150px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: flex-start;
+    .content-bibot ul {
+        list-style: none;
+        padding: 0;
     }
 
-.card {
-    height: 320px;
-    margin: 10px;
-    color: black;
-    width: 250px;
-    background: white;
-    border: 1px solid black;
-    padding: 20px 10px 15px 10px;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: white;
-}
+        .content-bibot ul li {
+            margin: 10px 0;
+        }
+
+    .content-bibot button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: #ffc107;
+        color: black;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .content-bibot button:hover {
+            background-color: #ff9800;
+        }
 
 .bibot-right {
-    background-color: white;
-    width: 100%;
-    max-width: 1000px;
-    height: 960px;
-    display: flex;
-    flex-direction: column;
+    width: 75%;
 }
 
-
-.title-list {
-    height: 20px;
-    margin-bottom: 10px;
-    padding-left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-
-.list-card {
-    background-color: white;
-    width: 100%;
-    height: 940px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto;
-}
-/* Reset mặc định */
-body, h1, input, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Toàn bộ container */
 .search-container {
-    height:auto;
-    padding:20px;
-    color:black;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-    /* Tiêu đề */
-    .search-container h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-/* Hộp tìm kiếm */
 .search-box {
     display: flex;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 10px 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    gap: 10px;
 }
 
-    /* Input */
     .search-box input {
-        border: none;
-        outline: none;
-        flex: 1;
-        font-size: 1rem;
-        padding: 10px;
-        border-radius: 25px;
+        width: 250px;
+        padding: 8px;
+        font-size: 16px;
     }
 
-    /* Button */
     .search-box button {
-        border: none;
-        outline: none;
-        padding: 10px 20px;
-        margin-left: 10px;
-        background-color: #6e8efb;
+        padding: 8px 15px;
+        background-color: #28a745;
         color: white;
-        border-radius: 25px;
-        font-size: 1rem;
+        border: none;
         cursor: pointer;
-        transition: 0.3s ease;
     }
 
-        /* Hiệu ứng hover */
         .search-box button:hover {
-            background-color: #a777e3;
-            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+            background-color: #218838;
         }
+
+.list-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    width: 230px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+    .card-top i {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+.card-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-bot {
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.original-price {
+    font-size: 16px;
+    color: gray;
+}
+
+    .original-price.discounted {
+        text-decoration: line-through;
+        color: red;
+    }
+
+.sale-price {
+    font-size: 20px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.btn_all {
+    margin-top: 10px;
+}
+
+.btn_seen_detail a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+    .btn_seen_detail a:hover {
+        background-color: #0056b3;
+    }
