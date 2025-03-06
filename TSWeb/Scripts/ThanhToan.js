@@ -132,7 +132,6 @@ window.onload = function () {
 };
 
 // Hàm mở modal VNPay
-// Hàm mở modal VNPay
 function openVNPayModal() {
     let finalTotalInput = document.getElementById("finalTotal");
     let orderInfoInput = document.getElementById("orderInfo");
@@ -162,4 +161,8 @@ function openVNPayModal() {
 
     // Hiển thị modal nếu tồn tại
     vnpayModal.style.display = "block";
+}
+
+function closeVNPayModal() {
+    vnpayModal.style.display = "none";
 }
