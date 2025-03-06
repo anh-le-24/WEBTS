@@ -87,7 +87,15 @@
                     <label for="TongTien">Tổng tiền ly nước:</label>
                     <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
 
-                    <button class="btnthemsanpham" type="submit">Thêm giỏ hàng</button>
+                    @if (Session["taikhoan"] != null)
+                    {
+                        <button class="btnthemsanpham" type="submit">Thêm giỏ hàng</button>
+
+                    }
+                    else
+                    {
+                        <button class="btnthemsanpham" onclick="yeuCauDangNhap()">Thêm giỏ hàng</button>
+                    }
                 </div>
             </div>
 
@@ -173,8 +181,16 @@
 
                     <label for="TongTien">Tổng tiền ly nước:</label>
                     <input type="number" id="TongTien" name="TongTien" value="0" placeholder="0" readonly />
+                    <h2></h2>
+                    @if (Session["taikhoan"] != null)
+                    {
+                        <button class="btnthemsanpham" type="submit">Thêm giỏ hàng</button>
+                    }
+                    else
+                    {
+                        <button class="btnthemsanpham" onclick="yeuCauDangNhap()">Thêm giỏ hàng</button>
+                    }
 
-                    <button class="btnthemsanpham" type="submit">Thêm giỏ hàng</button>
                 </div>
             </div>
 
@@ -188,6 +204,10 @@
     }
 
     <script>
+        function yeuCauDangNhap() {
+            alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
+            window.location.href = "~/DangNhapDK/DangNhap"; // Chuyển hướng đến trang đăng nhập
+        }
     function updateTotalPrice() {
         let totalPrice = 0;
 
@@ -275,6 +295,8 @@
         }
 
         updateTotalPrice(); // Cập nhật lại tổng tiền
+
+        
     }
     </script>
 </body>

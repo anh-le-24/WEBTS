@@ -1,4 +1,21 @@
-﻿let currentIndex = 0;
+﻿/*Side-bar */
+document.addEventListener('click', function (event) {
+    if (event.target.matches('#menu, #menu1')) {
+        const sideBar = document.querySelector('.side-bar');
+        const overlaySidebar = document.querySelector('.overlay-sidebar');
+        if (sideBar && overlaySidebar) {
+            sideBar.classList.toggle('active');
+            overlaySidebar.classList.toggle('active');
+        }
+    }
+
+    if (event.target.matches('.overlay-sidebar')) {
+        document.querySelector('.side-bar').classList.remove('active');
+        document.querySelector('.overlay-sidebar').classList.remove('active');
+    }
+});
+//////////////
+let currentIndex = 0;
 let autoSlideInterval;
 
 function moveSlides(n) {
@@ -51,26 +68,9 @@ slider.addEventListener('mouseleave', resumeAutoSlide);
 
 
 
-/*Side-bar */
-const overlaySidebar = document.querySelector('.overlay-sidebar');
-const navBarBtn = document.querySelector('#menu');
-const sideBar = document.querySelector('.side-bar');
-navBarBtn.addEventListener('click', function () {
-    sideBar.classList.toggle('active')
-    overlaySidebar.classList.toggle('active')
-});
-console.log(navBarBtn);
 
-const navBarBtn1 = document.querySelector('#menu1');
-navBarBtn1.addEventListener('click', function () {
-    sideBar.classList.toggle('active')
-    overlaySidebar.classList.toggle('active')
-});
 
-overlaySidebar.addEventListener('click', function () {
-    sideBar.classList.remove('active')
-    overlaySidebar.classList.remove('active')
-});
+
 
 /*Chuyển động ưu đãi */
 const btnLeft = document.querySelector("#btn-left");

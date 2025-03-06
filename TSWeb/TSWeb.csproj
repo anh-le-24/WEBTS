@@ -544,6 +544,7 @@
     <Content Include="Content\Css\TrangDonhangStyleSheet.css" />
     <Content Include="Content\Css\GioiThieuStyleSheet.css" />
     <Content Include="Content\Css\TTDHStyleSheet.css" />
+    <Content Include="Content\Css\TTTC.css" />
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Css\voucher.css" />
     <Content Include="Content\Picture\1.png" />
@@ -699,7 +700,6 @@
     <Content Include="Views\Admin\QLThongBao.cshtml" />
     <Content Include="Views\Admin\ThemTB.cshtml" />
     <Content Include="Views\Admin\ChinhSuaTB.cshtml" />
-    <Content Include="Views\VNPAY\PaymentReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

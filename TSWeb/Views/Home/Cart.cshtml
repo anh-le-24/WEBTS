@@ -150,6 +150,21 @@
         window.onload = function () {
             updateTotalPrice();
         }
+        document.addEventListener('click', function (event) {
+            if (event.target.matches('#menu, #menu1')) {
+                const sideBar = document.querySelector('.side-bar');
+                const overlaySidebar = document.querySelector('.overlay-sidebar');
+                if (sideBar && overlaySidebar) {
+                    sideBar.classList.toggle('active');
+                    overlaySidebar.classList.toggle('active');
+                }
+            }
+
+            if (event.target.matches('.overlay-sidebar')) {
+                document.querySelector('.side-bar').classList.remove('active');
+                document.querySelector('.overlay-sidebar').classList.remove('active');
+            }
+        });
     </script>
 
 </body>

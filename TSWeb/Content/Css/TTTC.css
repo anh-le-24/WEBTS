@@ -1,0 +1,135 @@
+﻿/* Cơ bản cho body */
+body {
+    background-color: #f4f9fd;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container chính */
+.container-TC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+/* Card Style */
+.card {
+    width: 100%;
+    max-width: 650px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+    .card:hover {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+/* Tiêu đề */
+.text-center h3 {
+    font-size: 2.8rem;
+    color: #28a745;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text-center .lead {
+    font-size: 1.1rem;
+    color: #495057;
+    line-height: 1.6;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Nút bấm */
+.btn-custom, .btn-secondary {
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 50px;
+    width: 48%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+/* Màu nút Quay lại Menu */
+.btn-custom {
+    background-color: #4CAF50; /* Màu xanh lá */
+    color: #fff;
+}
+
+/* Màu nút Quay lại Trang Chủ */
+.btn-secondary {
+    background-color: #007bff; /* Màu xanh dương */
+    color: #fff;
+}
+
+.btn-custom:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Khoảng cách giữa các nút */
+.d-flex a {
+    margin-right: 3%;
+}
+
+/* Loại bỏ gạch chân dưới các liên kết */
+a {
+    text-decoration: none;
+}
+
+/* Responsive Design cho màn hình nhỏ hơn */
+@media (max-width: 1366px) {
+    .container-TC {
+        padding: 15px;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .btn-custom, .btn-secondary {
+        width: 100%; /* Các nút chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+        margin-bottom: 10px;
+    }
+
+    .text-center h3 {
+        font-size: 2.4rem;
+    }
+
+    .text-center .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Tối ưu cho các màn hình rất nhỏ */
+@media (max-width: 768px) {
+    .text-center h3 {
+        font-size: 2.2rem;
+    }
+
+    .text-center .lead {
+        font-size: 0.9rem;
+    }
+}

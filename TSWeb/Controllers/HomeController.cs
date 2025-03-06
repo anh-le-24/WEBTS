@@ -10,6 +10,7 @@ using System.Collections;
 using System.CodeDom.Compiler;
 using System.Net.NetworkInformation;
 using System.Data;
+using System.Web.UI;
 
 namespace TSWeb.Controllers
 {
@@ -43,6 +44,7 @@ namespace TSWeb.Controllers
               int TongTien,   // Thay đổi kiểu từ float? thành int?
               int? TongTienTopping)
         {
+            
             try
             {
                 // Lấy idnd từ Session và giữ nguyên kiểu string
@@ -57,18 +59,25 @@ namespace TSWeb.Controllers
                     // Trường hợp session không tồn tại
                     ViewBag.Idnd = "Không tìm thấy giá trị idnd trong session";
                 }
+                if (Session["taikhoan"] != null)
+                {
+                    // Xây dựng câu lệnh SQL với các giá trị nhập từ người dùng
+                    string sqlCommand = "EXEC ThemGioHang " + Session["taikhoan"].ToString() + ","
+                             + SoLuong + ","
+                             + TongTien + ","  // Kiểm tra và sử dụng giá trị TongTien là int
+                             + "'" + size + "',"
+                             + idsp + ","
+                             + (string.IsNullOrEmpty(selectedOptions) ? "NULL" : "N'" + selectedOptions + "'") + ","
+                             + (TongTienTopping.HasValue ? TongTienTopping.Value.ToString() : "0") + ";";
 
-                // Xây dựng câu lệnh SQL với các giá trị nhập từ người dùng
-                string sqlCommand = "EXEC ThemGioHang " + Session["taikhoan"].ToString() + ","
-                         + SoLuong + ","
-                         + TongTien + ","  // Kiểm tra và sử dụng giá trị TongTien là int
-                         + "'" + size + "',"
-                         + idsp + ","
-                         + (string.IsNullOrEmpty(selectedOptions) ? "NULL" : "N'" + selectedOptions + "'") + ","
-                         + (TongTienTopping.HasValue ? TongTienTopping.Value.ToString() : "0") + ";";
-
-                // Thực hiện câu lệnh SQL
-                db.get(sqlCommand);
+                    // Thực hiện câu lệnh SQL
+                    db.get(sqlCommand);
+                }
+                else
+                {
+                    return RedirectToAction("DangNhap","DangNhapDK");
+                }
+                    
             }
             catch (Exception ex)
             {

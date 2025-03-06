@@ -7,6 +7,12 @@
 
 body {
     background: #212121;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding:0;
 }
 
 header {
@@ -19,6 +25,7 @@ header {
     max-width: 1520px;
     min-width: 320px;
     height: 80px;
+    margin-bottom: 0; /* Xóa khoảng cách dưới header */
 }
 .dangnhap { 
     justify-items:center;
@@ -131,12 +138,14 @@ header {
     position: absolute;
 }
 /**/
+
 main {
     background-color: white;
     width: 100%;
     max-width: 1520px;
     min-width: 320px;
     min-height: 100vh;
+    margin-top: 0; /* Loại bỏ khoảng cách trên main */
 }
 
 /* Phần đầu trang */
@@ -144,12 +153,11 @@ main {
     background-color: #CADBB7;
     width: 100%;
     height: 624px;
-    margin-top: 2px; /* Cách trên 2px */
     background-image: url(../picture/bgg.jpg);
-    position: relative; /* Để điều chỉnh các phần tử con bên trong */
-    overflow: hidden; /* Đảm bảo các phần tử không tràn ra ngoài */
+    position: relative;
+    overflow: hidden;
+    margin-top: -40px; /* Đảm bảo không có khoảng cách */
 }
-
 /* Phần slider quảng cáo */
 .slider {
     position: absolute;
