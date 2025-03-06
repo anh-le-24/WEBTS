@@ -14,6 +14,11 @@ document.addEventListener('click', function (event) {
         document.querySelector('.overlay-sidebar').classList.remove('active');
     }
 });
+document.querySelector('.dropdown-btn').addEventListener('click', function () {
+    var dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+});
+
 //////////////
 let currentIndex = 0;
 let autoSlideInterval;

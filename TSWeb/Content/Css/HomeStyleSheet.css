@@ -1,4 +1,4 @@
-﻿﻿*{
+﻿﻿{
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -39,33 +39,47 @@ header {
     position: relative;
 }
 
-.down {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 113px;
-    height: 60px;
-    right: 5%;
+/* Style cho button dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width:100%;
 }
 
-    .down span {
-        margin-left: 5px;
-        width: 104px;
-        height: 60px;
-        padding: 0 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.dropdown-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Style cho nội dung dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-item {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+    .dropdown-item:hover {
+        background-color: #ddd;
     }
 
-    .down img {
-        height: 14px;
-        width: 9px;
-        margin-left: 5px; /* Căn khoảng cách giữa text và hình ảnh */
-    }
+/* Khi hover vào button thì hiển thị dropdown */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 #logo {
     height: 80px;
