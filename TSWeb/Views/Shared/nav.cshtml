@@ -20,7 +20,7 @@
                     <a style="text-decoration:none; color:white" href="@Url.Action("DangNhap", "DangNhapDK")">Đăng nhập</a>
                 }
             </div>
-           
+
 
             <div class="cart">
                 @if (Session["taikhoan"] != null)
@@ -68,7 +68,7 @@
                     <li>
                         <a href="@Url.Action("DNNV", "NhanVien")">Là nhân viên</a>
                     </li>
-                    
+
                 </ul>
             </div>
             <div class="overlay-sidebar"></div>
@@ -111,5 +111,6 @@
     </footer>
 
     <script src="~/Scripts/HomeJavaScript.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
