@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Kết quả thanh toán";
+    Layout = "~/Views/Shared/nav.cshtml";
+}
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Main Content -->
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h1 class="">Thanh toán</h1>
+                    </br>
+                    <h2>@ViewBag.Message</h2>
+
+                    @if (ViewBag.ThanhToanThanhCong != null)
+                    {
+                        <p>Bạn đã thanh toán thành công với @ViewBag.ThanhToanThanhCong!</p>
+                    }
+                    <p>@ViewBag.InnerText</p>
+                </div>
+
+            </div>
+            <hr />
+            @*<div class="row">
+            <div id="show_success"></div>
+            <div class="col-md-9">
+
+            </div>
+
+        </div>*@
+        </div>
+    </div>
+</div>
+<a href="~/Views/Home/Index.cshtml">Quay lại trang chủ</a>
