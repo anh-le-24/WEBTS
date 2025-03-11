@@ -2,13 +2,73 @@
     ViewBag.Title = "Thêm Topping";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+</style>
 <div class="container">
-    <h2>Thêm Topping Mới</h2>
-    <div class="controls">
-        <button class="btn btn-primary" onclick="window.location.href='@Url.Action("Topping", "Admin")'">
-            <i class="fas fa-arrow-left"></i> Quay lại danh sách Topping
-        </button>
-    </div>
+    <h2 class="form-title" style="text-align:center; padding-bottom: 25px">THÊM TOPPING MỚI</h2>
 
     @if (!ViewData.ModelState.IsValid)
     {
@@ -19,71 +79,30 @@
 
     <form id="add-topping-form" action="~/Admin/ThemToppingMoi" method="post" class="product-form">
         <div class="form-group">
-            <label for="topping-name">Tên Topping</label>
+            <label for="topping-name">Tên Topping *</label>
             <input type="text" id="topping-name" name="TenTP" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="topping-price">Giá</label>
-            <input type="number" id="topping-price" name="GiaTP" class="form-control" required min="1" step="0.01" />
         </div>
 
         <div class="form-group">
-            <label for="topping-date">Ngày Tạo</label>
-            <input type="date" id="topping-date" name="NgayTao" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+            <label for="topping-price">Giá *</label>
+            <input type="number" id="topping-price" name="GiaTP" class="form-control" required min="1" step="1000">
         </div>
-        <button type="submit" id="submit-button" class="btn btn-primary">Thêm Topping</button>
+
+        <div class="form-group">
+            <label for="topping-date">Ngày Tạo *</label>
+            <input type="date" id="topping-date" name="NgayTao" class="form-control" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Thêm Topping</button>
+            <a href="@Url.Action("Topping", "Admin")" class="btn btn-primary">Quay lại</a>
+        </div>
     </form>
 </div>
 
-@*<script>
-        document.getElementById("add-topping-form").addEventListener("submit", function (event) {
-            event.preventDefault();  // Ngừng hành động mặc định của form (gửi request)
-
-            // Lấy dữ liệu từ các trường trong form
-            const toppingName = document.getElementById("topping-name").value;
-            const toppingPrice = document.getElementById("topping-price").value;
-            const toppingDate = document.getElementById("topping-date").value;
-
-            // Kiểm tra nếu tên topping không có giá trị
-            if (!toppingName || !toppingPrice || !toppingDate) {
-                alert("Vui lòng điền đầy đủ thông tin topping!");
-                return;
-            }
-
-            // Thay đổi nút thành 'Đang thêm...' và vô hiệu hóa nút
-            const submitButton = document.getElementById("submit-button");
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Đang thêm...';
-
-            // Gửi yêu cầu AJAX đến server
-            fetch('/Admin/ThemToppingMoi', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    TenTP: toppingName,
-                    GiaTP: toppingPrice,
-                    NgayTao: toppingDate
-                })
-            })
-                .then(response => response.json())  // Chuyển đổi phản hồi từ server thành JSON
-                .then(data => {
-                    if (data.success) {
-                        alert('Topping đã được thêm thành công.');
-                        window.location.href = '/Admin/Topping';  // Chuyển hướng về trang quản lý topping
-                    } else {
-                        alert('Thêm topping thất bại. Vui lòng thử lại!');
-                    }
-                })
-                .catch(error => {
-                    console.error('Lỗi:', error);
-                    alert('Có lỗi xảy ra khi thêm topping.');
-                })
-                .finally(() => {
-                    // Kích hoạt lại nút sau khi xử lý xong
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = 'Thêm Topping';
-                });
-        });
-    </script>*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('topping-date').value = today;
+    });
+</script>

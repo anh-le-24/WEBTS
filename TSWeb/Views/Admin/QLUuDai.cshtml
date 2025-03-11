@@ -1,59 +1,221 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "Quản lý ưu đãi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<div class="container">
-    <h1>Quản lý ưu đãi</h1>
+<style>
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
 
-    <!-- Form tìm kiếm -->
-    <div class="search-section">
+    /* Thanh tìm kiếm & nút thêm */
+    .search-add-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .search-filter {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+        .search-filter input,
+        .btn {
+            height: 40px;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+    .btn_search {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        height: 40px;
+    }
+
+        .btn_search:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+    .btn_add {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        text-decoration: none;
+        height: 40px;
+    }
+
+        .btn_add:hover {
+            background-color: orange;
+            transform: scale(1.05);
+        }
+
+        .btn_add .btn_icon:hover {
+            display: none;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none;
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none; /* Ẩn chữ khi hover */
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+    .btn_icon {
+        display: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Bảng chứa danh sách ưu đãi */
+    .table-container {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    /* Nút sửa/xóa */
+    .action-buttons {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .btn-edit {
+        background-color: #007bff;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 8px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        width: 60px;
+        text-align: center;
+        display: inline-block;
+    }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+</style>
+
+<div class="container">
+    <h1 style="text-align:center; padding-bottom: 25px">QUẢN LÝ ƯU ĐÃI</h1>
+
+    <!-- Thanh tìm kiếm và nút thêm ưu đãi -->
+    <div class="search-add-container">
         @using (Html.BeginForm("QLUuDai", "Admin", FormMethod.Get))
         {
-            <input type="text" name="tenUuDai" placeholder="Nhập tên ưu đãi" value="@Request.QueryString["tenUuDai"]" />
-            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            <div class="search-filter">
+                <input type="text" name="tenUuDai" placeholder="Nhập tên ưu đãi" value="@Request.QueryString["tenUuDai"]" />
+                <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+                <button type="submit" class="btn_search">Tìm kiếm</button>
+            </div>
         }
+        <a href="@Url.Action("ThemUuDai", "Admin")" class="btn_add">
+            <span class="btn_text">Ưu Đãi Mới</span>
+            <span class="btn_icon">+</span>
+        </a>
     </div>
 
     <!-- Bảng danh sách ưu đãi -->
-    <table id="table-uu-dai">
-        <thead>
-            <tr>
-                <th>IDVC</th>
-                <th>Tên mã</th>
-                <th>Mô tả</th>
-                <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
-                <th>Phần trăm giảm</th>
-                <th>Điều kiện</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var uuDai in ViewBag.list)
-            {
+    <div class="table-container">
+        <table>
+            <thead>
                 <tr>
-                    <td>@uuDai[0]</td>
-                    <td>@uuDai[1]</td>
-                    <td>@uuDai[2]</td>
-                    <td>@Convert.ToDateTime(uuDai[3]).ToString("dd/MM/yyyy")</td>
-                    <td>@Convert.ToDateTime(uuDai[4]).ToString("dd/MM/yyyy")</td>
-                    <td>@uuDai[5] %</td>
-                    <td>@uuDai[6]</td>
-                    <td>
-                        <div class="action-buttons">
-                            <a href="~/Admin/ChinhSuaUuDai?id=@uuDai[0]" class="btn-edit">Sửa</a>
-                            @using (Html.BeginForm("XoaMaGiamGia", "Admin", FormMethod.Post))
-                            {
-                                <input type="hidden" name="id" value="@uuDai[0]" />
-                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
-                            }
-                        </div>
-                    </td>
+                    <th>IDVC</th>
+                    <th>Tên mã</th>
+                    <th>Mô tả</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
+                    <th>Phần trăm giảm</th>
+                    <th>Điều kiện</th>
+                    <th>Thao tác</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <a href="@Url.Action("ThemUuDai", "Admin")" class="btn btn-primary">Thêm ưu đãi mới</a>
+            </thead>
+            <tbody>
+                @foreach (var uuDai in ViewBag.list)
+                {
+                    <tr>
+                        <td>@uuDai[0]</td>
+                        <td>@uuDai[1]</td>
+                        <td>@uuDai[2]</td>
+                        <td>@Convert.ToDateTime(uuDai[3]).ToString("dd/MM/yyyy")</td>
+                        <td>@Convert.ToDateTime(uuDai[4]).ToString("dd/MM/yyyy")</td>
+                        <td>@uuDai[5] %</td>
+                        <td>@uuDai[6]</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="~/Admin/ChinhSuaUuDai?id=@uuDai[0]" class="btn-edit">Sửa</a>
+                                @using (Html.BeginForm("XoaMaGiamGia", "Admin", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="id" value="@uuDai[0]" />
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa ưu đãi này không?');">Xóa</button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

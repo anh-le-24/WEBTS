@@ -2,10 +2,38 @@
     ViewBag.Title = "Chỉnh Sửa Sản Phẩm";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<style>
+    .btn-primary,
+    .btn-secondary {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+        text-align: center;
+        height: 42px;
+        line-height: 20px;
+        font-size: 16px;
+    }
 
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+
+    .form-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+</style>
 <div class="main-content">
     <div class="form-container">
-        <h2 class="form-title">Chỉnh Sửa Sản Phẩm</h2>
+        <h2 class="form-title" style="text-align:center; padding-bottom: 25px">CHỈNH SỬA SẢN PHẨM</h2>
 
         <form action="~/Admin/ChinhSuaSanPham" method="post" enctype="multipart/form-data" class="product-form">
             <input type="hidden" name="IDSP" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 0 ? ViewBag.list[0][0] : "")" />

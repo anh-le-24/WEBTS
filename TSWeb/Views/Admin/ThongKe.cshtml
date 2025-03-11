@@ -1,220 +1,167 @@
 ﻿@{
-    ViewBag.Title = "Thống Kê Admin";
+    ViewBag.Title = "ThongKe";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống Kê</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 400px; /* Thu nhỏ biểu đồ */
+            max-height: 300px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
 
-<div class="container">
-    <!-- Thêm phần lọc thời gian -->
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <label>Chọn kiểu thống kê:</label>
-            <select id="filterType" class="form-control">
-                <option value="day">Theo ngày</option>
-                <option value="month">Theo tháng</option>
-                <option value="year">Theo năm</option>
-            </select>
-        </div>
+    <h2>Thống kê</h2>
 
-        <div class="col-md-6">
-            <div id="dayFilter" class="filter-section">
-                <label>Chọn ngày:</label>
-                <input type="date" id="selectedDate" class="form-control">
-            </div>
+    <label for="filterMonth">Chọn tháng:</label>
+    <select id="filterMonth">
+        <option value="1">Tháng 1</option>
+        <option value="2">Tháng 2</option>
+        <option value="3">Tháng 3</option>
+        <option value="4">Tháng 4</option>
+        <option value="5">Tháng 5</option>
+        <option value="6">Tháng 6</option>
+        <option value="7">Tháng 7</option>
+        <option value="8">Tháng 8</option>
+        <option value="9">Tháng 9</option>
+        <option value="10">Tháng 10</option>
+        <option value="11">Tháng 11</option>
+        <option value="12">Tháng 12</option>
+    </select>
 
-            <div id="monthFilter" class="filter-section" style="display:none;">
-                <label>Chọn tháng và năm:</label>
-                <input type="month" id="selectedMonth" class="form-control">
-            </div>
+    <button id="applyFilter">Áp dụng bộ lọc</button>
 
-            <div id="yearFilter" class="filter-section" style="display:none;">
-                <label>Chọn năm:</label>
-                <select id="selectedYear" class="form-control">
-                    @for (int year = DateTime.Now.Year; year >= 2020; year--)
-                    {
-                        <option value="@year">@year</option>
+    <h3>Sản phẩm bán chạy</h3>
+    <canvas id="chartSanPhamBanChay"></canvas>
+
+    <h3>Doanh thu từ khuyến mãi</h3>
+    <canvas id="chartDoanhThuKhuyenMai"></canvas>
+
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery đã sẵn sàng!");
+
+            let chartSanPhamBanChay = null;
+            let chartDoanhThuKhuyenMai = null;
+
+            // Dữ liệu mẫu
+            const dataByMonth = {
+                1: {
+                    sanPhamBanChay: [
+                        { TenSanPham: "Trà Sữa Trân Châu", SoLuongBan: 100 },
+                        { TenSanPham: "Trà Đào", SoLuongBan: 80 },
+                        { TenSanPham: "Trà Xanh Matcha", SoLuongBan: 60 }
+                    ],
+                    doanhThuKhuyenMai: [
+                        { TenKhuyenMai: "Giảm giá 10%", DoanhThu: 2000000 },
+                        { TenKhuyenMai: "Mua 1 tặng 1", DoanhThu: 4000000 }
+                    ]
+                },
+                2: {
+                    sanPhamBanChay: [
+                        { TenSanPham: "Trà Sen Vàng", SoLuongBan: 90 },
+                        { TenSanPham: "Soda Blueberry", SoLuongBan: 70 },
+                        { TenSanPham: "Trà Đào", SoLuongBan: 50 }
+                    ],
+                    doanhThuKhuyenMai: [
+                        { TenKhuyenMai: "Khuyến mãi 20%", DoanhThu: 5000000 },
+                        { TenKhuyenMai: "Giảm giá 15%", DoanhThu: 3000000 }
+                    ]
+                }
+            };
+
+            function fetchData(month) {
+                console.log("Lọc dữ liệu cho tháng:", month);
+                const data = dataByMonth[month] || { sanPhamBanChay: [], doanhThuKhuyenMai: [] };
+                renderSanPhamBanChayChart(data.sanPhamBanChay);
+                renderDoanhThuKhuyenMaiChart(data.doanhThuKhuyenMai);
+            }
+
+            function renderSanPhamBanChayChart(data) {
+                const labels = data.map(item => item.TenSanPham);
+                const values = data.map(item => item.SoLuongBan);
+                const ctx = document.getElementById('chartSanPhamBanChay').getContext('2d');
+
+                if (chartSanPhamBanChay) chartSanPhamBanChay.destroy();
+
+                chartSanPhamBanChay = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Số lượng bán',
+                            data: values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false, // Giữ đúng tỉ lệ
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
                     }
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <label>&nbsp;</label>
-            <button id="applyFilter" class="btn btn-primary form-control">Áp dụng</button>
-        </div>
-    </div>
-
-    <h2>Thống Kê Sản Phẩm Bán Chạy</h2>
-    <canvas id="chartSanPhamBanChay" width="400" height="200"></canvas>
-
-    <h2>Thống Kê Doanh Thu Khuyến Mãi</h2>
-    <canvas id="chartDoanhThuKhuyenMai" width="400" height="200"></canvas>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    let chartSanPhamBanChay = null;
-    let chartDoanhThuKhuyenMai = null;
-
-    $(document).ready(function () {
-        // Xử lý sự kiện thay đổi loại filter
-        $('#filterType').change(function () {
-            $('.filter-section').hide();
-            switch ($(this).val()) {
-                case 'day':
-                    $('#dayFilter').show();
-                    break;
-                case 'month':
-                    $('#monthFilter').show();
-                    break;
-                case 'year':
-                    $('#yearFilter').show();
-                    break;
+                });
             }
-        });
 
-        // Xử lý sự kiện click nút áp dụng
-        $('#applyFilter').click(function () {
-            const filterType = $('#filterType').val();
-            let params = {};
+            function renderDoanhThuKhuyenMaiChart(data) {
+                const labels = data.map(item => item.TenKhuyenMai);
+                const values = data.map(item => item.DoanhThu);
+                const ctx = document.getElementById('chartDoanhThuKhuyenMai').getContext('2d');
 
-            switch (filterType) {
-                case 'day':
-                    const selectedDate = new Date($('#selectedDate').val());
-                    params = {/ -strong / -heart:>: o: -((: -h ngay: selectedDate.getDate(),
-                        thang: selectedDate.getMonth() + 1,
-                            nam: selectedDate.getFullYear()
-            };
-            break;
-                case 'month':
-            const [year, month] = $('#selectedMonth').val().split('-');
-            params = {
-                thang: parseInt(month),
-                nam: parseInt(year)
-            };
-            break;
-                case 'year':
-            params = {
-                nam: parseInt($('#selectedYear').val())
-            };
-            break;
-        }
+                if (chartDoanhThuKhuyenMai) chartDoanhThuKhuyenMai.destroy();
 
-            fetchData(params);
-    });
-
-    // Khởi tạo với ngày hiện tại
-    const today = new Date();
-    $('#selectedDate').val(today.toISOString().split('T')[0]);
-    $('#selectedMonth').val(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}`);
-    $('#applyFilter').click();
-    });
-
-    function fetchData(params) {
-        // Fetch data for SanPhamBanChay
-        $.ajax({
-            url: '/Admin/ThongKeSanPhamBanChay',
-            method: 'GET',
-            data: params,
-            success: function (response) {
-                if (response && response.length > 0) {
-                    renderSanPhamBanChayChart(response);
-                } else {
-                    alert("Không có dữ liệu Sản Phẩm Bán Chạy.");
-                }
-            },
-            error: function () {
-                alert("Lỗi khi lấy dữ liệu Sản Phẩm Bán Chạy.");
+                chartDoanhThuKhuyenMai = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Doanh Thu',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
             }
+
+            // Xử lý sự kiện bộ lọc
+            $('#applyFilter').click(function () {
+                const selectedMonth = $('#filterMonth').val();
+                fetchData(selectedMonth);
+            });
+
+            // Load dữ liệu mặc định tháng hiện tại
+            const currentMonth = new Date().getMonth() + 1;
+            $('#filterMonth').val(currentMonth);
+            fetchData(currentMonth);
         });
+    </script>
 
-        // Fetch data for DoanhThuKhuyenMai
-        $.ajax({
-            url: '/Admin/ThongKeDoanhThuKhuyenMai',
-            method: 'GET',
-            data: params,
-            success: function (response) {
-                if (response && response.length > 0) {
-                    renderDoanhThuKhuyenMaiChart(response);
-                } else {
-                    alert("Không có dữ liệu Doanh Thu Khuyến Mãi.");
-                }
-            },
-            error: function () {
-                alert("Lỗi khi lấy dữ liệu Doanh Thu Khuyến Mãi.");
-            }
-        });
-    }
-
-    function renderSanPhamBanChayChart(data) {
-        const labels = data.map(item => item.TenSanPham);
-        const values = data.map(item => item.SoLuongBan);
-
-        const ctx = document.getElementById('chartSanPhamBanChay').getContext('2d');
-
-        if (chartSanPhamBanChay) {
-            chartSanPhamBanChay.destroy();
-        }
-
-        chartSanPhamBanChay = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Số lượng bán',
-                    data: values,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },/ -strong / -heart:>: o: -((: -h options: {
-            scales: {
-                y: { beginAtZero: true }
-            },
-            responsive: true
-        }
-        });
-    }
-
-    function renderDoanhThuKhuyenMaiChart(data) {
-        const labels = data.map(item => item.TenKhuyenMai);
-        const values = data.map(item => item.DoanhThu);
-
-        const ctx = document.getElementById('chartDoanhThuKhuyenMai').getContext('2d');
-
-        if (chartDoanhThuKhuyenMai) {
-            chartDoanhThuKhuyenMai.destroy();
-        }
-
-        chartDoanhThuKhuyenMai = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Doanh Thu',
-                    data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    }
-</script>
+</body>
+</html>

@@ -1,71 +1,234 @@
-﻿QLKhachHang html
-@{
+﻿@{
     ViewBag.Title = "QLKhachHang";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<!-- Form tìm kiếm và nút Thêm -->
-<div class="search-add-container">
-    <div class="search-filter">
+<style>
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    /* Thanh tìm kiếm & nút thêm */
+    .search-add-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .search-filter {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+        .search-filter input,
+        .button {
+            height: 40px;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+    .btn_search {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        height: 40px;
+    }
+
+        .btn_search:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+    .btn_add {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        text-decoration: none;
+        height: 40px;
+    }
+
+        .btn_add:hover {
+            background-color: orange;
+            transform: scale(1.05);
+        }
+
+        .btn_add .btn_icon:hover {
+            display: none;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none;
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none; /* Ẩn chữ khi hover */
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+    .btn_icon {
+        display: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Bảng danh sách khách hàng */
+    .table-container {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    /* Nút sửa/xóa */
+    .action-buttons {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .btn-edit {
+        background-color: #007bff;
+        padding: 8px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        width: 60px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        padding: 8px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        width: 60px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .btn-edit:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<div class="container">
+    <h1 style="text-align:center; padding-bottom: 25px">QUẢN LÝ KHÁCH HÀNG</h1>
+
+    <!-- Thanh tìm kiếm và nút thêm khách hàng -->
+    <div class="search-add-container">
         @using (Html.BeginForm("QLKhachHang", "Admin", FormMethod.Get))
         {
-            <input type="text" name="tenKH" placeholder="Tìm theo tên khách hàng" value="@Request.QueryString["tenKH"]" />
-            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
-            <button type="submit" class="button">Tìm kiếm</button>
-            <button type="button" class="button reset-button" onclick="resetSearch()">Xóa</button>
+            <div class="search-filter">
+                <input type="text" name="tenKH" placeholder="Tìm theo tên khách hàng" value="@Request.QueryString["tenKH"]" />
+                <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+                <button type="submit" class="btn_search">Tìm kiếm</button>
+            </div>
         }
+        <a href="~/Admin/ThemKhachHang" class="button btn_add">
+            <span class="btn_text">Thêm khách hàng</span>
+            <span class="btn_icon">+</span>
+        </a>
     </div>
-    <a href="~/Admin/ThemKhachHang" type="button" class="button add-button">
-        <span class="button__text">Thêm</span>
-        <span class="button__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                <line y2="19" y1="5" x2="12" x1="12"></line>
-                <line y2="12" y1="12" x2="19" x1="5"></line>
-            </svg>
-        </span>
-    </a>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Họ tên</th>
-            <th>Email</th>
-            <th>Mật khẩu</th>
-            <th>Số điện thoại</th>
-            <th>Địa chỉ</th>
-            <th>Vai trò</th>
-            <th>Hành động</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var a in ViewBag.list)
-        {
-            <tr>
-                <td>@a[0]</td>
-                <td>@a[1]</td>
-                <td>@a[2]</td>
-                <td>@a[3]</td>
-                <td>@a[4]</td>
-                <td>@a[5]</td>
-                <td>@a[7]</td>
-                <td>
-                    <a href="~/Admin/ChinhSuaKhachHang?id=@a[0]">sửa</a>
-                    <a href="javascript:void(0);" onclick="confirmDelete(@a[0])">xóa</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <!-- Bảng danh sách khách hàng -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Vai trò</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in ViewBag.list)
+                {
+                    <tr>
+                        <td>@a[0]</td>
+                        <td>@a[1]</td>
+                        <td>@a[2]</td>
+                        <td>@a[3]</td>
+                        <td>@a[4]</td>
+                        <td>@a[5]</td>
+                        <td>@a[7]</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="~/Admin/ChinhSuaKhachHang?id=@a[0]" class="btn-edit">Sửa</a>
+                                <a href="javascript:void(0);" onclick="confirmDelete(@a[0])" class="btn-delete">Xóa</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script>
     function confirmDelete(id) {
         if (confirm("Bạn có chắc muốn xóa khách hàng này không?")) {
             // Sử dụng Url.Action để tạo đường dẫn đúng
             window.location.href = '@Url.Action("XoaKhachHang", "Admin")?id=' + id;
-            }
+        }
     }
+
     // Hàm resetSearch để xóa nội dung tìm kiếm và tải lại trang
     function resetSearch() {
         // Xóa các giá trị nhập
@@ -76,4 +239,3 @@
         document.forms[0].submit();
     }
 </script>
-

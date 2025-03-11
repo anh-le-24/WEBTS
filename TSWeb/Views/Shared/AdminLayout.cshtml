@@ -1,43 +1,156 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/Content/css/Admincss.css" rel="stylesheet" />
     <link href="~/css/SanPham.css" rel="stylesheet" />
-    @*<link href="~/Content/css/chinhsuasanpham.css" rel="stylesheet" />
-    <link href="~/Content/css/DanhSachSP.css" rel="stylesheet" />
-    <link href="~/Content/css/UuDai.css" rel="stylesheet" />*@
     <link href="~/Content/css/Topping.css" rel="stylesheet" />
-    @*<link href="~/Content/css/ThemTopping.css" rel="stylesheet" />
-    <link href="~/Content/css/ChinhSuaTopping.css" rel="stylesheet" />*@
     <link href="~/Content/Css/TongQuan.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #2c3e50;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+            .sidebar img {
+                width: 150px;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+        .menu-top {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
+
+        .menu-item {
+            width: 100%;
+            text-align: left;
+            position: relative;
+        }
+        .menu-button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .menu-button:hover {
+                background-color: #34495e;
+            }
+
+        .dropdown-content {
+            display: none;
+            flex-direction: column;
+            background-color: #2c3e50;
+            width: 200px;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            margin-left: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+            .dropdown-content a {
+                padding: 0 0 0 0;
+                margin: 15px 15px 15px 15px;
+                text-decoration: none;
+                display: block;
+                font-size: 14px;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #34495e;
+                }
+
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".menu-button");
+            buttons.forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                        if (dropdown !== this.nextElementSibling) {
+                            dropdown.style.display = "none";
+                        }
+                    });
+                    let dropdownContent = this.nextElementSibling;
+                    if (dropdownContent && dropdownContent.classList.contains("dropdown-content")) {
+                        dropdownContent.style.display = dropdownContent.style.display === "flex" ? "none" : "flex";
+                    }
+                });
+            });
+
+            document.addEventListener("click", function () {
+                document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                    dropdown.style.display = "none";
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-    <!-- Header và navigation ở đây -->
-    <header>
-        <nav class="nav-bar">
-            <div class="logo">
-
-                <img src="~/Content/Picture/logo.jpg" alt="Tea Leaf Logo" width="120" height="90">
+    <div class="sidebar">
+        <img src="~/Content/Picture/logo.jpg" alt="Tea Leaf Logo">
+        <div class="menu-top">
+            <div class="menu-item">
+                <button class="menu-button">Thống Kê ► </button>
+                <div class="dropdown-content">
+                    <a href="@Url.Action("Index","Admin")" style="color: white">►  Doanh Số</a>
+                    <a href="@Url.Action("ThongKe","Admin")" style="color: white">►  Đánh Giá</a>
+                </div>
             </div>
-            <div class="menu-top">
-                <a href="@Url.Action("ThongKe","Admin")">Tổng Quan</a>
-                <a href="~/Admin/QLSanPham">Sản Phẩm</a>
-                <a href="~/Admin/QLUuDai">Ưu Đãi</a>
-                <a href="~/Admin/QLKhachHang">Khách Hàng</a>
-                <a href="@Url.Action("QLNhanVien","Admin")">Nhân Viên</a>
-                <a href="@Url.Action("QLThanhToan","Admin")">Thanh Toán</a>
-                <a href="~/Admin/Topping">Topping</a>
-                <a href="~/Admin/QLThongBao">Thông Báo</a>
-                <a href="~/Admin/QLChiNhanh">Chi Nhánh</a>
+            <div class="menu-item">
+                <button class="menu-button">Quản lý Sản phẩm ►</button>
+                <div class="dropdown-content">
+                    <a href="~/Admin/QLSanPham" style="color: white">►  Sản Phẩm</a>
+                    <a href="~/Admin/Topping" style="color: white">►  Topping</a>
+                    <a href="~/Admin/QLUuDai" style="color: white">►  Ưu Đãi</a>
+                </div>
             </div>
-
-        </nav>
-    </header>
-
+            <div class="menu-item">
+                <button class="menu-button">Quản lý Hệ Thống ►</button>
+                <div class="dropdown-content">
+                    <a href="~/Admin/QLKhachHang" style="color: white">►   Khách Hàng</a>
+                    <a href="@Url.Action("QLNhanVien","Admin")" style="color: white">►   Nhân Viên</a>
+                    <a href="~/Admin/QLChiNhanh" style="color: white">►   Chi Nhánh</a>
+                    <a href="@Url.Action("QLThanhToan","Admin")" style="color: white">►   Thanh Toán</a>
+                    <a href="~/Admin/QLThongBao" style="color: white">►   Thông Báo</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <main class="content">
         @RenderBody()
     </main>

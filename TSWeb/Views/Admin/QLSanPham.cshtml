@@ -1,66 +1,193 @@
-﻿﻿@{
+﻿@{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<!-- Form tìm kiếm và nút Thêm -->
-<div class="search-add-container">
-    <div class="search-filter">
+<style>
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+    .search-add-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px; /* Tạo khoảng cách với bảng bên dưới */
+    }
+
+    .search-filter {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+        .search-filter input,
+        .button {
+            height: 40px;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease; /* Hiệu ứng mượt mà */
+        }
+
+    .button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 130px;
+    }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
+        }
+
+    .add-button {
+        background-color: #28a745;
+        text-decoration: none;
+    }
+
+        .add-button:hover {
+            background-color: #f39c12;
+        }
+
+        .add-button .button__icon {
+            display: none;
+        }
+
+        .add-button:hover .button__text {
+            display: none;
+        }
+
+        .add-button:hover .button__icon {
+            display: inline;
+        }
+
+        .add-button:hover .button__text {
+            display: none; /* Ẩn chữ khi hover */
+        }
+
+        .add-button:hover .button__icon {
+            display: inline; /* Hiện dấu "+" khi hover */
+        }
+
+    .button__icon {
+        display: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    .action-buttons {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+    .btn-edit, .btn-delete {
+        padding: 8px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        width: 60px;
+        text-align: center;
+        display: inline-block;
+    }
+    .btn-edit {
+        background-color: #007bff;
+    }
+    .btn-edit:hover {
+        background-color: #0056b3;
+    }
+    .btn-delete {
+        background-color: #dc3545;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<div class="container">
+    <h1 style="text-align:center; padding-bottom: 25px">QUẢN LÝ SẢN PHẨM</h1>
+    <div class="search-add-container">
         @using (Html.BeginForm("QLSanPham", "Admin", FormMethod.Get))
         {
-            <input type="text" name="tenSanPham" placeholder="Tìm theo tên sản phẩm" value="@Request.QueryString["tenSanPham"]" />
-            <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
-            <button type="submit" class="button">Tìm kiếm</button>
+            <div class="search-filter">
+                <input type="text" name="tenSanPham" placeholder="Tìm theo tên sản phẩm" value="@Request.QueryString["tenSanPham"]" />
+                <input type="date" name="ngayThem" value="@Request.QueryString["ngayThem"]" />
+                <button type="submit" class="button">Tìm kiếm</button>
+            </div>
         }
+        <a href="~/Admin/ThemSanPham" class="button add-button">
+            <span class="button__text">Thêm sản phẩm</span>
+            <span class="button__icon">+</span>
+        </a>
     </div>
-    <a href="~/Admin/ThemSanPham" type="button" class="button add-button">
-        <span class="button__text">Thêm</span>
-        <span class="button__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                <line y2="19" y1="5" x2="12" x1="12"></line>
-                <line y2="12" y1="12" x2="19" x1="5"></line>
-            </svg>
-        </span>
-    </a>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>IDSP</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Hình Ảnh</th>
-            <th>Ngày Tạo</th>
-            <th>Mô tả</th>
-            <th>Giảm Giá</th>
-            <th>IDVC</th>
-            <th>Danh Mục</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var a in ViewBag.list)
-        {
+
+
+    <table>
+        <thead>
             <tr>
-                <td>@a[0]</td>
-                <td>@a[1]</td>
-                <td>@a[2]</td>
-                <td><img src="~/Content/Picture/@a[3]" alt="Hình ảnh sản phẩm" width="50" height="50" /></td>
-                <td>@a[4]</td>
-                <td>@a[5]</td>
-                <td>@a[6]</td>
-                <td>@a[7]</td>
-                <td>@a[8]</td>
-                <td>
-                    <div class="action-buttons">
-                        <a href="~/Admin/ChinhSuaSP?id=@a[0]" class="btn-edit">Sửa</a>
-                        @using (Html.BeginForm("XoaSanPham", "Admin", FormMethod.Post))
-                        {
-                            <input type="hidden" name="id" value="@a[0]" />
-                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
-                        }
-                    </div>
-                </td>
+                <th>IDSP</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Hình Ảnh</th>
+                <th>Ngày Tạo</th>
+                <th>Mô tả</th>
+                <th>Giảm Giá</th>
+                <th>IDVC</th>
+                <th>Danh Mục</th>
+                <th>Hành động</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var a in ViewBag.list)
+            {
+                <tr>
+                    <td>@a[0]</td>
+                    <td>@a[1]</td>
+                    <td>@a[2]</td>
+                    <td><img src="~/Content/Picture/@a[3]" alt="Hình ảnh sản phẩm" width="50" height="50" /></td>
+                    <td>@a[4]</td>
+                    <td>@a[5]</td>
+                    <td>@a[6]</td>
+                    <td>@a[7]</td>
+                    <td>@a[8]</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="~/Admin/ChinhSuaSP?id=@a[0]" class="btn-edit">Sửa</a>
+                            @using (Html.BeginForm("XoaSanPham", "Admin", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value="@a[0]" />
+                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

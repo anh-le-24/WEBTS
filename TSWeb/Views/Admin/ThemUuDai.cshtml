@@ -2,48 +2,135 @@
     ViewBag.Title = "Thêm Ưu Đãi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<div class="main-content">
-    <div class="form-container">
-        <h2 class="form-title">Thêm Ưu Đãi Mới</h2>
-        @if (!ViewData.ModelState.IsValid)
-        {
-            <div class="alert alert-danger">
-                @Html.ValidationSummary(false)
-            </div>
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
-        <form action="~/Admin/ThemUuDaiMoi" method="post" class="product-form">
-            <div class="form-group">
-                <label for="IDVC">IDVC *</label>
-                <input type="number" id="IDVC" name="IDVC" class="form-control" required placeholder="Nhập IDVC" />
-            </div>
-            <div class="form-group">
-                <label for="TenMa">Tên Mã *</label>
-                <input type="text" id="TenMa" name="TenMa" class="form-control" required maxlength="9" placeholder="Nhập tên mã" />
-            </div>
-            <div class="form-group">
-                <label for="MoTa">Mô Tả *</label>
-                <textarea id="MoTa" name="MoTa" class="form-control" rows="4" required placeholder="Nhập mô tả"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="NgayBD">Ngày Bắt Đầu *</label>
-                <input type="date" id="NgayBD" name="NgayBD" class="form-control" required />
-            </div>
-            <div class="form-group">
-                <label for="NgayKT">Ngày Kết Thúc *</label>
-                <input type="date" id="NgayKT" name="NgayKT" class="form-control" required />
-            </div>
-            <div class="form-group">
-                <label for="PhanTramGiam">Phần Trăm Giảm *</label>
-                <input type="number" id="PhanTramGiam" name="PhanTramGiam" class="form-control" required min="0" max="100 placeholder="Nhập phần trăm giảm" />
-            </div>
-            <div class="form-group">
-                <label for="DieuKien">Điều Kiện *</label>
-                <input type="number" id="DieuKien" name="DieuKien" class="form-control" required placeholder="Nhập điều kiện" />
-            </div>
-            <div class="form-actions center">
-                <button type="submit" class="btn btn-primary">Thêm Ưu Đãi</button>
-                <a href="@Url.Action("QLUuDai", "Admin")" class="btn btn-secondary">Quay lại</a>
-            </div>
-        </form>
-    </div>
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+</style>
+<div class="container">
+    <h2 class="form-title" style="text-align:center; padding-bottom: 25px">THÊM ƯU ĐÃI</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(false)
+        </div>
+    }
+
+    <form action="~/Admin/ThemUuDaiMoi" method="post" class="product-form">
+        <div class="form-group">
+            <label for="IDVC">IDVC *</label>
+            <input type="number" id="IDVC" name="IDVC" class="form-control" required placeholder="Nhập IDVC" />
+        </div>
+
+        <div class="form-group">
+            <label for="TenMa">Tên Mã *</label>
+            <input type="text" id="TenMa" name="TenMa" class="form-control" required maxlength="20" placeholder="Nhập tên mã" />
+        </div>
+
+        <div class="form-group">
+            <label for="MoTa">Mô Tả *</label>
+            <textarea id="MoTa" name="MoTa" class="form-control" rows="4" required placeholder="Nhập mô tả"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="NgayBD">Ngày Bắt Đầu *</label>
+            <input type="date" id="NgayBD" name="NgayBD" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="NgayKT">Ngày Kết Thúc *</label>
+            <input type="date" id="NgayKT" name="NgayKT" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="PhanTramGiam">Phần Trăm Giảm *</label>
+            <input type="number" id="PhanTramGiam" name="PhanTramGiam" class="form-control" required min="0" max="100" placeholder="Nhập phần trăm giảm" />
+        </div>
+
+        <div class="form-group">
+            <label for="DieuKien">Điều Kiện *</label>
+            <input type="number" id="DieuKien" name="DieuKien" class="form-control" required placeholder="Nhập điều kiện" />
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Thêm Ưu Đãi</button>
+            <a href="@Url.Action("QLUuDai", "Admin")" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const ngayBDInput = document.getElementById('NgayBD');
+        const ngayKTInput = document.getElementById('NgayKT');
+
+        let today = new Date().toISOString().split('T')[0];
+        ngayBDInput.value = today;
+
+        let nextWeek = new Date();
+        nextWeek.setDate(nextWeek.getDate() + 7);
+        ngayKTInput.value = nextWeek.toISOString().split('T')[0];
+    });
+</script>
+
