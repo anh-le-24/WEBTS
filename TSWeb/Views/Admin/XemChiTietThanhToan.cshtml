@@ -1,15 +1,67 @@
 ﻿@{
-    ViewBag.Title = "Chi Tiết Thanh Toán";
+    ViewBag.Title = "Xem Chi Tiết Thanh Toán";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<h1>Chi tiết thanh toán</h1>
-<table class="table">
-    <tr><th>ID Thanh Toán:</th><td>@ViewBag.list[0][0]</td></tr>
-    <tr><th>Ngày Thanh Toán:</th><td>@ViewBag.list[0][1]</td></tr>
-    <tr><th>Tổng Tiền:</th><td>@ViewBag.list[0][2]</td></tr>
-    <tr><th>Hình Thức Thanh Toán:</th><td>@ViewBag.list[0][3]</td></tr>
-    <tr><th>ID Đơn Hàng:</th><td>@ViewBag.list[0][4]</td></tr>
-</table>
-<div class="form-actions center">
-    <a href="@Url.Action("QLThanhToan", "Admin")" class="btn btn-secondary">Quay lại</a>
-</div> 
+
+<style>
+    .detail-container {
+        width: 50%;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .detail-table th, .detail-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .detail-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="detail-container">
+    <h2 style="text-align:center; margin-bottom: 20px;">Chi Tiết Thanh Toán</h2>
+    <table class="detail-table">
+        <tr><th>ID Thanh Toán:</th><td>@ViewBag.list[0][0]</td></tr>
+        <tr><th>Ngày Thanh Toán:</th><td>@ViewBag.list[0][1]</td></tr>
+        <tr><th>Tổng Tiền:</th><td>@ViewBag.list[0][2]</td></tr>
+        <tr><th>Hình Thức Thanh Toán:</th><td>@ViewBag.list[0][3]</td></tr>
+        <tr><th>ID Đơn Hàng:</th><td>@ViewBag.list[0][4]</td></tr>
+    </table>
+    <div class="form-actions">
+        <a href="@Url.Action("QLThanhToan", "Admin")" class="btn-back">Quay lại</a>
+    </div>
+</div>

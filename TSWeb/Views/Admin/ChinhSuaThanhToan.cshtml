@@ -3,26 +3,76 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Chỉnh Sửa Thanh Toán</h2>
+<style>
+    .edit-container {
+        width: 50%;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-@using (Html.BeginForm("ChinhSuaTT", "Admin", FormMethod.Post))
-{
-    <input type="hidden" name="IDTT" value="@ViewBag.list[0][0]" />
-    <div class="form-group">
-        <label>Ngày Thanh Toán:@ViewBag.list[0][1] </label>
-        <input type="datetime" name="NgayThanhToan" value="@ViewBag.list[0][1]" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>Tổng Tiền:</label>
-        <input type="number" name="TongTien" value="@ViewBag.list[0][2]" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>Hình Thức Thanh Toán:</label>
-        <input type="text" name="HinhThucThanhToan" value="@ViewBag.list[0][3]" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>ID Đơn Hàng:</label>
-        <input type="number" name="IDDH" value="@ViewBag.list[0][4]" class="form-control" required />
-    </div>
-    <button type="submit" class="btn btn-primary">Cập Nhật Thanh Toán</button>
-}
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-submit {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="edit-container">
+    <h2 style="text-align:center; margin-bottom: 20px;">Chỉnh Sửa Thanh Toán</h2>
+    @using (Html.BeginForm("ChinhSuaTT", "Admin", FormMethod.Post))
+    {
+        <input type="hidden" name="IDTT" value="@ViewBag.list[0][0]" />
+        <div class="form-group">
+            <label>Ngày Thanh Toán:</label>
+            <input type="date" name="NgayThanhToan" value="@ViewBag.list[0][1]" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Tổng Tiền:</label>
+            <input type="number" name="TongTien" value="@ViewBag.list[0][2]" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Hình Thức Thanh Toán:</label>
+            <input type="text" name="HinhThucThanhToan" value="@ViewBag.list[0][3]" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>ID Đơn Hàng:</label>
+            <input type="number" name="IDDH" value="@ViewBag.list[0][4]" class="form-control" required />
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Cập Nhật Thanh Toán</button>
+        </div>
+    }
+</div>

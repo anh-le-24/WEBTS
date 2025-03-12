@@ -204,6 +204,32 @@ namespace TSWeb.Controllers
             ViewBag.list = list;
             return View();
         }
+        public ActionResult ThemCN()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemChiNhanh(string TenCN, string DiaChiCN, DateTime NgayTaoCN)
+        {
+            try
+            {
+                // Format ngày tạo thông báo
+                string formattedDate = NgayTaoCN.ToString("yyyy-MM-dd");
+
+                // Gọi stored procedure để thêm thông báo
+                string sqlQuery = $"EXEC ThemChiNhanh N'{TenCN}', N'{DiaChiCN}', '{formattedDate}'";
+                DatabaseModel db = new DatabaseModel();
+                db.get(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("ThemCN");
+            }
+
+            return RedirectToAction("QLChiNhanh", "Admin");
+        }
 
 
 

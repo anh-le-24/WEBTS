@@ -3,25 +3,83 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Thêm Thanh Toán</h2>
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-@using (Html.BeginForm("ThemThanhToan", "Admin", FormMethod.Post))
-{
-    <div class="form-group">
-        <label>Ngày Thanh Toán:</label>
-        <input type="date" name="NgayThanhToan" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>Tổng Tiền:</label>
-        <input type="number" name="TongTien" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>Hình Thức Thanh Toán:</label>
-        <input type="text" name="HinhThucThanhToan" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label>ID Đơn Hàng:</label>
-        <input type="number" name="IDDH" class="form-control" required />
-    </div>
-    <button type="submit" class="btn btn-success">Thêm Thanh Toán</button>
-}
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .btn-submit {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="form-container">
+    <h2 style="text-align:center; margin-bottom: 20px;">Thêm Thanh Toán</h2>
+
+    @using (Html.BeginForm("ThemThanhToan", "Admin", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Ngày Thanh Toán:</label>
+            <input type="date" name="NgayThanhToan" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Tổng Tiền:</label>
+            <input type="number" name="TongTien" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Hình Thức Thanh Toán:</label>
+            <select name="HinhThucThanhToan" class="form-control" required>
+                <option value="">-- Chọn Hình Thức --</option>
+                <option value="Tiền mặt">Tiền mặt</option>
+                <option value="Ngân hàng">Ngân hàng</option>
+                <option value="Ví điện tử">Ví điện tử</option>
+                <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>ID Đơn Hàng:</label>
+            <input type="number" name="IDDH" class="form-control" required />
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-submit">Thêm Thanh Toán</button>
+            <a href="@Url.Action("QLThanhToan", "Admin")" class="btn btn-submit" style="text-align:center; text-decoration:none">Quay lại</a>
+        </div>     }
+</div>
