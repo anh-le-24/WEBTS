@@ -203,7 +203,7 @@
                         <td>@a[3]</td>
                         <td>
                             <div class="action-buttons">
-                                <a href="~/Admin/ChinhSuaCN?id=@a[0]" class="btn-edit">Sửa</a>
+                                <a href="@Url.Action("ChinhSuaCN", "Admin", new { id = a[0] })" class="btn-edit">Sửa</a>
                                 <a href="javascript:void(0);" onclick="confirmDelete(@a[0])" class="btn-delete">Xóa</a>
                             </div>
                         </td>

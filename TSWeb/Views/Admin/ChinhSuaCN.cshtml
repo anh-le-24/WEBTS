@@ -35,13 +35,7 @@
                             <label for="Address">Địa Chỉ</label>
                             <input type="text" id="Address" name="Address" class="form-control" required placeholder="123 đường Cao Thắng, Quận 3, HCM" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][2] : "")" />
 
-                        </div>
-
-                        <div class="form-group">
-                            <label for="DateCreate">Ngày Tạo</label>
-                            <!-- Để trống nếu không muốn thay đổi mật khẩu -->
-                            <input type="date" id="DateCreate" name="DateCreate" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][3] : "")" class="form-control" />
-                        </div>
+                        </div>                     
 
                         <!-- Nút thao tác -->
                         <div class="form-actions center">

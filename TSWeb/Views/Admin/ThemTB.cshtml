@@ -1,28 +1,101 @@
 ﻿@{
-    ViewBag.Title = "ThemTB";
+    ViewBag.Title = "Thêm Thông Báo";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-@{
-    ViewBag.Title = "Thêm thông báo";
-}
+<style>
+    .container {
+        width: 50%;
+        margin: 30px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-<form method="post" action="~/Admin/ThemThongBao">
-    <label for="TieuDe">Tiêu đề:</label>
-    <input type="text" id="TieuDe" name="TieuDe" required />
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-    <label for="NoiDung">Nội dung:</label>
-    <textarea id="NoiDung" name="NoiDung" required></textarea>
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
 
-    <label for="NgayTaoTB">Ngày tạo:</label>
-    <input type="date" id="NgayTaoTB" name="NgayTaoTB" required />
+    input, textarea, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 
-    <label for="IDND">Người Nhận:</label>
-    <input type="number" id="IDND" name="IDND" required />
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
 
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
 
-    <button type="submit">Thêm</button>
-</form>
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+    }
 
-<a href="/Admin/QLThongBao">Quay lại</a>
+    .btn-submit {
+        background-color: #007bff;
+        color: white;
+        flex: 1;
+        margin-right: 10px;
+    }
 
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-back {
+        background-color: #6c757d;
+        color: white;
+        flex: 1;
+    }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<div class="container">
+    <h2>Thêm Thông Báo</h2>
+
+    <form method="post" action="~/Admin/ThemThongBao">
+        <label for="TieuDe">Tiêu đề:</label>
+        <input type="text" id="TieuDe" name="TieuDe" required placeholder="Nhập tiêu đề thông báo..." />
+
+        <label for="NoiDung">Nội dung:</label>
+        <textarea id="NoiDung" name="NoiDung" required placeholder="Nhập nội dung thông báo..."></textarea>
+
+        <label for="NgayTaoTB">Ngày tạo:</label>
+        <input type="date" id="NgayTaoTB" name="NgayTaoTB" required />
+
+        <label for="IDND">Người nhận (ID):</label>
+        <input type="number" id="IDND" name="IDND" required placeholder="Nhập ID người nhận..." />
+
+        <div class="btn-container">
+            <button type="submit" class="btn btn-submit">Thêm</button>
+            <a href="/Admin/QLThongBao" class="btn btn-back">Quay lại</a>
+        </div>
+    </form>
+</div>

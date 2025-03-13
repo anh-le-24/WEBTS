@@ -1,90 +1,122 @@
-﻿﻿﻿
-@{
-    ViewBag.Title = "ChinhSuaNV";
+﻿@{
+    ViewBag.Title = "Chỉnh Sửa Nhân Viên";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<div class="center">
-    <div class="edit-customer-container">
-        <div class="page-header">
-            <div class="header-content">
-                <h2>Chỉnh sửa thông tin nhân viên</h2>
-            </div>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .btn-save {
+        background-color: #007bff;
+        color: white;
+        flex: 1;
+        margin-right: 10px;
+    }
+
+        .btn-save:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-cancel {
+        background-color: #6c757d;
+        color: white;
+        flex: 1;
+    }
+
+        .btn-cancel:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<div class="container">
+    <h2>Chỉnh Sửa Thông Tin Nhân Viên</h2>
+
+    <form action="@Url.Action("ChinhSuaNV")" method="post">
+        <input type="hidden" name="Id" value="1" />
+
+        <div class="form-group">
+            <label for="FullName">Họ tên:</label>
+            <input type="text" id="FullName" name="FullName" value="Nguyễn Văn A" required />
         </div>
 
-        <div class="customer-form-container">
-            <form action="@Url.Action("ChinhSuaNV")" method="post">
-                <input type="hidden" name="Id" value="1" /> <!-- Thay đổi giá trị Id khi có dữ liệu -->
-                <div class="form-sections">
-                    <!-- Phần thông tin cơ bản -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <i class="fas fa-user-circle"></i>
-                            <h3>Thông tin nhân viên</h3>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="FullName">Họ tên:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="FullName" name="FullName" value="Nguyễn Văn A" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Gender">Giới tính:</label>
-                                <div class="input-wrapper">
-                                    <select id="Gender" name="Gender" required>
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="DateOfBirth">Ngày sinh nhật:</label>
-                                <div class="input-wrapper">
-                                    <input type="date" id="DateOfBirth" name="DateOfBirth" value="1990-01-01" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PhoneNumber">Số điện thoại:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="PhoneNumber" name="PhoneNumber" value="0123456789" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Email">Email:</label>
-                                <div class="input-wrapper">
-                                    <input type="email" id="Email" name="Email" value="example@gmail.com" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Address">Địa chỉ:</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="Address" name="Address" value="Hà Nội" required />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Nút thao tác -->
-                    <div class="form-actions center">
-                        <!-- Nút hủy -->
-                        <button type="button" class="btn btn-secondary" onclick="history.back()">
-                            <i class="fas fa-times"></i> Hủy
-                        </button>
-
-                        <!-- Nút cập nhật -->
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Cập nhật
-                        </button>
-                    </div>
-                </div>
+        <div class="form-group">
+            <label for="Gender">Giới tính:</label>
+            <select id="Gender" name="Gender" required>
+                <option value="Nam" selected>Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
         </div>
-        </form>
-    </div>
-</div>
+
+        <div class="form-group">
+            <label for="DateOfBirth">Ngày sinh nhật:</label>
+            <input type="date" id="DateOfBirth" name="DateOfBirth" value="1990-01-01" required />
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber">Số điện thoại:</label>
+            <input type="text" id="PhoneNumber" name="PhoneNumber" value="0123456789" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" name="Email" value="example@gmail.com" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Address">Địa chỉ:</label>
+            <input type="text" id="Address" name="Address" value="Hà Nội" required />
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn btn-save"><i class="fas fa-save"></i> Cập Nhật</button>
+            <a href="/Admin/QLNhanVien" class="btn btn-cancel"><i class="fas fa-times"></i> Hủy</a>
+        </div>
+    </form>
 </div>

@@ -48,7 +48,7 @@ namespace TSWeb.Models
             {
                 SqlCommand command = new SqlCommand(sql, connection);
                 connection.Open();
-                using (SqlDataReader r = command.ExecuteReader())
+                using ( SqlDataReader r = command.ExecuteReader())
                 {
                     while (r.Read())
                     {

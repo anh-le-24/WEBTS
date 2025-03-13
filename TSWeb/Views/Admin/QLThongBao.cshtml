@@ -9,23 +9,93 @@
         margin: 20px auto;
     }
 
-    /* Nút thêm mới */
-    .btn-add {
-        display: inline-block;
-        padding: 10px 15px;
-        background-color: #007bff;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        margin-bottom: 15px;
+    /* Thanh tìm kiếm & nút thêm */
+    .search-add-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
 
-        .btn-add:hover {
+    .search-filter {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+        .search-filter input,
+        .btn {
+            height: 40px;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+    .btn_search {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        height: 40px;
+    }
+
+        .btn_search:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
+
+    .btn_add {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        text-decoration: none;
+        height: 40px;
+    }
+
+        .btn_add:hover {
+            background-color: orange;
+            transform: scale(1.05);
+        }
+
+        .btn_add .btn_icon:hover {
+            display: none;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none;
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+        .btn_add:hover .btn_text {
+            display: none; /* Ẩn chữ khi hover */
+        }
+
+        .btn_add:hover .btn_icon {
+            display: inline;
+        }
+
+    .btn_icon {
+        display: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
     /* Bảng danh sách */
     .table-container {
@@ -38,8 +108,6 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        border-radius: 8px;
-        overflow: hidden;
     }
 
     th, td {
@@ -53,7 +121,6 @@
         font-weight: bold;
     }
 
-    /* Nút thao tác */
     .action-buttons a {
         display: inline-block;
         padding: 6px 10px;
@@ -84,8 +151,20 @@
 <div class="container">
     <h1 style="text-align:center; padding-bottom: 25px">QUẢN LÝ THÔNG BÁO</h1>
 
-    <!-- Nút thêm mới -->
-    <a href="@Url.Action("ThemTB", "Admin")" class="btn-add">Thêm Thông Báo</a>
+    <!-- Thanh tìm kiếm và bộ lọc -->
+    <div class="search-add-container">
+        @using (Html.BeginForm("QLThongBao", "Admin", FormMethod.Get))
+        {
+            <div class="search-filter">
+                <input type="date" name="ngayTao" value="@Request.QueryString["ngayTao"]" />
+                <button type="submit" class="btn_search">Tìm kiếm</button>
+            </div>
+        }
+        <a href="@Url.Action("ThemTB", "Admin")" class="btn_add">
+            <span class="btn_text">Thông Báo Mới</span>
+            <span class="btn_icon">+</span>
+        </a>
+    </div>
 
     <!-- Bảng danh sách thông báo -->
     <div class="table-container">
@@ -107,7 +186,7 @@
                         <td>@a[0]</td>
                         <td>@a[1]</td>
                         <td>@a[2]</td>
-                        <td>@a[3]</td>
+                        <td>@Convert.ToDateTime(a[3]).ToString("dd/MM/yyyy")</td>
                         <td>@a[4]</td>
                         <td>
                             <div class="action-buttons">

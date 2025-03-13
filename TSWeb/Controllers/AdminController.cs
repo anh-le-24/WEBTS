@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TSWeb.Models;
@@ -176,7 +177,7 @@ namespace TSWeb.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return View("ChinhSuaThongBao");
+                return View("ChinhSuaTB");
             }
 
             return RedirectToAction("QLThongBao", "Admin");
@@ -186,7 +187,7 @@ namespace TSWeb.Controllers
             db.get("EXEC XoaThongBao " + id);
             return RedirectToAction("QLThongBao", "Admin");
         }
-
+        //Quản lý chi nhánh
         public ActionResult QLChiNhanh(string tenCN)
         {
             DatabaseModel db = new DatabaseModel();
@@ -230,10 +231,38 @@ namespace TSWeb.Controllers
 
             return RedirectToAction("QLChiNhanh", "Admin");
         }
+        [HttpPost]
+        public ActionResult ChinhSuaChiNhanh(string IDCN, string Name, string Address)
+        {
+            try
+            {
+                // Format ngày
+                string formattedDate = DateTime.Now.ToString("yyyy-MM-dd");
 
+                // Gọi stored procedure để cập nhật thông báo
+                string sqlQuery = "EXEC CapNhatChiNhanh " + IDCN + ",N'" + Name + "', N'" + Address + "','" + formattedDate + "';";
+                DatabaseModel db = new DatabaseModel();
+                db.get(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("QLChiNhanh", "Admin");
+            }
 
+            return RedirectToAction("QLChiNhanh", "Admin");
+        }
+        public ActionResult ChinhSuaCN(string id)
+        {
+            ViewBag.list = db.get("EXEC XemChiNhanh @IDCN = " + id);
+            return View();
+        }
 
-
+        public ActionResult XoaCN(string id)
+        {
+            db.get("EXEC XoaChiNhanh " + id);
+            return RedirectToAction("QLChiNhanh", "Admin");
+        }
 
         // Các phương thức quản lý thanh toán
         public ActionResult QLThanhToan()
