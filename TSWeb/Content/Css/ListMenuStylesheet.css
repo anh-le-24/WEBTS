@@ -5,42 +5,71 @@
 }
 
 .content-bibot {
-    width: 20%;
-    background-color: #343a40;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
+    width: 250px;
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-    .content-bibot h2 a {
+    .content-bibot h2 {
+        background-color: #ff4757;
         color: white;
-        text-decoration: none;
+        text-align: center;
+        padding: 15px;
+        font-size: 24px;
+        font-family: Roboto;
+        position: relative;
+        margin: 0;
     }
+
+        .content-bibot h2 a {
+            color: white;
+            text-decoration: none;
+        }
 
     .content-bibot ul {
         list-style: none;
         padding: 0;
+        margin: 0;
     }
 
         .content-bibot ul li {
-            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-family: Roboto;
         }
 
     .content-bibot button {
         width: 100%;
         padding: 10px;
         border: none;
-        background-color: #ffc107;
+        background: none;
         color: black;
         font-size: 16px;
-        border-radius: 5px;
+        text-align: left;
         cursor: pointer;
+        transition: background 0.3s;
     }
 
         .content-bibot button:hover {
-            background-color: #ff9800;
+            background-color: #ffcccb;
         }
 
+        .content-bibot button:active {
+            transform: translateY(0);
+        }
+
+@media (max-width: 768px) {
+    .content-bibot {
+        width: 100%;
+    }
+}
+
+.content-bibot .bibot-left {
+    margin: 0;
+}
 .bibot-right {
     width: 75%;
 }

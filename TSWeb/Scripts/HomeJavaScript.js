@@ -102,4 +102,3 @@ btnLeft.addEventListener("click", () => {
     currentIndexx--;
     changeImage();
 });
-

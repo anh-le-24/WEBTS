@@ -1,51 +1,101 @@
-﻿﻿@model TSWeb.Models.DangNhapDKModels
+﻿﻿﻿@model TSWeb.Models.DangNhapDKModels
 @{
     ViewBag.Title = "DangNhap";
     <link href="~/Content/Css/LoginStyleSheet.css" rel="stylesheet" />
-    Layout = null; 
+    Layout = null;
     string errorMessage = TempData["ErrorMessage"] as string;
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+
 }
 
 <div class="container">
-    <div class="box signin">
-        <h2>Bạn đã có tài khoản rồi !</h2>
-        <button class="signinBtn">Đăng nhập</button>
-    </div>
-    <div class="box signup">
-        <h2>Bạn chưa có tài khoản ?</h2>
-        <button class="signupBtn">Đăng ký</button>
-    </div>
-    <div class="formBx">
-        <div class="form signinform">
-            <form action="~/DangNhapDK/XuLyDangNhap" method="post">
-                <input type="text" name="email" placeholder="Email" /><br />
-                <input type="password" name="matkhau" placeholder="Mật khẩu" /><br />
-                <button type="submit">Đăng nhập</button>
-                @if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    <div id="error-message" style="color: red; margin-top: 10px;text-align:center;">
-                        @errorMessage
-                    </div>
-                }
-            </form>
+    <div class="login-section" id="loginSection">
+        <div class="image-section">
+            <img src="~/Content/Picture/5.jpg" alt="bubble milk tea" />
         </div>
-        <div class="form signupform">
-            <form action="~/DangNhapDK/DangKy" method="post">
-                <input type="text" name="hoten" placeholder="Họ và tên" required /> <br />
-                <input type="email" name="email" placeholder="Email" required /> <br />
-                <input type="password" name="matkhau" placeholder="Mật khẩu" required /> <br />
-                <input type="password" name="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" required /> <br />
-                <input type="text" name="sdt" placeholder="Số điện thoại" required /> <br />
-                <input type="text" name="diachi" placeholder="Địa chỉ" required /><br />
-                <button type="submit">Đăng ký</button>
+        <div class="form-section">
+            <form action="/DangNhapDK/XuLyDangNhap" method="post">
+                <h2>Đăng nhập</h2>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input placeholder="Email" type="text" name="email" />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input placeholder="Password" type="password" name="matkhau" />
+                </div>
+                <div class="btn-container">
+                    <button class="btn" type="submit">Đăng nhập</button>
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div id="error-message" style="color: red; margin-top: 10px;text-align:center;">
+                            @errorMessage
+                        </div>
+                    }
+                </div>
+                <div class="create-account">
+                    <a href="#" onclick="showRegisterForm()">Tạo một tài khoản</a>
+                </div>
             </form>
         </div>
     </div>
 
+    
+    <div class="register-section" id="registerSection" style="display: none;">
+        <div class="image-container">
+            <img src="~/Content/Picture/8.jpg" alt="milk tea" />
+        </div>
+        <div class="form-section">
+            <form action="/DangNhapDK/DangKy" method="post">
+                <h2>Đăng ký</h2>
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input placeholder="Họ và tên" type="text" name="hoten" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input placeholder="Email" type="email" name="email" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input placeholder="Mật khẩu" type="password" name="matkhau" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input placeholder="Nhập lại mật khẩu" type="password" name="nhaplaimatkhau" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-phone"></i>
+                    <input placeholder="Số điện thoại" type="text" name="sdt" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-home"></i>
+                    <input placeholder="Địa chỉ" type="text" name="diachi" />
+                </div>
+                <div class="btn-container">
+                    <button class="btn" type="submit">Đăng ký</button>
+                </div>
+                <div class="already-member">
+                    <a href="#" onclick="showLoginForm()">Tôi đã đăng ký</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
+
 <script type="text/javascript">
+
+    function showRegisterForm() {
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('registerSection').style.display = 'flex';
+    }
+
+    function showLoginForm() {
+        document.getElementById('registerSection').style.display = 'none';
+        document.getElementById('loginSection').style.display = 'flex';
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector(".signupform form");

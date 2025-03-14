@@ -548,6 +548,8 @@
     <Content Include="Content\Css\UuDai.css" />
     <Content Include="Content\Css\voucher.css" />
     <Content Include="Content\Picture\1.png" />
+    <Content Include="Content\Picture\5.jpg" />
+    <Content Include="Content\Picture\8.jpg" />
     <Content Include="Content\Picture\anhgioithieu.jpg" />
     <Content Include="Content\Picture\avatar.jpg" />
     <Content Include="Content\Picture\banner_diemtichluy.png" />
@@ -557,6 +559,7 @@
     <Content Include="Content\Picture\bgg.jpg" />
     <Content Include="Content\Picture\bggt.jpg" />
     <Content Include="Content\Picture\bg_dn.jpg" />
+    <Content Include="Content\Picture\bubble.jpg" />
     <Content Include="Content\Picture\cart.png" />
     <Content Include="Content\Picture\cholayhang.png" />
     <Content Include="Content\Picture\choxacnhan.png" />

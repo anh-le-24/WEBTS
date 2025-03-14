@@ -167,6 +167,22 @@ function closeVNPayModal() {
     vnpayModal.style.display = "none";
 }
 
+// Show the voucher form
+function showVoucherForm() {
+    let voucherForm = document.getElementById("voucherForm");
+    if (voucherForm) {
+        voucherForm.style.display = "flex";
+    }
+}
+
+// Hide the voucher form
+function hideVoucherForm() {
+    let voucherForm = document.getElementById("voucherForm");
+    if (voucherForm) {
+        voucherForm.style.display = "none";
+    }
+}
+
 document.addEventListener('click', function (event) {
     if (event.target.matches('#menu, #menu1')) {
         const sideBar = document.querySelector('.side-bar');
