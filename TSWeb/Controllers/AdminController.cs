@@ -425,7 +425,7 @@ namespace TSWeb.Controllers
 
         public ActionResult ChinhSuaKhachHang(string id)
         {
-            ViewBag.list = db.get("Exec XemNguoiDungTheoID " + id + ";");
+            ViewBag.list = db.get("Exec XemNguoiDungTheoID " + id);
             return View();
         }
 
@@ -786,7 +786,7 @@ namespace TSWeb.Controllers
         [HttpPost]
         public ActionResult XoaSanPham(string id)
         {
-            ViewBag.id = db.get("EXEC XoaSanPham " + id);
+            db.get("EXEC sp_XoaSanPham " + id);
             return RedirectToAction("QLSanPham", "Admin");
         }
 

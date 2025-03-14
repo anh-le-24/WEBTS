@@ -47,7 +47,7 @@
             <div class="form-group">
                 <label for="Gia">Giá *</label>
                 <input type="number" id="Gia" name="Gia" class="form-control" required
-                       min="0" step="1000" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 2 ? ViewBag.list[0][2] : "0")" />
+                       min="0.0" step="1000.0" value="@(ViewBag.list != null && ViewBag.list.Count > 0 && ViewBag.list[0].Count > 2 ? ViewBag.list[0][2] : "0")" />
             </div>
 
             <div class="form-group">

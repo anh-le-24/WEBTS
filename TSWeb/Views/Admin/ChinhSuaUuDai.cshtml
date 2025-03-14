@@ -90,23 +90,23 @@
 
                 // Xử lý an toàn cho ngày bắt đầu
                 var ngayBD = today;
-                if (uuDai != null && uuDai[4] != null)
-                {
-                    DateTime tempDate;
-                    if (DateTime.TryParse(uuDai[4].ToString(), out tempDate))
-                    {
-                        ngayBD = tempDate.ToString("yyyy-MM-dd");
-                    }
-                }
-
-                // Xử lý an toàn cho ngày kết thúc
-                var ngayKT = defaultEndDate;
                 if (uuDai != null && uuDai[5] != null)
                 {
                     DateTime tempDate;
                     if (DateTime.TryParse(uuDai[5].ToString(), out tempDate))
                     {
-                        ngayKT = tempDate.ToString("yyyy-MM-dd");
+                        ngayBD = tempDate.ToString("yyyy-mm-dd");
+                    }
+                }
+
+                // Xử lý an toàn cho ngày kết thúc
+                var ngayKT = defaultEndDate;
+                if (uuDai != null && uuDai[4] != null)
+                {
+                    DateTime tempDate;
+                    if (DateTime.TryParse(uuDai[4].ToString(), out tempDate))
+                    {
+                        ngayKT = tempDate.ToString("yyyy-mm-dd");
                     }
                 }
             }

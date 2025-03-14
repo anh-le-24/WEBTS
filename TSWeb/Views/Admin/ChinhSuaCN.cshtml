@@ -1,57 +1,91 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ChinhSuaCN";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<div class="center">
-    <div class="edit-customer-container">
-        <div class="page-header">
-            <div class="header-content">
-                <h2>Chỉnh sửa thông tin chi nhánh</h2>
-            </div>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="container">
+    <h2>Chỉnh sửa thông tin chi nhánh</h2>
+
+    <form action="@Url.Action("ChinhSuaChiNhanh", "Admin")" method="post">
+        <input type="hidden" name="IDCN" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][0] : "")" />
+
+        <div class="form-group">
+            <label for="Name">Tên Chi Nhánh</label>
+            <input type="text" id="Name" name="Name" required placeholder="Chi Nhánh Cao Thắng" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][1] : "")" />
         </div>
 
-        <div class="customer-form-container">
-            <form action="@Url.Action("ChinhSuaChiNhanh", "Admin")" method="post">
-                <!-- Ẩn input IDCN để lưu giá trị chi nhánh -->
-                <input type="hidden" name="IDCN" value="@ViewBag.list[0][0]" /> <!-- Chèn giá trị ID từ model hoặc dữ liệu truyền vào -->
-
-                <div class="form-sections">
-                    <!-- Phần thông tin cơ bản -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <i class="fas fa-user-circle"></i>
-                            <h3>Thông tin chi nhánh</h3>
-                        </div>
-                        <input type="hidden" name="IDND" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][0] : "")" />
-                        <div class="form-group">
-                            <label for="Name">Tên Chi Nhánh</label>
-                            <input type="text" id="Name" name="Name" class="form-control" required placeholder="Chi Nhánh Cao Thắng" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][1] : "")" />
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Address">Địa Chỉ</label>
-                            <input type="text" id="Address" name="Address" class="form-control" required placeholder="123 đường Cao Thắng, Quận 3, HCM" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][2] : "")" />
-
-                        </div>                     
-
-                        <!-- Nút thao tác -->
-                        <div class="form-actions center">
-                            <!-- Nút hủy -->
-                            <button type="button" class="btn btn-secondary" onclick="history.back()">
-                                <i class="fas fa-times"></i> Hủy
-                            </button>
-
-                            <!-- Nút cập nhật -->
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Cập nhật
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+        <div class="form-group">
+            <label for="Address">Địa Chỉ</label>
+            <input type="text" id="Address" name="Address" required placeholder="123 đường Cao Thắng, Quận 3, HCM" value="@(ViewBag.list != null && ViewBag.list.Count > 0 ? ViewBag.list[0][2] : "")" />
         </div>
-    </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn btn-secondary" onclick="history.back()">Hủy</button>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </div>
+    </form>
 </div>
