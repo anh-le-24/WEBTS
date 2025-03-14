@@ -28,14 +28,17 @@
                         @errorMessage
                     </div>
                 }
-            </form>
-            <div>
-                <a href="@Url.Action("DangNhapGoogle", "DangNhapDK")" class="btn btn-danger">
-                    <i class="fa fa-google"></i> Đăng nhập với Google
-                </a>
-            </div>
 
+            </form>
+            </br>
+            <div>
+                <a href="@Url.Action("LoginWithGoogle", "DangNhapDK")">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" alt="Đăng nhập với Google" />
+                </a>
+
+            </div>
         </div>
+        
         <div class="form signupform">
             <form action="~/DangNhapDK/DangKy" method="post">
                 <input type="text" name="hoten" placeholder="Họ và tên" required /> <br />

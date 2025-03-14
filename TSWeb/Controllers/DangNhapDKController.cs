@@ -8,6 +8,9 @@ using TSWeb.Models;
 using Owin;
 using Microsoft.Owin;
 using System.Diagnostics;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Collections.Generic;
 
 namespace TSWeb.Controllers
 
@@ -69,10 +72,9 @@ namespace TSWeb.Controllers
             return RedirectToAction("DangNhap", "DangNhapDK");
         }
 
-        [HttpPost]
         public ActionResult DangXuat()
         {
-            HttpContext.GetOwinContext().Authentication.SignOut();
+            HttpContext.GetOwinContext().Authentication.SignOut("ApplicationCookie");
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
@@ -90,5 +92,53 @@ namespace TSWeb.Controllers
             }
             return View();
         }
+        // Đăng nhập bằng Google
+        public void LoginWithGoogle()
+        {
+            var authenticationProperties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleCallback", "DangNhapDK", null, Request.Url.Scheme) };
+            HttpContext.GetOwinContext().Authentication.Challenge(authenticationProperties, "Google");
+        }
+
+        //callback của gg
+        public ActionResult GoogleCallback()
+        {
+            var loginInfo = HttpContext.GetOwinContext().Authentication.AuthenticateAsync("ExternalCookie").Result;
+            if (loginInfo == null)
+                return RedirectToAction("DangNhap");
+
+            // Lấy thông tin người dùng từ Google
+            var identity = loginInfo.Identity;
+            var googleId = identity.FindFirst(ClaimTypes.NameIdentifier)?.Value; // ID Google
+            var email = identity.FindFirst(ClaimTypes.Email)?.Value;
+            var name = identity.FindFirst(ClaimTypes.Name)?.Value; 
+            string matkhau = "GoogleLogin";
+            string sdt = "0000000000"; // Số mặc định
+            string diachi = "NULL";
+
+            // Kiểm tra email đã tồn tại chưa
+            ViewBag.list = db.get($"EXEC KiemTraEmail '{email}',N'{name}'");
+
+            if (ViewBag.list.Count > 0) // 🔹 Nếu email đã tồn tại
+            {
+                Session["taikhoan"] = ViewBag.list[0][0]; 
+                Session["tennguoidung"] = ViewBag.list[0][1]; 
+            }
+            else // Nếu email chưa có → Thêm tài khoản mới
+            {
+                db.get($"EXEC ThemNguoiDung N'{name}', '{email}', '{matkhau}', '{sdt}', '{diachi}';");
+
+                // Lấy IDND mới tạo
+                ViewBag.list = db.get("EXEC GetNextIDND");
+                Session["taikhoan"] = ViewBag.list[0][0];
+                Session["tennguoidung"] = name;
+            }
+
+            // Đăng nhập vào hệ thống
+            var claimsIdentity = new ClaimsIdentity(loginInfo.Identity.Claims, "ApplicationCookie");
+            HttpContext.GetOwinContext().Authentication.SignIn(claimsIdentity);
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

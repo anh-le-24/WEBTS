@@ -170,7 +170,7 @@ main {
     background-image: url(../picture/bgg.jpg);
     position: relative;
     overflow: hidden;
-    margin-top: -40px; /* Đảm bảo không có khoảng cách */
+    margin-top: -20px; /* Đảm bảo không có khoảng cách */
 }
 /* Phần slider quảng cáo */
 .slider {
